@@ -1,9 +1,5 @@
 # Installation
 
-# snowth
-
-Distributed time-series storage and analytics system
-
 ## Build Instructions
 
 For building snowth on an omnios6 box (like this [Vagrant VM](https://atlas.hashicorp.com/omniti/boxes/omnios-r151006)), see:
@@ -57,10 +53,6 @@ This will roughly do the following steps:
 5. Run `snowthd`, e.g with `./snowthd -u nobody -g nobody -D -c snowth.conf`. See `snowthd -h` for instructions.
 
 ## Documentation
-
-An API manual can be found in /docs. Use make to generate a pdf
-
-version from the doxygen xml files.
 
 Documentation about lua extensions is available at: `http://$HOST:8112/#extensions`.
 
