@@ -28,6 +28,27 @@
  * Data Deletion APIs
    * Deleting Numeric Data for a Metric
    * Deleting Numeric Data for a Check
-   * Deleting Text Data for a MetricDeleting Text Data for a CheckDeleting Histogram Data for a MetricDeleting Histogram Data for a CheckLua Extensions APIsLoading a New Lua ExtensionGetting List of Lua Extensions Executing a Lua Extension Internal APIs Getting List of Metrics to ReconstitutePosting JLOG Data Internally List All Metrics Stored on a NodeList All Metrics for a Specific Check Stored on a NodeMerging Numeric Data Merging Text Data Merging Histogram Data Retrieving Raw Numeric DataRetrieving Raw Numeric Subset DataRetrieving Raw Text Data Retrieving Raw Histogram DataII. Reference I. Snowth Command Line Reference  
+   * Deleting Text Data for a Metric
+   * Deleting Text Data for a Check
+   * Deleting Histogram Data for a Metric
+   * [Deleting Histogram Data for a Check](api/delete-histogram-check.md)
+ * Lua Extensions APIs
+   * Loading a New Lua Extension
+   * Getting List of Lua Extensions
+   * Executing a Lua Extension
+ * Internal APIs
+   * Getting List of Metrics to Reconstitute
+   * Posting JLOG Data Internally
+   * List All Metrics Stored on a Node
+   * List All Metrics for a Specific Check Stored on a Node
+   * Merging Numeric Data
+   * Merging Text Data
+   * Merging Histogram Data
+   * Retrieving Raw Numeric Data
+   * Retrieving Raw Numeric Subset Data
+   * Retrieving Raw Text Data
+   * Retrieving Raw Histogram Data
+ * References
+   * Snowth Command Line Reference  
 
-* [Deleting Histogram Data for a Check](api/delete-histogram-check.md)
+
