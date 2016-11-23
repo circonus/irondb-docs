@@ -7,9 +7,9 @@
 * [API Guide](api.md)
  * State and Topology APIs
    * [Getting Node State](api/state.md)
-   * [Retrieving Gossip JSON Data]
-   * [Retrieving Gossip XML Data]
-   * [Loading a New Topology]
+   * [Retrieving Gossip JSON Data](api/gossip-json.md)
+   * [Retrieving Gossip XML Data](api/gossip-xml.md)
+   * [Loading a New Topology](api/topology)
    * [Activating A New Topology]
    * [Retrieving Topology JSON Data]
    * [Retrieving Topology XML Data]
