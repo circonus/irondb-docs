@@ -546,8 +546,7 @@ chown -R nobody.nobody /snowth/
 
  1. Run the following command to start the building process:
 
-{{{
-
+```
 sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
 
 -b <ip address of node in old cluster>:<node port>
@@ -567,15 +566,13 @@ sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
 -remote
 
 -r
+```
 
-}}}
-
- where {{{<ip address of node in old cluster>:<node port>}}} is the address and port a node in the old cluster where the snowth service is currently up and running. The port value is almost always 8112.
+ where ip address of node in old cluster:node port is the address and port a node in the old cluster where the snowth service is currently up and running. The port value is almost always 8112.
 
  1. Wait until everything downloads. There will be a status bar on the screen to demonstrate the current progress. Current progress will be saved - if the task closes for any reason, everything should pick back up approximately where it was. Make sure you wait a few minutes for the download status screen to appear - it takes a few minutes to download the todo lists from the other snowth nodes and start downloading the actual data. Once the todo lists have been downloaded, they will not be downloaded again. If the download stops partway, you may resume with the following command:
 
-{{{
-
+```
 sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
 
 -b <ip address of node in old cluster>:<node port>
@@ -593,23 +590,16 @@ sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
 -topo_file <location of file containing new topology>
 
 -remote
-
-}}}
+```
 
  1. Start up the new node using the following command:
-
-{{{
-
+```
 svcadm enable snowth
-
-}}}
+```
 
  1. Exit the screen session:
-
-{{{
-
+```
 exit
-
-}}}
+```
 
 You have successfully built a new snowth node in a new cluster!
