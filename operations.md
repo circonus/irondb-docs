@@ -308,31 +308,24 @@ sudo svcadm clear snowth
 
 ### Reconstituting a Data Storage Node
 
-'''Warning:'''
+**Warning:**
+>This procedure is only used in circumstances where the node's data is completely unrecoverable. **Always** contact Circonus Support (support@circonus.com) before attempting these procedures.
 
->This procedure is only used in circumstances where the node's data is completely unrecoverable. '''Always''' contact Circonus Support (support@circonus.com) before attempting these procedures.
-
-== Building A Node Within The Same Cluster ==
+#### Building A Node Within The Same Cluster
 
  1. Log into the Snowth machine you wish to reconstitute. Make sure the latest version of Snowth is built and installed. Make sure you are logged in as the "root" user.
 
- 1. Open a screen session. This will ensure that if you close the window you are reconstituting in, you can recover it by running {{{screen -r}}}. This is done by running:
-
-{{{
-
+ 1. Open a screen session. This will ensure that if you close the window you are reconstituting in, you can recover it by running screen -r. This is done by running:
+```
 screen
+```
 
-}}}
-
- 1. Make a note of this node's topology UUID. You can obtain this from {{{/opt/circonus/var/chef-solo/data_bags/service_map/site.json}}}, in the "machinfo" section, in the stanza for the host that will be reconstituted. It is the "node_id" attribute. Below this will be referred to as {{{<node_id>}}}.
+ 1. Make a note of this node's topology UUID. You can obtain this from /opt/circonus/var/chef-solo/data_bags/service_map/site.json, in the "machinfo" section, in the stanza for the host that will be reconstituted. It is the "node_id" attribute. Below this will be referred to as &lt;node_id.&gt;
 
  1. Disable Snowth on the system using the following call:
-
-{{{
-
+```
 svcadm disable snowth
-
-}}}
+```
 
  1. Make sure there is no lock file located at {{{/snowth/logs/snowth.lock}}}. If there is, remove it with the following command:
 
@@ -568,7 +561,7 @@ sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
 -r
 ```
 
- where ip address of node in old cluster:node port is the address and port a node in the old cluster where the snowth service is currently up and running. The port value is almost always 8112.
+ where &lt;ip address of node in old cluster&gt;:&lt;node port&gt; is the address and port a node in the old cluster where the snowth service is currently up and running. The port value is almost always 8112.
 
  1. Wait until everything downloads. There will be a status bar on the screen to demonstrate the current progress. Current progress will be saved - if the task closes for any reason, everything should pick back up approximately where it was. Make sure you wait a few minutes for the download status screen to appear - it takes a few minutes to download the todo lists from the other snowth nodes and start downloading the actual data. Once the todo lists have been downloaded, they will not be downloaded again. If the download stops partway, you may resume with the following command:
 
