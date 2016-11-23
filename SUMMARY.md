@@ -9,8 +9,8 @@
    * [Getting Node State](api/state.md)
    * [Retrieving Gossip JSON Data](api/gossip-json.md)
    * [Retrieving Gossip XML Data](api/gossip-xml.md)
-   * [Loading a New Topology](api/topology)
-   * [Activating A New Topology]
+   * [Loading a New Topology](api/topology.md)
+   * [Activating A New Topology](api/activate.md)
    * [Retrieving Topology JSON Data]
    * [Retrieving Topology XML Data]
    * [Retrieving Toporing JSON Data]
