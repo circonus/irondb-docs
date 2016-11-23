@@ -14,7 +14,7 @@ Log files are located under /snowth/logs and include the following files:
 
  * errorlog
 
-The access logs are useful to verify activity going to the server in question. Error logs may contain debugging information for Support personnel.
+The access logs are useful to verify activity going to the server in question. Error logs may contain debugging information for support personnel.
 
 If the snowthd child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact snowth's performance. To check for errors run:
 
