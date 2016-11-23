@@ -216,9 +216,95 @@ Example output:
 }
 ```
 
-## Snowth Troubleshooting
+## Troubleshooting
 
-Refer to the [wiki:OperationManual/Troubleshooting#SnowthTroubleshooting Snowth Troubleshooting] section for additional Snowth Data Storage Troubleshooting instructions.
+### Repairing Corrupt LevelDB Data Stores
+
+On occasion, a Snowth LevelDB database may become corrupted. Snowth has the capability to correct itself when this happens.
+
+You should be able to determine which log is corrupted by looking at the errorlog for Snowth (usually in /snowth/logs/errorlog). It will tell you what has been corrupted. To fix it, follow the instructions below.
+
+#### 1. Disable snowthd.
+
+Before you start, you will need to disable snowthd with the following command:
+```
+sudo svcadm disable snowth
+```
+
+#### 2a. Correct corrupted text data.
+
+There are two DBs that can become corrupted in the text db - the metrics store (a list of metrics) and the changelog (all of the different text values for a metric).
+
+To correct the metrics store, run the following:
+
+```
+sudo /opt/circonus/sbin/snowthd -u nobody -g nobody \
+
+ -r text/metrics \
+
+ -i <id of snowth node in topology> \
+
+ -c /opt/circonus/etc/snowth.conf \
+
+ -D
+```
+
+To correct the changelog, run the the following:
+
+```
+sudo /opt/circonus/sbin/snowthd -u nobody -g nobody \
+
+ -r text/changelog \
+
+ -i <id of snowth node in topology> \
+
+ -c /opt/circonus/etc/snowth.conf \
+
+ -D
+```
+
+#### 2b. Correct corrupted histogram data.
+
+For histogram data, the metrics db (a list of all available histogram metrics) or the actual data (which is stored based on the period) can become corrupted.
+
+To fix the metrics database, run the following:
+
+```
+sudo /opt/circonus/sbin/snowthd -u nobody -g nobody \
+
+ -r hist/metrics \
+
+ -i <id of snowth node in topology> \
+
+ -c /opt/circonus/etc/snowth.conf \
+
+ -D
+```
+
+To fix the actual data, run the following:
+
+```
+sudo /opt/circonus/sbin/snowthd -u nobody -g nobody \
+
+ -r hist/<period> \
+
+ -i <id of snowth node in topology> \
+
+ -c /opt/circonus/etc/snowth.conf \
+
+ -D
+```
+
+#### 3. Renable snowthd.
+
+Once finished, you will need to renable and clear snowthd with the following commands:
+
+```
+sudo svcadm enable snowth
+
+sudo svcadm clear snowth
+```
+
 
 ### Reconstituting a Data Storage Node
 
