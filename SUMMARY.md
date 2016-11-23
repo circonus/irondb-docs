@@ -1,7 +1,7 @@
 # Summary
 
 * [Cover](README.md)
-* [Introduction](chapter1.md)
+* [Introduction](Introduction.md)
 * [Installation](installation.md)
 * [Operations](operations.md)
 * [API Guide](api.md)
@@ -11,44 +11,44 @@
    * [Retrieving Gossip XML Data](api/gossip-xml.md)
    * [Loading a New Topology](api/topology.md)
    * [Activating A New Topology](api/activate.md)
-   * [Retrieving Topology JSON Data]
-   * [Retrieving Topology XML Data]
-   * [Retrieving Toporing JSON Data]
-   * [Retrieving Toporing XML Data]
-   * [Retrieving Data Location In JSON Format]
-   * [Retrieving Data Location In XML Format]
+   * [Retrieving Topology JSON Data](api/topology-json.md)
+   * [Retrieving Topology XML Data](api/topology-xml.md)
+   * [Retrieving Toporing JSON Data](api/toporing-json.md)
+   * [Retrieving Toporing XML Data](api/toporing-xml.md)
+   * [Retrieving Data Location In JSON Format](api/locate-json.md)
+   * [Retrieving Data Location In XML Format](api/locate-xml.md)
  * Data Retrieval APIs
-   * Retrieving Numeric Data
-   * Retrieving Text Data
-   * Retrieving Histogram Data
+   * [Retrieving Numeric Data](api/read-nnt.md)
+   * [Retrieving Text Data](api/read-text.md)
+   * [Retrieving Histogram Data](api/read-histogram.md)
  * Data Submission APIs
-   * Writing Numeric Data
-   * Writing Text Data
-   * Writing Histogram Data
+   * [Writing Numeric Data](api/write-nnt)
+   * [Writing Text Data](api/write-text.md)
+   * [Writing Histogram Data](api/write-histogram.md)
  * Data Deletion APIs
-   * Deleting Numeric Data for a Metric
-   * Deleting Numeric Data for a Check
-   * Deleting Text Data for a Metric
-   * Deleting Text Data for a Check
-   * Deleting Histogram Data for a Metric
+   * [Deleting Numeric Data for a Metric](api/delete-nnt.md)
+   * [Deleting Numeric Data for a Check](api/delete-nnt-check.md)
+   * [Deleting Text Data for a Metric](api/delete-text.md)
+   * [Deleting Text Data for a Check](api/delete-text-check.md)
+   * [Deleting Histogram Data for a Metric](api/delete-histogram.md)
    * [Deleting Histogram Data for a Check](api/delete-histogram-check.md)
  * Lua Extensions APIs
-   * Loading a New Lua Extension
-   * Getting List of Lua Extensions
-   * Executing a Lua Extension
+   * [Loading a New Lua Extension](api/load-lua.md)
+   * [Getting List of Lua Extensions](api/extension-lua.md)
+   * [Executing a Lua Extension](api/extension-lua-script.md)
  * Internal APIs
-   * Getting List of Metrics to Reconstitute
-   * Posting JLOG Data Internally
-   * List All Metrics Stored on a Node
-   * List All Metrics for a Specific Check Stored on a Node
-   * Merging Numeric Data
-   * Merging Text Data
-   * Merging Histogram Data
-   * Retrieving Raw Numeric Data
-   * Retrieving Raw Numeric Subset Data
-   * Retrieving Raw Text Data
-   * Retrieving Raw Histogram Data
+   * [Getting List of Metrics to Reconstitute](api/reconstitute.md)
+   * [Posting JLOG Data Internally](api/journal.md)
+   * [List All Metrics Stored on a Node](api/list-metric.md)
+   * [List All Metrics for a Specific Check Stored on a Node](api/list-metric-uuid.md)
+   * [Merging Numeric Data](api/merge-nnt.md)
+   * [Merging Text Data](api/merge-text.md)
+   * [Merging Histogram Data](api/merge-histogram.md)
+   * [Retrieving Raw Numeric Data](api/read-nnt-raw.md)
+   * [Retrieving Raw Numeric Subset Data](api/read-nnt-raw-subset.md)
+   * [Retrieving Raw Text Data](api/read-text-raw.md)
+   * [Retrieving Raw Histogram Data](api/read-histogram-raw.md)
  * References
-   * Snowth Command Line Reference  
+   * [Command Line Reference](api/reference.md)
 
 
