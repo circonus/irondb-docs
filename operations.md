@@ -308,4 +308,308 @@ sudo svcadm clear snowth
 
 ### Reconstituting a Data Storage Node
 
-For instructions, refer to the section "[wiki:OperationManual/ReconstitutingaSnowthnode Reconstituting a Data Storage node]". This procedure is only used in circumstances where the node's data is completely unrecoverable. Always contact Circonus Support (support@circonus.com) before attempting these procedures.
+'''Warning:'''
+
+>This procedure is only used in circumstances where the node's data is completely unrecoverable. '''Always''' contact Circonus Support (support@circonus.com) before attempting these procedures.
+
+== Building A Node Within The Same Cluster ==
+
+ 1. Log into the Snowth machine you wish to reconstitute. Make sure the latest version of Snowth is built and installed. Make sure you are logged in as the "root" user.
+
+ 1. Open a screen session. This will ensure that if you close the window you are reconstituting in, you can recover it by running {{{screen -r}}}. This is done by running:
+
+{{{
+
+screen
+
+}}}
+
+ 1. Make a note of this node's topology UUID. You can obtain this from {{{/opt/circonus/var/chef-solo/data_bags/service_map/site.json}}}, in the "machinfo" section, in the stanza for the host that will be reconstituted. It is the "node_id" attribute. Below this will be referred to as {{{<node_id>}}}.
+
+ 1. Disable Snowth on the system using the following call:
+
+{{{
+
+svcadm disable snowth
+
+}}}
+
+ 1. Make sure there is no lock file located at {{{/snowth/logs/snowth.lock}}}. If there is, remove it with the following command:
+
+{{{
+
+rm -f /snowth/logs/snowth.lock
+
+}}}
+
+ 1. Run the following command to find the snowth ZFS dataset base. This will create a shell variable, `SNOWTH_DATASET`, that will be used in subsequent commands.
+
+{{{
+
+SNOWTH_DATASET=`zfs list -H -o name /snowth`
+
+}}}
+
+ 1. Destroy the existing data using the following commands:
+
+{{{
+
+zfs destroy -r $SNOWTH_DATASET/data
+
+zfs destroy -r $SNOWTH_DATASET/text
+
+zfs destroy -r $SNOWTH_DATASET/hist
+
+}}}
+
+ 1. Wait for the data to be completely destroyed. To do this, periodically run the following command and wait until the value for all pools reads "0".
+
+{{{
+
+zpool get freeing
+
+}}}
+
+ 1. Create the datasets by running the following commands:
+
+{{{
+
+zfs create -o recordsize=8K $SNOWTH_DATASET/data
+
+zfs create $SNOWTH_DATASET/hist
+
+zfs create $SNOWTH_DATASET/text
+
+}}}
+
+ 1. Run the following commands to make the node data subdirectories:
+
+{{{
+
+mkdir /snowth/hist/<node_id>
+
+mkdir /snowth/text/<node_id>
+
+}}}
+
+ 1. Make sure that all the directories are owned by nobody by running the following:
+
+{{{
+
+chown -R nobody:nobody /snowth/
+
+}}}
+
+ 1. Run the snowth reconstitute script, which is called "snowthreconstitute". It runs in the following way:
+
+{{{
+
+sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
+
+-b <ip address of node in cluster>:<node port>
+
+-i <node_id>
+
+-c /opt/circonus/etc/snowth.conf
+
+-d /var/tmp/
+
+-l /var/tmp/reconstitute_output.txt
+
+-r
+
+}}}
+
+ where {{{<ip address of node in cluster>:<node port>}}} is the address and port of another node in the same cluster where the snowth service is currently up and running. The port value is almost always 8112.
+
+ 1. Wait until everything downloads. There will be a status bar on the screen to demonstrate the current progress. Current progress will be saved - if the task closes for any reason, everything should pick back up approximately where it was. Make sure you wait a few minutes for the download status screen to appear - it takes a few minutes to download the todo lists from the other snowth nodes and start downloading the actual data. Once the todo lists have been downloaded, they will not be downloaded again. If the download stops partway, you may resume with the following command:
+
+{{{
+
+sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
+
+-b <ip address of node in cluster>:<node port>
+
+-i <node_id>
+
+-c /opt/circonus/etc/snowth.conf
+
+-d /var/tmp/
+
+-l /var/tmp/reconstitute_output.txt
+
+}}}
+
+ 1. Once everything has downloaded successfully, start Snowth again using the following command:
+
+{{{
+
+svcadm enable snowth
+
+}}}
+
+ 1. Exit the screen session:
+
+{{{
+
+exit
+
+}}}
+
+== Building A Node In A New Cluster From The Old Cluster ==
+
+ 1. Log into the Snowth machine you wish to reconstitute. Make sure the latest version of Snowth is built and installed. Make sure you are logged in as the "root" user.
+
+ 1. Open a screen session. This will ensure that if you close the window you are reconstituting in, you can recover it by running {{{screen -r}}}. This is done by running:
+
+{{{
+
+screen
+
+}}}
+
+ 1. Make a note of this node's topology UUID. You can obtain this from {{{/opt/circonus/var/chef-solo/data_bags/service_map/site.json}}}, in the "machinfo" section, in the stanza for the host that will be reconstituted. It is the "node_id" attribute. Below this will be referred to as {{{<node_id>}}}.
+
+ 1. Disable Snowth on the system using the following call:
+
+{{{
+
+svcadm disable snowth
+
+}}}
+
+ 1. Make sure there is no lock file located at {{{/snowth/logs/snowth.lock}}}. If there is, remove it with the following command:
+
+{{{
+
+rm -f /snowth/logs/snowth.lock
+
+}}}
+
+ 1. Run the following command to find the snowth ZFS dataset base. This will create a shell variable, `SNOWTH_DATASET`, that will be used in subsequent commands.
+
+{{{
+
+SNOWTH_DATASET=`zfs list -H -o name /snowth`
+
+}}}
+
+ 1. Destroy the existing data using the following commands:
+
+{{{
+
+zfs destroy -r $SNOWTH_DATASET/data
+
+zfs destroy -r $SNOWTH_DATASET/text
+
+zfs destroy -r $SNOWTH_DATASET/hist
+
+}}}
+
+ 1. Wait for the data to be completely destroyed. To do this, periodically run the following command and wait until the value for all pools reads "0".
+
+{{{
+
+zpool get freeing
+
+}}}
+
+ 1. Create the datasets by running the following commands:
+
+{{{
+
+zfs create -o recordsize=8K $SNOWTH_DATASET/data
+
+zfs create $SNOWTH_DATASET/hist
+
+zfs create $SNOWTH_DATASET/text
+
+}}}
+
+ 1. Run the following commands to make the node data subdirectories:
+
+{{{
+
+mkdir /snowth/hist/<node_id>
+
+mkdir /snowth/text/<node_id>
+
+}}}
+
+ 1. Make sure that all the directories are owned by nobody by running the following:
+
+{{{
+
+chown -R nobody.nobody /snowth/
+
+}}}
+
+ 1. Run the following command to start the building process:
+
+{{{
+
+sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
+
+-b <ip address of node in old cluster>:<node port>
+
+-i <node_id>
+
+-c /opt/circonus/etc/snowth.conf
+
+-d /var/tmp/
+
+-l /var/tmp/reconstitute_output.txt
+
+-topo_hash <hash of new topology - this can typically be found in '/opt/circonus/etc/snowth-topo/'>
+
+-topo_file <location of file containing new topology>
+
+-remote
+
+-r
+
+}}}
+
+ where {{{<ip address of node in old cluster>:<node port>}}} is the address and port a node in the old cluster where the snowth service is currently up and running. The port value is almost always 8112.
+
+ 1. Wait until everything downloads. There will be a status bar on the screen to demonstrate the current progress. Current progress will be saved - if the task closes for any reason, everything should pick back up approximately where it was. Make sure you wait a few minutes for the download status screen to appear - it takes a few minutes to download the todo lists from the other snowth nodes and start downloading the actual data. Once the todo lists have been downloaded, they will not be downloaded again. If the download stops partway, you may resume with the following command:
+
+{{{
+
+sudo -u nobody -g nobody /opt/circonus/bin/snowthreconstitute
+
+-b <ip address of node in old cluster>:<node port>
+
+-i <node_id>
+
+-c /opt/circonus/etc/snowth.conf
+
+-d /var/tmp/
+
+-l /var/tmp/reconstitute_output.txt
+
+-topo_hash <hash of new topology - this can typically be found in '/opt/circonus/etc/snowth-topo/'>
+
+-topo_file <location of file containing new topology>
+
+-remote
+
+}}}
+
+ 1. Start up the new node using the following command:
+
+{{{
+
+svcadm enable snowth
+
+}}}
+
+ 1. Exit the screen session:
+
+{{{
+
+exit
+
+}}}
+
+You have successfully built a new snowth node in a new cluster!
