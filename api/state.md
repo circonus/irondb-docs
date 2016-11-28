@@ -44,9 +44,7 @@ GET
 
 *get.calls* :   The number of get calls for this numeric period.
 
-        *get.proxy\_calls*
-
-        :   The number of proxy get calls for this numeric period.
+*get.proxy\_calls* :   The number of proxy get calls for this numeric period.
 
         *get.count*
 
