@@ -94,37 +94,27 @@ GET
 
 * *rollup_&lt;period&gt;* :   This describes data for each particular rollup. There will be one of these entries per rollup period.   
 
-*fs* :   This describes information about file system storage for this rollup.
+ * *fs* :   This describes information about file system storage for this rollup.
 
-*id* :   The ID for this file system.
+   * *id* :   The ID for this file system.
 
-*totalMB* :   Megabytes of data used for this file system.
+   * *totalMB* :   Megabytes of data used for this file system.
 
-*freeMB* :   Megabytes of data available for this file system.
+   * *freeMB* :   Megabytes of data available for this file system.
 
-*put.calls* :   The number of put calls for this histogram period.
+ * *put.calls* :   The number of put calls for this histogram period.
 
-*put.elapsed_us* :   The number of microseconds spent putting data for this histogram period.
+ * *put.elapsed_us* :   The number of microseconds spent putting data for this histogram period.
 
-*get.calls* :   The number of get calls for this histogram period.
+ * *get.calls* :   The number of get calls for this histogram period.
 
-        *get.proxy\_calls*
+ * *get.proxy\_calls* :   The number of proxy get calls for this histogram period.
 
-        :   The number of proxy get calls for this histogram period.
+ * *get.count* :   The number of metrics retrieved for this histogram period.
 
-        *get.count*
+ * *get.elapsed_us* :   The number of microseconds spent getting data for this histogram period.
 
-        :   The number of metrics retrieved for this
-            histogram period.
-
-        *get.elapsed\_us*
-
-        :   The number of microseconds spent getting data for this
-            histogram period.
-
-    *aggregate*
-
-    :   The aggregated data from all histogram calls. The fields
+* *aggregate* :   The aggregated data from all histogram calls. The fields
         displayed are the same as those listed for each
         individual rollup.
 
