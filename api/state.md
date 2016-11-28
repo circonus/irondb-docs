@@ -58,17 +58,9 @@ GET
 
 *text* :   A container with information about text data storage.
 
-:   
+*fs* :   Information about file system storage for text data.
 
-    *fs*
-
-    :   Information about file system storage for text data.
-
-    :   
-
-        *id*
-
-        :   The ID for this file system.
+*id* :   The ID for this file system.
 
         *totalMB*
 
