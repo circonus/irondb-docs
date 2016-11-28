@@ -1,16 +1,10 @@
-Retrieving Gossip JSON Data
-===========================
+# Retrieving Gossip JSON Data
 
-This API call retrieves gossip information from a Snowth node. Gossip
-data is information on how the nodes are communicating with each other
-and if any nodes are behind other nodes with regards to data
-replication.
+This API call retrieves gossip information from a IRONdb node. Gossip data is information on how the nodes are communicating with each other and if any nodes are behind other nodes with regards to data replication.
 
-Data will be returned as an array of JSON objects. The format of these
-objects is described below.
+Data will be returned as an array of JSON objects. The format of these objects is described below.
 
-Description of JSON objects
----------------------------
+## Description of JSON objects
 
 `URI:`
 
