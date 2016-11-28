@@ -26,21 +26,11 @@ GET
 
 *nnt* :   A container with information about NNT (Numeric) data storage.
 
-:   
+*rollups* :   An array containing a list of all NNT (numeric) data periods stored on this node.
 
-*rollups*
+ *rollup_&lt;period&gt;* :   Data for each particular rollup. There will be one of these entries per rollup period.
 
-:   An array containing a list of all NNT (numeric) data periods stored on this node.
-
- *rollup\_&lt;period&gt;*
-
-:   Data for each particular rollup. There will be one of these entries per rollup period.
-
-    :   
-
-        *fs*
-
-        :   Information about file system storage for this rollup.
+*fs* :   Information about file system storage for this rollup.
 
         :   
 
