@@ -62,43 +62,23 @@ GET
 
 *id* :   The ID for this file system.
 
-        *totalMB*
+*totalMB* :   Megabytes of data used for this file system.
 
-        :   Megabytes of data used for this file system.
+*freeMB* :   Megabytes of data available for this file system.
 
-        *freeMB*
+*get* :   A container with information about text get calls.
 
-        :   Megabytes of data available for this file system.
+*proxy_calls* :   The number of text get proxy calls.
 
-    *get*
+*err* :   The number of text get errors.
 
-    :   A container with information about text get calls.
+*calls* :   The number of text get calls.
 
-    :   
+*tuples* :   The number of text get tuples.
 
-        *proxy\_calls*
+*elapsed_us* :   The number of microseconds spent getting text data.
 
-        :   The number of text get proxy calls.
-
-        *err*
-
-        :   The number of text get errors.
-
-        *calls*
-
-        :   The number of text get calls.
-
-        *tuples*
-
-        :   The number of text get tuples.
-
-        *elapsed\_us*
-
-        :   The number of microseconds spent getting text data.
-
-    *put*
-
-    :   A container with information about text put calls.
+*put* :   A container with information about text put calls.
 
     :   
 
