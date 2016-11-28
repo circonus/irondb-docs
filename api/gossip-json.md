@@ -6,26 +6,15 @@ Data will be returned as an array of JSON objects. The format of these objects i
 
 ## Description of JSON objects
 
-`URI:`
+**URI:** :   /gossip/json
 
-:   /gossip/json
+**Method:** :   GET
 
-`Method:`
+**Output:**  
 
-:   GET
+*id* :   The UUID of the node of the gossip information.
 
-`Output:`
-
-:   
-
-    *id*
-
-    :   The UUID of the node of the gossip information.
-
-    *gossip\_time*
-
-    :   The last time, in seconds, that this node received a
-        gossip message.
+ * *gossip\_time* :   The last time, in seconds, that this node received a gossip message.
 
     *gossip\_age*
 
