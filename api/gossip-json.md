@@ -14,48 +14,28 @@ Data will be returned as an array of JSON objects. The format of these objects i
 
 *id* :   The UUID of the node of the gossip information.
 
- * *gossip\_time* :   The last time, in seconds, that this node received a gossip message.
+*gossip_time* :   The last time, in seconds, that this node received a gossip message.
 
-    *gossip\_age*
-
-    :   The difference, in seconds, between the last time this node
+*gossip_age* :   The difference, in seconds, between the last time this node
         received a gossip message and the current time.
 
-    *topo\_current*
+*topo_current* :   The topology that is currently in use.
 
-    :   The topology that is currently in use.
+*topo_next* :   The "next" topology to use.
 
-    *topo\_next*
+*topo_state* :   The state of the current topology.
 
-    :   The "next" topology to use.
+ *latency* :   A JSON object that contains information on how far this node is lagging behind the other nodes. The entries will include the following:
 
-    *topo\_state*
+* *uuid* :   The UUID of the node to which the current node is being compared.
 
-    :   The state of the current topology.
+* *latency\_seconds* :   The number of seconds that the current node is behind the specified node.
 
-    *latency*
-
-    :   A JSON object that contains information on how far this node is
-        lagging behind the other nodes. The entries will include the
-        following:
-
-    :   
-
-        *uuid*
-
-        :   The UUID of the node to which the current node is
-            being compared.
-
-        *latency\_seconds*
-
-        :   The number of seconds that the current node is behind the
-            specified node.
-
-Examples
---------
+## Examples
 
 The URI "/gossip/json" could yield the following example output:
 
+```
     [
     {"id":"1f846f26-0cfd-4df5-b4f1-e0930604e577",
      "gossip_time":1409082055.744880,
@@ -110,4 +90,4 @@ The URI "/gossip/json" could yield the following example output:
       }
     }
     ]
-          
+```
