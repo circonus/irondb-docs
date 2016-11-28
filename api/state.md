@@ -80,23 +80,13 @@ GET
 
 *put* :   A container with information about text put calls.
 
-    :   
+*err* :   The number of text put errors.
 
-        *err*
+*calls* :   The number of text put calls.
 
-        :   The number of text put errors.
+*tuples* :   The number of text put tuples.
 
-        *calls*
-
-        :   The number of text put calls.
-
-        *tuples*
-
-        :   The number of text put tuples.
-
-        *elapsed\_us*
-
-        :   The number of microseconds spent putting text data.
+*elapsed_us* :   The number of microseconds spent putting text data.
 
 *histogram*
 
