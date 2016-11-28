@@ -17,8 +17,6 @@ Data will be returned as a JSON document. The fields in this document are descri
 `Output:`
 
 :
-
-```
 *identity*
 
 :   The UUID that identifies this Snowth node.
@@ -46,15 +44,13 @@ Data will be returned as a JSON document. The fields in this document are descri
 
 :   
 
-    *rollups*
+*rollups*
 
-    :   An array containing a list of all NNT (numeric) data periods
-        stored on this node.
+:   An array containing a list of all NNT (numeric) data periods stored on this node.
 
-    *rollup\_&lt;period&gt;*
+ *rollup\_&lt;period&gt;*
 
-    :   Data for each particular rollup. There will be one of these
-        entries per rollup period.
+:   Data for each particular rollup. There will be one of these entries per rollup period.
 
     :   
 
