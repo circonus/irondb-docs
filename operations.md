@@ -63,7 +63,7 @@ The "Internals" tab shows internal application information, jobs, open sockets, 
 Any planned maintenance that requires restarting of a snowthd node (such as a host reboot, but also including a Hooper run that updates the platform/snowth package) should be performed with care to let the cluster "settle" after each node restart. Restarting too many nodes too quickly can cause a cascade of additional work that will dramatically lengthen the time required to return to a normal operating state and may adversely impact the availability of the entire cluster.
 
 **Note:**
-> The general rule of thumb is to allow about two minutes between Hooper runs or any other disruptive maintenance on {{{data_storage machines}}}, subject to observation of the replication latency described below.
+> The general rule of thumb is to allow about two minutes between Hooper runs or any other disruptive maintenance on data_storage machines, subject to observation of the replication latency described below.
 
 Watch the "Replication Latency" tab of the Operations Dashboard during the restart process, noting the restarted node's lag relative to the others. It normally takes 30-60 seconds for the cluster to settle after a single node restart, but this may vary depending on the ingestion rate (how busy your cluster is). Do not restart the next node until the replication latency of the restarted node returns to green relative to all the other nodes.
 
@@ -162,11 +162,11 @@ This endpoint can be invoked with the DELETE or the GET method. When invoked wit
 
 This method kicks off a maintenance deletion. A timestamp is provided via header, along with a (comma separated) list of rollups for NNT and histogram data and a list of data types to clean up (NNT, text, or histogram). This list of data types defaults to nnt if none is specified. Headers include:
 
- * X-Snowth-Delete-Time: <timestamp> - (Required) All data up to this timestamp will be deleted across the system. For example, X-Snowth-Delete-Time: 1451606400 would delete all data before Jan. 1, 2016 GMT. The specified time must be before the current time. The call will fail if this is not provided.
+ * X-Snowth-Delete-Time: &lt;timestamp&gt; - (Required) All data up to this timestamp will be deleted across the system. For example, X-Snowth-Delete-Time: 1451606400 would delete all data before Jan. 1, 2016 GMT. The specified time must be before the current time. The call will fail if this is not provided.
 
- * X-Snowth-Delete-Data-Types: <data types> - (Optional) This header takes a comma-separated list of data types to delete. Valid values are "nnt", "text", and "histogram". For example, X-Snowth-Delete-Data-Types: nnt,text would delete the NNT and Text data up to the timestamp specified by the X-Snowth-Delete-Time header. Histogram data would not be touched. If this header is omitted, deleted values will default to NNT only.
+ * X-Snowth-Delete-Data-Types: &lt;data types&gt; - (Optional) This header takes a comma-separated list of data types to delete. Valid values are "nnt", "text", and "histogram". For example, X-Snowth-Delete-Data-Types: nnt,text would delete the NNT and Text data up to the timestamp specified by the X-Snowth-Delete-Time header. Histogram data would not be touched. If this header is omitted, deleted values will default to NNT only.
 
- * X-Snowth-NNT-Delete-Rollups: <rollups> - (Optional) This header takes a comma-separated list of rollups to delete for NNT data. For example, X-Snowth-NNT-Delete-Rollups: 60,300 would delete data from the 60 and 300 rollups. Any other rollups on the system would not be touched. If this header is omitted, all rollups will be deleted.
+ * X-Snowth-NNT-Delete-Rollups: &lt;rollups&gt; - (Optional) This header takes a comma-separated list of rollups to delete for NNT data. For example, X-Snowth-NNT-Delete-Rollups: 60,300 would delete data from the 60 and 300 rollups. Any other rollups on the system would not be touched. If this header is omitted, all rollups will be deleted.
 
  * X-Snowth-Histogram-Delete-Rollups - (Optional) This header takes a comma-separated list of rollups to delete for Histogram data. For example, X-Snowth-Histogram-Delete-Rollups: 60,300 would delete data from the 60 and 300 rollups. Any other rollups on the system would not be touched. If this header is omitted, all rollups will be deleted.
 
