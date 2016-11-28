@@ -1,120 +1,59 @@
 Retrieving Gossip XML Data
 ==========================
 
-This API call retrieves gossip information from a Snowth node. Gossip
-data is information on how the nodes are communicating with each other
-and if any nodes are behind other nodes with regards to data
-replication.
+This API call retrieves gossip information from a Snowth node. Gossip data is information on how the nodes are communicating with each other and if any nodes are behind other nodes with regards to data replication.
 
-Data will be returned an XML object. The format of this object is
-described below.
+Data will be returned an XML object. The format of this object is described below.
 
 Description of XML Object
 -------------------------
 
-`URI:`
+**URI:** :   /gossip/json
 
-:   /gossip/json
+**Method:** :   GET
 
-`Method:`
+**Output:**
 
-:   GET
+*&lt;nodes&gt;* :   The Top-Level XML for the topology.
 
-`Output:`
+* *Elements*
 
-:   
+  * *&lt;node&gt;* :   The container for all the information for a single node in the cluster. There will x of these elements, where "x" is the number of nodes in the cluster.
 
-    *&lt;nodes&gt;*
+   * *Attributes*
 
-    :   The Top-Level XML for the topology.
+     * *id* :   The UUID of the node of the gossip information.
 
-    :   
+     * *gossip\_time* :   The last time, in seconds, that this node received a gossip message.
 
-        *Elements*
+     * *gossip\_age* :   The difference, in seconds, between the last time this node received a gossip message and the current time.
 
-        :   
+     * *topo\_current* :   The topology that is currently in use.
 
-            *&lt;node&gt;*
+     * *topo\_next* :   The "next" topology to use.
 
-            :   The container for all the information for a single node
-                in the cluster. There will x of these elements, where
-                "x" is the number of nodes in the cluster.
+     * *topo\_state* :   The state of the current topology.
 
-            :   
+    * *Elements*
 
-                *Attributes*
+     * *&lt;latency&gt;* :   The container for all latency information. 
 
-                :   
+       * *Elements*
 
-                    *id*
+         * *&lt;node&gt;* :   The container for all information on a node.
 
-                    :   The UUID of the node of the gossip information.
+           * *Attributes*
 
-                    *gossip\_time*
+             * *id* :   The UUID of the node to which the current node is being compared.
 
-                    :   The last time, in seconds, that this node
-                        received a gossip message.
-
-                    *gossip\_age*
-
-                    :   The difference, in seconds, between the last
-                        time this node received a gossip message and the
-                        current time.
-
-                    *topo\_current*
-
-                    :   The topology that is currently in use.
-
-                    *topo\_next*
-
-                    :   The "next" topology to use.
-
-                    *topo\_state*
-
-                    :   The state of the current topology.
-
-                *Elements*
-
-                :   
-
-                    *&lt;latency&gt;*
-
-                    :   The container for all latency information.
-
-                    :   
-
-                        *Elements*
-
-                        :   
-
-                            *&lt;node&gt;*
-
-                            :   The container for all information on
-                                a node.
-
-                            :   
-
-                                *Attributes*
-
-                                :   
-
-                                    *id*
-
-                                    :   The UUID of the node to which
-                                        the current node is
-                                        being compared.
-
-                                    *diff*
-
-                                    :   The number of seconds that the
-                                        current node is behind the
-                                        specified node.
+             * *diff* :   The number of seconds that the current node is behind the specified node.
 
 Examples
 --------
 
 The URI "/gossip/xml" could yield the following example output:
 
+```
     <nodes>
       <node id="1f846f26-0cfd-4df5-b4f1-e0930604e577" gossip_time=":1409082055.744880" gossip_age="0.000000" topo_current="0123456789abcdef0123456789abcdef0123456789abcdef0123456
     789abcdef" topo_next="-" topo_state="unknown"
@@ -148,5 +87,5 @@ The URI "/gossip/xml" could yield the following example output:
           <node id="1f846f26-0cfd-4df5-b4f1-e0930604e577" diff="0"/>
         </latency>
       </node>
-    </nodes>
-          
+    </nodes>       
+```
