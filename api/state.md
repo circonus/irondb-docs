@@ -114,83 +114,43 @@ GET
 
  * *get.elapsed_us* :   The number of microseconds spent getting data for this histogram period.
 
-* *aggregate* :   The aggregated data from all histogram calls. The fields
-        displayed are the same as those listed for each
-        individual rollup.
+* *aggregate* :   The aggregated data from all histogram calls. The fields displayed are the same as those listed for each individual rollup.
 
-*rusage.utime*
+*rusage.utime* :   Resource Usage: User CPU time used
 
-:   Resource Usage: User CPU time used
+*rusage.stime* :   Resource Usage: System CPU time used
 
-*rusage.stime*
+*rusage.maxrss* :   Resource Usage: Maximum resident set size
 
-:   Resource Usage: System CPU time used
+*rusage.idrss* :   Resource Usage: Integral shared memory size
 
-*rusage.maxrss*
+*rusage.minflt* :   Resource Usage: Page reclaims (soft page faults)
 
-:   Resource Usage: Maximum resident set size
+*rusage.majflt* :   Resource Usage: Page faults (hard page faults)
 
-*rusage.idrss*
+*rusage.nswap* :   Resource Usage: Swaps
 
-:   Resource Usage: Integral shared memory size
+*rusage.inblock* :   Resource Usage: Block input operations
 
-*rusage.minflt*
+*rusage.oublock* :   Resource Usage: Block output operations
 
-:   Resource Usage: Page reclaims (soft page faults)
+*rusage.msgsnd* :   Resource Usage: IPC messages sent
 
-*rusage.majflt*
+*rusage.msgrcv* :   Resource Usage: IPC messages received
 
-:   Resource Usage: Page faults (hard page faults)
+*rusage.nsignals* :   Resource Usage: Signals received
 
-*rusage.nswap*
+*rusage.nvcsw* :   Resource Usage: Voluntary context switches
 
-:   Resource Usage: Swaps
+*rusage.nivcsw* :   Resource Usage: Involuntary context switches
 
-*rusage.inblock*
+*max_peer_lag* :   The maximum amount by which the data on this node is behind any of the other IRONdb nodes.
 
-:   Resource Usage: Block input operations
+*avg_peer_lag* :   The average amount by which the data on this node is behind any of the other IRONdb nodes.
 
-*rusage.oublock*
+*features* :   The features that are enabled on this node.
 
-:   Resource Usage: Block output operations
-
-*rusage.msgsnd*
-
-:   Resource Usage: IPC messages sent
-
-*rusage.msgrcv*
-
-:   Resource Usage: IPC messages received
-
-*rusage.nsignals*
-
-:   Resource Usage: Signals received
-
-*rusage.nvcsw*
-
-:   Resource Usage: Voluntary context switches
-
-*rusage.nivcsw*
-
-:   Resource Usage: Involuntary context switches
-
-*max\_peer\_lag*
-
-:   The maximum amount by which the data on this node is behind any
-    of the other Snowth nodes.
-
-*avg\_peer\_lag*
-
-:   The average amount by which the data on this node is behind any
-    of the other Snowth nodes.
-
-*features*
-
-:   The features that are enabled on this node.
-
-*text:store*
-
-:   Appears if text data storage is enabled on this node.
+* *text:store* :   Appears if text data storage is enabled on this node.
 
 *histogram:store*
 
