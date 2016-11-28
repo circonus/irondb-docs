@@ -4,6 +4,7 @@
 * [Introduction](Introduction.md)
 * [Installation](installation.md)
 * [Operations](operations.md)
+* [Graphite Ingestion](graphite-ingestion.md)
 * [API Guide](api.md)
     * [State and Topology APIs](state-and-topology-apis.md)
         * [Getting Node State](api/state.md)
