@@ -1,55 +1,30 @@
 Loading a New Topology
 ======================
 
-This API call will load a new topology onto a Snowth node. It will not
-activate the topology; it will simply store and load it.
+This API call will load a new topology onto an IRONdb node. It will not activate the topology; it will simply store and load it.
 
 Description of API call
 -----------------------
 
-`URI:`
+**URI:** :   /topology/hash
 
-:   /topology/hash
+**Method:** :   POST
 
-`Method:`
+**Inputs:**
 
-:   POST
+*hash* :   The hash for the new topology to load.
 
-`Inputs:`
+**Topology Data XML Format:**
 
-:   
+*&lt;nodes&gt;* :   Top-Level XML for the topology.
 
-    *hash*
+* *Attributes*
 
-    :   The hash for the new topology to load.
+ * *n* :   The number of nodes on which the data will be stored.
 
-`Topology Data XML Format:`
+* *Elements*
 
-:   
-
-    *&lt;nodes&gt;*
-
-    :   Top-Level XML for the topology.
-
-    :   
-
-        *Attributes*
-
-        :   
-
-            *n*
-
-            :   The number of nodes on which the data will be stored.
-
-        *Elements*
-
-        :   
-
-            *&lt;node&gt;*
-
-            :   The container for all the information on a single node
-                in the cluster. There will be up to x of these, where
-                "x" is the number of nodes in the cluster.
+ * *&lt;node&gt;* :   The container for all the information on a single node in the cluster. There will be up to x of these, where "x" is the number of nodes in the cluster.
 
             :   
 
