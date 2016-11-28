@@ -32,32 +32,17 @@ GET
 
 *fs* :   Information about file system storage for this rollup.
 
-        :   
+*id* :   The ID for this file system.
 
-            *id*
+*totalMB* :   Megabytes of data used for this file system.
 
-            :   The ID for this file system.
+*freeMB* :   Megabytes of data available for this file system.
 
-            *totalMB*
+*put.calls* :   The number of put calls for this numeric period.
 
-            :   Megabytes of data used for this file system.
+*put.elapsed\_us* :   The number of microseconds spent putting data for this numeric period.
 
-            *freeMB*
-
-            :   Megabytes of data available for this file system.
-
-        *put.calls*
-
-        :   The number of put calls for this numeric period.
-
-        *put.elapsed\_us*
-
-        :   The number of microseconds spent putting data for this
-            numeric period.
-
-        *get.calls*
-
-        :   The number of get calls for this numeric period.
+*get.calls* :   The number of get calls for this numeric period.
 
         *get.proxy\_calls*
 
