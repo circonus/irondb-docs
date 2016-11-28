@@ -7,40 +7,24 @@ Data will be returned as a JSON document. The fields in this document are descri
 ## Description of JSON document
 
 `URI:`
-
-:   \/state
+/state
 
 `Method:`
-
-:   GET
+GET
 
 `Output:`
 
-:
-*identity*
+*identity* :   The UUID that identifies this Snowth node.
 
-:   The UUID that identifies this Snowth node.
+*current* :   The current Snowth topology in which this node resides.
 
-*current*
+*next* :   The next Snowth topology for this node.
 
-:   The current Snowth topology in which this node resides.
+*base_rollup* :   The smallest period that is used for rolling up numeric data.
 
-*next*
+*rollups* :   An array containing a list of all data periods stored on this node.
 
-:   The next Snowth topology for this node.
-
-*base\_rollup*
-
-:   The smallest period that is used for rolling up numeric data.
-
-*rollups*
-
-:   An array containing a list of all data periods stored on
-    this node.
-
-*nnt*
-
-:   A container with information about NNT (Numeric) data storage.
+*nnt* :   A container with information about NNT (Numeric) data storage.
 
 :   
 
@@ -199,41 +183,35 @@ Data will be returned as a JSON document. The fields in this document are descri
 
 *rollup\_&lt;period&gt;*
 
-:   This describes data for each particular rollup. There will be one of these entries per rollup period.
+:   This describes data for each particular rollup. There will be one of these entries per rollup period.   
 
-    :   
+*fs*
 
-        *fs*
+:   This describes information about file system storage for this rollup.
 
-        :   This describes information about file system storage for
-            this rollup.
+*id*
 
-        :   
+:   The ID for this file system.
 
-            *id*
+*totalMB*
 
-            :   The ID for this file system.
+:   Megabytes of data used for this file system.
 
-            *totalMB*
+*freeMB*
 
-            :   Megabytes of data used for this file system.
+:   Megabytes of data available for this file system.
 
-            *freeMB*
+*put.calls*
 
-            :   Megabytes of data available for this file system.
+:   The number of put calls for this histogram period.
 
-        *put.calls*
+*put.elapsed\_us*
 
-        :   The number of put calls for this histogram period.
+:   The number of microseconds spent putting data for this histogram period.
 
-        *put.elapsed\_us*
+*get.calls*
 
-        :   The number of microseconds spent putting data for this
-            histogram period.
-
-        *get.calls*
-
-        :   The number of get calls for this histogram period.
+ :   The number of get calls for this histogram period.
 
         *get.proxy\_calls*
 
