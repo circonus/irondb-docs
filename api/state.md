@@ -26,53 +26,53 @@ GET
 
 *nnt* :   A container with information about NNT (Numeric) data storage.
 
-*rollups* :   An array containing a list of all NNT (numeric) data periods stored on this node.
+* *rollups* :   An array containing a list of all NNT (numeric) data periods stored on this node.
 
- *rollup_&lt;period&gt;* :   Data for each particular rollup. There will be one of these entries per rollup period.
+* *rollup_&lt;period&gt;* :   Data for each particular rollup. There will be one of these entries per rollup period.
 
-*fs* :   Information about file system storage for this rollup.
+  * *fs* :   Information about file system storage for this rollup.
 
-*id* :   The ID for this file system.
+    * *id* :   The ID for this file system.
 
-*totalMB* :   Megabytes of data used for this file system.
+    * *totalMB* :   Megabytes of data used for this file system.
 
-*freeMB* :   Megabytes of data available for this file system.
+    * *freeMB* :   Megabytes of data available for this file system.
 
-*put.calls* :   The number of put calls for this numeric period.
+  * *put.calls* :   The number of put calls for this numeric period.
 
-*put.elapsed\_us* :   The number of microseconds spent putting data for this numeric period.
+  * *put.elapsed_us* :   The number of microseconds spent putting data for this numeric period.
 
-*get.calls* :   The number of get calls for this numeric period.
+  * *get.calls* :   The number of get calls for this numeric period.
 
-*get.proxy_calls* :   The number of proxy get calls for this numeric period.
+  * *get.proxy_calls* :   The number of proxy get calls for this numeric period.
 
-*get.count* :   The number of metrics retrieved for this numeric period.
+  * *get.count* :   The number of metrics retrieved for this numeric period.
 
-*get.elapsed_us* :   The number of microseconds spent getting data for this numeric period.
+  * *get.elapsed_us* :   The number of microseconds spent getting data for this numeric period.
 
-*extend.calls* :   The number of extend calls for this numeric period. (The number of times the system needed to extend an NNT storage file from the beginning.)
+  * *extend.calls* :   The number of extend calls for this numeric period. (The number of times the system needed to extend an NNT storage file from the beginning.)
 
-*aggregate* :   Aggregated data from all NNT (numeric) calls. Fields are the same as for each individual rollup.
+* *aggregate* :   Aggregated data from all NNT (numeric) calls. Fields are the same as for each individual rollup.
 
 *nnt_cache_size* :   The current size of the NNT file handle cache. When IRONdb opens an NNT file for reading or writing, it will maintain an open file descriptor for it and store it in a cache.
 
 *text* :   A container with information about text data storage.
 
-*fs* :   Information about file system storage for text data.
+* *fs* :   Information about file system storage for text data.
 
-*id* :   The ID for this file system.
+ * *id* :   The ID for this file system.
 
-*totalMB* :   Megabytes of data used for this file system.
+ * *totalMB* :   Megabytes of data used for this file system.
 
-*freeMB* :   Megabytes of data available for this file system.
+ * *freeMB* :   Megabytes of data available for this file system.
 
-*get* :   A container with information about text get calls.
+* *get* :   A container with information about text get calls.
 
-*proxy_calls* :   The number of text get proxy calls.
+ * *proxy_calls* :   The number of text get proxy calls.
 
-*err* :   The number of text get errors.
+ * *err* :   The number of text get errors.
 
-*calls* :   The number of text get calls.
+ * *calls* :   The number of text get calls.
 
 *tuples* :   The number of text get tuples.
 
