@@ -26,51 +26,34 @@ Description of API call
 
  * *&lt;node&gt;* :   The container for all the information on a single node in the cluster. There will be up to x of these, where "x" is the number of nodes in the cluster.
 
-            :   
+   * *Attributes*
 
-                *Attributes*
+     * *id* :   The UUID of the node.
 
-                :   
+     * *address* :   The IP Address of the node.
 
-                    *id*
+     * *port* :   The port on which the node is listening.
 
-                    :   The UUID of the node.
+     * *apiport* :   The port on which the API is listening for the node.
 
-                    *address*
-
-                    :   The IP Address of the node.
-
-                    *port*
-
-                    :   The port on which the node is listening.
-
-                    *apiport*
-
-                    :   The port on which the API is listening for
-                        the node.
-
-                    *weight*
-
-                    :   A value representing how heavily the data to be
-                        stored on this node is weighted.
+     * *weight* :   A value representing how heavily the data to be stored on this node is weighted.
 
 Examples
 --------
 
 This example will use
 
+```
 /topology/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+```
 
-*read*
+*read* :   The command to handle topology data.
 
-:   The command to handle topology data.
+*Topology Hash:* 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 
-*Topology Hash:*
+**POST Data:**
 
-:   0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-
-`POST Data:`
-
+```
     <nodes n="2">
       <node id="1f846f26-0cfd-4df5-b4f1-e0930604e577"
                address="10.8.20.1"
@@ -93,4 +76,4 @@ This example will use
                apiport="8112"
                weight="32"/>
     </nodes>
-          
+```
