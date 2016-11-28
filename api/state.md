@@ -152,34 +152,19 @@ GET
 
 * *text:store* :   Appears if text data storage is enabled on this node.
 
-*histogram:store*
+* *histogram:store* :   Appears if histogram data storage is enabled on this node.
 
-:   Appears if histogram data storage is enabled on this node.
+* *nnt:second_order* :   Appears if second order derivatives for numeric data is enabled on this node.
 
-*nnt:second\_order*
+* *histogram:dynamic_rollups* :   Appears if dynamic histogram rollups are enabled on this node.
 
-:   Appears if second order derivatives for numeric data is
-        enabled on this node.
+* *nnt:store* :   Appears if numeric data storage is enabled on this node.
 
-*histogram:dynamic\_rollups*
+* *features* :   Appears if feature flagging is enabled on this node.
 
-:   Appears if dynamic histogram rollups are enabled on this node.
+*version* :   The version of the IRONdb software running on this node.
 
-*nnt:store*
-
-:   Appears if numeric data storage is enabled on this node.
-
-*features*
-
-:   Appears if feature flagging is enabled on this node.
-
-*version*
-
-:   The version of the Snowth software running on this node.
-
-*application*
-
-:   The name of this application.
+*application* :   The name of this application.
 
 ## Examples
 
