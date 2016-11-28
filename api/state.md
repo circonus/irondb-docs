@@ -74,61 +74,39 @@ GET
 
  * *calls* :   The number of text get calls.
 
-*tuples* :   The number of text get tuples.
+ * *tuples* :   The number of text get tuples.
 
-*elapsed_us* :   The number of microseconds spent getting text data.
+ * *elapsed_us* :   The number of microseconds spent getting text data.
 
-*put* :   A container with information about text put calls.
+* *put* :   A container with information about text put calls.
 
-*err* :   The number of text put errors.
+ * *err* :   The number of text put errors.
 
-*calls* :   The number of text put calls.
+ * *calls* :   The number of text put calls.
 
-*tuples* :   The number of text put tuples.
+ * *tuples* :   The number of text put tuples.
 
-*elapsed_us* :   The number of microseconds spent putting text data.
+ * *elapsed_us* :   The number of microseconds spent putting text data.
 
-*histogram*
+*histogram* :   A container with information about histogram data storage.   
 
-:   A container with information about histogram data storage.
+* *rollups* :   An array containing a list of all histogram data periods stored on this node.
 
-:   
+* *rollup_&lt;period&gt;* :   This describes data for each particular rollup. There will be one of these entries per rollup period.   
 
-*rollups*
+*fs* :   This describes information about file system storage for this rollup.
 
-:   An array containing a list of all histogram data periods stored on this node.
+*id* :   The ID for this file system.
 
-*rollup\_&lt;period&gt;*
+*totalMB* :   Megabytes of data used for this file system.
 
-:   This describes data for each particular rollup. There will be one of these entries per rollup period.   
+*freeMB* :   Megabytes of data available for this file system.
 
-*fs*
+*put.calls* :   The number of put calls for this histogram period.
 
-:   This describes information about file system storage for this rollup.
+*put.elapsed_us* :   The number of microseconds spent putting data for this histogram period.
 
-*id*
-
-:   The ID for this file system.
-
-*totalMB*
-
-:   Megabytes of data used for this file system.
-
-*freeMB*
-
-:   Megabytes of data available for this file system.
-
-*put.calls*
-
-:   The number of put calls for this histogram period.
-
-*put.elapsed\_us*
-
-:   The number of microseconds spent putting data for this histogram period.
-
-*get.calls*
-
- :   The number of get calls for this histogram period.
+*get.calls* :   The number of get calls for this histogram period.
 
         *get.proxy\_calls*
 
