@@ -14,11 +14,11 @@ GET
 
 `Output:`
 
-*identity* :   The UUID that identifies this Snowth node.
+*identity* :   The UUID that identifies this node.
 
-*current* :   The current Snowth topology in which this node resides.
+*current* :   The current topology in which this node resides.
 
-*next* :   The next Snowth topology for this node.
+*next* :   The next topology for this node.
 
 *base_rollup* :   The smallest period that is used for rolling up numeric data.
 
@@ -44,37 +44,19 @@ GET
 
 *get.calls* :   The number of get calls for this numeric period.
 
-*get.proxy\_calls* :   The number of proxy get calls for this numeric period.
+*get.proxy_calls* :   The number of proxy get calls for this numeric period.
 
-        *get.count*
+*get.count* :   The number of metrics retrieved for this numeric period.
 
-        :   The number of metrics retrieved for this numeric period.
+*get.elapsed_us* :   The number of microseconds spent getting data for this numeric period.
 
-        *get.elapsed\_us*
+*extend.calls* :   The number of extend calls for this numeric period. (The number of times the system needed to extend an NNT storage file from the beginning.)
 
-        :   The number of microseconds spent getting data for this
-            numeric period.
+*aggregate* :   Aggregated data from all NNT (numeric) calls. Fields are the same as for each individual rollup.
 
-        *extend.calls*
+*nnt_cache_size* :   The current size of the NNT file handle cache. When IRONdb opens an NNT file for reading or writing, it will maintain an open file descriptor for it and store it in a cache.
 
-        :   The number of extend calls for this numeric period. (The
-            number of times the system needed to extend an NNT
-            storage file from the beginning.)
-
-    *aggregate*
-
-    :   Aggregated data from all NNT (numeric) calls. Fields are the
-        same as for each individual rollup.
-
-*nnt\_cache\_size*
-
-:   The current size of the NNT file handle cache. When Snowth opens
-    an NNT file for reading or writing, it will maintain an open
-    file descriptor for it and store it in a cache.
-
-*text*
-
-:   A container with information about text data storage.
+*text* :   A container with information about text data storage.
 
 :   
 
