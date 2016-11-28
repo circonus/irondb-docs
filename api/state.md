@@ -193,15 +193,13 @@ Data will be returned as a JSON document. The fields in this document are descri
 
 :   
 
-    *rollups*
+*rollups*
 
-    :   An array containing a list of all histogram data periods
-        stored on this node.
+:   An array containing a list of all histogram data periods stored on this node.
 
-    *rollup\_&lt;period&gt;*
+*rollup\_&lt;period&gt;*
 
-    :   This describes data for each particular rollup. There will
-        be one of these entries per rollup period.
+:   This describes data for each particular rollup. There will be one of these entries per rollup period.
 
     :   
 
@@ -327,33 +325,30 @@ Data will be returned as a JSON document. The fields in this document are descri
 
 :   The features that are enabled on this node.
 
-:   
+*text:store*
 
-    *text:store*
+:   Appears if text data storage is enabled on this node.
 
-    :   Appears if text data storage is enabled on this node.
+*histogram:store*
 
-    *histogram:store*
+:   Appears if histogram data storage is enabled on this node.
 
-    :   Appears if histogram data storage is enabled on this node.
+*nnt:second\_order*
 
-    *nnt:second\_order*
-
-    :   Appears if second order derivatives for numeric data is
+:   Appears if second order derivatives for numeric data is
         enabled on this node.
 
-    *histogram:dynamic\_rollups*
+*histogram:dynamic\_rollups*
 
-    :   Appears if dynamic histogram rollups are enabled on
-        this node.
+:   Appears if dynamic histogram rollups are enabled on this node.
 
-    *nnt:store*
+*nnt:store*
 
-    :   Appears if numeric data storage is enabled on this node.
+:   Appears if numeric data storage is enabled on this node.
 
-    *features*
+*features*
 
-    :   Appears if feature flagging is enabled on this node.
+:   Appears if feature flagging is enabled on this node.
 
 *version*
 
@@ -362,7 +357,6 @@ Data will be returned as a JSON document. The fields in this document are descri
 *application*
 
 :   The name of this application.
-```
 
 ## Examples
 
