@@ -14,64 +14,42 @@ Description of JSON Objects
 
 **Inputs:**
 
-:   
+*hash* :   The hash of the topology for which to retrieve information.
 
-    *hash*
+**Outputs:**
 
-    :   The hash of the topology for which to retrieve information.
+*id* :   The UUID of the node.
 
-`Outputs:`
+*address* :   The IP Address of the node.
 
-:   
+*port* :   The port on which the node is listening.
 
-    *id*
+*apiport* :   The port on which the API is listening for the node.
 
-    :   The UUID of the node.
+*weight* :   A value representing how heavily the data to be stored on this node is weighted.
 
-    *address*
-
-    :   The IP Address of the node.
-
-    *port*
-
-    :   The port on which the node is listening.
-
-    *apiport*
-
-    :   The port on which the API is listening for the node.
-
-    *weight*
-
-    :   A value representing how heavily the data to be stored on this
-        node is weighted.
-
-    *n*
-
-    :   The number of nodes on this ring on which data is stored.
+*n* :   The number of nodes on this ring on which data is stored.
 
 Examples
 --------
 
 This example will use
 
+```
 /topology/json/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+```
 
 In this example:
 
-*read*
+*read* :   This is the command to read topology data from the server.
 
-:   This is the command to read topology data from the server.
+*json* :   This is the command to read data in JSON format.
 
-*json*
+*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef* :   This is the Topology Hash.
 
-:   This is the command to read data in JSON format.
+**Output:**
 
-*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef*
-
-:   This is the Topology Hash.
-
-`Output:`
-
+```
     [
        {"id":"1f846f26-0cfd-4df5-b4f1-e0930604e577","address":"10.8.20.1","port":8112,"apiport":8112,
     "weight":32,"n":2},
@@ -82,4 +60,4 @@ In this example:
        {"id":"07fa2237-5744-4c28-a622-a99cfc1ac87e","address":"10.8.20.4","port":8112,"apiport":8112,
     "weight":32,"n":2}
     ]
-          
+```
