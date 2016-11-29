@@ -6,9 +6,9 @@ Data will be returned as an array of JSON objects. The format of these objects i
 
 ## Description of JSON objects
 
-**URI:** :   /gossip/json
+**URI:**    /gossip/json
 
-**Method:** :   GET
+**Method:**   GET
 
 **Output:**  
 

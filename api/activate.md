@@ -10,9 +10,9 @@ This API call is for switching to a new topology.
 Description of API call
 -----------------------
 
-**URI:** :   /activate/&lt;hash&gt;
+**URI:**   /activate/&lt;hash&gt;
 
-**Method:** :   GET
+**Method:**   GET
 
 **Inputs:**
 

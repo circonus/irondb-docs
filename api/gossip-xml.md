@@ -8,9 +8,9 @@ Data will be returned an XML object. The format of this object is described belo
 Description of XML Object
 -------------------------
 
-**URI:** :   /gossip/json
+**URI:**   /gossip/json
 
-**Method:** :   GET
+**Method:**   GET
 
 **Output:**
 

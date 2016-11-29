@@ -6,13 +6,11 @@ Data will be returned as a JSON document. The fields in this document are descri
 
 ## Description of JSON document
 
-`URI:`
-/state
+**URI:** /state
 
-`Method:`
-GET
+**Method:** GET
 
-`Output:`
+**Output:**
 
 *identity* :   The UUID that identifies this node.
 

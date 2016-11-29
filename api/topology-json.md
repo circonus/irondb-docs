@@ -3,21 +3,16 @@ Retrieving Topology JSON Data
 
 This API call retrieves data for a given topology in JSON format.
 
-Data will be returned as an array of JSON objects. The format of these
-objects is described below.
+Data will be returned as an array of JSON objects. The format of these objects is described below.
 
 Description of JSON Objects
 ---------------------------
 
-`URI:`
+**URI:**   /topology/json/&lt;hash&gt;
 
-:   /topology/json/&lt;hash&gt;
+**Method:**   GET
 
-`Method:`
-
-:   GET
-
-`Inputs:`
+**Inputs:**
 
 :   
 

@@ -6,9 +6,9 @@ This API call will load a new topology onto an IRONdb node. It will not activate
 Description of API call
 -----------------------
 
-**URI:** :   /topology/hash
+**URI:**   /topology/hash
 
-**Method:** :   POST
+**Method:**   POST
 
 **Inputs:**
 
