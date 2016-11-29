@@ -2,7 +2,7 @@
 
 There are 2 methods for ingesting graphite data into IRONdb.  
 
-1. RESTful POST of buffers of data
+1. RESTful POST of buffers of data 
 2. Network socket listener akin to the normal graphite network socket listener
 
 In both cases ASCII data in the normal graphite format are accepted:
@@ -56,6 +56,20 @@ more closely on the Circonus platform.  We hide the complexity of this
 on the rendering side so you only have to worry about this mapping on
 the ingestion side.
 
+When we store these metric names inside IRONdb we prefix them with the
+collection category ("graphite" in this case) and the "Name" of the of
+the "check".  You can see this in the examples below in more detail,
+but sending a graphite row like:
+
+`echo "a.b.c 12345 1480383422" | nc 2003`
+
+Using the "Network Listener" below, it will result in a metric called:
+
+`graphite.dev.a.b.c`
+
+This allows us to disambiguate metric names from potential duplicate
+names collected using reconnoiter.
+
 Writing Graphite Data with HTTP
 ===============================
 
@@ -75,8 +89,8 @@ Will place all metrics under account_id `1` with that UUID and call them `dev`.
 Will place all metrics under account_id `1` with that UUID and call them `prod`.
 
 This is important later when we render the metrics in the UI (see
-reading-graphite.md for more info).  Metrics ingested under example 1
-will render as:
+[Graphite Rendering](./graphite-rendering.md) for more info).  Metrics
+ingested under example 1 will render as:
 
 `graphite.dev.metric.name.here`
 
@@ -110,5 +124,7 @@ ingestion section.  You can then:
 ```
 echo "my.metric.name.one 1 `date +%s`" | nc 2003
 ```
-To send metrics to IRONdb.
+To send metrics to IRONdb.  Which will result in a metric called:
+
+`graphite.dev.my.metric.name.one`
 
