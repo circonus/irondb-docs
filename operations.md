@@ -25,13 +25,13 @@ You will see an "Errors" section to the right. If you begin to see hardware erro
 If instability continues, you can run IRONdb in the foreground. First, determine the node's ID by doing an:
 
 ```
-ls /irondb/data/
+ls /snowth/data/
 ```
 
 Then, run the following as root:
 
 ```
-/opt/circonus/sbin/irondbd -D -d \
+/opt/circonus/sbin/snowthd -D -d \
 
  -u nobody \
 
