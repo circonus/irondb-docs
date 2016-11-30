@@ -23,7 +23,7 @@
         * [Retrieving Text Data](api/read-text.md)
         * [Retrieving Histogram Data](api/read-histogram.md)
     * [Data Submission APIs](data-submission-apis.md)
-        * [Writing Numeric Data](api/write-nnt)
+        * [Writing Numeric Data](api/write-nnt.md)
         * [Writing Text Data](api/write-text.md)
         * [Writing Histogram Data](api/write-histogram.md)
     * [Data Deletion APIs](data-deletion-apis.md)
