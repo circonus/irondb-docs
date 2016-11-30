@@ -1,104 +1,63 @@
 Retrieving Data Location In JSON Format
 =======================================
 
-This API call retrieves a list of all of the nodes on which a metric
-resides.
+This API call retrieves a list of all of the nodes on which a metric resides.
 
-Data will be returned as a JSON object. The format of this object is
-described below.
+Data will be returned as a JSON object. The format of this object is described below.
 
 Description of JSON object
 --------------------------
 
-`URI:`
+**URI:**   /locate/json/&lt;uuid&gt;/&lt;metric&gt;
 
-:   /locate/json/&lt;uuid&gt;/&lt;metric&gt;
+**Method:**   GET
 
-`Method:`
+**Inputs:**
 
-:   GET
+*uuid* :   The UUID of the check to which the metric belongs.
 
-`Inputs:`
+*metric* :   The name of the metric to locate.
 
-:   
+**Outputs:**
 
-    *uuid*
+*key* :   The key used to locate the metric. It is in the form "&lt;UUID&gt;-&lt;metric&gt;".
 
-    :   The UUID of the check to which the metric belongs.
+*location* :   An array of JSON objects representing the nodes on which the data resides. The format of each object in the array is as follows:
 
-    *metric*
+* *id* :   The UUID of the node.
 
-    :   The name of the metric to locate.
+* *address* :   The IP Address of the node.
 
-`Outputs:`
+* *port* :   The port on which the node is listening.
 
-:   
+* *apiport* :   The port on which the API is listening for the node.
 
-    *key*
+* *weight* :   A value representing how heavily the data to be stored on this node is weighted.
 
-    :   The key used to locate the metric. It is in the
-        form "&lt;UUID&gt;-&lt;metric&gt;".
-
-    *location*
-
-    :   An array of JSON objects representing the nodes on which the
-        data resides. The format of each object in the array is as
-        follows:
-
-    :   
-
-        *id*
-
-        :   The UUID of the node.
-
-        *address*
-
-        :   The IP Address of the node.
-
-        *port*
-
-        :   The port on which the node is listening.
-
-        *apiport*
-
-        :   The port on which the API is listening for the node.
-
-        *weight*
-
-        :   A value representing how heavily the data to be stored on
-            this node is weighted.
-
-        *n*
-
-        :   The number of nodes on this ring on which data is stored.
+* *n* :   The number of nodes on this ring on which data is stored.
 
 Examples
 --------
 
 This example uses
 
-    /locate/json/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+```
+/locate/json/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+```
 
 In this example:
 
-*locate*
+*locate* :   This is the command to locate a check/metric.
 
-:   This is the command to locate a check/metric.
+*json* :   This is the command to read data in JSON format.
 
-*json*
+*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the Check UUID.
 
-:   This is the command to read data in JSON format.
+*example* :   This is the Metric.
 
-*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12*
+**Output:**
 
-:   This is the Check UUID.
-
-*example*
-
-:   This is the Metric.
-
-`Output:`
-
+```
     {
       "key":"6f6bdc73-2352-4bdc-ab0e-72f66d0dee12-example",
       "location":[
@@ -108,4 +67,4 @@ In this example:
     "weight":32,"n":2}
       ]
     }
-          
+```
