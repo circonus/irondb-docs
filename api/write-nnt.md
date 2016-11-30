@@ -38,18 +38,17 @@ Description of JSON object
 
 This example uses
 
-    /write/nnt
+```
+/write/nnt
+```
+The JSON object below will add data to the IRONdb cluster for two metrics, named "example1" and "example2". It assumes a smallest rollup value of 300 seconds and includes part data on 60 second intervals. The data will be added at offset 1408724400 (August 22, 2014, 12:20:00 GMT).
 
-The JSON object below will add data to the Snowth cluster for two
-metrics, named "example1" and "example2". It assumes a smallest rollup
-value of 300 seconds and includes part data on 60 second intervals. The
-data will be added at offset 1408724400 (August 22, 2014, 12:20:00 GMT).
+**Attached Text:**
 
-`Attached Text:`
-
+```
     [
        { "derivative": 0, "counter": 0, "value": 100, "count": 5, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0, "offset": 1408724400, "id": "ae0f7f90-2a6b-481c-9cf5-21a31837020e", "metric": "example1", "parts": [ 60, [ { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 } ] ] },
 
        { "derivative": 0, "counter": 0, "value": 100, "count": 5, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0, "offset": 1408724400, "id": "ae0f7f90-2a6b-481c-9cf5-21a31837020e", "metric": "example2", "parts": [ 60, [ { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 }, { "derivative": 0, "counter": 0, "value": 100, "count": 1, "stddev": 0, "derivative_stddev": 0, "counter_stddev": 0 } ] ] }
     ]
-          
+```
