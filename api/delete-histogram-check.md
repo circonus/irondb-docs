@@ -1,64 +1,44 @@
 Deleting Histogram Data for a Check
 ===================================
 
-This API call is for deleting histogram data from the Snowth cluster for
-an entire check. It will remove data from the beginning of time up until
-the time provided by the user for every histogram metric that is part of
-the given check UUID.
+This API call is for deleting histogram data from the IRONdb cluster for an entire check. It will remove data from the beginning of time up until the time provided by the user for every histogram metric that is part of the given check UUID.
 
 This call will always return an empty array.
 
 Description of API call
 -----------------------
 
-`URI:`
+**URI:**   /histogram/check/&lt;end&gt;/&lt;uuid&gt;
 
-:   /histogram/check/&lt;end&gt;/&lt;uuid&gt;
+**Method:**   DELETE
 
-`Method:`
+**Inputs:**  
 
-:   DELETE
+*end* :   The end time. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
 
-`Inputs`
-
-:   
-
-    *end*
-
-    :   The end time. All data from before this specified time
-        is deleted. Time is represented in seconds since the epoch.
-
-    *uuid*
-
-    :   The UUID of the check to delete.
+*uuid* :   The UUID of the check to delete.
 
 Examples
 --------
 
 This example uses
 
+```
     /histogram/check/1380000000/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12
+```
 
 In this example:
 
-*histogram*
+*histogram* :   This is the command that tells the system that histogram data will be removed.
 
-:   This is the command that tells the system that histogram data will
-    be removed.
+*check* :   This is the command that tells the system that histogram data will be removed for an entire check.
 
-*check*
+*1380000000* :   This is the End Time (September 24, 2013, 05:20:00 GMT).
 
-:   This is the command that tells the system that histogram data will
-    be removed for an entire check.
+*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the UUID.
 
-*1380000000*
+**Output:**
 
-:   This is the End Time (September 24, 2013, 05:20:00 GMT).
-
-*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12*
-
-:   This is the UUID.
-
-`Output:`
-
+```
     []
+```
