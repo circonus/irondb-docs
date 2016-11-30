@@ -2,11 +2,11 @@
 
 ## Data Storage
 
-The data storage service runs the irondb:default process, listening externally on port 8112 and locally on port 32322. Like the broker, this service has two processes: a child and a parent, which serves as watchdog for the child.
+The data storage service runs the snowth:default process, listening externally on port 8112 and locally on port 32322. Like the broker, this service has two processes: a child and a parent, which serves as watchdog for the child.
 
 IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
 
-Log files are located under /irondb/logs and include the following files:
+Log files are located under /snowth/logs and include the following files:
 
  * accesslog
 
@@ -37,7 +37,7 @@ Then, run the following as root:
 
  -g nobody \
 
- -c /opt/circonus/etc/irondb.conf \
+ -c /opt/circonus/etc/snowth.conf \
 
  -i <nodeid from previous command>
 ```
@@ -46,7 +46,7 @@ Like the broker, running IRONdb in the foreground should allow you to capture a 
 
 ### Operations Dashboard
 
-IRONdb comes with built-in operational dashboard accessible from any data storage host on port 8112 in your browser, e.g., http://irondbhost:8112. This interface provides real-time information about the data storage cluster.
+IRONdb comes with built-in operational dashboard accessible from any data storage host on port 8112 in your browser, e.g., http://snowthhost:8112. This interface provides real-time information about the data storage cluster.
 
 The "Overview" tab tells you the throughputs of data gets and puts along with what rollups are available.
 
