@@ -8,7 +8,7 @@ Follow the instructions in the README in that repo to install and utilize the IR
 
 That Storage Backend plugin simply utilizes the endpoints described below.
 
-Searching for metric names
+Searching for Metric Names
 ==========================
 
 Graphite metrics can be fetched (rendered) from IRONdb using the following endpoints. Glob style wildcards are supported.
@@ -53,7 +53,7 @@ If you do not want to utilize the `optional_query_prefix` you can leave it off t
 ```   
 
 
-Retrieving datapoints
+Retrieving Datapoints
 =====================
 
 There are 2 methods for retrieving datapoints from IRONdb. A GET and a POST.
