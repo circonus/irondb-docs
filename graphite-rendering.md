@@ -1,14 +1,12 @@
 ## Graphite Rendering
 
-IRONdb has a graphite-web Storage Backend which makes the following
-seamless with an existing graphite-web installation.  The Storage
-Backend requires graphite 0.10 or newer and can be obtained here:
+IRONdb has a graphite-web Storage Backend which makes the following Graphite Rendering seamless with an existing graphite-web installation. The Storage Backend requires graphite 0.10 or newer and can be obtained here:
+
 https://github.com/circonus-labs/graphite-irondb
 
-Follow the instructions in the README in that repo to install and
-utilize the IRONdb graphite storage backend.
+Follow the instructions in the README in that repo to install and utilize the IRONdb graphite storage backend.
 
-That Storage Backend plugin simply utilizes the endpoints that follow.
+That Storage Backend plugin simply utilizes the endpoints described below.
 
 Searching for metric names
 ==========================
