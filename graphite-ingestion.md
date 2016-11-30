@@ -30,25 +30,18 @@ groups in your organization but keep metrics hidden across the various groups.
 
 All metrics live under a numeric identifier (you can think of this like an account_id). Metric names can only be associated with an "account_id". This allows you have separate graphite-web or Grafana instances that segregate queries for metric names, or combine them all together under a single "account_id", or even separate your internal groups but recombine them under graphite-web/Grafana for visualization purposes. It's really up to you.
 
-Further, IRONdb requires associating incoming graphite data with a
-UUID and Name to make Graphite data match reconnoiter ingested data
-more closely on the Circonus platform.  We hide the complexity of this
-on the rendering side so you only have to worry about this mapping on
-the ingestion side.
+Furthermore, IRONdb requires associating incoming graphite data with a UUID and Name to make Graphite data match reconnoiter ingested data more closely on the Circonus platform. We hide the complexity of this
+on the rendering side, so you only have to worry about this mapping on the ingestion side.
 
-When we store these metric names inside IRONdb we prefix them with the
-collection category ("graphite" in this case) and the "Name" of the of
-the "check".  You can see this in the examples below in more detail,
-but sending a graphite row like:
+When we store these metric names inside IRONdb, we prefix them with the collection category ("graphite" in this case) and the "Name" of the of the "check". You can see this in the examples below in more detail. Sending a graphite row like this:
 
 `echo "a.b.c 12345 1480383422" | nc 2003`
 
-Using the "Network Listener" below, it will result in a metric called:
+using the "Network Listener" below, will result in a metric called:
 
 `graphite.dev.a.b.c`
 
-This allows us to disambiguate metric names from potential duplicate
-names collected using reconnoiter.
+This allows us to disambiguate metric names from potential duplicate names collected using Reconnoiter.
 
 Writing Graphite Data with HTTP
 ===============================
