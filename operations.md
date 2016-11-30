@@ -6,7 +6,7 @@ The data storage service runs the snowth:default process, listening externally o
 
 The data storage system requires ZFS, and therefore it is the only service to require the use of OmniOS to function. Basic OmniOS information and mailing lists can be found here: http://omnios.omniti.com/wiki.php/WikiStart. For further help, please contact Circonus Support (support@circonus.com).
 
-Snowthd is sensitive to CPU and IO limits. If either resource is limited, you can see Snowthd child processes being killed off by the parents when they do not heartbeat on time.
+IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
 
 Log files are located under /snowth/logs and include the following files:
 
@@ -16,7 +16,7 @@ Log files are located under /snowth/logs and include the following files:
 
 The access logs are useful to verify activity going to the server in question. Error logs may contain debugging information for support personnel.
 
-If the snowthd child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact snowth's performance. To check for errors run:
+If the child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's performance. To check for errors run:
 
 ```
 iostat -zxne
@@ -24,7 +24,7 @@ iostat -zxne
 
 You will see an "Errors" section to the right. If you begin to see hardware errors there, this could indicate a disk failure. If in doubt, contact Circonus Support (support@circonus.com) for assistance.
 
-If instability continues, you can run snowth in the foreground. First, determine the node's ID by doing an:
+If instability continues, you can run IRONdb in the foreground. First, determine the node's ID by doing an:
 
 ```
 ls /snowth/data/
@@ -44,11 +44,11 @@ Then, run the following as root:
  -i <nodeid from previous command>
 ```
 
-Like the broker, running snowth in the foreground should allow you to capture a core dump, which Circonus Support can use to diagnose your problem.
+Like the broker, running IRONdb in the foreground should allow you to capture a core dump, which Circonus Support can use to diagnose your problem.
 
 ### Operations Dashboard
 
-Snowth comes with built-in operational dashboard accessible from any data storage host on port 8112 in your browser, e.g., http://snowthhost:8112. This interface provides real-time information about the data storage cluster.
+IRONdb comes with built-in operational dashboard accessible from any data storage host on port 8112 in your browser, e.g., http://snowthhost:8112. This interface provides real-time information about the data storage cluster.
 
 The "Overview" tab tells you the throughputs of data gets and puts along with what rollups are available.
 
@@ -60,21 +60,21 @@ The "Internals" tab shows internal application information, jobs, open sockets, 
 
 ### Performing Cluster Restarts
 
-Any planned maintenance that requires restarting of a snowthd node (such as a host reboot, but also including a Hooper run that updates the platform/snowth package) should be performed with care to let the cluster "settle" after each node restart. Restarting too many nodes too quickly can cause a cascade of additional work that will dramatically lengthen the time required to return to a normal operating state and may adversely impact the availability of the entire cluster.
+Any planned maintenance that requires restarting of a IRONdb node (such as a host reboot, but also including a Hooper run that updates the platform/snowth package) should be performed with care to let the cluster "settle" after each node restart. Restarting too many nodes too quickly can cause a cascade of additional work that will dramatically lengthen the time required to return to a normal operating state and may adversely impact the availability of the entire cluster.
 
 **Note:**
 > The general rule of thumb is to allow about two minutes between Hooper runs or any other disruptive maintenance on data_storage machines, subject to observation of the replication latency described below.
 
 Watch the "Replication Latency" tab of the Operations Dashboard during the restart process, noting the restarted node's lag relative to the others. It normally takes 30-60 seconds for the cluster to settle after a single node restart, but this may vary depending on the ingestion rate (how busy your cluster is). Do not restart the next node until the replication latency of the restarted node returns to green relative to all the other nodes.
 
-## Snowth ZFS Condensing
+## ZFS Condensing
 
-Circonus Engineering has identified an issue that stems from the specific write workload placed on the system by the Data Storage application (Snowth). Over time, this may lead to severely reduced write performance and cluster instability. This issue primarily affects Data Storage clusters operating on OmniOS r151006, but may also arise on r151014 depending on the cluster node size and volume of incoming metrics.
+Circonus Engineering has identified an issue that stems from the specific write workload placed on the system by the Data Storage application. Over time, this may lead to severely reduced write performance and cluster instability. This issue primarily affects Data Storage clusters operating on OmniOS r151006, but may also arise on r151014 depending on the cluster node size and volume of incoming metrics.
 
-To prevent this issue from occurring, Circonus recommends that cluster operators periodically rewrite the numeric storage portion of the Snowth data on each cluster node. This condenses the space allocations and prevents the performance problem.
+To prevent this issue from occurring, Circonus recommends that cluster operators periodically rewrite the numeric storage portion of the IRONd data on each cluster node. This condenses the space allocations and prevents the performance problem.
 
 **Note:**
-> This maintenance should be performed every 6 months, or until Circonus Engineering devises a permanent fix in Snowth to prevent this issue. It should be performed on one node at a time, allowing the node to completely recover and catch up with its peers before continuing to the next node. The procedure is described below.
+> This maintenance should be performed every 6 months, or until Circonus Engineering devises a permanent fix in IRONdb to prevent this issue. It should be performed on one node at a time, allowing the node to completely recover and catch up with its peers before continuing to the next node. The procedure is described below.
 
 While this maintenance is being performed on a node, it will be unavailable to receive new incoming metric data. Metric data destined for this node will be journaled on other nodes in the cluster and replayed to it when it is returned to service.
 
@@ -85,7 +85,7 @@ If you have any questions concerning this issue, please contact Circonus Support
 These steps are to be performed by a privileged user, and due to the length of time some commands take, it is recommended to use tmux or screen.
 
 **NOTE:**
-> If Snowth is running in a non-global zone, then this procedure should be performed within that zone.
+> If IRON is running in a non-global zone, then this procedure should be performed within that zone.
 
  1. Stop the snowth service.
 ```
@@ -148,7 +148,7 @@ zfs destroy <snowth-data>@condense
 
  1. Monitor the replay process using the Snowth Operations Dashboard. The node that has just been condensed will be receiving journal batches from all the other nodes. When its replication latency relative to all other nodes has returned to green, it is safe to proceed to the next node in the cluster.
 
-## Delete Sweep Snowth API
+## Delete Sweep API
 
 Delete Sweep is a procedure that allows users to quickly remove large amounts of data from storage using the API. This procedure utilizes the following endpoint:
 
@@ -220,11 +220,11 @@ Example output:
 
 ### Repairing Corrupt LevelDB Data Stores
 
-On occasion, a Snowth LevelDB database may become corrupted. Snowth has the capability to correct itself when this happens.
+On occasion, an IRONdb LevelDB database may become corrupted. Snowth has the capability to correct itself when this happens.
 
 You should be able to determine which log is corrupted by looking at the errorlog for Snowth (usually in /snowth/logs/errorlog). It will tell you what has been corrupted. To fix it, follow the instructions below.
 
-#### 1. Disable snowthd.
+#### 1. Disable IRONdb.
 
 Before you start, you will need to disable snowthd with the following command:
 ```
