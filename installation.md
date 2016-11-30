@@ -1,11 +1,5 @@
-# Installation
+## IRONdb Installation
 
-1.
+Detailed instructions on installing IRONdb will be released in the coming days.
 
-2.
-
-3.
-
-4.
-
-5.
+For questions about installation, contact [sales@circonus.com](mailto:sales@circonus.com).
