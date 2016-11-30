@@ -1,62 +1,41 @@
 Writing Histogram Data
 ======================
 
-This API call is for writing histogram data into the Snowth cluster. The
-data will be sent as a JSON object containing the data to be added to
-the cluster.
+This API call is for writing histogram data into the IRONdb cluster. The data will be sent as a JSON object containing the data to be added to the cluster.
 
 Description of JSON object
 --------------------------
 
-`URI:`
+**URI:**   /histogram/write
 
-:   /histogram/write
+**Method:**   PUT | POST
 
-`Method:`
+**JSON Format:**   
 
-:   PUT | POST
+*metric* :   The name of the metric for which data is added.
 
-`JSON Format:`
+*id* :   The UUID of the check for the metric for which data is added.
 
-:   
+*offset* :   The timestamp, represented in time since the epoch, for which data is added.
 
-    *metric*
+*period* :   The period for which to add the histogram data. Typically, this will be the smallest histogram period configured on the IRONdb cluster.
 
-    :   The name of the metric for which data is added.
-
-    *id*
-
-    :   The UUID of the check for the metric for which data is added.
-
-    *offset*
-
-    :   The timestamp, represented in time since the epoch, for which
-        data is added.
-
-    *period*
-
-    :   The period for which to add the histogram data. Typically, this
-        will be the smallest histogram period configured on the
-        Snowth cluster.
-
-    *histogram*
-
-    :   A base64 encoded compressed representation of the histogram data
-        for this time period.
+*histogram* :   A base64 encoded compressed representation of the histogram data for this time period.
 
 This example uses
 
-    /histogram/write
+```
+/histogram/write
+```
 
-The example JSON object below will add data to the Snowth cluster for
-two histogram metrics, named "example1" and "example2". The data will be
-added at offset 1408724400 (August 22, 2014, 12:20:00 GMT).
+The example JSON object below will add data to the IRONdb cluster for two histogram metrics, named "example1" and "example2". The data will be added at offset 1408724400 (August 22, 2014, 12:20:00 GMT).
 
-`Attached Text:`
+**Attached Text:**
 
+```
     [
        { "offset": 1408724400, "id": "ae0f7f90-2a6b-481c-9cf5-21a31837020e", "metric": "example1", "period": 60, "histogram": "AAA="},
 
        { "offset": 1408724400, "id": "ae0f7f90-2a6b-481c-9cf5-21a31837020e", "metric": "example2", "period": 60, "histogram": "AAA="},
     ]
-          
+```
