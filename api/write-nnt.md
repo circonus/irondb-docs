@@ -1,88 +1,40 @@
 Writing Numeric Data
 ====================
 
-This API call is for writing NNT (numeric) data into the Snowth cluster.
-It will send a JSON object containing the data to be added to the
-cluster.
+This API call is for writing NNT (numeric) data into the IRONdb cluster. It will send a JSON object containing the data to be added to the cluster.
 
-Data should be added for the smallest rollup that exists on the Snowth
-node. For example, if the smallest rollup on the cluster is 300 seconds
-(five minutes), five minute data should be added.
+Data should be added for the smallest rollup that exists on the IRONdb node. For example, if the smallest rollup on the cluster is 300 seconds (five minutes), five minute data should be added.
 
 Description of JSON object
 --------------------------
 
-`URI:`
+**URI:**   /write/nnt
 
-:   /write/nnt
+**Method:**   PUT | POST
 
-`Method:`
+**JSON Format:**
 
-:   PUT | POST
+*metric* :   The name of the metric for which data is added.
 
-`JSON Format:`
+*id* :   The UUID of the check for the metric for which data is added.
 
-:   
+*offset* :   The timestamp, represented in time since the epoch, for which data is added.
 
-    *metric*
+*count* :   The number of data points received for the metric over the specified time period.
 
-    :   The name of the metric for which data is added.
+*value* :   The average value for the metric over the specified time period.
 
-    *id*
+*derivative* :   The derivative value for the metric over the specified time period.
 
-    :   The UUID of the check for the metric for which data is added.
+*counter* :   The counter value for the metric over the specified time period.
 
-    *offset*
+*stddev* :   The standard deviation of the average value for the metric over the specified time period.
 
-    :   The timestamp, represented in time since the epoch, for which
-        data is added.
+*derivative_stddev* :   The standard deviation of the derivative value for the metric over the specified time period.
 
-    *count*
+*counter_stddev* :   The standard deviation of the counter value for the metric over the specified time period.
 
-    :   The number of data points received for the metric over the
-        specified time period.
-
-    *value*
-
-    :   The average value for the metric over the specified time period.
-
-    *derivative*
-
-    :   The derivative value for the metric over the specified
-        time period.
-
-    *counter*
-
-    :   The counter value for the metric over the specified time period.
-
-    *stddev*
-
-    :   The standard deviation of the average value for the metric over
-        the specified time period.
-
-    *derivative\_stddev*
-
-    :   The standard deviation of the derivative value for the metric
-        over the specified time period.
-
-    *counter\_stddev*
-
-    :   The standard deviation of the counter value for the metric over
-        the specified time period.
-
-    *parts*
-
-    :   An optional array that contains the raw values that were used to
-        calculate the values used above. The data is in the form of a
-        tuple: the period (in seconds) that makes up the partial data,
-        and an array of JSON objects that contains all of the fields
-        above, except for "offset", "metric", and "id". The period value
-        should be the values that are used to make up the
-        smallest rollup. For example, if the smallest rollup is 300
-        seconds (five minutes) and that data was formed using 60 second
-        (one minute) data, the "parts" data should have a period of 60,
-        followed by five JSON objects describing the data at
-        each interval.
+*parts* :   An optional array that contains the raw values that were used to calculate the values used above. The data is in the form of a tuple: the period (in seconds) that makes up the partial data, and an array of JSON objects that contains all of the fields above, except for "offset", "metric", and "id". The period value should be the values that are used to make up the smallest rollup. For example, if the smallest rollup is 300 seconds (five minutes) and that data was formed using 60 second (one minute) data, the "parts" data should have a period of 60, followed by five JSON objects describing the data at each interval.
 
 This example uses
 
