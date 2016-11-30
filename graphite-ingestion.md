@@ -46,8 +46,7 @@ This allows us to disambiguate metric names from potential duplicate names colle
 Writing Graphite Data with HTTP
 ===============================
 
-Graphite data is sent as buffers of N rows of graphite formatted data
-to the graphite ingestion endpoint:
+Graphite data is sent as buffers of N rows of graphite formatted data to the graphite ingestion endpoint:
 
 `http://<snowth_machine:port>/graphite/<account_id>/<uuid>/<check_name>`
 
@@ -55,19 +54,19 @@ For example:
 
 `http://<snowth_machine:port>/graphite/1/8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2/dev`
 
-Will place all metrics under account_id `1` with that UUID and call them `dev`.
+This will place all metrics under account_id `1` with that UUID and call them `dev`.
 
 `http://<snowth_machine:port>/graphite/1/45e77556-7a1b-46ef-f90a-cfa34e911bc3/prod`
 
-Will place all metrics under account_id `1` with that UUID and call them `prod`.
+This will place all metrics under account_id `1` with that UUID and call them `prod`.
 
-This is important later when we render the metrics in the UI (see
-[Graphite Rendering](./graphite-rendering.md) for more info).  Metrics
-ingested under example 1 will render as:
+This is important later when we render the metrics in the UI (see [Graphite Rendering](./graphite-rendering.md) for more information).
+
+Metrics ingested under the first example will render as:
 
 `graphite.dev.metric.name.here`
 
-And the second example:
+Metrics ingested under the second example will render as:
 
 `graphite.prod.metric.name.here`
 
@@ -75,9 +74,7 @@ And the second example:
 Writing Graphite Data with Network Listener
 ===========================================
  
-The network listener requires that we associate an account_id, uuid
-and name with a network port.  We do this via the IRONdb configuration
-file by adding a new listener stanza:
+The network listener requires that we associate an account_id, uuid, and name with a network port. We do this via the IRONdb configuration file by adding a new listener stanza:
 
 ```
   <listeners>
@@ -91,13 +88,12 @@ file by adding a new listener stanza:
   </listeners>
 ```
 
-This listener stanza is the same as the first example under the HTTP
-ingestion section.  You can then:
+This listener stanza is the same as the first example under the HTTP ingestion section. You can then use:
 
 ```
 echo "my.metric.name.one 1 `date +%s`" | nc 2003
 ```
-To send metrics to IRONdb.  Which will result in a metric called:
+
+to send metrics to IRONdb. This will result in a metric called:
 
 `graphite.dev.my.metric.name.one`
-
