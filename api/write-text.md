@@ -1,7 +1,7 @@
 Writing Text Data
 =================
 
-This API call is for writing text data into the Snowth cluster. It sends a JSON object containing the data to be added to the cluster.
+This API call is for writing text data into the IRONdb cluster. It sends a JSON object containing the data to be added to the cluster.
 
 Description of JSON object
 --------------------------
@@ -18,7 +18,7 @@ Description of JSON object
 
 *offset* :   The timestamp, represented in time since the epoch, for which data added.
 
-*value* :   The text string to add to the Snowth cluster.
+*value* :   The text string to add to the IRONdb cluster.
 
 This example uses
 
