@@ -1,118 +1,69 @@
 Retrieving Data Location In XML Format
 ======================================
 
-This API call retrieves a list of all of the nodes on which a metric
-resides.
+This API call retrieves a list of all of the nodes on which a metric resides.
 
-Data will be returned as an XML document. The format of this document is
-described below.
+Data will be returned as an XML document. The format of this document is described below.
 
 Description of XML document
 ---------------------------
 
-`URI:`
+**URI:**   /locate/xml/&lt;uuid&gt;/&lt;metric&gt;
 
-:   /locate/xml/&lt;uuid&gt;/&lt;metric&gt;
+**Method:**   GET
 
-`Method:`
+**Inputs:**
 
-:   GET
+*uuid* :   The UUID of the check to which the metric belongs.
 
-`Inputs:`
+*metric* :   The name of the metric to locate.
 
-:   
+**Outputs:**
 
-    *uuid*
+*&lt;nodes&gt;* :   The Top-Level XML for the topology.
 
-    :   The UUID of the check to which the metric belongs.
+* *Attributes*
 
-    *metric*
+ * *n* :   The number of nodes on which the data will be stored.
 
-    :   The name of the metric to locate.
+* *Elements*
 
-`Outputs:`
+ * *&lt;node&gt;* :   The container for all the information on a single node in the cluster. There will be up to x of these, where "x" is the number of nodes in the cluster.
 
-:   
+   * *Attributes*
 
-    *&lt;nodes&gt;*
+     * *id* :   The UUID of the node.
 
-    :   The Top-Level XML for the topology.
+     * *address* :   The IP Address of the node.
 
-    :   
+     * *port* :   The port on which the node is listening.
 
-        *Attributes*
+     * *apiport* :   The port on which the API is listening for the node.
 
-        :   
-
-            *n*
-
-            :   The number of nodes on which the data will be stored.
-
-        *Elements*
-
-        :   
-
-            *&lt;node&gt;*
-
-            :   The container for all the information on a single node
-                in the cluster. There will be up to x of these, where
-                "x" is the number of nodes in the cluster.
-
-            :   
-
-                *Attributes*
-
-                :   
-
-                    *id*
-
-                    :   The UUID of the node.
-
-                    *address*
-
-                    :   The IP Address of the node.
-
-                    *port*
-
-                    :   The port on which the node is listening.
-
-                    *apiport*
-
-                    :   The port on which the API is listening for
-                        the node.
-
-                    *weight*
-
-                    :   A value representing how heavily the data to be
-                        stored on this node is weighted.
+     * *weight* :   A value representing how heavily the data to be stored on this node is weighted.
 
 Examples
 --------
 
 This example uses
 
-    /locate/xml/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+```
+/locate/xml/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+```
 
 In this example:
 
-*locate*
+*locate* :   This is the command to locate a check/metric.
 
-:   This is the command to locate a check/metric.
+*xml* :   This is the command to read data in XML format.
 
-*xml*
+*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the Check UUID.
 
-:   This is the command to read data in XML format.
+*example* :   This is the Metric.
 
-*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12*
+**Output:**
 
-:   This is the Check UUID.
-
-*example*
-
-:   This is the Metric.
-
-`Output:`
-
+```
     <nodes n="2">
       <node id="1f846f26-0cfd-4df5-b4f1-e0930604e577"
                address="10.8.20.1"
@@ -125,4 +76,4 @@ In this example:
                apiport="8112"
                weight="32"/>
     </nodes>
-          
+```
