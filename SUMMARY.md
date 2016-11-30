@@ -9,7 +9,7 @@
     * [Writing Graphite Data with Network Listener](graphite-ingestion.md#WritingGraphiteDatawithNetworkListener)
 * [Graphite Rendering](graphite-rendering.md)
     * [Searching for Metric Names](graphite-rendering.md#SearchingforMetricNames)
-    * [Retrieving Datapoints](graphite-rendering.md#Retrieving Datapoints)
+    * [Retrieving Datapoints](graphite-rendering.md#RetrievingDatapoints)
       * [GET](graphite-rendering.md#GET)
       * [POST](graphite-rendering.md#POST)
 * [Operations](operations.md)
