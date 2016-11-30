@@ -1,104 +1,63 @@
 Retrieving Toporing XML Data
 ============================
 
-This API call retrieves toporing data for a given topology in XML
-format.
+This API call retrieves toporing data for a given topology in XML format.
 
-Data will be returned as a XML object. The format of this object is
-given below.
+Data will be returned as a XML object. The format of this object is given below.
 
 Description of XML object
 -------------------------
 
-`URI:`
+**URI:**   /toporing/xml/&lt;hash&gt;
 
-:   /toporing/xml/&lt;hash&gt;
+**Method:**   GET
 
-`Method:`
+**Inputs:**
 
-:   GET
+*hash* :   The hash of the topology for which to retrieve information.
 
-`Inputs:`
+**Outputs:**
 
-:   
+*&lt;vnodes&gt;* :   The Top-Level XML for the topology.
 
-    *hash*
+* *Attributes*
 
-    :   The hash of the topology for which to retrieve information.
+ * *n* :   The number of nodes on which the data will be stored.
 
-`Outputs:`
+* *Elements*
 
-:   
+ * *&lt;vnode&gt;* :   The container for all the information for a single virtual node in the cluster.
 
-    *&lt;vnodes&gt;*
+   * *Attributes*
 
-    :   The Top-Level XML for the topology.
+     * *id* :   The UUID of the node.
 
-    :   
+     * *idx* :   The index of an entry in the toporing. This is a number between 1 and n, where "n" is the weight of the node.
 
-        *Attributes*
-
-        :   
-
-            *n*
-
-            :   The number of nodes on which the data will be stored.
-
-        *Elements*
-
-        :   
-
-            *&lt;vnode&gt;*
-
-            :   The container for all the information for a single
-                virtual node in the cluster.
-
-            :   
-
-                *Attributes*
-
-                :   
-
-                    *id*
-
-                    :   The UUID of the node.
-
-                    *idx*
-
-                    :   The index of an entry in the toporing. This is a
-                        number between 1 and n, where "n" is the weight
-                        of the node.
-
-                    *location*
-
-                    :   The given location of the node.
+     * *location* :   The given location of the node.
 
 Examples
 --------
 
-This example retrieves a simplified topology for a 3-node cluster,
-assuming a weight of 3.
+This example retrieves a simplified topology for a 3-node cluster, assuming a weight of 3.
 
 This example uses
 
-    /toporing/json/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+```
+/toporing/json/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+```
 
 In this example:
 
-*toporing*
+*toporing* :   This is the command to read toporing data from the server.
 
-:   This is the command to read toporing data from the server.
+*xml* :   This is the command to read data in XML format.
 
-*xml*
+*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef* :   This is the Topology Hash.
 
-:   This is the command to read data in XML format.
+**Output:**
 
-*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef*
-
-:   This is the Topology Hash.
-
-`Output:`
-
+```
     <vnodes n="2">
       <vnode id="1f846f26-0cfd-4df5-b4f1-e0930604e577"
                 idx="1"
@@ -128,4 +87,4 @@ In this example:
                 idx="3"
                 location="99.000000"/>
     </nodes>
-          
+```
