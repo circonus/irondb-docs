@@ -1,10 +1,10 @@
 **Name**
 
-snowthd — Snowthd time-series database daemon.
+Snowthd — Snowthd time-series database daemon.
 
 **Synopsis**
 
-snowthd \[-c _file_\] \[-i _uuid_\] \[-e\] \[-u _user_\] \[-g _group_\] \[-t _path_\] \[-d\] \[-D\] \[-l _logstream_\] \[-L
+Snowthd \[-c _file_\] \[-i _uuid_\] \[-e\] \[-u _user_\] \[-g _group_\] \[-t _path_\] \[-d\] \[-D\] \[-l _logstream_\] \[-L
 
 _logstream_\] \[-m\] \[-H\] \[-r text\/metrics\] \[-r text\/changelog\] \[-r hist\/metrics\] \[-r hist\/_period_\] \[-b text\]
 
