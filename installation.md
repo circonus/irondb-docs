@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please contact [sales@circonus.com](/mailto:sales@circonus.com) with questions regarding hardware sizing. Circonus recommends the following minimum hardware specification for the single-node, free, 25K-metrics option:
+IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please contact [sales@circonus.com](mailto:sales@circonus.com) with questions regarding hardware sizing. Circonus recommends the following minimum hardware specification for the single-node, free, 25K-metrics option:
 
 * 1 CPU
 * 4 GB RAM
@@ -75,7 +75,7 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
 Circonus makes available EC2 AMIs that come preinstalled with IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
 
-Setup expects the required options to be provided as instance user-data. When launching your instance, add the necessary options in environment-variable format:
+Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your local values for the sample ones:
 
         IRONDB_NODE_UUID="123e4567-e89b-12d3-a456-789000000000"
         IRONDB_CHECK_NAME="test"
@@ -85,5 +85,19 @@ Setup expects the required options to be provided as instance user-data. When la
 The setup process will detect the local IP address of the instance at boot, so it is not necessary to specify `IRONDB_NODE_ADDR` in the user-data \(it will be ignored even if present.\)
 
 Setup also expects to configure a zpool on the secondary EBS volume that is specified by the AMI. You do not need to specify `IRONDB_ZPOOL` in the user-data.
+
+If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions above.
+
+### EC2 CLI Example
+
+Following is an example of using the [AWS command-line client](https://aws.amazon.com/cli/) to launch an instance with IRONdb user data. The user data was pasted into a local file, `my-user-data`.
+
+        aws ec2 run-instances \
+            --count 1
+            --image-id ami-00000000 \
+            --instance-type m3.medium \
+            --key-name my-keypair \
+            --security-group-ids sg-00000000 \
+            --user-data file://my-user-data
 
 IRONdb instances can take up to 5 minutes to become available. Once you have launched your instance, you can find a log of the initial setup at `/root/irondb-setup.log`. Depending on the speed of your instance, setup may still be in progress when you first log in. Check the setup log for a `SETUP COMPLETE` message.
