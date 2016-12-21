@@ -2,11 +2,11 @@
 
 ## Data Storage
 
-The data storage service runs the snowth:default process, listening externally on port 8112 and locally on port 32322. Like the broker, this service has two processes: a child and a parent, which serves as watchdog for the child.
+The IRONdb service is called `svc:/circonus/irondb:default`. It listens externally on TCP ports 2003 and 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services.
 
 IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
 
-Log files are located under /snowth/logs and include the following files:
+Log files are located under /irondb/logs and include the following files:
 
  * accesslog
 
@@ -22,31 +22,23 @@ iostat -zxne
 
 You will see an "Errors" section to the right. If you begin to see hardware errors there, this could indicate a disk failure. If in doubt, contact Circonus Support (support@circonus.com) for assistance.
 
-If instability continues, you can run IRONdb in the foreground. First, determine the node's ID by doing an:
+If instability continues, you can run IRONdb in the foreground. First, ensure the service is disabled:
 
 ```
-ls /snowth/data/
+/usr/sbin/svcadm disable irondb
 ```
 
 Then, run the following as root:
 
 ```
-/opt/circonus/sbin/snowthd -D -d \
-
- -u nobody \
-
- -g nobody \
-
- -c /opt/circonus/etc/snowth.conf \
-
- -i <nodeid from previous command>
+/opt/circonus/bin/irondb-start -D -d
 ```
 
-Like the broker, running IRONdb in the foreground should allow you to capture a core dump, which Circonus Support can use to diagnose your problem.
+Running IRONdb in the foreground should allow you to capture a core dump, which Circonus Support can use to diagnose your problem.
 
 ### Operations Dashboard
 
-IRONdb comes with built-in operational dashboard accessible from any data storage host on port 8112 in your browser, e.g., http://snowthhost:8112. This interface provides real-time information about the data storage cluster.
+IRONdb comes with a built-in operational dashboard accessible via port 8112 in your browser, e.g., http://irondb-host:8112. This interface provides real-time information about the IRONdb cluster.
 
 The "Overview" tab tells you the throughputs of data gets and puts along with what rollups are available.
 

@@ -1,7 +1,7 @@
 Retrieving Numeric Data
 =======================
 
-This API call is for retrieving numeric data from the snowth cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
+This API call is for retrieving numeric data from the IRONdb cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
 
 Data will be returned in an array of tuples. Each tuple will contain a timestamp and the value that was requested. If "all" data is requested, the value returned is a hash with the name of each value and the value itself.
 

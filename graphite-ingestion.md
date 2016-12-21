@@ -48,15 +48,15 @@ Writing Graphite Data with HTTP
 
 Graphite data is sent as buffers of N rows of graphite formatted data to the graphite ingestion endpoint:
 
-`http://<snowth_machine:port>/graphite/<account_id>/<uuid>/<check_name>`
+`http://<irondb_machine:port>/graphite/<account_id>/<uuid>/<check_name>`
 
 For example:
 
-`http://<snowth_machine:port>/graphite/1/8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2/dev`
+`http://192.168.1.100:2003/graphite/1/8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2/dev`
 
 This will place all metrics under account_id `1` with that UUID and call them `dev`.
 
-`http://<snowth_machine:port>/graphite/1/45e77556-7a1b-46ef-f90a-cfa34e911bc3/prod`
+`http://192.168.1.100:2003/graphite/1/45e77556-7a1b-46ef-f90a-cfa34e911bc3/prod`
 
 This will place all metrics under account_id `1` with that UUID and call them `prod`.
 
