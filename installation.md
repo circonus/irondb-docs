@@ -75,11 +75,13 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
 Circonus makes available EC2 AMIs that come preinstalled with IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
 
-Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your local values for the sample ones:
+IRONdb images are named in the format `irondb-VERSION-TYPE`, where `VERSION` is the product version and `TYPE` is the cluster type. Currently only single-node setups are supported with the AMI. You can find IRONdb AMIs by [searching](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html) for "IRONdb" among the community AMIs.
 
-        IRONDB_NODE_UUID="123e4567-e89b-12d3-a456-789000000000"
+Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your own UUIDs and check name for the sample ones:
+
+        IRONDB_NODE_UUID="12345678-9abc-def0-1234-456789000000"
         IRONDB_CHECK_NAME="test"
-        IRONDB_CHECK_UUID="987f6543-e21d-98c7-b654-a32100000000"
+        IRONDB_CHECK_UUID="98765432-1abc-def9-8765-432100000000"
         IRONDB_CRASH_REPORTING="on"
 
 The setup process will detect the local IP address of the instance at boot, so it is not necessary to specify `IRONDB_NODE_ADDR` in the user-data \(it will be ignored even if present.\)
