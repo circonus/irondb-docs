@@ -14,9 +14,11 @@ Follow these steps to get IRONdb installed on your system. If you are using one 
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
-1. Add the Circonus IPS package publisher:
+1. Add the Circonus IPS package publisher (the unstable "pilot" repo is included due to IRONdb's beta status):
 
-        /usr/bin/pkg set-publisher -g http://updates.circonus.net/omnios/r151014/ circonus
+        /usr/bin/pkg set-publisher \
+          -g http://updates.circonus.net/omnios/r151014/ \
+          -g http://pilot.circonus.net/omnios/r151014/ circonus
 1. Install the package:
 
         /usr/bin/pkg install pkg:/platform/irondb
