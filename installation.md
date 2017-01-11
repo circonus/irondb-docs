@@ -10,7 +10,7 @@ IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware 
 
 ## Installation Steps
 
-Follow these steps to get IRONdb installed on your system. If you are using one of our pre-built Amazon EC2 images, these steps are already done for you, and your free-25K instance will be configured automatically on first boot. Please refer to [EC2 installation](#ec2-installation) below.
+Follow these steps to get IRONdb installed on your system. If you are using one of our pre-built Amazon EC2 images, **these steps are already done for you**, and your free-25K instance will be configured automatically on first boot. Please refer to [EC2 installation](#ec2-installation) below.
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
@@ -40,8 +40,8 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
      *\(optional\)* Control enablement of automated crash reporting. Default is "on". IRONdb utilizes sophisticated crash tracing technology to help diagnose errors. Enabling crash reporting requires that the system be able to connect out to the Circonus reporting endpoint: https://circonus.sp.backtrace.io:6098 . If your site's network policy forbids this type of outbound connectivity, set the value to "off".
    * ##### IRONDB\_ZPOOL
 
-     *\(optional\)* The name of the zpool that should be used for IRONdb storage. If not specified, and there are multiple zpools in the system, setup chooses the pool with the most available space.
-1. Run the setup script. All required options must be present, either as environment variables, or via command-line arguments. A mix of environment variables and arguments is permitted, but environment variables take precedence over command-line arguments. Use the `-h` option to view a usage summary:
+     *\(optional\)* The name of the zpool that should be used for IRONdb storage. If this is not specified and there are multiple zpools in the system, setup chooses the pool with the most available space.
+1. Run the setup script. All required options must be present, either as environment variables or via command-line arguments. A mix of environment variables and arguments is permitted, but environment variables take precedence over command-line arguments. Use the `-h` option to view a usage summary:
 
         Usage: /opt/circonus/bin/setup-irondb [-h] -a <ip-address> -n <node-uuid> -c <check-name> -u <check-uuid>
                [-b (on|off)] [-z <zpool>]
@@ -90,11 +90,11 @@ The setup process will detect the local IP address of the instance at boot, so i
 
 Setup also expects to configure a zpool on the secondary EBS volume that is specified by the AMI. You do not need to specify `IRONDB_ZPOOL` in the user-data.
 
-If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions above.
+If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions in the [previous section](#InstallationSteps).
 
 ### EC2 CLI Example
 
-Following is an example of using the [AWS command-line client](https://aws.amazon.com/cli/) to launch an instance with IRONdb user data. The user data was pasted into a local file, `my-user-data`.
+The following is an example of using the [AWS command-line client](https://aws.amazon.com/cli/) to launch an instance with IRONdb user data. The user data was pasted into a local file, named `my-user-data` in this example:
 
         aws ec2 run-instances \
             --count 1
