@@ -90,7 +90,7 @@ The setup process will detect the local IP address of the instance at boot, so i
 
 Setup also expects to configure a zpool on the secondary EBS volume that is specified by the AMI. You do not need to specify `IRONDB_ZPOOL` in the user-data.
 
-If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions in the [previous section](#InstallationSteps).
+If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions in the [previous section](#Installation-Steps).
 
 ### EC2 CLI Example
 
