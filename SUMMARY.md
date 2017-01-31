@@ -7,6 +7,7 @@
     * [Installation Steps](installation.md#installation-steps)
     * [EC2 Installation](installation.md#ec2-installation)
       * [EC2 CLI Example](installation.md#ec2-cli-example)
+    * [Updating](installation.md#updating)
 * [Graphite Ingestion](graphite-ingestion.md)
     * [Namespacing](graphite-ingestion.md#namespacing)
     * [Writing Graphite Data with HTTP](graphite-ingestion.md#writing-graphite-data-with-http)

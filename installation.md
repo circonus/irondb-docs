@@ -105,3 +105,12 @@ The following is an example of using the [AWS command-line client](https://aws.a
             --user-data file://my-user-data
 
 IRONdb instances can take up to 5 minutes to become available. Once you have launched your instance, you can find a log of the initial setup at `/root/irondb-setup.log`. Depending on the speed of your instance, setup may still be in progress when you first log in. Check the setup log for a `SETUP COMPLETE` message.
+
+## Updating
+
+An installed node may be updated to the latest available version of IRONdb by following these steps:
+
+1. `/usr/bin/pkg update platform/irondb`
+1. `/usr/sbin/svcadm restart irondb`
+
+In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
