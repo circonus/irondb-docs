@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please contact [sales@circonus.com](mailto:sales@circonus.com) with questions regarding hardware sizing. Circonus recommends the following minimum hardware specification for the single-node, free, 25K-metrics option:
+IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please contact [sales@circonus.com](mailto:sales@circonus.com) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 
 * 1 CPU
 * 4 GB RAM
@@ -77,14 +77,16 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
 Circonus makes available EC2 AMIs that come preinstalled with IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
 
-IRONdb images are named in the format `irondb-VERSION-TYPE`, where `VERSION` is the product version and `TYPE` is the cluster type. Currently only single-node setups are supported with the AMI. You can find IRONdb AMIs by [searching](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html) for "IRONdb" among the community AMIs.
+Since the 0.6 beta release, IRONdb images are named in the format `irondb-VERSION`, where `VERSION` is the product version. Older versions of the AMI had `-single` appended to the name. There is no difference in how the initial automated setup works. The initial single-node configuration may be reconfigured for clustering prior to ingesting any metric data.
+
+You can find IRONdb AMIs by [searching](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html) for "IRONdb" among the community AMIs.
 
 Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your own UUIDs and check name for the sample ones:
 
-        IRONDB_NODE_UUID="12345678-9abc-def0-1234-456789000000"
-        IRONDB_CHECK_NAME="test"
-        IRONDB_CHECK_UUID="98765432-1abc-def9-8765-432100000000"
-        IRONDB_CRASH_REPORTING="on"
+    IRONDB_NODE_UUID="12345678-9abc-def0-1234-456789000000"
+    IRONDB_CHECK_NAME="test"
+    IRONDB_CHECK_UUID="98765432-1abc-def9-8765-432100000000"
+    IRONDB_CRASH_REPORTING="on"
 
 The setup process will detect the local IP address of the instance at boot, so it is not necessary to specify `IRONDB_NODE_ADDR` in the user-data \(it will be ignored even if present.\)
 
@@ -92,19 +94,115 @@ Setup also expects to configure a zpool on the secondary EBS volume that is spec
 
 If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions in the [previous section](#installation-steps).
 
+### EC2 Security Groups
+
+At a minimum, the nodes in an IRONdb cluster need to communicate with one another using port 8112, over both TCP and UDP. The TCP transport is used for replicating data,
+while UDP is used for exchanging state information about each node, known as "gossip".
+
 ### EC2 CLI Example
 
 The following is an example of using the [AWS command-line client](https://aws.amazon.com/cli/) to launch an instance with IRONdb user data. The user data was pasted into a local file, named `my-user-data` in this example:
 
-        aws ec2 run-instances \
-            --count 1
-            --image-id ami-00000000 \
-            --instance-type m3.medium \
-            --key-name my-keypair \
-            --security-group-ids sg-00000000 \
-            --user-data file://my-user-data
+    aws ec2 run-instances \
+        --count 1
+        --image-id ami-00000000 \
+        --instance-type m3.medium \
+        --key-name my-keypair \
+        --security-group-ids sg-00000000 \
+        --user-data file://my-user-data
 
 IRONdb instances can take up to 5 minutes to become available. Once you have launched your instance, you can find a log of the initial setup at `/root/irondb-setup.log`. Depending on the speed of your instance, setup may still be in progress when you first log in. Check the setup log for a `SETUP COMPLETE` message.
+
+### Cluster Configuration
+
+Additional configuration is required for clusters of more than one IRONdb node. This involves describing the topology of the cluster, including the addresses and UUIDs of the participating nodes, as well as the desired number of write copies for stored data. 
+
+** The above setup script configures a single, standalone instance. If you have already been using such an instance, configuring it to be part of a cluster will cause your existing stored data to become unavailable. It is therefore preferable to complete cluster setup prior to ingesting any metric data into IRONdb. **
+
+To configure a multi-node cluster, follow these steps.
+
+#### Determine Write Copies
+
+The number of write copies determines the number of nodes that can be unavailable before metric data become inaccessible. A cluster with N write copies can survive N-1 node failures before data become inaccessible. Clusters of up to 6 nodes should have a minimum of 2 write copies. Clusters of 6 or more nodes should have a minimum of 3 write copies, up to a maximum of 10.
+
+#### Create Topology Layout
+
+The topology layout describes the particular nodes that are part of the cluster as well as aspects of operation for the cluster as a whole, such as the number of write copies. The layout file is not read directly by IRONdb, rather it is used to create a canonical topology representation that will be referenced by the IRONdb config.
+
+Since the 0.6 beta release, a helper script exists for creating the topology: `/opt/circonus/bin/topo-helper`:
+
+    Usage: /opt/circonus/bin/topo-helper [-h] -a <start address> -i <uuid,uuid,...> -w <write copies>
+      -a <start address> : Starting IP address (inclusive)
+      -i <uuid,uuid,...> : List of node UUIDs
+      -w <write copies>  : Number of write copies
+      -h                 : Show usage summary
+
+This will create a temporary config, which you can edit afterward, if needed, before importing. It assumes that the nodes will be addressed sequentially from the starting IP address. If this is not the case in your cluster, you can edit the IPs in the generated config before importing.
+
+For example, in a cluster of 3 nodes, which have all been set up using `setup-irondb`, where we want 2 write copies:
+
+    /opt/circonus/bin/topo-helper \
+        -a 192.168.1.11 \
+        -w 2 \
+        -i '7dffe44b-47c6-43e1-db6f-dc3094b793a8,
+           964f7a5a-6aa5-4123-c07c-8e1a4fdb8870,
+           c85237f1-b6d7-cf98-bfef-d2a77b7e0181'
+
+The resulting temporary config looks like this:
+
+    <nodes write_copies="2">
+      <node id="7dffe44b-47c6-43e1-db6f-dc3094b793a8"
+            address="192.168.1.11"
+            apiport="8112"
+            port="8112"
+            weight="170"/>
+      <node id="964f7a5a-6aa5-4123-c07c-8e1a4fdb8870"
+            address="192.168.1.12"
+            apiport="8112"
+            port="8112"
+            weight="170"/>
+      <node id="c85237f1-b6d7-cf98-bfef-d2a77b7e0181"
+            address="192.168.1.13"
+            apiport="8112"
+            port="8112"
+            weight="170"/>
+    </nodes>
+
+** There are a few important considerations for IRONdb cluster topologies: **
+ * The values of `id`, `port`, and `weight`, as well as the ordering of the `<node>` stanzas are used in calculating a unique hash that identifies the topology to the system. Changing any of these on a previously configured node will invalidate the topology and cause the node to refuse to start.
+ * The node address may be changed at any time without affecting the validity of the topology.
+ * If a node fails, its replacement should keep the same UUID, but it can have a different IP address.
+
+The temporary config is written out to `/tmp/topology.tmp`. When you are satisfied that it looks the way you want, copy this file to `/opt/circonus/etc/topology` on each node and proceed to the next step.
+
+#### Import Topology
+
+This step calculates a hash of certain attributes of the topology, creating a unique "fingerprint" that identifies this specific topology. It is this hash that IRONdb uses to load the cluster topology at startup. Import the desired topology with the following command:
+
+    /opt/circonus/bin/snowthimport -c /opt/circonus/etc/irondb.conf -f /opt/circonus/etc/topology
+
+If successful, the output of the command is `compiling to <long-hash-string>`.
+
+Next, update `/opt/circonus/etc/irondb.conf` and locate the `topology` section, typically near the end of the file. Set the value of the topology's `active` attribute to the hash reported by `snowthimport`. It should look something like this:
+
+    <topology path="/opt/circonus/etc/irondb-topo"
+              active="742097e543a5fb8754667a79b9b2dc59e266593974fb2d4288b03e48a4cbcff2"
+              next=""
+              redo="/irondb/redo/{node}"
+    />
+
+Save the file and restart IRONdb:
+
+    /usr/sbin/svcadm restart irondb
+
+Repeat the import process on each cluster node.
+
+#### Verify Cluster Communication
+
+Once all nodes have the cluster topology imported and have been restarted, verify that the nodes are communicating with one another by viewing the Replication Latency tab of the [IRONdb Operations Dashboard](operations.md#operations-dashboard) on any node. You should see all of the cluster nodes listed by their IP address and port, and there should be a latency meter for each of the other cluster peers listed within each node's box.
+
+The node currently being viewed is always listed in blue, with the other nodes listed in either green, yellow, or red, depending on when the current node last received a gossip message from that node. If a node is listed in black, then no gossip message has been received from that node since the current node started. Ensure that the nodes can communicate with each other via port 8112 over both TCP and UDP. See the [Replication Latency tab](operations.md#replication-latency-tab) documentation for details on the information visible in this tab.
+
 
 ## Updating
 
