@@ -103,7 +103,7 @@ Displays the difference between the current time on each node and the time of th
 
 The node being viewed will be displayed with a blue bar, and the color of remote nodes will be green, yellow, or red, based on the difference between the current node's time and the timestamp of the last gossip message received from that node. All nodes should be running NTP or a similar time synchronization daemon. For example, if a remote node is shown as "(0.55 seconds old)", that means that a gossip message was received from that node 0.55 seconds ago, relative to the current node.
 
-If the current node has never received a gossip message from a remote node since starting, that node will be displayed with a black bar, and the latency values will be reported as "unkonwn". This indicates that the remote node is either down or there is a network problem preventing communication with that node.
+If the current node has never received a gossip message from a remote node since starting, that node will be displayed with a black bar, and the latency values will be reported as "unknown". This indicates that the remote node is either down or there is a network problem preventing communication with that node.
 
 ### Topology Tab
 
