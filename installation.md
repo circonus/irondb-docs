@@ -212,3 +212,15 @@ An installed node may be updated to the latest available version of IRONdb by fo
 1. `/usr/sbin/svcadm restart irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
+
+<!-- The script below is for tracking the success of a marketing campaign directing people to this page and is not a part of the actual installation documentation. -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53665515-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
