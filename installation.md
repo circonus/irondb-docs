@@ -173,7 +173,42 @@ The resulting temporary config looks like this:
  * The node address may be changed at any time without affecting the validity of the topology.
  * If a node fails, its replacement should keep the same UUID, but it can have a different IP address.
 
-The temporary config is written out to `/tmp/topology.tmp`. When you are satisfied that it looks the way you want, copy this file to `/opt/circonus/etc/topology` on each node and proceed to the next step.
+The temporary config is written out to `/tmp/topology.tmp`. You may edit this file if needed, such as to configure a split cluster (see below.)
+
+When you are satisfied that it looks the way you want, copy this file to `/opt/circonus/etc/topology` on each node, then proceed to the [Import Topology](#import-topology) step.
+
+##### Split Clusters
+
+One additional configuration dimension is possible for IRONdb clusters. A cluster may be divided into two "sides", with the guarantee that at least one copy of each stored metric exists on each side of the cluster. This allows for cluster distribution across typical failure domains such as network switches, rack cabinets or physical locations.
+
+Split-cluster configuration is subject to the following restrictions:
+
+ * Only 2 sides are permitted.
+ * An active, non-split cluster cannot be converted into a split cluster as this would change the existing topology, which is not permitted.
+ * Both sides must be specified, and non-empty (in other words, it is an error to configure a split cluster with all hosts on one side only.)
+
+To configure a sided topology, edit the temporary topology created in the previous step, adding the `side` attribute to each `<node>`, with a value of either `a` or `b`. The above sample config with sides configured might look like this:
+
+    <nodes write_copies="2">
+      <node id="7dffe44b-47c6-43e1-db6f-dc3094b793a8"
+            address="192.168.1.11"
+            apiport="8112"
+            port="8112"
+            side="a"
+            weight="170"/>
+      <node id="964f7a5a-6aa5-4123-c07c-8e1a4fdb8870"
+            address="192.168.1.12"
+            apiport="8112"
+            port="8112"
+            side="a"
+            weight="170"/>
+      <node id="c85237f1-b6d7-cf98-bfef-d2a77b7e0181"
+            address="192.168.1.13"
+            apiport="8112"
+            port="8112"
+            side="b"
+            weight="170"/>
+    </nodes>
 
 #### Import Topology
 
