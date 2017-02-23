@@ -91,7 +91,7 @@ Disk space used and performance data per data type and rollup dimension.
 
 Each icon under "Performance" displays a histogram of the associated operation (Get/Put/Proxy) latency since the server last started. Latencies are plotted on the x-axis as seconds, with counts of operations in each latency bucket on the y-axis. The average latency for the set is displayed as a vertical green line.
 
-Hovering over the y-axis will display a shaded region representing quantile bands and the latency values that fall within them. The quantiles are divided into four bands: p(0)-p(25), p(25)-p(50), p(50)-p(75), and p(75)-p(100). To avoid losing detail, the maximum y-axis values are not displayed, but the highest latency value may be seen by hovering over the p(75)-p(100) quantile band.
+Hovering over the x-axis will display a shaded region representing quantile bands and the latency values that fall within them. The quantiles are divided into four bands: p(0)-p(25), p(25)-p(50), p(50)-p(75), and p(75)-p(100). To avoid losing detail, the maximum x-axis values are not displayed, but the highest latency value may be seen by hovering over the p(75)-p(100) quantile band.
 
 Hovering over an individual latency bar will display three lines at the top right corner of the histogram. These represent the number of operations that had less than, equal to, or greater than the current latency, and what percentage of the total each count represents.
 
