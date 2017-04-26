@@ -2,6 +2,7 @@
 
 * [Cover](README.md)
 * [Introduction](Introduction.md)
+* [Contact Us](contact.md)
 * [Installation](installation.md)
     * [System Requirements](installation.md#system-requirements)
     * [Installation Steps](installation.md#installation-steps)

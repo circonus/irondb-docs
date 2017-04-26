@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please contact [sales@circonus.com](mailto:sales@circonus.com) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
+IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 
 * 1 CPU
 * 4 GB RAM
@@ -76,6 +76,8 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 ## EC2 Installation
 
 Circonus makes available EC2 AMIs that come preinstalled with IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
+
+For clusters, choose an instance type that has enough vCPUs to handle both incoming data and replicating data to other cluster nodes. A simple formula for a cluster of `N` nodes would be `N+1` vCPUs, up to maximum of 16.
 
 Since the 0.6 beta release, IRONdb images are named in the format `irondb-VERSION`, where `VERSION` is the product version. Older versions of the AMI had `-single` appended to the name. There is no difference in how the initial automated setup works. The initial single-node configuration may be reconfigured for clustering prior to ingesting any metric data.
 
