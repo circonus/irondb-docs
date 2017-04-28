@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.8.18
+2014-04-28
+
+ * Fix potential races in replication.
+ * Speed up metric querying.
+
 ## Changes in 0.8.17
 2014-04-27
 
