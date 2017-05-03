@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.8.19
+2014-05-03
+
+ * Lower default batch size for replication log processing from 500K to 50K messages. Can still be tuned higher if necessary.
+ * Improve ingestion performance in the Graphite listener.
+
 ## Changes in 0.8.18
 2014-04-28
 
