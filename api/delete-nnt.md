@@ -8,7 +8,7 @@ This call will return an empty array upon success. If there is an error, this ca
 Description of API call
 -----------------------
 
-**URI:**   /nnt/&lt;end&gt;/&lt;uuid&gt;/&lt;metric&gt;
+**URI:**   /nnt/&lt;uuid&gt;/&lt;metric&gt;
 
 **Method:**   DELETE
 
@@ -20,20 +20,22 @@ Description of API call
 
 *metric* :   The name of the metric from which to delete data.
 
+The timestamp is provided via a header:
+
+X-Snowth-Delete-Time: &lt;end&gt;
+
 Examples
 --------
 
 This example uses
 
 ```
-/nnt/1380000000/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+/nnt/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
 ```
 
 In this example:
 
 *nnt* :   This is the command that tells the system that NNT data will be removed.
-
-*1380000000* :   This is the End Time (September 24, 2013, 05:20:00 GMT).
 
 *6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the UUID.
 
