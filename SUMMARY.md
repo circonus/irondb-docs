@@ -21,6 +21,8 @@
       * [POST](graphite-rendering.md#post)
 * [Operations](operations.md)
     * [Data Storage](operations.md#data-storage)
+      * [Crash Handling](operations.md#crash-handling)
+      * [Debugging Mode](operations.md#debugging-mode)
       * [Replication](operations.md#replication)
       * [Proxying](operations.md#proxying)
     * [Operations Dashboard](operations.md#operations-dashboard)

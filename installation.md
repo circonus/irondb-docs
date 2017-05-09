@@ -2,7 +2,13 @@
 
 ## System Requirements
 
-IRONdb requires [OmniOS](https://omnios.omniti.com/), version r151014. Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
+IRONdb requires one of the following operating systems:
+* [OmniOS](https://omnios.omniti.com/), version r151014.
+* RHEL/CentOS, version 7.x.
+
+Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This is available natively on OmniOS, but for EL7 installs, you will need to obtain ZFS from the [ZFS on Linux](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS) project.
+
+Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 
 * 1 CPU
 * 4 GB RAM
@@ -14,15 +20,28 @@ Follow these steps to get IRONdb installed on your system. If you are using one 
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
-1. Add the Circonus IPS package publisher (the unstable "pilot" repo is included due to IRONdb's beta status):
+Configure package repositories. In both cases, the unstable "pilot" repo is included due to IRONdb's beta status.
 
-        /usr/bin/pkg set-publisher \
-          -g http://updates.circonus.net/omnios/r151014/ \
-          -g http://pilot.circonus.net/omnios/r151014/ circonus
-1. Install the package:
+(OmniOS) Add the Circonus IPS package publisher:
 
-        /usr/bin/pkg install pkg:/platform/irondb
-1. Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
+    /usr/bin/pkg set-publisher \
+      -g http://updates.circonus.net/omnios/r151014/ \
+      -g http://pilot.circonus.net/omnios/r151014/ circonus
+
+(EL7) Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
+
+    [circonus-pilot]
+    name=Circonus - Pilot
+    baseurl=http://pilot.circonus.net/centos/7/x86_64/
+    enabled = 1
+    gpgcheck = 0
+    metadata_expire = 5m
+
+Install the package:
+* (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
+* (EL7) `/usr/bin/yum install circonus-platform-irondb`
+
+Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
 
      *\(required\)* The ID of the current node, which must be unique within a given cluster. You may use the installed `uuidgen` command or generate a UUID with an external tool or website.
@@ -31,7 +50,7 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
      *\(required\)* The IPv4 address of the current node, e.g., "192.168.1.100".
    * ##### IRONDB\_CHECK\_UUID
 
-     *\(required\)* Check ID for Graphite metric ingestion, which must be the same on all cluster nodes. You may use the installed uuidgen command or generate a UUID with an external tool or website.
+     *\(required\)* Check ID for Graphite metric ingestion, which must be the same on all cluster nodes. You may use the installed `uuidgen` command or generate a UUID with an external tool or website.
    * ##### IRONDB\_CHECK\_NAME
 
      *\(required\)* The string that will identify Graphite-compatible metrics stored in the check identified by `IRONDB_CHECK_UUID`. For example, if you submit a metric named "my.metric.1", and the check is named "test", the resulting metric name in IRONdb will be "graphite.test.my.metric.1".
@@ -41,41 +60,43 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
    * ##### IRONDB\_ZPOOL
 
      *\(optional\)* The name of the zpool that should be used for IRONdb storage. If this is not specified and there are multiple zpools in the system, setup chooses the pool with the most available space.
-1. Run the setup script. All required options must be present, either as environment variables or via command-line arguments. A mix of environment variables and arguments is permitted, but environment variables take precedence over command-line arguments. Use the `-h` option to view a usage summary:
 
-        Usage: /opt/circonus/bin/setup-irondb [-h] -a <ip-address> -n <node-uuid> -c <check-name> -u <check-uuid>
-               [-b (on|off)] [-z <zpool>]
-          -a <ip-address>  : Local IP address to use
-          -n <node-uuid>   : Local node UUID
-          -c <check-name>  : Graphite check name
-          -u <check-uuid>  : Graphite check UUID
-          -b on|off        : Enable/disable crash reporting (default: on)
-          -z <zpool>       : Use this zpool for data storage
-                             (default: choose pool with most available space)
-          -h               : Show usage summary
+Run the setup script. All required options must be present, either as environment variables or via command-line arguments. A mix of environment variables and arguments is permitted, but environment variables take precedence over command-line arguments. Use the `-h` option to view a usage summary:
 
-   The setup script will configure your IRONdb instance and start the service. Upon successful completion, it will print out specific information about how to submit Graphite metrics. IRONdb supports both Carbon plaintext submission (port 2003) or HTTP POST. See the [Graphite Ingestion](./graphite-ingestion.md) section for details.
-1. Obtain your license information from your Circonus account profile: https://YOURACCOUNT.circonus.com/profile
+    Usage: /opt/circonus/bin/setup-irondb [-h] -a <ip-address> -n <node-uuid> -c <check-name> -u <check-uuid>
+           [-b (on|off)] [-z <zpool>]
+      -a <ip-address>  : Local IP address to use
+      -n <node-uuid>   : Local node UUID
+      -c <check-name>  : Graphite check name
+      -u <check-uuid>  : Graphite check UUID
+      -b on|off        : Enable/disable crash reporting (default: on)
+      -z <zpool>       : Use this zpool for data storage
+                         (default: choose pool with most available space)
+      -h               : Show usage summary
 
-   If you do not have an IRONdb license, click the `+` to the right of the Licenses section of the account profile page to add a new license.
+The setup script will configure your IRONdb instance and start the service. Upon successful completion, it will print out specific information about how to submit Graphite metrics. IRONdb supports both Carbon plaintext submission (port 2003) or HTTP POST. See the [Graphite Ingestion](./graphite-ingestion.md) section for details.
 
-   If you do not have a Circonus account, sign up for free at https://login.circonus.com/signup .
-1. Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/circonus/etc/licenses.conf` on your IRONdb instance, within the enclosing `<licenses>` tags. It should look something like this:
+Obtain your license information from your Circonus account profile: https://YOURACCOUNT.circonus.com/profile
+* If you do not have an IRONdb license, click the `+` to the right of the Licenses section of the account profile page to add a new license.
+* If you do not have a Circonus account, [sign up for free](https://login.circonus.com/signup).
 
-        <licenses>
-        <license id="100" sig="(cryptographic signature)">
-          <graphite>true</graphite>
-          <max_streams>25000</max_streams>
-          <company>MyCompany</company>
-        </license>
-        </licenses>
-1. Restart the IRONdb service:
+Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/circonus/etc/licenses.conf` on your IRONdb instance, within the enclosing `<licenses>` tags. It should look something like this:
 
-        /usr/sbin/svcadm restart irondb
+    <licenses>
+      <license id="(number)" sig="(cryptographic signature)">
+        <graphite>true</graphite>
+        <max_streams>25000</max_streams>
+        <company>MyCompany</company>
+      </license>
+    </licenses>
+
+Restart the IRONdb service:
+
+    /usr/sbin/svcadm restart irondb
 
 ## EC2 Installation
 
-Circonus makes available EC2 AMIs that come preinstalled with IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
+Circonus makes available EC2 AMIs that come preinstalled with OmniOS and IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
 
 For clusters, choose an instance type that has enough vCPUs to handle both incoming data and replicating data to other cluster nodes. A simple formula for a cluster of `N` nodes would be `N+1` vCPUs, up to maximum of 16.
 
@@ -106,7 +127,7 @@ while UDP is used for exchanging state information about each node, known as "go
 The following is an example of using the [AWS command-line client](https://aws.amazon.com/cli/) to launch an instance with IRONdb user data. The user data was pasted into a local file, named `my-user-data` in this example:
 
     aws ec2 run-instances \
-        --count 1
+        --count 1 \
         --image-id ami-00000000 \
         --instance-type m3.medium \
         --key-name my-keypair \
@@ -216,7 +237,9 @@ To configure a sided topology, edit the temporary topology created in the previo
 
 This step calculates a hash of certain attributes of the topology, creating a unique "fingerprint" that identifies this specific topology. It is this hash that IRONdb uses to load the cluster topology at startup. Import the desired topology with the following command:
 
-    /opt/circonus/bin/snowthimport -c /opt/circonus/etc/irondb.conf -f /opt/circonus/etc/topology
+    /opt/circonus/bin/snowthimport \
+      -c /opt/circonus/etc/irondb.conf \
+      -f /opt/circonus/etc/topology
 
 If successful, the output of the command is `compiling to <long-hash-string>`.
 
@@ -245,8 +268,13 @@ The node currently being viewed is always listed in blue, with the other nodes l
 
 An installed node may be updated to the latest available version of IRONdb by following these steps:
 
+OmniOS:
 1. `/usr/bin/pkg update platform/irondb`
 1. `/usr/sbin/svcadm restart irondb`
+
+EL7:
+1. `/usr/bin/yum update circonus-platform-irondb`
+1. `/usr/bin/systemctl restart circonus-irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 

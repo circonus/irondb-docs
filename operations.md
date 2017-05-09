@@ -2,7 +2,7 @@
 
 ## Data Storage
 
-The IRONdb service is called `svc:/circonus/irondb:default`. It listens externally on TCP port 2003, TCP and UDP port 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services, and is responsible for periodically "heartbeating" to the parent to show that it is making progress.
+The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7). It listens externally on TCP port 2003, TCP and UDP port 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services, and is responsible for periodically "heartbeating" to the parent to show that it is making progress.
 
 IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
 
@@ -12,23 +12,31 @@ Log files are located under `/irondb/logs` and include the following files:
 
 The access logs are useful to verify activity going to the server in question. Error logs record, among other things, crashes and other errant behavior, and may contain debugging information important for support personnel. The logs are automatically rotated and retained based on configuration attributes in `/opt/circonus/etc/irondb.conf`.
 
-If the child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's performance. To check for errors run:
+If the child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's performance. To check for errors on OmniOS run:
 
     iostat -zxne
 
 You will see an "Errors" section to the right. If you begin to see hardware errors there, this could indicate a disk failure. If in doubt, contact Circonus Support (support@circonus.com) for assistance.
 
+On EL7, install the `smartmontools` package and run `/usr/sbin/smartctl -a /dev/sdX`, looking for error and/or reallocated-sector counts.
+
+### Crash Handling
+
 Application crashes are, by default, automatically reported to Circonus, using [Backtrace.io](https://backtrace.io/) technology. When the crash occurs, a tracer program quickly gathers a wealth of detailed information about the crashed process and sends a report to Circonus, in lieu of obtaining a full core dump. 
 
-If you have disabled crash reporting in your environment, you can still enable traditional core dumping by running the following command as root or a privileged user:
+If you have disabled crash reporting in your environment, you can still enable traditional core dumping.
 
-    /usr/sbin/coreadm -g /irondb/appcrash/core.%f.%p -e global -e global-setid -e log
+On OmniOS: `/usr/sbin/coreadm -g /irondb/appcrash/core.%f.%p -e global -e global-setid -e log`
 
 When a process crashes, a core dump will be created in `/irondb/appcrash` with the filename `core.<executable-name>.<pid>`, and the event will be recorded in the system log.
 
-If instability continues, you may run IRONdb as a single process in the foreground, with additional debugging enabled. First, ensure the service is disabled:
+(TODO: EL7)
 
-    /usr/sbin/svcadm disable irondb
+### Debugging Mode
+
+If instability continues, you may run IRONdb as a single process in the foreground, with additional debugging enabled. First, ensure the service is disabled:
+* (OmniOS) `/usr/sbin/svcadm disable irondb`
+* (EL7) `/usr/bin/systemctl stop circonus-irondb`
 
 Then, run the following as root:
 
