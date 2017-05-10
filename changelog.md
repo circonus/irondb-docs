@@ -1,19 +1,28 @@
 # Changelog
 
+## Changes in 0.8.20
+2017-05-10
+
+ * Fix for brace expansion in Graphite metric name queries.
+ * Resume in-progress rollups after application restart.
+ * Improved reconstitute handling.
+ * Minor UI fix for displaying sub-minute rollups.
+ * Crash and memory leak fixes.
+
 ## Changes in 0.8.19
-2014-05-03
+2017-05-03
 
  * Lower default batch size for replication log processing from 500K to 50K messages. Can still be tuned higher if necessary.
  * Improve ingestion performance in the Graphite listener.
 
 ## Changes in 0.8.18
-2014-04-28
+2017-04-28
 
  * Fix potential races in replication.
  * Speed up metric querying.
 
 ## Changes in 0.8.17
-2014-04-27
+2017-04-27
 
  * (libmtev) Crash fix in HTTP request handling.
  * Disable watchdog timer during long-running operations at startup.
