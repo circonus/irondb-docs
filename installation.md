@@ -30,12 +30,18 @@ Configure package repositories. In both cases, the unstable "pilot" repo is incl
 
 (EL7) Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
 
-    [circonus-pilot]
-    name=Circonus - Pilot
+    [circonus]
+    name=Circonus
     baseurl=http://pilot.circonus.net/centos/7/x86_64/
     enabled = 1
     gpgcheck = 0
     metadata_expire = 5m
+
+    [circonus-crash-reporting]
+    name=Circonus - Crash Reporting
+    baseurl=http://updates.circonus.net/backtrace/centos/el7/
+    enabled = 1
+    gpgcheck = 0
 
 Install the package:
 * (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
