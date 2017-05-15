@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.8.21
+2017-05-15
+
+ * Inspect and repair write-ahead journal on open.
+ * Add a statistic for `total_put_tuples`, covering all metric types.
+ * (libmtev) Use locks to protect against cross-thread releases.
+
 ## Changes in 0.8.20
 2017-05-10
 
