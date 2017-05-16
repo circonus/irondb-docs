@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.8.22
+2017-05-16
+
+ * Efficiency improvement in Graphite queries; we now strip NULLs from both ends of the returned response.
+ * Fix a bug in Graphite query that would return a closely related metric instead of the requested one.
+ * Fix a bug that caused us to request millisecond resolution when zoomed out too far, and 1-day would be better.
+ * First draft of a progress UI for reconstitute.
+
 ## Changes in 0.8.21
 2017-05-15
 
