@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.8.23
+2017-05-18
+
+ * Cache /metrics/find queries.
+ * Improved journaling performance.
+ * Additional bug fixes.
+
 ## Changes in 0.8.22
 2017-05-16
 
