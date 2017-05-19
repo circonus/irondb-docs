@@ -119,3 +119,8 @@ setup script.
 ```
 /opt/circonus/bin/setup-irondb (other options) -z data
 ```
+
+The setup script takes care of creating the `/irondb` mountpoint and all other
+necessary filesystems, as well as setting the required properties on those
+filesystems. No other administrative action at the ZFS level should be required
+at this point.
