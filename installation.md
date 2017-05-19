@@ -6,7 +6,11 @@ IRONdb requires one of the following operating systems:
 * [OmniOS](https://omnios.omniti.com/), version r151014.
 * RHEL/CentOS, version 7.x.
 
-Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This is available natively on OmniOS, but for EL7 installs, you will need to obtain ZFS from the [ZFS on Linux](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS) project.
+Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This
+is available natively on OmniOS, but for EL7 installs, you will need to obtain
+ZFS from the [ZFS on Linux](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS)
+project. Please refer to the appendix [ZFS Setup Guide](/zfs-guide.md) for
+details and examples.
 
 Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 

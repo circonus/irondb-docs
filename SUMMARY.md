@@ -64,3 +64,4 @@
         * [Getting List of Lua Extensions](api/extension-lua.md)
         * [Executing a Lua Extension](api/extension-lua-script.md)
 * [Changelog](changelog.md)
+* [Appendix: ZFS Setup Guide](zfs-guide.md)
