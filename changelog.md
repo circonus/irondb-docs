@@ -1,5 +1,14 @@
 # Changelog
 
+## Changes in 0.8.25
+2017-05-31
+
+ * Graphite request proxying preserves original start/end timestamps.
+ * Increase replication performance by bulk-reading from the write-ahead log.
+ * Improve reconstitute performance.
+ * Fix several memory leaks.
+ * Note: 0.8.24 was an unreleased internal version. Its changes are included here.
+
 ## Changes in 0.8.23
 2017-05-18
 
