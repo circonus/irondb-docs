@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.8.26
+2017-06-02
+
+ * Fix LRU-cache bug for metric queries.
+
 ## Changes in 0.8.25
 2017-05-31
 
