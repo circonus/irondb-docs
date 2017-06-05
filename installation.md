@@ -5,10 +5,12 @@
 IRONdb requires one of the following operating systems:
 * [OmniOS](https://omnios.omniti.com/), version r151014.
 * RHEL/CentOS, version 7.x.
+* Ubuntu 16.04 LTS.
 
 Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This
-is available natively on OmniOS, but for EL7 installs, you will need to obtain
-ZFS from the [ZFS on Linux](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS)
+is available natively on OmniOS and Ubuntu, but for EL7 installs, you will need to obtain
+ZFS from the [ZFS on
+Linux](https://github.com/zfsonlinux/zfs/wiki/Getting-Started)
 project. Please refer to the appendix [ZFS Setup Guide](/zfs-guide.md) for
 details and examples.
 
@@ -24,7 +26,8 @@ Follow these steps to get IRONdb installed on your system. If you are using one 
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
-Configure package repositories. In both cases, the unstable "pilot" repo is included due to IRONdb's beta status.
+Configure package repositories. During the IRONdb beta period, our unstable
+"pilot" repo is required.
 
 (OmniOS) Add the Circonus IPS package publisher:
 
@@ -47,9 +50,15 @@ Configure package repositories. In both cases, the unstable "pilot" repo is incl
     enabled = 1
     gpgcheck = 0
 
+(Ubuntu 16.04) Create the file `/etc/apt/sources.list.d/circonus.list` with the
+following contents:
+
+    deb http://pilot.circonus.net/ubuntu/ xenial main
+
 Install the package:
 * (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
 * (EL7) `/usr/bin/yum install circonus-platform-irondb`
+* (Ubuntu 16.04) `/usr/bin/apt-get install circonus-platform-irondb`
 
 Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
@@ -101,8 +110,8 @@ Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/cir
     </licenses>
 
 Restart the IRONdb service:
-
-    /usr/sbin/svcadm restart irondb
+* (OmniOS) `/usr/sbin/svcadm restart irondb`
+* (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 
 ## EC2 Installation
 
@@ -262,8 +271,8 @@ Next, update `/opt/circonus/etc/irondb.conf` and locate the `topology` section, 
     />
 
 Save the file and restart IRONdb:
-
-    /usr/sbin/svcadm restart irondb
+* (OmniOS) `/usr/sbin/svcadm restart irondb`
+* (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 
 Repeat the import process on each cluster node.
 
@@ -285,6 +294,9 @@ OmniOS:
 EL7:
 1. `/usr/bin/yum update circonus-platform-irondb`
 1. `/usr/bin/systemctl restart circonus-irondb`
+
+Ubuntu 16.04:
+1. `/usr/bin/apt-get upgrade circonus-platform-irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 

@@ -1,11 +1,11 @@
 # ZFS Setup Guide
 
 In the following guide we will demonstrate a typical IRONdb installation on
-RHEL/CentOS 7, using ZFS. 
+Linux, using ZFS.
 
 This guide assumes a server with the following storage configuration:
 * One or more OS drives with ext4 on LVM, md, etc., depending on installer
-  choices.
+  choices and/or operator preference.
 * 12 data drives attached via a SAS or SATA HBA (non-RAID) that will be used
   exclusively for ZFS.
 
@@ -38,14 +38,30 @@ name such as `/dev/sdc1`. The specific mountpoint of a given filesystem is
 determined by its `mountpoint` property. See the `zfs` man page for more
 information on ZFS dataset properties.
 
-On RHEL/CentOS, ZFS filesystems are mounted at boot by the `zfs-mount` service.
+**Please note that IRONdb setup configures all necessary datatset properties.
+No pre-configuration is required.**
+
+On Linux, ZFS filesystems are mounted at boot by the `zfs-mount` service.
 They are not kept in the traditional `/etc/fstab` file.
 
 ## Obtaining ZFS Packages
+
+### RHEL and CentOS
 Follow the [RHEL & CentOS](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS)
 getting-started guide. The kABI-tracking kmod version is the easiest to manage,
 as there is nothing to compile, and it is designed to work with the stock EL7
 kernels.
+
+Additionally, be sure to run the [systemd
+update](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS#systemd-update)
+after installing the packages. This will ensure that the ZFS pool will be
+imported properly on boot.
+
+### Ubuntu
+Packages for ZFS are available from the standard Ubuntu repository.
+```
+apt-get install zfs
+```
 
 ## Creating a ZFS Pool
 For best performance with IRONdb, consider using mirror groups. These provide
@@ -101,15 +117,8 @@ config:
 errors: No known data errors
 ```
 
-The ZFS-on-Linux EL7 packages should enable all the necessary services to bring
-up the pool at boot and mount available filesystems, but just for completeness,
-we will set all ZFS services to the vendor-selected presets:
-```
-systemctl preset zfs-import-cache zfs-import-scan zfs-mount zfs-share zfs-zed zfs.target
-```
-
-At this point you may wish to reboot the system to ensure that the pool and
-filesystems are present at startup.
+At this point you may wish to reboot the system to ensure that the pool is
+present at startup.
 
 ## Proceed to IRONdb Setup
 Now that you have created a ZFS pool you may begin the IRONdb
