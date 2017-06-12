@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.8.27
+2017-06-12
+
+ * Fix a bug that caused contention between reads and writes during rollup.
+ * Reduce contention in the raw database write path.
+
 ## Changes in 0.8.26
 2017-06-02
 
