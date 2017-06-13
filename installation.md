@@ -311,8 +311,8 @@ resolution, since IRONdb is very specific about the versions of dependent
 Circonus packages, and apt-get is unable to cope with them. The helper package
 must be upgraded first, i.e., it cannot be upgraded in the same transaction
 as the main package.
-1. `/usr/bin/apt-get upgrade circonus-platform-irondb-apt-policy`
-1. `/usr/bin/apt-get upgrade circonus-platform-irondb`
+1. `/usr/bin/apt-get install circonus-platform-irondb-apt-policy`
+1. `/usr/bin/apt-get install circonus-platform-irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 
