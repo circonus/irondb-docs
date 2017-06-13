@@ -58,7 +58,16 @@ following contents:
 Install the package:
 * (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
 * (EL7) `/usr/bin/yum install circonus-platform-irondb`
-* (Ubuntu 16.04) `/usr/bin/apt-get install circonus-platform-irondb`
+
+We have a helper package on Ubuntu that works around issues with dependency
+resolution, since IRONdb is very specific about the versions of dependent
+Circonus packages, and apt-get is unable to cope with them. The helper package
+must be installed first, i.e., it cannot be installed in the same transaction
+as the main package.
+```
+/usr/bin/apt-get install circonus-platform-irondb-apt-policy
+/usr/bin/apt-get install circonus-platform-irondb
+```
 
 Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
@@ -296,6 +305,13 @@ EL7:
 1. `/usr/bin/systemctl restart circonus-irondb`
 
 Ubuntu 16.04:
+
+We have a helper package on Ubuntu that works around issues with dependency
+resolution, since IRONdb is very specific about the versions of dependent
+Circonus packages, and apt-get is unable to cope with them. The helper package
+must be upgraded first, i.e., it cannot be upgraded in the same transaction
+as the main package.
+1. `/usr/bin/apt-get upgrade circonus-platform-irondb-apt-policy`
 1. `/usr/bin/apt-get upgrade circonus-platform-irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
