@@ -1,6 +1,6 @@
 # Changelog
 
-## Changes in 0.8.28
+## Changes in 0.8.29
 2017-06-19
 
  * Better internal defaults for raw metrics database, to reduce compaction stalls, improving throughput.
@@ -8,6 +8,9 @@
  * Fix memory-usage errors in LRU cache for Graphite queries.
  * Fix memory leaks relating to replication journals.
  * Fix for failed deletes due to filename-too-long errors.
+
+## Changes in 0.8.28
+unreleased
 
 ## Changes in 0.8.27
 2017-06-12
