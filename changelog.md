@@ -1,13 +1,17 @@
 # Changelog
 
-## Changes in 0.8.29
-2017-06-19
+## Changes in 0.8.30
+2017-06-21
 
+ * Optimizations for raw data ingestion.
  * Better internal defaults for raw metrics database, to reduce compaction stalls, improving throughput.
  * Cache SHA256 hashes in topology-handling code to reduce CPU consumption.
  * Fix memory-usage errors in LRU cache for Graphite queries.
  * Fix memory leaks relating to replication journals.
  * Fix for failed deletes due to filename-too-long errors.
+
+## Changes in 0.8.29
+unreleased
 
 ## Changes in 0.8.28
 unreleased
