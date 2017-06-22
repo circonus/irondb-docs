@@ -1,9 +1,12 @@
 # Changelog
 
-## Changes in 0.8.31
+## Changes in 0.8.32
 2017-06-22
 
  * Fix a bug with ZFS on Linux integration in the admin UI that caused a segfault on startup.
+
+## Changes in 0.8.31
+unreleased
 
 ## Changes in 0.8.30
 2017-06-21
