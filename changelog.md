@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.8.33
+2017-06-26
+
+ * Fix a bug in database comparator introduced in 0.8.30
+
 ## Changes in 0.8.32
 2017-06-22
 
