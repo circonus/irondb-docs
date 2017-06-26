@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.8.34
+4017-06-26
+
+ * Throughput optimizations
+
 ## Changes in 0.8.33
 2017-06-26
 
