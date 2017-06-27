@@ -1,6 +1,12 @@
 # Changelog
 
+## Changes in 0.8.35
+4017-06-27
+
+ * Add an option to not use database rollup logic when responding to graphite queries
+
 ## Changes in 0.8.34
+
 4017-06-26
 
  * Throughput optimizations
