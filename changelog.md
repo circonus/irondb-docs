@@ -1,5 +1,27 @@
 # Changelog
 
+## Changes in 0.9.0
+2017-07-13
+
+ * Support for parallelizing rollups, which can be activated by adding a
+   "rollup" element to the `<pools>` section of `irondb.conf`, with a
+   "concurrency" attribute:
+    ```
+    <pools>
+      ...
+      <rollup concurrency="N"/>
+    </pools>
+    ```
+   where `N` is an integer in the range from 1 up to the value of `nnt_put`
+   concurrency but not greater than 16. If not specified, rollups will remain
+   serialized (concurrency of 1). A value of 4 has been shown to provide the
+   most improvement over serialized rollups. 
+ * Fix for watchdog-panic when fetching large volumes of data via graphite endpoints.
+ * Stop stripping NULLs from beginning and end of graphite responses.
+ * Do not return graphite metric data from before the start of collection for that metric.
+ * Optimization for graphite fetches through the storage finder plugin.
+ * Changes to support data ingestion from new irondb-relay.
+
 ## Changes in 0.8.35
 2017-06-27
 
