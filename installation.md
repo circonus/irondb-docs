@@ -20,6 +20,13 @@ Hardware requirements will necessarily vary depending upon system scale and clus
 * 4 GB RAM
 * SSD-based storage, 20 GB available space
 
+The following network protocols and ports are utilized. These are defaults and
+may be changed via configuration files.
+
+* 2003/tcp (Carbon plaintext submission)
+* 8112/tcp (admin UI, HTTP REST API, [cluster replication](./operations.md#replication), [request proxying](./operations.md#proxying))
+* 8112/udp ([cluster gossip](./operations.md#replication))
+
 ## Installation Steps
 
 Follow these steps to get IRONdb installed on your system. If you are using one of our pre-built Amazon EC2 images, **these steps are already done for you**, and your free-25K instance will be configured automatically on first boot. Please refer to [EC2 installation](#ec2-installation) below.
