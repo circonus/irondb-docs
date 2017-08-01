@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.9.1
+2017-08-01
+
+ * Fix crash in topology handling for clusters of more than 10 nodes
+ * Check topology configuration more carefully on initial import
+ * Various stability fixes
+ * Document network ports and protocols required for operation
+
 ## Changes in 0.9.0
 2017-07-13
 
