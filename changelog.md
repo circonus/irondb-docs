@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.9.2
+2017-08-04
+
+ * Improve query read speed when synthesizing rollups from raw data
+ * Fix double-free crash in handling of series_multi requests
+
 ## Changes in 0.9.1
 2017-08-01
 
