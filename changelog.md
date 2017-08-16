@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.9.3
+2017-08-16
+
+ * Fix race condition on Linux with dlopen() of libzfs
+ * Crash fix: skip blank metric names during rollup
+ * Return the first level of metrics_db properly on certain wildcard queries
+ * More efficient Graphite metric parsing
+
 ## Changes in 0.9.2
 2017-08-04
 
