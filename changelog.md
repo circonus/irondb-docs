@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.9.4
+2017-08-18
+
+ * Various fixes
+
 ## Changes in 0.9.3
 2017-08-16
 
