@@ -64,6 +64,9 @@ apt-get install zfs
 ```
 
 ## Creating a ZFS Pool
+IRONdb setup expects a zpool to exist, but will take care of creating all
+necessary filesystems and directories.
+
 For best performance with IRONdb, consider using mirror groups. These provide
 the highest number of write IOPS, but at a cost of 50% of available raw
 storage. Balancing the capacity of individual nodes with the number of nodes in

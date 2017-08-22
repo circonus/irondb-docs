@@ -8,11 +8,12 @@ IRONdb requires one of the following operating systems:
 * Ubuntu 16.04 LTS.
 
 Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This
-is available natively on OmniOS and Ubuntu, but for EL7 installs, you will need to obtain
-ZFS from the [ZFS on
+is available natively on OmniOS and Ubuntu, but for EL7 installs, you will need
+to obtain ZFS from the [ZFS on
 Linux](https://github.com/zfsonlinux/zfs/wiki/Getting-Started)
-project. Please refer to the appendix [ZFS Setup Guide](/zfs-guide.md) for
-details and examples.
+project. The setup script expects a zpool to exist, but you do not need to
+create any filesystems or directories ahead of time. Please refer to the
+appendix [ZFS Setup Guide](/zfs-guide.md) for details and examples.
 
 Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 
@@ -33,8 +34,8 @@ Follow these steps to get IRONdb installed on your system. If you are using one 
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
-Configure package repositories. During the IRONdb beta period, our unstable
-"pilot" repo is required.
+Configure package repositories. During the IRONdb beta period, our development
+(aka "pilot") repo is required.
 
 (OmniOS) Add the Circonus IPS package publisher:
 
@@ -79,13 +80,13 @@ as the main package.
 Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
 
-     *\(required\)* The ID of the current node, which must be unique within a given cluster. You may use the installed `uuidgen` command or generate a UUID with an external tool or website.
+     *\(required\)* The ID of the current node, which must be unique within a given cluster. You may use the `uuidgen` command that comes with your OS, or generate a UUID with an external tool or website.
    * ##### IRONDB\_NODE\_ADDR
 
      *\(required\)* The IPv4 address of the current node, e.g., "192.168.1.100".
    * ##### IRONDB\_CHECK\_UUID
 
-     *\(required\)* Check ID for Graphite metric ingestion, which must be the same on all cluster nodes. You may use the installed `uuidgen` command or generate a UUID with an external tool or website.
+     *\(required\)* Check ID for Graphite metric ingestion, which must be the same on all cluster nodes. You may use the `uuidgen` command that comes with your OS, or generate a UUID with an external tool or website.
    * ##### IRONDB\_CHECK\_NAME
 
      *\(required\)* The string that will identify Graphite-compatible metrics stored in the check identified by `IRONDB_CHECK_UUID`. For example, if you submit a metric named "my.metric.1", and the check is named "test", the resulting metric name in IRONdb will be "graphite.test.my.metric.1".
