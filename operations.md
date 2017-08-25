@@ -1,10 +1,10 @@
 # Operations
 
-## Data Storage
-
-The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7). It listens externally on TCP port 2003, TCP and UDP port 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services, and is responsible for periodically "heartbeating" to the parent to show that it is making progress.
+The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7, Ubuntu). It listens externally on TCP port 2003, TCP and UDP port 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services, and is responsible for periodically "heartbeating" to the parent to show that it is making progress.
 
 IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
+
+## Logs
 
 Log files are located under `/irondb/logs` and include the following files:
  * accesslog
@@ -18,9 +18,9 @@ If the child process becomes unstable, verify that the host is not starved for r
 
 You will see an "Errors" section to the right. If you begin to see hardware errors there, this could indicate a disk failure. If in doubt, contact Circonus Support (support@circonus.com) for assistance.
 
-On EL7, install the `smartmontools` package and run `/usr/sbin/smartctl -a /dev/sdX`, looking for error and/or reallocated-sector counts.
+On EL7 and Ubuntu, install the `smartmontools` package and run `/usr/sbin/smartctl -a /dev/sdX`, looking for errors and/or reallocated-sector counts.
 
-### Crash Handling
+## Crash Handling
 
 Application crashes are, by default, automatically reported to Circonus, using [Backtrace.io](https://backtrace.io/) technology. When the crash occurs, a tracer program quickly gathers a wealth of detailed information about the crashed process and sends a report to Circonus, in lieu of obtaining a full core dump. 
 
@@ -28,29 +28,35 @@ If you have disabled crash reporting in your environment, you can still enable t
 
 On OmniOS: `/usr/sbin/coreadm -g /irondb/appcrash/core.%f.%p -e global -e global-setid -e log`
 
+On EL7:
+* Add the following to `/opt/circonus/etc/irondb-node-config`: `ulimit -c unlimited`
+* Restart the `circonus-irondb` service
+* Set the kernel core pattern to place core dumps in a suitable location. See the core(5) man page for details. This location must be writable by the user that IRONdb runs as (`nobody`).
+* Allow setuid dumps: `sysctl -w fs.suid_dumpable=1`
+
 When a process crashes, a core dump will be created in `/irondb/appcrash` with the filename `core.<executable-name>.<pid>`, and the event will be recorded in the system log.
 
-(TODO: EL7)
+(TODO: Ubuntu)
 
-### Debugging Mode
+## Debugging Mode
 
 If instability continues, you may run IRONdb as a single process in the foreground, with additional debugging enabled. First, ensure the service is disabled:
 * (OmniOS) `/usr/sbin/svcadm disable irondb`
-* (EL7) `/usr/bin/systemctl stop circonus-irondb`
+* (EL7, Ubuntu) `/usr/bin/systemctl stop circonus-irondb`
 
 Then, run the following as root:
 
     /opt/circonus/bin/irondb-start -D -d
 
-Running IRONdb in the foreground should make the error apparent, and Circonus Support can help diagnose your problem. Core dumps are also useful in these situations (see above).
+Running IRONdb in the foreground with debugging should make the error apparent, and Circonus Support can help diagnose your problem. Core dumps are also useful in these situations (see above).
 
-### Replication
+## Replication
 
 In a multi-node cluster, IRONdb nodes communicate with one another using port 8112. Metric data are replicated over TCP, while intra-cluster state (a.k.a. [gossip](api/gossip-json.md)) is exchanged over UDP. The replication factor is determine by the number of [write copies](installation.md#determine-write-copies) defined in the cluster's toplogy. When a node receives a new metric data point, it calculates which nodes should "own" this particular stream, and, if necessary,  writes out the data to a local, per-node journal. This journal is then read behind and replayed to the destination node.
 
 When a remote node is unavailable, its corresponding journal on the remaining active nodes continues to collect new metric data that is being ingested by the cluster. When that node comes back online, its peers begin feeding it their backlog of journal data, in addition to any new ingestion which is coming directly to the returned node. 
 
-### Proxying
+## Proxying
 
 Clients requesting metric data from IRONdb need not know the specific location of a particular stream's data in order to fetch it. Instead, they may request it from any node, and if the data are not present on that node, the request is transparently proxied to a node that does have the data. Because nodes can fail and need to catch up with their peers, proxying favors remote nodes that are the most up to date. This is determined from the gossip data, which includes a latency metric, indicating the most recent replication message that this node has seen from each of its peers. The node performing the proxying decides which of the other nodes that own the given metric has the most recent data.
 
@@ -111,7 +117,7 @@ Displays the difference between the current time on each node and the time of th
 
 The node being viewed will be displayed with a blue bar, and the color of remote nodes will be green, yellow, or red, based on the difference between the current node's time and the timestamp of the last gossip message received from that node. All nodes should be running NTP or a similar time synchronization daemon. For example, if a remote node is shown as "(0.55 seconds old)", that means that a gossip message was received from that node 0.55 seconds ago, relative to the current node.
 
-If the current node has never received a gossip message from a remote node since starting, that node will be displayed with a black bar, and the latency values will be reported as "unknown". This indicates that the remote node is either down or there is a network problem preventing communication with that node.
+If the current node has never received a gossip message from a remote node since starting, that node will be displayed with a black bar, and the latency values will be reported as "unknown". This indicates that the remote node is either down or there is a network problem preventing communication with that node. Check that port 8112/udp is permitted between all cluster nodes.
 
 ### Topology Tab
 
