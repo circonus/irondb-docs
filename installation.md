@@ -132,13 +132,35 @@ Restart the IRONdb service:
 
 ## EC2 Installation
 
-Circonus makes available EC2 AMIs that come preinstalled with OmniOS and IRONdb. The first time an instance of the AMI boots, the setup script runs and configures a standalone instance. The AMI may be used on any instance type supported by OmniOS \(currently only PV instances are supported\), and the minimum recommended instance type is `m3.medium`.
+Circonus makes available EC2 AMIs that come preinstalled with Ubuntu and
+IRONdb. The first time an instance of the AMI boots, the setup script runs and
+configures a standalone instance. The AMI is suitable for HVM instance types, and the
+minimum recommended instance type is `m4.large`.
 
 For clusters, choose an instance type that has enough vCPUs to handle both incoming data and replicating data to other cluster nodes. A simple formula for a cluster of `N` nodes would be `N+1` vCPUs, up to maximum of 16.
 
 Since the 0.6 beta release, IRONdb images are named in the format `irondb-VERSION`, where `VERSION` is the product version. Older versions of the AMI had `-single` appended to the name. There is no difference in how the initial automated setup works. The initial single-node configuration may be reconfigured for clustering prior to ingesting any metric data.
 
-You can find IRONdb AMIs by [searching](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html) for "IRONdb" among the community AMIs.
+You can find IRONdb AMIs by
+[searching](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)
+for "IRONdb" among the community AMIs, using either the EC2 Console or the AWS
+CLI.
+
+For example, using the [AWS CLI](https://aws.amazon.com/cli/), you could locate
+available IRONdb AMIs in the `us-west-1` region:
+
+    aws ec2 describe-images \
+      --region us-west-1 \
+      --filters 'Name=description,Values=*IRONdb*' \
+      --query 'Images[*].{ID:ImageId,NAME:Name}' 
+
+Circonus currently publishes AMIs to the following regions:
+* ap-northeast-1 (Tokyo)
+* eu-central-1 (Frankfurt)
+* us-east-1 (N. Virginia)
+* us-east-2 (Ohio)
+* us-west-1 (N. California)
+* us-west-2 (Oregon)
 
 Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your own UUIDs and check name for the sample ones:
 
@@ -151,7 +173,9 @@ The setup process will detect the local IP address of the instance at boot, so i
 
 Setup also expects to configure a zpool on the secondary EBS volume that is specified by the AMI. You do not need to specify `IRONDB_ZPOOL` in the user-data.
 
-If you do not wish to use the pre-built AMI, you will need to create an OmniOS instance yourself and follow the full setup instructions in the [previous section](#installation-steps).
+If you do not wish to use the pre-built AMI, you will need to create an
+instance yourself using one of the supported operating systems and follow the
+full setup instructions in the [previous section](#installation-steps).
 
 ### EC2 Security Groups
 
