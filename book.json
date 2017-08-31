@@ -1,4 +1,9 @@
 {
     "gitbook": ">=3.2.3",
-    "plugins": ["anchorjs"]
+    "plugins": [ "anchorjs", "ga" ],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-53665515-1"
+        }
+    }
 }
