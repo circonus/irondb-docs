@@ -349,16 +349,7 @@ as the main package.
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 
 <!-- The scripts below are for tracking the success of a marketing campaign directing people to this page and are not a part of the actual installation documentation. -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-53665515-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 <script type="text/javascript">var it=document.createElement("img");var u="http://engine.adzerk.net/e/22/132247/e.gif";var t=new Date().getTime();var ut=u+"?_="+t;it.src=ut;it.border=0;</script>
 
 <!-- Twitter universal website tag code -->
