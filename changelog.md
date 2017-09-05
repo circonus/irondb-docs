@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.9.5
+2017-09-05
+
+ * Fix lookup key for topology in flatbuffer-based ingestion. Flatbuffer ingestion format is currently only used by the experimental irondb-relay.
+ * Update to new libmtev config API
+
 ## Changes in 0.9.4
 2017-08-18
 
