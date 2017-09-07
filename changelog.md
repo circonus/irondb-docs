@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.9.6
+2017-09-07
+
+ * Fix a performance regression from 0.9.5 in topology placement calculations
+ * Various minor fixes
+
 ## Changes in 0.9.5
 2017-09-05
 
