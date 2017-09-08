@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.9.7
+2017-09-08
+
+ * Fix for potential thundering herd on metrics_find queries
+
 ## Changes in 0.9.6
 2017-09-07
 
