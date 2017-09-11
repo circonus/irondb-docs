@@ -334,7 +334,7 @@ OmniOS:
 
 EL7:
 1. `/usr/bin/yum update circonus-platform-irondb`
-1. `/usr/bin/systemctl restart circonus-irondb`
+1. `/bin/systemctl restart circonus-irondb`
 
 Ubuntu 16.04:
 
@@ -345,6 +345,7 @@ must be upgraded first, i.e., it cannot be upgraded in the same transaction
 as the main package.
 1. `/usr/bin/apt-get install circonus-platform-irondb-apt-policy`
 1. `/usr/bin/apt-get install circonus-platform-irondb`
+1. `/bin/systemctl restart circonus-irondb`
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 
