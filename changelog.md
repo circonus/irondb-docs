@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.9.8
+2017-09-11
+
+ * Optimize JSON processing on metrics_find responses.
+ * Additional fixes to timeouts to prevent cascading congestion on metrics_find queries.
+
 ## Changes in 0.9.7
 2017-09-08
 
