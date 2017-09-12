@@ -1,8 +1,43 @@
 # Operations
 
-The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7, Ubuntu). It listens externally on TCP port 2003, TCP and UDP port 8112, and locally on TCP port 32322. There are normally two processes, a parent and child. The parent process monitors the child, restarting it if it crashes. The child process provides the actual services, and is responsible for periodically "heartbeating" to the parent to show that it is making progress.
+By default, IRONdb listens externally on TCP port 2003, TCP and UDP port 8112,
+and locally on TCP port 32322. These ports can be changed via configuration
+files. There are normally two processes, a parent and child. The parent process
+monitors the child, restarting it if it crashes. The child process provides the
+actual services, and is responsible for periodically "heartbeating" to the
+parent to show that it is making progress.
 
-IRONdb is sensitive to CPU and IO limits. If either resource is limited, you can see child processes being killed off by the parents when they do not heartbeat on time.
+IRONdb is sensitive to CPU and IO limits. If either resource is limited, you
+may see a process being killed off when it does not heartbeat on time. These
+are known as "watchdog" events.
+
+## Service Management
+
+The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7, Ubuntu).
+
+To view service status:
+* OmniOS: `/usr/bin/svcs -lp svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl status circonus-irondb`
+
+To start the service:
+* OmniOS: `/usr/sbin/svcadm enable svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl start circonus-irondb`
+
+To stop the service:
+* OmniOS: `/usr/sbin/svcadm disable -t svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl stop circonus-irondb`
+
+To restart the service:
+* OmniOS: `/usr/sbin/svcadm restart svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl restart circonus-irondb`
+
+To disable the service from running at system boot:
+* OmniOS: `/usr/sbin/svcadm disable svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl disable circonus-irondb`
+
+To enable the service to run at system boot:
+* OmniOS: `/usr/sbin/svcadm enable svc:/circonus/irondb:default`
+* EL7, Ubuntu: `/bin/systemctl enable circonus-irondb`
 
 ## Logs
 
