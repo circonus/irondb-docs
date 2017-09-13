@@ -1,6 +1,6 @@
 # Summary
 
-* [Cover](README.md)
+* [Home](README.md)
 * [Introduction](Introduction.md)
 * [Contact Us](contact.md)
 * [Installation](installation.md)
