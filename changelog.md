@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.9.9
+2017-09-13
+
+ * Split graphite metric fetches into separate threads for node-local vs. remote to improve read latency
+ * Provide a configuration option for toggling LZ4 compression on journal sends (WAL replay to other cluster nodes). The default is on (use compression) and is best for most users.
+   * To disable compression on journal sends, set an attribute `send_compressed="false"` on the `<journal>` node in `irondb.conf`.
+
+Documentation changes:
+ * Added instructions for [rebuilding failed or damaged nodes](rebuilding-nodes.md)
+
 ## Changes in 0.9.8
 2017-09-11
 
