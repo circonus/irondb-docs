@@ -1,5 +1,6 @@
 {
     "gitbook": ">=3.2.3",
+    "title" : "IronDB Documentation",
     "plugins": [ "anchorjs", "ga" ],
     "pluginsConfig": {
         "ga": {
