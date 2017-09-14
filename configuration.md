@@ -9,12 +9,19 @@ for an overview of how libmtev applications are configured generally.
 This document deals with options that are specific to IRONdb, but links to
 relevant libmtev documentation where appropriate.
 
+Default values are those that are present in the default configuration produced
+during initial installation.
+
 ## irondb.conf
 
 This is the primary configuration file that IRONdb reads at start. It includes
 additional configuration files which are discussed later.
 
 ### snowth
+
+```
+<snowth lockfile="/irondb/logs/snowth.lock" text_size_limit="512">
+```
 
 IRONdb's libmtev application name. This is a required node and **must not** be
 changed.
@@ -38,10 +45,27 @@ Default: 512
 
 ### eventer
 
+```
+<eventer>
+  <config>
+    <ssl_dhparam1024_file/>
+    <ssl_dhparam2048_file/>
+  </config>
+</eventer>
+```
+
 Libmtev eventer system configuration. See the [libmtev eventer
 documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
 
+The `ssl_dhparam*_file` configurations are set to null to disable automatic
+Diffie-Hellman parameter generation at startup. IRONdb does not utilize TLS by
+default, though this capability is present in libmtev.
+
 ### cache
+
+```
+<cache cpubuckets="128" size="0"/>
+```
 
 An LRU cache of open filehandles for numeric metric rollups. This can improve
 rollup read latency by keeping the on-disk files for frequently-accessed
@@ -96,6 +120,14 @@ be modified to suit your environment.
 
 #### Main listener
 
+```
+<listener address="*" port="8112" backlog="100" type="http_rest_api">
+  <config>
+    <document_root>/opt/circonus/share/snowth-web</document_root>
+  </config>
+</listener>
+```
+
 The main listener serves multiple functions:
 * [HTTP REST API](api.md)
 * [Cluster replication](operations.md#replication) (TCP) and gossip (UDP)
@@ -116,7 +148,32 @@ and UDP.
 
 Default: 8112
 
+##### Main listener backlog
+
+The size of the queue of pending connections. This is used as an argument to
+the standard `listen(2)` system call. If a new connection arrives when this
+queue is full, the client may receive an error such as ECONNREFUSED.
+
+Default: 100
+
+##### Main listener type
+
+The type of libmtev listener this is. The main listener is configured to be
+only a REST API listener. This value should not be changed.
+
+Default: http_rest_api
+
 #### Graphite listener
+
+```
+<listener address="*" port="2003" type="graphite">
+  <config>
+    <check_uuid>00000000-0000-0000-0000-000000000000</check_uuid>
+    <check_name>mycheckname</check_name>
+    <account_id>1</account_id>
+  </config>
+</listener>
+```
 
 The Graphite listener operates a Carbon-compatible submission pathway using the
 [plaintext
@@ -138,6 +195,13 @@ Default: `*`
 The TCP port number to listen on.
 
 Default: 2003
+
+##### Graphite listener type
+
+The type of listener. IRONdb implements a Graphite-compatible handler in
+libmtev, using the custom type "graphite".
+
+Default: graphite
 
 ##### Graphite listener config
 
@@ -177,6 +241,13 @@ Default: 127.0.0.1
 The TCP port number to listen on.
 
 Default: 32322
+
+##### CLI listener type
+
+The CLI listener uses the built-in libmtev type "mtev_console" to allow access
+to the telnet console.
+
+Default: mtev_console
 
 ### pools
 
@@ -324,6 +395,14 @@ Default: 131072 (128 KB)
 
 ### topology
 
+```
+<topology path="/opt/circonus/etc/irondb-topo"
+          active="(hash value)"
+          next=""
+          redo="/irondb/redo/{node}"
+/>
+```
+
 The topology node instructs IRONdb where to find its current cluster
 configuration. The `path` is the directory where the imported topology config
 lives, which was created during setup. `active` indicates the hash of the
@@ -335,12 +414,17 @@ No manual configuration of these settings is necessary.
 
 ### watchdog
 
-The watchdog configuration specifies a handler that is to be invoked when a
-child process crashes or hangs. See the [libmtev watchdog
+```
+<watchdog glider="/opt/circonus/bin/backwash" tracedir="/opt/circonus/traces"/>
+```
+
+The watchdog configuration specifies a handler, known as a "glider", that is to
+be invoked when a child process crashes or hangs. See the [libmtev watchdog
 documentation](http://circonus-labs.github.io/libmtev/config/watchdog.html).
 
-If [crash handling](operations.md#crash-handling) is turned on, the glider is
-what invokes the tracing. Otherwise, it just reports the error and exits.
+If [crash handling](operations.md#crash-handling) is turned on, the `glider` is
+what invokes the tracing, producing one or more files in the `tracedir`.
+Otherwise, it just reports the error and exits.
 
 ## licenses.conf
 
