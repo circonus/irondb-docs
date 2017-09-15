@@ -40,8 +40,8 @@ this limit will be truncated.
 
 Default: 512
 
-> Text-type metrics are not currently supported in IRONdb, since Graphite has
-> no way to represent them.
+> Text-type metrics are supported in IRONdb but Graphite currently has no way
+> to render these when using a Storage Finder plugin.
 
 ### eventer
 
@@ -253,33 +253,73 @@ Default: mtev_console
 
 ```
 <pools>
+  <rollup concurrency="1"/>
   <nnt_put concurrency="16"/>
   <raw_writer concurrency="4"/>
+  <rest_graphite_numeric_get concurrency="4"/>
+  <rest_graphite_find_metrics concurrency="4"/>
+  <rest_graphite_fetch_metrics concurrency="10"/>
 </pools>
 ```
 
 Resource pools within IRONdb are used for various functions, such as reading
 and writing metric data. Some aspects of pool behavior are configurable,
-typically to adjust the amount of concurrency within a given pool.
+typically to adjust the number of worker threads to spawn.
 
 The defaults presented are widely applicable to most workloads, but may be
 adjusted to improve throughput. Use caution when raising these values too high,
 as it could produce thrashing and _decrease_ performance.
 
+If in doubt, [contact support](contact.md).
+
+#### pools rollup concurrency
+
+The number of unique metric names (UUID + metric name) to process in parallel
+when performing rollups. A higher number generally causes the rollup operation
+to finish more quickly, but has the potential to overwhelm the storage
+subsystem if set too high.
+
+Default: 1
+
+> These tasks compete with other readers of the `raw_database`, so if `rollup`
+> concurrency is set higher than 4x `raw_writer` concurrency, it cannot be
+> reached.
+
 #### pools nnt_put concurrency
 
-The number of job queues used for writing to numeric rollup files. Writes to a
+The number of threads used for writing to numeric rollup files. Writes to a
 given rollup file will always occur in the same queue.
 
 Default: the number of physical CPU cores present during installation
 
 #### pools raw_writer concurrency
 
-The number of job queues used for writing to the raw metrics database.
-Additionally, IRONdb will use 4x this number of job queues for reading from the
+The number of threads used for writing to the raw metrics database.
+Additionally, IRONdb will use 4x this number of threads for reading from the
 raw metrics database.
 
 Default: 4
+
+#### pools rest_graphite_numeric_get concurrency
+
+The number of threads used for handling Graphite fetches. This is a general
+queue for all fetch operations, and there are two other thread pools for
+specific tasks within a fetch operation (see below.)
+
+Default: 4
+
+#### pools rest_graphite_find_metrics concurrency
+
+The number of threads used for resolving metric names prior to fetch.
+
+Default: 4
+
+#### pools rest_graphite_fetch_metrics concurrency
+
+The number of threads used for actually fetching Graphite metrics, including
+those local to the node and those residing on remote nodes.
+
+Default: 10
 
 ### rollups
 
@@ -299,6 +339,16 @@ configuration](#rawdatabase).
 Each desired rollup is configured with a `period`, in seconds, and a named
 `directory` for where to store that rollup's files. There will be one file per
 unique metric name, per rollup period.
+
+Configuring rollups involves tradeoffs between:
+* Disk space
+* Rollup execution time
+* Granularity when fetching rolled-up data
+
+In general, the `raw_database` will cover the most recent time period with very
+good granularity. If you do not require this much resolution when viewing
+historic data you can eliminate the finer-grained rollups from your
+configuration.
 
 ### raw_database
 
@@ -327,7 +377,7 @@ Granularity controls the sharding of the raw database. A shard is the unit of
 data that will be rolled up and removed, after a configurable age and period of
 quiescence (no new writes coming in for that shard.)
 
-> Do not change granularity after starting to collect data, as this may result
+> Do not change granularity after starting to collect data, as this will result
 > in data loss.
 
 Default: 1 day
