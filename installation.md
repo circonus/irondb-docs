@@ -34,6 +34,8 @@ Follow these steps to get IRONdb installed on your system. If you are using one 
 
 System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
+### Configure Software Sources
+
 Configure package repositories. During the IRONdb beta period, our development
 (aka "pilot") repo is required.
 
@@ -63,7 +65,8 @@ following contents:
 
     deb http://pilot.circonus.net/ubuntu/ xenial main
 
-Install the package:
+### Install Package
+
 * (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
 * (EL7) `/usr/bin/yum install circonus-platform-irondb`
 
@@ -76,6 +79,8 @@ as the main package.
 /usr/bin/apt-get install circonus-platform-irondb-apt-policy
 /usr/bin/apt-get install circonus-platform-irondb
 ```
+
+### Run Installer
 
 Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
@@ -111,6 +116,8 @@ Run the setup script. All required options must be present, either as environmen
       -h               : Show usage summary
 
 The setup script will configure your IRONdb instance and start the service. Upon successful completion, it will print out specific information about how to submit Graphite metrics. IRONdb supports both Carbon plaintext submission (port 2003) or HTTP POST. See the [Graphite Ingestion](./graphite-ingestion.md) section for details.
+
+### Add License
 
 Obtain your license information from your Circonus account profile: https://YOURACCOUNT.circonus.com/profile
 * If you do not have an IRONdb license, click the `+` to the right of the Licenses section of the account profile page to add a new license.
