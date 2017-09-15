@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in 0.9.10
+2017-09-15
+
+ * Fix bugs in proxying graphite requests where unnecessary work was being triggered.
+ * Generated JSON was badly formatted when mixing remote and local results.
+ * Add internal timeout support for graphite fetches.
+ * Optimize JSON construction for proxy requests.
+ * Enable gzip compression on reconstitute requests.
+
+Documentation changes:
+ * New page documenting the [configuration files](configuration.md).
+
 ## Changes in 0.9.9
 2017-09-13
 
