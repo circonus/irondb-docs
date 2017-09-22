@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.9.11
+2017-09-22
+
+ * Reconstitute fixes.
+ * Fix a bug that prevents a graphite listener from running properly with SSL/TLS on.
+
 ## Changes in 0.9.10
 2017-09-15
 
