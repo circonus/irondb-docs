@@ -65,6 +65,8 @@ following contents:
 
     deb http://pilot.circonus.net/ubuntu/ xenial main
 
+Then run `apt-get update`.
+
 ### Install Package
 
 * (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
