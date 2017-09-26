@@ -372,3 +372,14 @@ twq('init','nv0h5');
 twq('track','PageView');
 </script>
 <!-- End Twitter universal website tag code -->
+
+<!-- Reddit Conversion Pixel -->
+<script>
+var i=new Image();i.src="https://alb.reddit.com/snoo.gif?q=CAAHAAABAAoACQAAAAADnU07AA==&s=Vx8ExhJlePv3ZKbWo_Ne0_WpNmoFeb9n77UY0bFsHPw=";
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://alb.reddit.com/snoo.gif?q=CAAHAAABAAoACQAAAAADnU07AA==&s=Vx8ExhJlePv3ZKbWo_Ne0_WpNmoFeb9n77UY0bFsHPw="/>
+</noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Reddit Conversion Pixel -->
