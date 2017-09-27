@@ -28,6 +28,71 @@ may be changed via configuration files.
 * 8112/tcp (admin UI, HTTP REST API, [cluster replication](./operations.md#replication), [request proxying](./operations.md#proxying))
 * 8112/udp ([cluster gossip](./operations.md#replication))
 
+### System Tuning
+
+IRONdb is expected to perform well on a standard installation of supported
+platforms, but to ensure optimal performance, there are a few tuning changes
+that should be made. This is especially important if you plan to push your
+IRONdb systems to the limit of your hardware.
+
+#### Linux: Disable Swap
+
+With systems dedicated solely to IRONdb, there is no need for swap space.
+Configuring no swap space during installation is ideal, but you can also
+`swapoff -a` and comment out any swap lines from `/etc/fstab`.
+
+Note: OmniOS users should _not_ disable swap, as the illumos VM system
+works differently and requires anonymous memory and privately-mapped files to
+have (virtual) swap reservations.
+
+#### Linux: Disable Transparent Hugepages
+
+[THP](https://www.kernel.org/doc/Documentation/vm/transhuge.txt) can interact
+poorly with the ZFS ARC, causing reduced performance for IRONdb.
+
+Disable by setting these two kernel options to `never`:
+```
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+```
+
+Making these changes persistent across reboot differs depending on
+distribution.
+
+For Ubuntu, install the `sysfsutils` package and edit `/etc/sysfs.conf`, adding
+the following lines:
+```
+kernel/mm/transparent_hugepage/enabled = never
+kernel/mm/transparent_hugepage/defrag = never
+```
+Note: the sysfs mount directory is automatically prepended to the attribute name.
+
+For RHEL/CentOS, there is not a simple method to ensure THP is off. You can
+add the above echo commands to `/etc/rc.local`, or you can create your own
+systemd service to do it, or you can create a custom
+[tuned](http://servicesblog.redhat.com/2012/04/16/tuning-your-system-with-tuned/)
+profile containing a `[vm]` section that sets `transparent_hugepages=never`.
+
+#### OmniOS: Enable Highres Tick
+
+Raise the system clock rate from the default 100 Hz to 1000 Hz. This lowers
+latency in many functions and improves IRONdb performance.
+
+Add the following line to `/etc/system` and reboot:
+```
+set hires_tick=1
+```
+
+#### OmniOS: IP Squeue Fanout
+
+Allow TCP/IP connection servicing to be distributed across multiple CPUs. This
+improves throughput and lowers latency for network traffic.
+
+Add the following line to `/etc/system` and reboot:
+```
+set ip:ip_squeue_fanout=1
+```
+
 ## Installation Steps
 
 Follow these steps to get IRONdb installed on your system. If you are using one of our pre-built Amazon EC2 images, **these steps are already done for you**, and your free-25K instance will be configured automatically on first boot. Please refer to [EC2 installation](#ec2-installation) below.

@@ -5,6 +5,7 @@
 * [Contact Us](contact.md)
 * [Installation](installation.md)
     * [System Requirements](installation.md#system-requirements)
+      * [System Tuning](installation.md#system-tuning)
     * [Installation Steps](installation.md#installation-steps)
       * [Configure Software Sources](installation.md#configure-software-sources)
       * [Install Package](installation.md#install-package)
