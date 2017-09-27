@@ -22,8 +22,8 @@ together to create a three-node cluster with write factor of 3.
   document](installation.md#create-topology-layout) with three nodes.
 
 * [Import](installation.md#import-topology) the new topology to get the new
-  topology hash UUID. Unlike an initial cluster setup, this file does not need
-  to be placed anywhere special, as we are going to load this via the REST API.
+  topology hash. Unlike an initial cluster setup, this file does not need to be
+  placed anywhere special, as we are going to load this via the REST API.
 
   ```/opt/circonus/bin/snowthimport -f newtopology.xml -t .``` 
   
