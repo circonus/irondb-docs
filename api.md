@@ -26,6 +26,16 @@
 
   * [Retrieving Data Location In XML Format](api/locate-xml.md)
 
+ * [Rebalancing APIs - Adding or removing nodes from a cluster](rebalance-apis.md)
+
+  * [Loading a new Topology](api/topology.md)
+
+  * [Starting a Rebalance to the New Topology](api/rebalance-activation.md)
+
+  * [Retrieving the Rebalance State](api/rebalance-state.md)
+
+  * [Aborting a Rebalance](api/rebalance-deactivation.md)
+ 
  * [Data Retrieval APIs](data-retrieval-apis.md)
 
   * [Retrieving Numeric Data](api/read-nnt.md)
