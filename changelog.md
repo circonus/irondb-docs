@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.10.0
+2017-10-04
+
+ * New replication protocol format, utilizing Google FlatBuffers. **This is a backward-incompatible change.** A typical rolling upgrade should be performed, but nodes will not send replication data until they detect FlatBuffer support on the other end. As a result, there may be increased replication latency until all nodes are upgraded.
+ * Improved error handling during reconstitute.
+
+Documentation changes:
+ * New page documenting [cluster resizing](resizing-clusters.md) procedures.
+ * Add system tuning suggestions to the [Installation page](installation.md#system-tuning).
+
 ## Changes in 0.9.11
 2017-09-22
 
