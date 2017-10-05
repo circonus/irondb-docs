@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.2
+2017-10-05
+
+ * Another late-breaking fix to speed up writes to the metric_name_db.
+
 ## Changes in 0.10.1
 2017-10-05
 
