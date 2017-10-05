@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.1
+2017-10-05
+
+ * Late-breaking optimization to avoid sending /metrics/find requests to down nodes.
+
 ## Changes in 0.10.0
 2017-10-04
 
