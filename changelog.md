@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.3
+2017-10-06
+
+ * Ensure metrics injected via whisper2nnt tool are visible.
+
 ## Changes in 0.10.2
 2017-10-05
 
