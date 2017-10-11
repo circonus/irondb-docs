@@ -48,71 +48,14 @@ may be changed via configuration files.
 
 ### System Tuning
 
-IRONdb is expected to perform well on a standard installation of supported
-platforms, but to ensure optimal performance, there are a few tuning changes
-that should be made. This is especially important if you plan to push your
-IRONdb systems to the limit of your hardware.
-
-#### Linux: Disable Swap
-
-With systems dedicated solely to IRONdb, there is no need for swap space.
-Configuring no swap space during installation is ideal, but you can also
-`swapoff -a` and comment out any swap lines from `/etc/fstab`.
-
-#### Linux: Disable Transparent Hugepages
-
-[THP](https://www.kernel.org/doc/Documentation/vm/transhuge.txt) can interact
-poorly with the ZFS ARC, causing reduced performance for IRONdb-relay.
-
-Disable by setting these two kernel options to `never`:
-```
-echo never > /sys/kernel/mm/transparent_hugepage/enabled
-echo never > /sys/kernel/mm/transparent_hugepage/defrag
-```
-
-Making these changes persistent across reboot differs depending on
-distribution.
-
-For Ubuntu, install the `sysfsutils` package and edit `/etc/sysfs.conf`, adding
-the following lines:
-```
-kernel/mm/transparent_hugepage/enabled = never
-kernel/mm/transparent_hugepage/defrag = never
-```
-Note: the sysfs mount directory is automatically prepended to the attribute name.
-
-For RHEL/CentOS, there is not a simple method to ensure THP is off. You can
-add the above echo commands to `/etc/rc.local`, or you can create your own
-systemd service to do it, or you can create a custom
-[tuned](http://servicesblog.redhat.com/2012/04/16/tuning-your-system-with-tuned/)
-profile containing a `[vm]` section that sets `transparent_hugepages=never`.
+You should follow the same system tuning as outline in
+the [IRONdb installation](installation.md#system-tuning).
 
 ### Configure Software Sources
 
-Configure package repositories. During the IRONdb-relay beta period, our development
-(aka "pilot") repo is required.
-
-(EL7) Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
-
-    [circonus]
-    name=Circonus
-    baseurl=http://pilot.circonus.net/centos/7/x86_64/
-    enabled = 1
-    gpgcheck = 0
-    metadata_expire = 5m
-
-    [circonus-crash-reporting]
-    name=Circonus - Crash Reporting
-    baseurl=http://updates.circonus.net/backtrace/centos/el7/
-    enabled = 1
-    gpgcheck = 0
-
-(Ubuntu 16.04) Create the file `/etc/apt/sources.list.d/circonus.list` with the
-following contents:
-
-    deb http://pilot.circonus.net/ubuntu/ xenial main
-
-Then run `apt-get update`.
+Use the same software source as
+the [IRONdb installation](installation.md#configure-software-sources) for EL7 or
+Ubuntu.
 
 ### Install Package
 
@@ -161,8 +104,8 @@ environment variables or via command-line arguments. A mix of environment
 variables and arguments is permitted, but environment variables take precedence
 over command-line arguments. Use the `-h` option to view a usage summary:
 
-    Usage: ./setup-irondb-relay [-h] -c <check-name> -u <check-uuid>
-           [-b (on|off)] [-z <zpool>]
+    Usage: ./setup-irondb-relay [-h] -c <check-name> -u <check-uuid> -B <irondb-node-list> [-d]
+           [-b (on|off)] [-z <zpool>] 
       -c <check-name>       : Graphite check name
       -u <check-uuid>       : Graphite check UUID
       -d                    : Use durable delivery to IRONdb
@@ -301,7 +244,7 @@ There are 2 modules provided with IRONdb-relay:
      
      For best performance, it is wise to organize your `<rule>` blocks in
      descending order based on the expected frequency of matching. You want the
-     `<rule>`s that match a lot to be at the beginning of the list and the
+     `<rule>`s that match more often to be at the beginning of the list and the
      `<rule>`s that match infrequently to be lower down in the list.
     
 * aggregation_hook
@@ -430,9 +373,7 @@ be modified to suit your environment.
 ```
 
 The main listener serves multiple functions:
-* [HTTP REST API](api.md)
-* [Cluster replication](operations.md#replication) (TCP) and gossip (UDP)
-* [Operations Dashboard](operations.md#operations-dashboard)
+* [Operations Dashboard](#operations-dashboard)
 * JSON-formatted node statistics (`http://thisnode:thisport/stats.json`)
 
 ##### Main listener address
@@ -481,8 +422,11 @@ The Graphite listener operates a Carbon-compatible submission pathway using the
 format](http://graphite.readthedocs.io/en/latest/feeding-carbon.html#the-plaintext-protocol).
 
 Multiple Graphite listeners may be configured on unique ports and associated
-with different check UUIDs. See the section on [Graphite
-ingestion](graphite-ingestion.md) for details.
+with different check UUIDs. See the section
+on [Graphite ingestion](graphite-ingestion.md) for details. The graphite
+listener config here should be kept in sync with
+the [same configuration](configuration.md#graphite-listener) for the IRONdb
+nodes themselves.
 
 ##### Graphite listener address
 
@@ -607,3 +551,58 @@ If [crash handling](operations.md#crash-handling) is turned on, the `glider` is
 what invokes the tracing, producing one or more files in the `tracedir`.
 Otherwise, it just reports the error and exits.
 
+Operations Dashboard
+============================
+
+IRONdb-relay comes with a built-in operational dashboard accessible via port
+8112 (default) in your browser, e.g., http://irondb-relay-host:8112. This
+interface provides real-time information about the IRONdb-relay. There are a
+number of tabs in the UI, which display different aspects about the node's
+current status.
+
+The node's version info is displayed at top right.
+
+### Overview Tab
+
+The "Overview" tab displays top level statistics about the relay.
+
+#### Inflow
+
+* Socket accepts - how many connections have been made to this relay since startup
+* Received - how many individual rows have been sent into this relay
+* Parsed - the number of rows that we successfully parsed and validated
+* Parse errors - the number of parse failures
+* Aggregation gated - the number of rows that were *not* send on to IRONdb
+  because of [filtering](#modules) or [aggregation](#modules)
+
+#### Outflow
+
+* Rows sent - the number of rows sent to IRONdb nodes
+* Batches sent - rows are sent in batches, this is the count
+* Batches OK - successful batch count
+* Batch timeouts - the count of batches that timed out while sending to IRONdb nodes
+
+
+### Durable Delivery Tab
+
+If `<send durable="true" />` is set in the [config](#send), this tab will
+contain information about replication lag.
+
+Each IRONdb node will be listed along with the number of journal reads and
+writes and how far behind this relay is in sending to each IRONdb node. Ideally
+we should have `Seconds behind` under 10 seconds.
+
+### Filters Tab
+
+If you have the filter module enabled, lists each filter in your current `<ruleset>` and how many rows it has processed.
+
+### Aggregation Tab
+
+If you have the aggregation_hook module enabled, lists each aggregation and how
+many rows it has seen, matched, skipped, and generated.
+
+### Internals Tab
+
+Shows internal application information, such as recent error logging, job
+queues, open sockets, and timers. This data is used by Circonus Support when
+troubleshooting issues.

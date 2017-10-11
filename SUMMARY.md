@@ -35,6 +35,7 @@
     * [Features](irondb-relay.md#features)
     * [Installation](irondb-relay.md#installation)
     * [Configuration](irondb-relay.md#configuration)
+    * [Operations Dashboard](irondb-relay.md#operations-dashboard)
 * [Graphite Rendering](graphite-rendering.md)
     * [Searching for Metric Names](graphite-rendering.md#searching-for-metric-names)
     * [Retrieving Datapoints](graphite-rendering.md#retrieving-datapoints)

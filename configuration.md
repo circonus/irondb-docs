@@ -406,7 +406,7 @@ Default: 1 day
 
 #### raw_database conflict_resolver
 
-When a metric gets written more than one time at the same exact millisecond
+When a metric gets written more than one time at the exact millisecond
 offset you have a conflict we have to resolve. All operations in IRONdb are
 commutative and this lets us avoid complicated consensus algorithms for data.
 Conflicts, therefore, need to choose a winner and this choice needs to be
@@ -418,7 +418,8 @@ millisecond.
 * `last_abs_biggest` - if used with the [IRONdb-relay](irondb-relay.md)
   aggregation capabilities the datapoints can track a generation counter. This
   resolver considers the generation of the datapoint and then uses the largest
-  by absolute value if the generations collide.
+  by absolute value if the generations collide. If you are not using the relay,
+  this will fall back to the same behavior as `abs_biggest`.
 * `abs_smallest` - save the smallest by absolute value.
 * `last_abs_smallest` - same as `last_abs_biggest` but smallest instead.
 * `last_biggest` - same as `last_abs_biggest` but uses the largest without
