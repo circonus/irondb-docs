@@ -398,7 +398,7 @@ There are 2 modules provided with IRONdb-relay:
     >matching rows *are* seen the aggregation window is updated with the new
     >values and the record is re-sent to IRONdb. To control the behavior of
     >conflicts within the database when this happens please see
-    >the [conflict resolution](configuration.md#conflict_resolution) section of
+    >the [conflict resolver](configuration.md#rawdatabase-conflictresolver) section of
     >the IRONdb configuration.
     
 ### send
