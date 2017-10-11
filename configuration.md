@@ -359,6 +359,7 @@ configuration.
               min_delete_age="3d"
               delete_after_quiescent_age="12hr"
               max_clock_skew="1d"
+              conflict_resolver="abs_biggest"
 />
 ```
 
@@ -402,6 +403,33 @@ Allow the submission of metrics timestamped up to this amount of time in the
 future, to accommodate clients with incorrect clocks.
 
 Default: 1 day
+
+#### raw_database conflict_resolver
+
+When a metric gets written more than one time at the same exact millisecond
+offset you have a conflict we have to resolve. All operations in IRONdb are
+commutative and this lets us avoid complicated consensus algorithms for data.
+Conflicts, therefore, need to choose a winner and this choice needs to be
+consistent across the cluster. IRONdb gives you the following choices for
+conflict resolution should a datapoint appear more than once at the same
+millisecond.
+
+* `abs_biggest` - save the largest by absolute value.
+* `last_abs_biggest` - if used with the [IRONdb-relay](irondb-relay.md)
+  aggregation capabilities the datapoints can track a generation counter. This
+  resolver considers the generation of the datapoint and then uses the largest
+  by absolute value if the generations collide.
+* `abs_smallest` - save the smallest by absolute value.
+* `last_abs_smallest` - same as `last_abs_biggest` but smallest instead.
+* `last_biggest` - same as `last_abs_biggest` but uses the largest without
+  absolute value.
+* `last_smallest` - same as last but smallest.
+* `biggest` - the larger value without absolute.
+* `smallest` - the smaller value without absolute.
+
+This setting should be the same on all nodes of the IRONdb cluster.
+
+Default: "abs_biggest"
 
 ### journal
 
