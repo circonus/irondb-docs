@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.10.4
+2017-10-12
+
+ * Fixes for reconstitute status handling.
+ * Fix use-after-free in graphite GET path.
+
+Documentation changes:
+ * Add documentation for [irondb-relay](irondb-relay.md), a cluster-aware carbon-relay/carbon-c-relay replacement.
+ * Merge content for deleting numeric metrics and entire checks.
+
 ## Changes in 0.10.3
 2017-10-06
 
