@@ -1,5 +1,19 @@
 # Changelog
 
+## Changes in 0.10.5
+2017-10-24
+
+ * Eliminate lock contention on a hot path when debugging is not enabled.
+ * Correct a logic error in choosing the most up-to-date node when proxying.
+ * Fix escaped wildcard queries when proxy-querying leaf nodes.
+ * Log-and-skip rather than crash on flatbuffer read errors.
+ * Crash fix for stack underflow.
+ * Several whisper2nnt fixes:
+   * Retry submissions when a connection to IRONdb is reset.
+   * Sort output before submitting to IRONdb, avoids rewinding epoch on numeric data files.
+   * New arguments to help with debugging: `--debug`, `--noop`
+ * Includes [libmtev fix](https://github.com/circonus-labs/libmtev/pull/328) for a startup issue with file permissions.
+
 ## Changes in 0.10.4
 2017-10-12
 
