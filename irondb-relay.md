@@ -100,7 +100,7 @@ environment variables or via command-line arguments. A mix of environment
 variables and arguments is permitted, but environment variables take precedence
 over command-line arguments. Use the `-h` option to view a usage summary:
 
-    Usage: Usage: setup-irondb-relay [-h] -c <check-name> -u <check-uuid> -B <addr:port>[,<addr:port>,...]
+    Usage: setup-irondb-relay [-h] -c <check-name> -u <check-uuid> -B <addr:port>[,<addr:port>,...]
            [-d] [-b (on|off)]
       -c <check-name>       : Graphite check name
       -u <check-uuid>       : Graphite check UUID
