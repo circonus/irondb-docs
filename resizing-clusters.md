@@ -11,6 +11,11 @@ These procedures utilize the IRONdb [REST API](api.md) which, by default,
 listens on TCP port 8112. See the [Rebalancing APIs
 reference](rebalance-apis.md) for details on the endpoints mentioned below.
 
+## Caveats
+
+These procedures cannot be used to transform a cluster with no sides into a
+sided cluster, or vice versa.
+
 ## Adding Nodes
 
 An existing IRONdb cluster has two nodes with write factor of 2. A new node is
