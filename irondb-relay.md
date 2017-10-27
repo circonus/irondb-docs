@@ -29,16 +29,8 @@ Installation
 ================
 
 IRONdb-relay requires one of the following operating systems:
-* RHEL/CentOS, version 7.x.
+* RHEL/CentOS, version 6.x, 7.x.
 * Ubuntu 16.04 LTS.
-
-Additionally, IRONdb-relay requires the [ZFS](http://open-zfs.org/) filesystem.
-This is available natively on Ubuntu, but for EL7 installs, you will
-need to obtain ZFS from
-the [ZFS on Linux](https://github.com/zfsonlinux/zfs/wiki/Getting-Started)
-project. The setup script expects a zpool to exist, but you do not need to
-create any filesystems or directories ahead of time. Please refer to the
-appendix [ZFS Setup Guide](/zfs-guide.md) for details and examples.
 
 The following network protocols and ports are utilized. These are defaults and
 may be changed via configuration files.
@@ -57,9 +49,13 @@ Use the same software source as
 the [IRONdb installation](installation.md#configure-software-sources) for EL7 or
 Ubuntu.
 
+For EL6, use the same config as EL7 but replace `7` with `6` in the `baseurl`
+for `[circonus]` and replace `el7` with `el6` in the `baseurl` for
+`[circonus-crash-reporting]`
+
 ### Install Package
 
-* (EL7) `/usr/bin/yum install circonus-platform-irondb-relay`
+* (EL6, EL7) `/usr/bin/yum install circonus-platform-irondb-relay`
 
 * (Ubuntu) `/usr/bin/apt-get install circonus-platform-irondb-relay`
 
@@ -104,8 +100,8 @@ environment variables or via command-line arguments. A mix of environment
 variables and arguments is permitted, but environment variables take precedence
 over command-line arguments. Use the `-h` option to view a usage summary:
 
-    Usage: ./setup-irondb-relay [-h] -c <check-name> -u <check-uuid> -B <irondb-node-list> [-d]
-           [-b (on|off)] [-z <zpool>] 
+    Usage: Usage: setup-irondb-relay [-h] -c <check-name> -u <check-uuid> -B <addr:port>[,<addr:port>,...]
+           [-d] [-b (on|off)]
       -c <check-name>       : Graphite check name
       -u <check-uuid>       : Graphite check UUID
       -d                    : Use durable delivery to IRONdb
@@ -114,7 +110,7 @@ over command-line arguments. Use the `-h` option to view a usage summary:
       -h                    : Show usage summary
 
     Example:
-      ./setup-irondb-relay -c foo -u f2eaa1b7-f7e8-41bd-9e8d-e52d43dc88b0 -d -B 10.1.13.1:8112,10.1.13.2:8112 -b on
+      setup-irondb-relay -c foo -u f2eaa1b7-f7e8-41bd-9e8d-e52d43dc88b0 -d -B 10.1.13.1:8112,10.1.13.2:8112 -b on
 
 The setup script will configure your IRONdb-relay instance and start the
 service. See the [Graphite Ingestion](./graphite-ingestion.md) section for
