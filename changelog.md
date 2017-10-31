@@ -1,5 +1,18 @@
 # Changelog
 
+## Changes in 0.10.6
+2017-10-31
+
+ * Increased parallelism in metric_name_db maintenance
+ * whisper2nnt: include in submission those archives with a period coarser than the minimum
+ * whisper2nnt: re-raise exception after two consecutive submission failures
+ * Better error handling for topology loading failures
+ * Several memory-related bug fixes
+
+Documentation changes:
+ * The IRONdb Relay installer no longer insists on ZFS, and creates directories instead.
+ * Explicitly document that cluster resize/rebalance does not support changes to "sidedness". A new cluster and full reconstitute is required for changing to/from a sided cluster.
+
 ## Changes in 0.10.5
 2017-10-24
 
