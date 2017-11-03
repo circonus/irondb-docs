@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.10.7
+2017-11-03
+
+ * Prevent OOM conditions when there are large chunks of new metric\_name\_db values
+ * Pre-populate the metric\_name\_db cache on startup
+ * Replace usage of fnmatch with PCRE, fixing some cases where fnmatch fails
+ * Allow proxied metrics/find queries to utilize the cache
+
 ## Changes in 0.10.6
 2017-10-31
 
