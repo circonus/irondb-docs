@@ -3,7 +3,7 @@
 ## Changes in 0.10.6
 2017-10-31
 
- * Increased parallelism in metric_name_db maintenance
+ * Increased parallelism in metric\_name\_db maintenance
  * whisper2nnt: include in submission those archives with a period coarser than the minimum
  * whisper2nnt: re-raise exception after two consecutive submission failures
  * Better error handling for topology loading failures
@@ -45,7 +45,7 @@ Documentation changes:
 ## Changes in 0.10.2
 2017-10-05
 
- * Another late-breaking fix to speed up writes to the metric_name_db.
+ * Another late-breaking fix to speed up writes to the metric\_name\_db.
 
 ## Changes in 0.10.1
 2017-10-05
@@ -93,13 +93,13 @@ Documentation changes:
 ## Changes in 0.9.8
 2017-09-11
 
- * Optimize JSON processing on metrics_find responses.
- * Additional fixes to timeouts to prevent cascading congestion on metrics_find queries.
+ * Optimize JSON processing on metrics\_find responses.
+ * Additional fixes to timeouts to prevent cascading congestion on metrics\_find queries.
 
 ## Changes in 0.9.7
 2017-09-08
 
- * Fix for potential thundering herd on metrics_find queries
+ * Fix for potential thundering herd on metrics\_find queries
 
 ## Changes in 0.9.6
 2017-09-07
@@ -123,14 +123,14 @@ Documentation changes:
 
  * Fix race condition on Linux with dlopen() of libzfs
  * Crash fix: skip blank metric names during rollup
- * Return the first level of metrics_db properly on certain wildcard queries
+ * Return the first level of metrics\_db properly on certain wildcard queries
  * More efficient Graphite metric parsing
 
 ## Changes in 0.9.2
 2017-08-04
 
  * Improve query read speed when synthesizing rollups from raw data
- * Fix double-free crash in handling of series_multi requests
+ * Fix double-free crash in handling of series\_multi requests
 
 ## Changes in 0.9.1
 2017-08-01
@@ -287,14 +287,14 @@ unreleased
 ## Changes in 0.8.14
 2017-04-19
 
- * Improve replicate_journal message handling.
+ * Improve replicate\_journal message handling.
  * Speed up journal processing.
  * Increase write buffer and block size in raw database to reduce write stalls.
 
 ## Changes in 0.8.13
 2017-04-14
 
- * Reduce CPU usage on journal_reader threads.
+ * Reduce CPU usage on journal\_reader threads.
  * Fix crash during rollup when rewinding the epoch of a data file.
  * Increase default read buffer size for Graphite listener.
  * Use proper libcurl error defines in replication code.
