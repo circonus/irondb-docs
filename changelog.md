@@ -4,10 +4,6 @@
 2017-11-09
 
  * IRONdb now supports listening via the [Pickle protocol](configuration.md#pickle-listener).
- * New configuration files have been added that will activate plugin modules for various functions. These are not currently used, but will drive advanced features in the future. New installations will have these configs included, but existing installs may activate them by adding this line to `irondb.conf`, just below the include of `licenses.conf`:
-```
-<include file="irondb-modules.conf" snippet="true"/>
-```
 
 Multiple `whisper2nnt` changes:
  * Add `--writecount` argument for limiting the number of data points submitted per request
