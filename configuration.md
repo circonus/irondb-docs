@@ -213,6 +213,15 @@ associated with this listener. The first Graphite listener is configured during
   [namespacing](graphite-ingestion.md#namespacing).
 * `account_id` is also part of namespacing, for disambiguation.
 
+#### Pickle listener
+
+The Pickle listener operates a Carbon-compatible submission pathway using the
+[pickle
+format](http://graphite.readthedocs.io/en/latest/feeding-carbon.html#the-pickle-protocol).
+
+Its configuration is identical to the plaintext listener, except the type is `graphite_pickle`.
+
+
 #### CLI listener
 
 ```
