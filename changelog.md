@@ -1,5 +1,21 @@
 # Changelog
 
+## Changes in 0.10.8
+2017-11-09
+
+ * IRONdb now supports listening via the [Pickle protocol](configuration.md#pickle-listener).
+ * New configuration files have been added that will activate plugin modules for various functions. These are not currently used, but will drive advanced features in the future. New installations will have these configs included, but existing installs may activate them by adding this line to `irondb.conf`, just below the include of `licenses.conf`:
+```
+<include file="irondb-modules.conf" snippet="true"/>
+```
+
+Multiple `whisper2nnt` changes:
+ * Add `--writecount` argument for limiting the number of data points submitted per request
+ * Submit to the primary owning node for a given metric
+ * Disable HTTP keepalive
+ * Add `--find_closest_name` parameter. This is needed for sites that do name manipulation via modules in the metric\_name\_db and submit metrics with one name but search on them with another name. For example, a metric would get submitted that resembles `foo.bar_avg` and returned from the metric\_name\_db as `foo.bar`.  Ingestion of whisper data has to use the `foo.bar_avg` name but whisper files on disk do not follow this format.  To combat this a new switch which uses the
+`/graphite/metrics/find` url to lookup an already ingested name based on the whisper name as a prefix and uses that name for metric submission under NNT.
+
 ## Changes in 0.10.7
 2017-11-03
 
