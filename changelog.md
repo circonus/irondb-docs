@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.9
+2017-11-10
+
+ * Fix for crash on extremely long /metrics/find queries
+
 ## Changes in 0.10.8
 2017-11-09
 
