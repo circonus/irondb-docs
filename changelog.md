@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.11
+2017-11-13
+
+ * Disable cache for topology hashes due to live lock
+
 ## Changes in 0.10.10
 2017-11-13
 
