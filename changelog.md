@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.10.10
+2017-11-13
+
+ * Validate incoming /metrics/find queries are well formed
+ * Move query cache to an LFU
+
 ## Changes in 0.10.9
 2017-11-10
 
