@@ -52,11 +52,8 @@ Default: 512
 Libmtev eventer system configuration is included from a separate file controlled
 by the vendor. Changes to this file will be overwritten by package updates.
 
-Details about the included configuration can be found in
-the [libmtev eventer documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
-Specifically, the `ssl_dhparam*_file` configurations are set to null to disable
-automatic Diffie-Hellman parameter generation at startup. IRONdb does not
-utilize TLS by default, though this capability is present in libmtev.
+Details about the included configuration can be found in the
+[libmtev eventer documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
 
 ### irondb-modules
 
