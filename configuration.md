@@ -441,6 +441,32 @@ This setting should be the same on all nodes of the IRONdb cluster.
 
 Default: "abs_biggest"
 
+### metric_name_database
+
+```
+<metric_name_database location="/irondb/metric_name_db/{node}"
+              query_cache_size="1000"
+	      query_cache_timeout="900"
+/>
+```
+
+The database of stored metric names.  This database is used to satisfy graphite /metrics/find
+queries.  By default, this database will cache 1000 queries for 900 seconds.  Any newly
+arriving metric names will invalidate the cache so subsequent queries are correct.
+
+#### metric_name_database location
+
+The location on disk where the database files reside
+
+#### metric_name_database query_cache_size
+
+The number of incoming /metrics/find queries to cache the results for.
+
+#### metric_name_database query_cache_timeout
+
+The number of seconds that cached queries should remain in the cache before being 
+expired.
+
 ### journal
 
 ```
