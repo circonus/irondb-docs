@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.10.12
+2017-11-15
+
+ * Lock free cache for topology hashes
+ * Fix graphite response when we have no data for a known metric name
+
 ## Changes in 0.10.11
 2017-11-13
 
