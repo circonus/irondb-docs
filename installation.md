@@ -72,6 +72,36 @@ systemd service to do it, or you can create a custom
 [tuned](http://servicesblog.redhat.com/2012/04/16/tuning-your-system-with-tuned/)
 profile containing a `[vm]` section that sets `transparent_hugepages=never`.
 
+#### Linux: Raise Open File Limit
+
+IRONdb will open one file per rollup period, per unique metric name when
+creating rollups, and keep the open filehandles in a
+[cache](configuration.md#cache).
+
+By default there are four [rollup periods](configuration.md#rollups), and Linux
+defaults `nr_open` to a little over 1 million, so a system with 250K unique
+streams and the default rollup set would be reaching the limit.
+
+Consider raising the `nr_open` limit to at least `4 * max_streams` as noted in
+your IRONdb license. You should also adjust your [cache
+size](configuration.md#cache-size) to match `max_streams`.
+
+For example, to increase the limit to 2 million:
+
+```
+echo 2000000 > /proc/sys/fs/nr_open
+```
+
+If you change the number of rollup periods in `irondb.conf` you may wish to
+revisit this setting.
+
+To make the change persistent, add a line like this to `/etc/sysctl.conf`,
+using your desired value.
+
+```
+fs.nr_open = 2000000
+```
+
 #### OmniOS: Enable Highres Tick
 
 Raise the system clock rate from the default 100 Hz to 1000 Hz. This lowers
