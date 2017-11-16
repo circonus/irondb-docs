@@ -15,7 +15,7 @@ familiar with to best utilize your server hardware with ZFS.
 
 References:
 * [OpenZFS Administration](http://open-zfs.org/wiki/System_Administration)
-* [ZFS on Linux RHEL setup](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS)
+* [ZFS on Linux RHEL setup](https://github.com/zfsonlinux/zfs/wiki/RHEL-and-CentOS)
 * [ZFS: The Last Word in Filesystems](https://wiki.illumos.org/download/attachments/1146951/zfs_last.pdf)
   Old but still largely relevant presentation introducing ZFS, from Sun Microsystems
 
@@ -47,13 +47,13 @@ They are not kept in the traditional `/etc/fstab` file.
 ## Obtaining ZFS Packages
 
 ### RHEL and CentOS
-Follow the [RHEL & CentOS](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS)
+Follow the [RHEL & CentOS](https://github.com/zfsonlinux/zfs/wiki/RHEL-and-CentOS)
 getting-started guide. The kABI-tracking kmod version is the easiest to manage,
 as there is nothing to compile, and it is designed to work with the stock EL7
 kernels.
 
 Additionally, be sure to run the [systemd
-update](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS#systemd-update)
+update](https://github.com/zfsonlinux/zfs/wiki/RHEL-and-CentOS#systemd-update)
 after installing the packages. This will ensure that the ZFS pool will be
 imported properly on boot.
 

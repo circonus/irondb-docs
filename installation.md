@@ -9,11 +9,10 @@ IRONdb requires one of the following operating systems:
 
 Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This
 is available natively on OmniOS and Ubuntu, but for EL7 installs, you will need
-to obtain ZFS from the [ZFS on
-Linux](https://github.com/zfsonlinux/zfs/wiki/Getting-Started)
-project. The setup script expects a zpool to exist, but you do not need to
-create any filesystems or directories ahead of time. Please refer to the
-appendix [ZFS Setup Guide](/zfs-guide.md) for details and examples.
+to obtain ZFS from the [ZFS on Linux](http://zfsonlinux.org) project. The setup
+script expects a zpool to exist, but you do not need to create any filesystems
+or directories ahead of time. Please refer to the appendix [ZFS Setup
+Guide](/zfs-guide.md) for details and examples.
 
 Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
 
