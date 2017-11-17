@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.13
+2017-11-17
+
+ * Fix potential double free crash upon query cache expiry
+
 ## Changes in 0.10.12
 2017-11-15
 
