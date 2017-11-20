@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.10.14
+2017-11-20
+
+ * Allow config driven control over the concurrency of the data_read_jobq
+ * Short circuit local data read jobs if the timeout has elapsed
+ * Add all hidden stats to internal UI tab
+
 ## Changes in 0.10.13
 2017-11-17
 
