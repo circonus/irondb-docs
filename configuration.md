@@ -265,6 +265,7 @@ Default: mtev_console
   <rollup concurrency="1"/>
   <nnt_put concurrency="16"/>
   <raw_writer concurrency="4"/>
+  <raw_reader concurrency="16"/>
   <rest_graphite_numeric_get concurrency="4"/>
   <rest_graphite_find_metrics concurrency="4"/>
   <rest_graphite_fetch_metrics concurrency="10"/>
@@ -304,10 +305,17 @@ Default: the number of physical CPU cores present during installation
 #### pools raw_writer concurrency
 
 The number of threads used for writing to the raw metrics database.
-Additionally, IRONdb will use 4x this number of threads for reading from the
-raw metrics database.
+Additionally, by default, IRONdb will use 4x this number of threads for reading
+from the raw metrics database.
 
 Default: 4
+
+#### pools raw_reader concurrency
+
+The number of threads used for reading from the raw metrics database.
+
+Default: (raw_writer concurrency * 4)
+
 
 #### pools rest_graphite_numeric_get concurrency
 
