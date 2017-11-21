@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.15
+2017-11-21
+
+ * More aggressively load shed by forcing local data fetch jobs to obey timeouts
+
 ## Changes in 0.10.14
 2017-11-20
 
