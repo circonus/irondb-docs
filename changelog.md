@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.10.16
+2017-11-27
+
+ * New rocksdb library version 5.8.6
+
 ## Changes in 0.10.15
 2017-11-21
 
