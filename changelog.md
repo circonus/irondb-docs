@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.10.17
+2017-12-05
+
+ * Restore fdatasync behavior from rocksdb 4.5.1 release
+ * Move rollups to their own jobq so as to not interfere with normal reads
+ * Implement fair job queueing for reads so large read jobs cannot starve out other smaller reads
+
 ## Changes in 0.10.16
 2017-11-27
 
