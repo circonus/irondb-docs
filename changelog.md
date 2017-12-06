@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.10.18
+2017-12-06
+
+ * Fix crash in fair queueing
+ * Finish moving rollups to their own jobq
+
 ## Changes in 0.10.17
 2017-12-05
 
