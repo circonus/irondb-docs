@@ -151,16 +151,28 @@ as the main package.
 Prepare site-specific information for setup. These values may be set via shell environment variables, or as arguments to the setup script. The environment variables are listed below.
    * ##### IRONDB\_NODE\_UUID
 
-     *\(required\)* The ID of the current node, which must be unique within a given cluster. You may use the `uuidgen` command that comes with your OS, or generate a UUID with an external tool or website.
+     *\(required\)* The ID of the current node, which must be unique within a
+given cluster. You may use the `uuidgen` command that comes with your OS, or
+generate a UUID with an external tool or website. Note that this must be a
+_lowercase_ UUID. The `uuidgen` tool on some systems, notably MacOS, produces
+uppercase. Setup will warn and convert the UUID to lowercase.
+
    * ##### IRONDB\_NODE\_ADDR
 
      *\(required\)* The IPv4 address of the current node, e.g., "192.168.1.100".
+
    * ##### IRONDB\_CHECK\_UUID
 
-     *\(required\)* Check ID for Graphite metric ingestion, which must be the same on all cluster nodes. You may use the `uuidgen` command that comes with your OS, or generate a UUID with an external tool or website.
+     *\(required\)* Check ID for Graphite metric ingestion, which must be the
+same on all cluster nodes. You may use the `uuidgen` command that comes with
+your OS, or generate a UUID with an external tool or website. Note that this
+must be a _lowercase_ UUID. The `uuidgen` tool on some systems, notably MacOS,
+produces uppercase. Setup will warn and convert the UUID to lowercase.
+
    * ##### IRONDB\_CHECK\_NAME
 
      *\(required\)* The string that will identify Graphite-compatible metrics stored in the check identified by `IRONDB_CHECK_UUID`. For example, if you submit a metric named "my.metric.1", and the check is named "test", the resulting metric name in IRONdb will be "graphite.test.my.metric.1".
+
    * ##### IRONDB\_CRASH\_REPORTING
 
      *\(optional\)* Control enablement of automated crash reporting. Default is "on". IRONdb utilizes sophisticated crash tracing technology to help diagnose errors. Enabling crash reporting requires that the system be able to connect out to the Circonus reporting endpoint: https://circonus.sp.backtrace.io:6098 . If your site's network policy forbids this type of outbound connectivity, set the value to "off".
@@ -267,7 +279,11 @@ The following is an example of using the [AWS command-line client](https://aws.a
         --security-group-ids sg-00000000 \
         --user-data file://my-user-data
 
-IRONdb instances can take up to 5 minutes to become available. Once you have launched your instance, you can find a log of the initial setup at `/root/irondb-setup.log`. Depending on the speed of your instance, setup may still be in progress when you first log in. Check the setup log for a `SETUP COMPLETE` message.
+IRONdb instances can take up to 5 minutes to become available. Once you have
+launched your instance, you can find a log of the initial setup at
+`/var/log/irondb-setup.log`. Depending on the speed of your instance, setup may
+still be in progress when you first log in. Check the setup log for a `SETUP
+COMPLETE` message.
 
 ### Cluster Configuration
 
@@ -325,6 +341,7 @@ The resulting temporary config looks like this:
     </nodes>
 
 ** There are a few important considerations for IRONdb cluster topologies: **
+ * UUIDs must be lowercase.
  * The values of `id`, `port`, and `weight`, as well as the ordering of the `<node>` stanzas are used in calculating a unique hash that identifies the topology to the system. Changing any of these on a previously configured node will invalidate the topology and cause the node to refuse to start.
  * The node address may be changed at any time without affecting the validity of the topology.
  * If a node fails, its replacement should keep the same UUID, but it can have a different IP address.
