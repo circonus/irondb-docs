@@ -1,5 +1,22 @@
 # Changelog
 
+## Changes in 0.10.19
+2017-12-18
+
+ * Improve rollup speed by iterating in a more natural DB order, with
+   additional parallelization.
+ * The `setup-irondb` script will now log its output, in addition to stdout. It
+   will log to `/var/log/irondb-setup.log` and if run multiple times will keep
+   up to five (5) previous logs.
+ * The [snowthimport](installation.md#import-topology) tool will now fail
+   with an error if the topology input file contains any node IDs with
+   uppercase letters.
+
+Documentation changes:
+ * Note that all supplied UUIDs during initial setup and cluster configuration
+   should be lowercase. If uppercase UUIDs are supplied, they will be
+   lowercased and a warning logged by setup.
+
 ## Changes in 0.10.18
 2017-12-06
 
