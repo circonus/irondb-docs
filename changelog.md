@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.11
+2018-01-12
+
+ * Store rollup data in a new format yielding better performance on insert and rollup (NNTBS)
+ * Performance improvements for lua extensions
+ * Reduce logging to error sink
+ * Many smaller fixes and improvements
+
 ## Changes in 0.10.19
 2017-12-18
 
