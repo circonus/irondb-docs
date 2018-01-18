@@ -1,12 +1,30 @@
 # Changelog
 
+## Changes in 0.11.2
+2018-01-18
+
+ * Crash fix for rollup code
+ * Lock fix for conversion code
+ * **Changes for new installations** - new installations will have different defaults
+   for <raw_database> settings:
+	* "granularity" goes from 1 day to 1 week.
+	* "min_delete_age" goes from 3 days to 4 weeks.
+	* "delete_after_quiescent_age" goes from 12 hours to 2 hours.
+	* "rollup_strategy" was added.
+   It is fine to mix new nodes installed with these settings with older
+   nodes who have the older settings.  It is *not* fine to change these
+   settings on an existing installation.
+
+Documentation changes:
+ * Describe "rollup_strategy" in the <raw_database> config
+
 ## Changes in 0.11.1
 2018-01-18
 
  * Fixes for NNTBS
  * Add NNTBS stats to admin UI
  * Various smaller fixes
-	
+
 ## Changes in 0.11
 2018-01-12
 
@@ -14,6 +32,7 @@
  * Performance improvements for lua extensions
  * Reduce logging to error sink
  * Many smaller fixes and improvements
+ * Dropped support for OmniOS (RIP)
 
 ## Changes in 0.10.19
 2017-12-18
