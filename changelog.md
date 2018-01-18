@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.11.1
+2018-01-18
+
+ * Fixes for NNTBS
+ * Add NNTBS stats to admin UI
+ * Various smaller fixes
+	
 ## Changes in 0.11
 2018-01-12
 
