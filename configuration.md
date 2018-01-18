@@ -377,6 +377,7 @@ configuration.
               delete_after_quiescent_age="12hr"
               max_clock_skew="1d"
               conflict_resolver="abs_biggest"
+              rollup_strategy=""
 />
 ```
 
@@ -448,6 +449,17 @@ millisecond.
 This setting should be the same on all nodes of the IRONdb cluster.
 
 Default: "abs_biggest"
+
+#### raw_database rollup_strategy
+
+Control how rollups are performed.  By default the lowest level rollup 
+is computed and then IRONdb will read this lowest level data and compute 
+higher level rollups.  If you set this to "raw_iterator", the re-read
+is skipped and all levels of rollup are calculated from the raw data
+as it is iterated.
+
+Default: ""
+
 
 ### metric_name_database
 
