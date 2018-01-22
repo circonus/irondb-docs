@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.11.4
+2018-01-22
+
+ * Fix for iterator re-use in error edge case
+
 ## Changes in 0.11.3
 2018-01-22
 
