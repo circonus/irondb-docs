@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.11.3
+2018-01-22
+
+ * Safety fix for rollup code
+ * Corruption fix on hard shutdown or power loss
+
 ## Changes in 0.11.2
 2018-01-18
 
