@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.11.5
+2018-01-23
+
+ * Yield during reconstitute/rebalance inside NNTBS to prevent starvation of other ops
+
 ## Changes in 0.11.4
 2018-01-22
 
