@@ -2,9 +2,9 @@
 
 In contrast to the other submission APIs ([numeric](./write-nnt.md),
 [text](./write-text.md), [histogram](./write-histogram.md)), which accept
-pre-rolled data, the raw API accepts direct input of metric records at
-arbitrary frequencies. It stores every metric data point as it was received,
-for a configurable amount of time, before aging it out to a rollup format.
+specifically-typed data, the raw API accepts direct input of measurement data
+at arbitrary frequencies. It stores every measurement as it was received, for a
+configurable amount of time, before aging it out to a rollup format.
 
 Metric records are in one of several formats, and are accepted as either
 tab-separated values or as FlatBuffer messages.
@@ -36,6 +36,9 @@ same operation, separated by newline (`\n`).
 
 *TIMESTAMP* : An epoch timestamp recording the time of the observation, with
 milliseconds. In terms of format, it is `%lu.%03lu`, i.e., `1516820826.120`.
+**While this might look like a float,** it is, in fact, a strict textual format
+that requires exactly three digits after the decimal point. These must always
+be included, even if they are `000`.
 
 *UUID* : An identifier of the account and check to which this metric belongs.
 Despite its name, this identifier must be in the form:
@@ -65,12 +68,17 @@ naming is "name\`subname\`subsubname\`etc."
 *VALUE* : The value observed. `VALUE` is always a string or `[[null]]` (never
  encoded/packed).
 
+**NOTE:** Numeric measurements which collide on TIMESTAMP/UUID/NAME will store
+the largest absolute value for that time period, by default. This behavior is
+[configurable](../configuration.md#rawdatabase-conflictresolver).
+
 A sample `M` record:
 ```
 M	1512691226.137	example.com`http`c_123_987654::http`1b988fd7-d1e1-48ec-848e-55709511d43f	duration	I	1
 ```
 This is a metric, `duration`, on account `123`, for the HTTP check
-`1b988fd7-d1e1-48ec-848e-55709511d43f` with a value of `1` (uint32).
+`1b988fd7-d1e1-48ec-848e-55709511d43f` with a TYPE of uint32 (`I`) and a VALUE
+of `1`.
 
 #### TSV Histogram Metrics
 
