@@ -448,3 +448,126 @@ unreleased
 
  * Remove problematic usage of alloca().
  * Add lz4f support to reconstitute.
+
+## Changes in 0.8.11
+2017-04-05
+
+ * Speed up reconstitute through parallel processing.
+
+## Changes in 0.8.10
+2017-04-04
+
+ * Improve throughput via socket and send-buffer tuning fixes.
+ * Fix watchdog timeouts when reloading large metric databases.
+
+## Changes in 0.8.9
+2017-04-03
+
+ * Preserve null termination in metric names for proper duplicate detection.
+
+## Changes in 0.8.8
+2017-03-31
+
+ * Turn off gzip in reconstitute, as testing shows throughput is better without
+   it.
+ * Avoid performing rollups or deletions on a reconstituting node.
+ * Memory leak fixes.
+
+## Changes in 0.8.7
+2017-03-24
+
+ * Performance fixes for reconstitute.
+ * Memory leak fixes.
+
+## Changes in 0.8.6
+2017-03-21
+
+ * Fix internal wildcard queries, and limit Graphite metric names to 256
+   levels.
+
+## Changes in 0.8.5
+2017-03-17
+
+ * Build Graphite responses using `mtev_json` instead of custom strings.
+
+## Changes in 0.8.4
+2017-03-14
+
+ * Set a maximum metric name length on ingestion.
+
+## Changes in 0.8.3
+2017-03-10
+
+ * Various replication fixes.
+ * Fixes for parsing errors and startup crashes.
+
+## Changes in 0.8.2
+2017-03-01
+
+ * Reject Graphite metrics with an encoded length greater than 255.
+
+## Changes in 0.8.1
+2017-02-27
+
+ * Internal testing fixes.
+
+## Changes in 0.8
+2017-02-27
+
+ * De-duplicate proxied requests.
+ * Deal with unparseably large number strings.
+
+## Changes in 0.7
+2017-02-23
+
+ * Add raw ingestion.
+ * Stricter Graphite record parsing.
+ * Memory leak and header-parsing fixes.
+
+## Changes in 0.6
+2017-02-15
+
+ * Better handling of JSON parse errors during reconstitute.
+ * Enable `Accept-Encoding: gzip`, compress outgoing replication POSTs with
+   lz4f.
+ * Optimize UUID comparison to speed up reconstitute.
+
+## Changes in 0.5
+2017-01-31
+
+ * Fix crash from Graphite listener connection handling.
+ * Refactor text metric processing in preparation for raw database.
+
+## Changes in 0.4
+2017-01-16
+
+ * Fix rollup span calculation for Graphite fetches.
+ * Support getting the topology configuration from an included config file.
+
+## Changes in 0.3
+2016-12-29
+
+ * Allow reconstituting of individual data types.
+ * UI fixes for displaying licenses.
+ * Memory leak, crash and hang fixes.
+
+## Changes in 0.2
+2016-11-29
+
+ * Don't recaclulate `counter_stddev` when counter in `NaN`.
+
+## Changes in 0.1
+2016-11-29
+
+ * Add Graphite support.
+
+## Changes in 0.0.2
+2016-11-21
+
+ * Fix issues with various inputs being `NaN`.
+
+## Changes in 0.0.1
+2016-11-17
+
+ * Initial version. Start of "IRONdb" branding of Circonus's internal TSDB
+   implementation.
