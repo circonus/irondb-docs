@@ -32,12 +32,14 @@ data (nnt) will be removed.
 X-Snowth-Delete-Data-Types: nnt,text,histogram
 
 Specific NNT rollup spans may be removed (all spans will be removed if not
-specified), with multiple values comma-separated.
+specified), with multiple values comma-separated. The rollup span(s) must match
+the period values configured in `irondb.conf`, in the `<rollups>` stanza.
 
 X-Snowth-NNT-Delete-Rollups: &lt;rollup\_span\_in\_seconds&gt;
 
 Specific histogram rollup spans may be removed (all spans will be removed if not
-specified), with multiple values comma-separated.
+specified), with multiple values comma-separated. The rollup span(s) must match
+the period values configured in `irondb.conf`, in the `<histogram>` stanza.
 
 X-Snowth-Histogram-Delete-Rollups: &lt;rollup\_span\_in\_seconds&gt;
 
