@@ -91,6 +91,7 @@
         * [Deleting Text Data for a Check](api/delete-text-check.md)
         * [Deleting Histogram Data for a Metric](api/delete-histogram.md)
         * [Deleting Histogram Data for a Check](api/delete-histogram-check.md)
+        * [Deleting All Data Prior to a Date](api/delete-sweep.md)
     * [Lua Extensions APIs](lua-extensions-apis.md)
         * [Getting List of Lua Extensions](api/extension-lua.md)
         * [Executing a Lua Extension](api/extension-lua-script.md)
