@@ -30,8 +30,8 @@ standalone maintenance flags for use with -i
         -r text/metrics         repair text inventory
         -r text/changelog       repair text datastore
         -r hist/metrics         repair hist inventory
-        -r hist/<period>        repair hist rollups
-        -j                      only write journal data to otther nodes
+        -r hist/<period>        repair hist rollup for configured <period>
+        -j                      only write journal data to other nodes
 
 optional behavior flags:
         -c <file>               load config from <file> (full path)
@@ -116,9 +116,11 @@ Repair text datastore.
 
 Repair histogram inventory.
 
- * `-r hist/rollups`
+ * `-r hist/<rollup>`
 
-Repair histogram rollups.
+Repair a histogram rollup. The value is one of the existing histogram rollup
+periods from the config file, e.g., `hist/60` to repair the 1-minute histogram
+rollups.
 
  * `-j`
 
