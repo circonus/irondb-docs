@@ -5,6 +5,7 @@
 Documentation changes:
  * Add new section on the `sweep_delete` API, useful for implementing retention
    policies
+ * Add page documenting `snowthd` command-line options.
 
 ## Changes in 0.11.5
 2018-01-23
