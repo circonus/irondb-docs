@@ -46,8 +46,8 @@ optional behavior flags:
 
 reconstitute parameters:
         -B                      Reconstitute mode
-        -T <topo_hash>          Reconstitute from remote topology
-        -O <ip>[:<port>]        Reconstitute from remote host
+        -T <topo_hash>          Reconstitute new cluster from remote topology
+        -O <ip>[:<port>]        Source node for new cluster bootstrap
         -A [<type>[,<type>]]    Reconstitute type
                                 Acceptable values: nnt,text,hist,raw,metrics
                                 All if omitted
@@ -192,8 +192,10 @@ from an existing one.
 
  * `-O <ip>[:<port>]`
 
-Reconstitute from this remote/foreign node. Used when creating a new cluster
-from an existing one.
+Bootstrap remote reconstitute from this node in the source cluster. Used when
+creating a new cluster from an existing one. The reconstituting node will fetch
+information about the source cluster's topology from this node, but actual
+metric data will be fetched from all source cluster nodes.
 
  * `-A [<type>]`
 
