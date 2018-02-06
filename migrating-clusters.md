@@ -40,12 +40,14 @@ there is, remove it with the following command:
 rm -f /irondb/logs/snowth.lock
 ```
 1. Note the topology hash from the source cluster. This is the value of the
-`active` attribute in `/opt/circonus/etc/topology.conf`. The hash will be
-referred to below as `<topo_hash>`.
+`active` attribute in `/opt/circonus/etc/topology.conf` on one of the source
+cluster's nodes. The hash will be referred to below as
+`<source_cluster_topo_hash>`.
 1. Run IRONdb in reconstitute mode using the following command:
 ```
-/opt/circonus/bin/irondb-start -B -E -T <topo_hash> -O
-<source_cluster_node_ip>:<port>
+/opt/circonus/bin/irondb-start -B -E \
+  -T <source_cluster_topo_hash> \
+  -O <source_cluster_node_ip>:<port>
 ```
 where the argument to `-O` is the IP address and port of a node in the source
 cluster. The port is the cluster API port, typically 8112. The reconstitute
@@ -56,17 +58,18 @@ metric stream.
 1. Wait until the reconstitute operation has fetched 100% of its data from
 the source cluster. You can access the current percentage done at:
 ```
-http://<node ip address>:<node port>/stats.json
+http://<node ip address>:<node port>/
 ```
-within the "reconstitute" section. Note that there may not be messages
-appearing on the console while this runs. This is normal; do not stop the
-reconstitute. Current progress will be saved - if the process stops for any
-reason, everything should pick back up approximately where it was. If the
-download stops partway for any reason, you may resume it with the following
-command:
+In reconstitute mode, the normal UI is replaced with a special one giving
+reconstitute status. Note that there may not be messages appearing on the
+console while this runs.  This is normal; do not stop the reconstitute. Current
+progress will be saved - if the process stops for any reason, everything should
+pick back up approximately where it was. If the download stops partway for any
+reason, you may resume it with the following command:
 ```
-/opt/circonus/bin/irondb-start -B -T <topo_hash> -O
-<source_cluster_node_ip>:<port>
+/opt/circonus/bin/irondb-start -B \
+  -T <source_cluster_topo_hash> \
+  -O <source_cluster_node_ip>:<port>
 ```
 1. Once the reconstituting node has retrieved all of its data, you will see the
 following on the console:
