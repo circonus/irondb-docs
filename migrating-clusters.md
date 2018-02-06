@@ -34,9 +34,6 @@ the following steps to reconstitute each of the new nodes from the source
 cluster.
 
 1. [Disable the service](/operations.md#service-management)
-1. Make note of this node's topology UUID, found in the [imported
-topology](installation.md#import-topology).  The node UUID will be referred to
-below as `<node_id>`.
 1. Make sure there is no lock file located at `/irondb/logs/snowth.lock`. If
 there is, remove it with the following command:
 ```
