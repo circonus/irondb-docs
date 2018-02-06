@@ -58,6 +58,7 @@
     * [Growing or Shrinking the Cluster](resizing-clusters.md)
       * [Adding Nodes](resizing-clusters.md#adding-nodes)
       * [Removing Nodes](resizing-clusters.md#removing-nodes)
+    * [Migrating to a New Cluster](/migrating-clusters.md)
     * [Command Reference](command-line-options.md)
 * [API Guide](api.md)
     * [State and Topology APIs](state-and-topology-apis.md)
