@@ -367,6 +367,35 @@ good granularity. If you do not require this much resolution when viewing
 historic data you can eliminate the finer-grained rollups from your
 configuration.
 
+### nntbs
+```
+<nntbs path="/irondb/nntbs/{node}">
+  <shard period="60" size="1d" />
+  <shard period="300" size="5d" />
+  <shard period="1800" size="30d" />
+  <shard period="10800" size="180d" />
+</nntbs>
+```
+
+NNTBS is an optional more efficient rollup storage engine for data once it proceeds
+past the [raw database](#rawdatabase).  If you don't have an `<nntbs>` stanza in your
+config file, normal file based storage of NNT data will be used instead.
+
+> All new installations will come with NNTBS on by default.
+
+The `<shard>` options should match the periods defined in the [rollups section](#rollups).
+For each `period` we are defining how much time each chunk of data should cover before creating
+a new chunk. The minimum size for a shard is `127 * period`; for a 60 second period this would 
+be `7620` seconds.  Whatever period you provide here will be rounded up to that multiple.  If
+I provided `1d` as in the defaults above I would actually get `91440` seconds instead of `86400`.
+
+> NOTE: for installations with high a cardinality of metric names you will want to reduce
+> these `size` parameters to keep the shards small to ensure performance remains consistent.
+
+Whatever settings are chosen here cannot be changed after the database starts writing data
+into NNTBS.  If you change you mind about sizing you will have to wipe and reconstitute
+each node in order to apply new settings.
+
 ### raw_database
 
 ```
