@@ -1,6 +1,14 @@
 # Changelog
 
+## Changes in 0.11.7
+2018-02-08
+ * Minor fixes for histogram database migration
+
+Documentation changes:
+ * Add new section on `nntbs` configuration
+
 ## Changes in 0.11.6
+2018-02-08
  * NNTBS timesharded implementation
  * Changes for supporting very large reconstitution
  * Do raw database reconstitution in parallel for speed
