@@ -1,6 +1,9 @@
 # Changelog
 
-## TBD
+## Changes in 0.11.6
+ * NNTBS timesharded implementation
+ * Changes for supporting very large reconstitution
+ * Do raw database reconstitution in parallel for speed
 
 Documentation changes:
  * Add new section on the `sweep_delete` API, useful for implementing retention
