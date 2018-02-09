@@ -24,6 +24,7 @@
       * [pools](configuration.md#pools)
       * [raw_database](configuration.md#rawdatabase)
       * [rollups](configuration.md#rollups)
+      * [nntbs](configuration.md#nntbs)
       * [topology](configuration.md#topology)
     * [circonus-watchdog.conf](configuration.md#circonus-watchdogconf)
     * [licenses.conf](configuration.md#licensesconf)
