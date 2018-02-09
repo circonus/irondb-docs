@@ -1,5 +1,9 @@
 # Changelog
 
+## Changes in 0.11.8
+2018-02-09
+ * Minor fix to reduce error logging
+
 ## Changes in 0.11.7
 2018-02-08
  * Minor fixes for histogram database migration
