@@ -3,15 +3,14 @@
 ## System Requirements
 
 IRONdb requires one of the following operating systems:
-* [OmniOS](https://omnios.omniti.com/), version r151014.
 * RHEL/CentOS, version 7.x.
 * Ubuntu 16.04 LTS.
 
 Additionally, IRONdb requires the [ZFS](http://open-zfs.org/) filesystem. This
-is available natively on OmniOS and Ubuntu, but for EL7 installs, you will need
-to obtain ZFS from the [ZFS on Linux](http://zfsonlinux.org) project. The setup
-script expects a zpool to exist, but you do not need to create any filesystems
-or directories ahead of time. Please refer to the appendix [ZFS Setup
+is available natively on Ubuntu, but for EL7 installs, you will need to obtain
+ZFS from the [ZFS on Linux](http://zfsonlinux.org) project. The setup script
+expects a zpool to exist, but you do not need to create any filesystems or
+directories ahead of time. Please refer to the appendix [ZFS Setup
 Guide](/zfs-guide.md) for details and examples.
 
 Hardware requirements will necessarily vary depending upon system scale and cluster size. Please [contact us](./contact.md) with questions regarding system sizing. Circonus recommends the following minimum system specification for the single-node, free, 25K-metrics option:
@@ -39,10 +38,6 @@ IRONdb systems to the limit of your hardware.
 With systems dedicated solely to IRONdb, there is no need for swap space.
 Configuring no swap space during installation is ideal, but you can also
 `swapoff -a` and comment out any swap lines from `/etc/fstab`.
-
-Note: OmniOS users should _not_ disable swap, as the illumos VM system
-works differently and requires anonymous memory and privately-mapped files to
-have (virtual) swap reservations.
 
 #### Linux: Disable Transparent Hugepages
 
@@ -72,26 +67,6 @@ systemd service to do it, or you can create a custom
 [tuned](http://servicesblog.redhat.com/2012/04/16/tuning-your-system-with-tuned/)
 profile containing a `[vm]` section that sets `transparent_hugepages=never`.
 
-#### OmniOS: Enable Highres Tick
-
-Raise the system clock rate from the default 100 Hz to 1000 Hz. This lowers
-latency in many functions and improves IRONdb performance.
-
-Add the following line to `/etc/system` and reboot:
-```
-set hires_tick=1
-```
-
-#### OmniOS: IP Squeue Fanout
-
-Allow TCP/IP connection servicing to be distributed across multiple CPUs. This
-improves throughput and lowers latency for network traffic.
-
-Add the following line to `/etc/system` and reboot:
-```
-set ip:ip_squeue_fanout=1
-```
-
 ## Installation Steps
 
 Follow these steps to get IRONdb installed on your system. If you are using one of our pre-built Amazon EC2 images, **these steps are already done for you**, and your free-25K instance will be configured automatically on first boot. Please refer to [EC2 installation](#ec2-installation) below.
@@ -102,12 +77,6 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 
 Configure package repositories. During the IRONdb beta period, our development
 (aka "pilot") repo is required.
-
-(OmniOS) Add the Circonus IPS package publisher:
-
-    /usr/bin/pkg set-publisher \
-      -g http://updates.circonus.net/omnios/r151014/ \
-      -g http://pilot.circonus.net/omnios/r151014/ circonus
 
 (EL7) Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
 
@@ -133,7 +102,6 @@ Then run `apt-get update`.
 
 ### Install Package
 
-* (OmniOS) `/usr/bin/pkg install pkg:/platform/irondb`
 * (EL7) `/usr/bin/yum install circonus-platform-irondb`
 
 We have a helper package on Ubuntu that works around issues with dependency
@@ -212,7 +180,6 @@ Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/cir
     </licenses>
 
 Restart the IRONdb service:
-* (OmniOS) `/usr/sbin/svcadm restart irondb`
 * (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 
 ## EC2 Installation
@@ -402,7 +369,6 @@ Next, update `/opt/circonus/etc/irondb.conf` and locate the `topology` section, 
     />
 
 Save the file and restart IRONdb:
-* (OmniOS) `/usr/sbin/svcadm restart irondb`
 * (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 
 Repeat the import process on each cluster node.
@@ -418,11 +384,8 @@ The node currently being viewed is always listed in blue, with the other nodes l
 
 An installed node may be updated to the latest available version of IRONdb by following these steps:
 
-OmniOS:
-1. `/usr/bin/pkg update platform/irondb`
-1. `/usr/sbin/svcadm restart irondb`
-
 EL7:
+
 1. `/usr/bin/yum update circonus-platform-irondb`
 1. `/bin/systemctl restart circonus-irondb`
 

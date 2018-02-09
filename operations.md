@@ -13,31 +13,19 @@ are known as "watchdog" events.
 
 ## Service Management
 
-The IRONdb service is called `svc:/circonus/irondb:default` (OmniOS) or `circonus-irondb` (EL7, Ubuntu).
+The IRONdb service is called `circonus-irondb`.
 
-To view service status:
-* OmniOS: `/usr/bin/svcs -lp svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl status circonus-irondb`
+To view service status: `/bin/systemctl status circonus-irondb`
 
-To start the service:
-* OmniOS: `/usr/sbin/svcadm enable svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl start circonus-irondb`
+To start the service: `/bin/systemctl start circonus-irondb`
 
-To stop the service:
-* OmniOS: `/usr/sbin/svcadm disable -t svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl stop circonus-irondb`
+To stop the service: `/bin/systemctl stop circonus-irondb`
 
-To restart the service:
-* OmniOS: `/usr/sbin/svcadm restart svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl restart circonus-irondb`
+To restart the service: `/bin/systemctl restart circonus-irondb`
 
-To disable the service from running at system boot:
-* OmniOS: `/usr/sbin/svcadm disable svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl disable circonus-irondb`
+To disable the service from running at system boot: `/bin/systemctl disable circonus-irondb`
 
-To enable the service to run at system boot:
-* OmniOS: `/usr/sbin/svcadm enable svc:/circonus/irondb:default`
-* EL7, Ubuntu: `/bin/systemctl enable circonus-irondb`
+To enable the service to run at system boot: `/bin/systemctl enable circonus-irondb`
 
 ## Logs
 
@@ -47,21 +35,16 @@ Log files are located under `/irondb/logs` and include the following files:
 
 The access logs are useful to verify activity going to the server in question. Error logs record, among other things, crashes and other errant behavior, and may contain debugging information important for support personnel. The logs are automatically rotated and retained based on configuration attributes in `/opt/circonus/etc/irondb.conf`.
 
-If the child process becomes unstable, verify that the host is not starved for resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's performance. To check for errors on OmniOS run:
-
-    iostat -zxne
-
-You will see an "Errors" section to the right. If you begin to see hardware errors there, this could indicate a disk failure. If in doubt, contact Circonus Support (support@circonus.com) for assistance.
-
-On EL7 and Ubuntu, install the `smartmontools` package and run `/usr/sbin/smartctl -a /dev/sdX`, looking for errors and/or reallocated-sector counts.
+If the child process becomes unstable, verify that the host is not starved for
+resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's
+performance.  Install the `smartmontools` package and run `/usr/sbin/smartctl
+-a /dev/sdX`, looking for errors and/or reallocated-sector counts.
 
 ## Crash Handling
 
 Application crashes are, by default, automatically reported to Circonus, using [Backtrace.io](https://backtrace.io/) technology. When the crash occurs, a tracer program quickly gathers a wealth of detailed information about the crashed process and sends a report to Circonus, in lieu of obtaining a full core dump. 
 
 If you have disabled crash reporting in your environment, you can still enable traditional core dumping.
-
-On OmniOS: `/usr/sbin/coreadm -g /irondb/appcrash/core.%f.%p -e global -e global-setid -e log`
 
 On EL7:
 * Add the following to `/opt/circonus/etc/irondb-node-config`: `ulimit -c unlimited`
@@ -75,9 +58,10 @@ When a process crashes, a core dump will be created in `/irondb/appcrash` with t
 
 ## Debugging Mode
 
-If instability continues, you may run IRONdb as a single process in the foreground, with additional debugging enabled. First, ensure the service is disabled:
-* (OmniOS) `/usr/sbin/svcadm disable irondb`
-* (EL7, Ubuntu) `/usr/bin/systemctl stop circonus-irondb`
+If instability continues, you may run IRONdb as a single process in the
+foreground, with additional debugging enabled.
+
+First, ensure the service is disabled: `/usr/bin/systemctl stop circonus-irondb`
 
 Then, run the following as root:
 
