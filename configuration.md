@@ -104,6 +104,9 @@ epoch-timestamp suffix denoting when they were created:
   to Circonus Support.
   * Rotated: 24 hours
   * Retained: 1 week
+* `/irondb/logs/startuplog`: Additional non-error initialization output.
+  * Rotated: 24 hours
+  * Retained: 1 week
 * `/irondb/logs/accesslog`: Logs from the REST API, including metric writes and
   reads as well as inter-node communication.
   * Rotated: 1 hour
