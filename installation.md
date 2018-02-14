@@ -268,11 +268,17 @@ To configure a multi-node cluster, follow these steps.
 
 #### Determine Cluster Parameters
 
+The number and size of nodes you need is determined by several factors:
+ * Frequency of measurement ingestion
+ * Desired level of redundancy (write copies)
+ * Minimum granularity of rollups
+ * Retention period
+
 The number of write copies determines the number of nodes that can be
 unavailable before metric data become inaccessible. A cluster with `W` write
 copies can survive `W-1` node failures before data become inaccessible.
-Clusters of up to 6 nodes should have a minimum of 2 write copies. Clusters of
-6 or more nodes should have a minimum of 3 write copies, up to a maximum of 10.
+
+See the [appendix on cluster sizing](/cluster-sizing.md) for details.
 
 #### Create Topology Layout
 
