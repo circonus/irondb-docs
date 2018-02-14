@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+Documentation changes:
+ * GET method for `sweep_delete` status.
+
 ## Changes in 0.11.8
 2018-02-09
  * Minor fix to reduce error logging
