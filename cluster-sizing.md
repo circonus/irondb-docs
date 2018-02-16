@@ -36,14 +36,17 @@ The system stores three types of data: text, numeric (statistical aggregates),
 and histograms. Additionally there are two tiers of data storage: near-term and
 long-term. Near-term storage is called the [raw
 database](/configuration.md#rawdatabase) and stores at full resolution (however
-frequently measurements were ingested.) Long-term resolution is determined by
+frequently measurements were collected.) Long-term resolution is determined by
 the [rollup configuration](/configuration.md#rollups).
 
 The default configuration for the raw database is to collect data into shards
-of 1 week, and to retain those shards for 4 weeks before rolling them up into
-long-term storage. At 1-minute resolution, a single numeric stream would
-require approximately 118 KiB per 1-week shard, or 472 KiB total, before being
-rolled up to long-term storage.
+(time buckets) of 1 week, and to retain those shards for 4 weeks before rolling
+them up into long-term storage. At 1-minute collection frequency, a single
+numeric stream would require approximately 118 KiB per 1-week shard, or 472 KiB
+total, before being rolled up to long-term storage.
+
+These numbers represent uncompressed data. With our default LZ4 compression
+setting in ZFS, we see 3.5x-4x compression ratios for numeric data.
 
 The following modeling is based on an observed distribution of all data types,
 in long-term storage, across many clients and may be adjusted from time to
@@ -54,8 +57,7 @@ time. This would be in addition to the raw database storage above.
 | 1 minute | 20,000 bytes | 7,170,000 bytes |
 | 5 minute | 3,800 bytes | 1,386,000 bytes |
 
-These numbers represent uncompressed data. With our default LZ4 compression
-setting in ZFS, we see 3.5x-4x compression ratios for numeric data.
+All sizing above represents uncompressed data.
 
 ## Example
 
@@ -63,15 +65,15 @@ Suppose we want to store 100,000 metric streams at 1-minute resolution for 5
 years.  We'd like to build a 4-node cluster with a `W` value of 2.
 
 ```
-T=100000
+T=100,000
 N=4
 W=2
 
-T * 7170000 (bytes/year/stream) * 5 years = 3585000000000 bytes
+T * 7,170,000 (bytes/year/stream) * 5 years = 3,585,000,000,000 bytes
 
-3585000000000 bytes / (1024^3) = 3338 GiB
+3,585,000,000,000 bytes / (1024^3) = 3338 GiB
 
-T * 483840 (bytes/4 weeks raw/stream) / (1024^3) = 45 GiB
+T * 483,840 (bytes/4 weeks raw/stream) / (1024^3) = 45 GiB
 
 ( (3338+45) * W) / N = 1692 GiB per node
 
