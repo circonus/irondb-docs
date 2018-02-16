@@ -3,6 +3,7 @@
 ## TBD
 
 Documentation changes:
+ * Appendix with cluster sizing recommendations.
  * GET method for `sweep_delete` status.
 
 ## Changes in 0.11.8
