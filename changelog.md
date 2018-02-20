@@ -9,7 +9,21 @@
    improve performance.
  * Add a tool to repair the raw DB if it gets corrupted, as with an unexpected
    system shutdown.
- * Move a few more init log messages from error to startup log.
+
+Configuration changes:
+ * Add a "startup" log to shift certain initialization logs out of the
+   errorlog.
+   * Reduces clutter and makes it easier to see when your instance
+     is up and running.
+   * New installs will have this log enabled by default, written to
+     `/irondb/logs/startuplog` and rotated on the same policy as `errorlog`.
+   * To enable on an existing installation, add this line to
+     `/opt/circonus/etc/irondb.conf`, in the `<logs>` stanza (on a single
+     line):
+     ```
+<log name="notice/startup" type="file" path="/irondb/logs/startuplog"
+timestamps="on" rotate_seconds="86400" retain_seconds="604800"/>
+     ```
 
 Documentation changes:
  * Appendix with cluster sizing recommendations.
