@@ -1,6 +1,15 @@
 # Changelog
 
-## TBD
+## Changes in 0.11.9
+2018-02-20
+ * Fix deadlock that can be hit when attempting to delete a shard during heavy
+   read activity.
+ * Use new libmtev `max_backlog` API to shed load under extreme conditions.
+ * Internal RocksDB tuning to reduce memory footprint, reduce file reads and
+   improve performance.
+ * Add a tool to repair the raw DB if it gets corrupted, as with an unexpected
+   system shutdown.
+ * Move a few more init log messages from error to startup log.
 
 Documentation changes:
  * Appendix with cluster sizing recommendations.
