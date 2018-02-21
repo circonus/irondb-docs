@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+Documentation changes:
+ * Note the lazy migration strategy for NNT to NNTBS conversion.
+
 ## Changes in 0.11.9
 2018-02-20
  * Fix deadlock that can be hit when attempting to delete a shard during heavy

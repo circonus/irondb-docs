@@ -399,6 +399,11 @@ Whatever settings are chosen here cannot be changed after the database starts wr
 into NNTBS.  If you change you mind about sizing you will have to wipe and reconstitute
 each node in order to apply new settings.
 
+If NNT files exist when NNTBS is activated, they will be converted to NNTBS
+format the first time they are read, and the NNTBS data will be used to satisfy
+the read request. Once the conversion is complete, the NNT file will be
+deleted.
+
 ### raw_database
 
 ```
