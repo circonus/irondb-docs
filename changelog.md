@@ -1,6 +1,8 @@
 # Changelog
 
-## TBD
+## Changes in 0.11.10
+2018-02-22
+ * More deadlock fixes for timeshard management
 
 Documentation changes:
  * Note the lazy migration strategy for NNT to NNTBS conversion.
