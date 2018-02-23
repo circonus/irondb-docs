@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.11.11
+2018-02-23
+ * Final deadlock fixes for timeshard management
+ * Protect against unparseable json coming back from proxy calls
+
 ## Changes in 0.11.10
 2018-02-22
  * More deadlock fixes for timeshard management
