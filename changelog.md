@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+Documentation changes:
+ * Add NNTBS dataset to reconstitute procedure.
+
 ## Changes in 0.11.11
 2018-02-23
  * Final deadlock fixes for timeshard management

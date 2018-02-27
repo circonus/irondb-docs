@@ -52,6 +52,7 @@ zfs destroy -r $BASE_DATASET/hist
 zfs destroy -r $BASE_DATASET/raw_db
 zfs destroy -r $BASE_DATASET/surrogate_db
 zfs destroy -r $BASE_DATASET/metric_name_db
+zfs destroy -r $BASE_DATASET/nntbs
 ```
  1. Wait for the data to be completely destroyed. To do this, periodically run
 the following command and wait until the value for all pools reads "0".
@@ -66,6 +67,7 @@ zfs create $BASE_DATASET/text
 zfs create -o logbias=throughput $BASE_DATASET/raw_db
 zfs create -o logbias=throughput $BASE_DATASET/surrogate_db
 zfs create $BASE_DATASET/metric_name_db
+zfs create -o recordsize=8K $BASE_DATASET/nntbs
 ```
  1. Run the following commands to make the node-id subdirectories:
 ```
@@ -75,6 +77,7 @@ mkdir /irondb/data/<node_id>
 mkdir /irondb/raw_db/<node_id>
 mkdir /irondb/surrogate_db/<node_id>
 mkdir /irondb/metric_name_db/<node_id>
+mkdir /irondb/nntbs/<node_id>
 ```
  1. Make sure that all the directories are owned by the `nobody` user by
 running the following:
