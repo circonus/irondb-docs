@@ -335,7 +335,16 @@ When you are satisfied that it looks the way you want, copy this file to `/opt/c
 
 ##### Split Clusters
 
-One additional configuration dimension is possible for IRONdb clusters. A cluster may be divided into two "sides", with the guarantee that at least one copy of each stored metric exists on each side of the cluster. This allows for cluster distribution across typical failure domains such as network switches, rack cabinets or physical locations.
+One additional configuration dimension is possible for IRONdb clusters. A
+cluster may be divided into two "sides", with the guarantee that at least one
+copy of each stored metric exists on each side of the cluster. For `W` values
+greater than 2, write copies will be assigned to sides as evenly as possible.
+Values divisible by 2 will have the same number of copies on each side, while
+odd-numbered `W` values will place the additional copy on the same side as the
+primary node for each metric.
+
+This allows for cluster distribution across typical failure domains such as
+network switches, rack cabinets or physical locations.
 
 Split-cluster configuration is subject to the following restrictions:
 

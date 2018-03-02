@@ -4,6 +4,8 @@
 
 Documentation changes:
  * Add NNTBS dataset to reconstitute procedure.
+ * Clarify that in split clusters, write copies are distributed as evenly as
+   possible across both sides.
 
 ## Changes in 0.11.11
 2018-02-23
