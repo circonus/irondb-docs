@@ -23,8 +23,9 @@ mutually exclusive flags:
         -i <uuid>               identify this node
 
 standalone loader flags for use with -i
-        -m                      merge text reconstitution files
-        -H                      merge hist reconstitution files
+        -m                      merge text reconstitution files (deprecated)
+        -H                      merge hist reconstitution files (deprecated)
+        -N                      convert NNT to NNTBS storage
 
 standalone maintenance flags for use with -i
         -r text/metrics         repair text inventory
@@ -83,21 +84,27 @@ nodes.
 
 ## Loader Options
 
-**DEPRECATED**
-
 These options imply foreground operation and perform a specific task, then
 exit. They are only valid in identified mode (`-i`).
 
  * `-m` 
 
-Merge text reconstitution files.
+Merge text reconstitution files. **DEPRECATED**
 
  * `-H`
 
-Merge histogram reconstitution files. 
+Merge histogram reconstitution files. **DEPRECATED**
 
-These options were used in a previous version of the reconstitute process and
-are no longer strictly required. They may be removed in a future version.
+The above 2 options were used in a previous version of the reconstitute process
+and are no longer strictly required. They may be removed in a future version.
+
+ * `-N`
+
+Convert NNT file based storage to NNTBS block based storage. This requires that
+you have configured NNTBS in your IRONdb config file. This will crawl the file
+system for NNT files and convert, then remove the NNT file copy after successful
+conversion.  You can stop and restart at any time and it will run to conversion
+complete, then exit.
 
 ## Maintenance Options
 
