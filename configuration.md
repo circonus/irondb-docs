@@ -404,6 +404,16 @@ format the first time they are read, and the NNTBS data will be used to satisfy
 the read request. Once the conversion is complete, the NNT file will be
 deleted.
 
+Alternatively, you may choose to do a full, offline conversion of NNT to NNTBS
+by using the `-N` [command-line
+option](/command-line-options.md#loader-options). In environments where a large
+portion of the stored metrics are read frequently, the "lazy conversion" mode
+described above may place too much load on the system when combined with normal
+operations. You may wish to use this mode on one node at a time across your
+cluster. It will not participate in the cluster while the conversion is
+underway, and new incoming data will be journaled on other nodes until it
+returns to normal service.
+
 ### raw_database
 
 ```

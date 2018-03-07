@@ -101,10 +101,10 @@ and are no longer strictly required. They may be removed in a future version.
  * `-N`
 
 Convert NNT file based storage to NNTBS block based storage. This requires that
-you have configured NNTBS in your IRONdb config file. This will crawl the file
-system for NNT files and convert, then remove the NNT file copy after successful
-conversion.  You can stop and restart at any time and it will run to conversion
-complete, then exit.
+you have [configured NNTBS](/configuration.md#nntbs) in your IRONdb config
+file. This will crawl the file system for NNT files and convert, then remove
+the NNT file copy after successful conversion.  You can stop and restart at any
+time and it will run to conversion complete, then exit.
 
 ## Maintenance Options
 
