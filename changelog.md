@@ -1,9 +1,22 @@
 # Changelog
 
-## TBD
+## Changes in 0.11.12
+2018-03-08
+
+ * Add an offline NNT to NNTBS conversion mode.
+   * Default conversion is "lazy", as NNT metrics are read.
+   * For read-heavy environments this may produce too much load, so the offline
+     option can be used to take one node at a time out of the cluster and
+     batch-convert all its NNT files to NNTBS block storage.
+ * Performance improvements to gossip replication, avoids watchdog timeout in
+   some configurations.
+ * Fix several crash bugs in reconstitute, NNTBS, and journaling.
+ * Silence noisy error printing during NNTBS conversion.
+ * Formatting fix to a gossip error message (missing newline).
 
 Documentation changes:
  * Add NNTBS dataset to reconstitute procedure.
+ * New NNTBS conversion-only operations mode (`-N`).
  * Clarify that in split clusters, write copies are distributed as evenly as
    possible across both sides.
  * Show the gossip age values that lead to green/yellow/red display in the
