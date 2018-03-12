@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.11.13
+2018-03-12
+
+ * Fix for throttling during reconstitute operations
+ * Several small fixes and cleanups
+
 ## Changes in 0.11.12
 2018-03-08
 
