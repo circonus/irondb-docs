@@ -1,6 +1,11 @@
 # Changelog
 
-## Changes in 0.11.13
+## Changes in 0.11.14
+2018-03-13
+
+ * Fix bug in NNT reconstitution
+
+## Changes in 0.11.13 (unreleased)
 2018-03-12
 
  * Fix for throttling during reconstitute operations
