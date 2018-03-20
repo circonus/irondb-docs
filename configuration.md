@@ -46,20 +46,33 @@ Default: 512
 ### eventer
 
 ```
-<eventer>
-  <config>
-    <ssl_dhparam1024_file/>
-    <ssl_dhparam2048_file/>
-  </config>
-</eventer>
+<include file="irondb-eventer.conf" />
 ```
 
-Libmtev eventer system configuration. See the [libmtev eventer
-documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
+Libmtev eventer system configuration is included from a separate file controlled
+by the vendor. Changes to this file will be overwritten by package updates.
 
-The `ssl_dhparam*_file` configurations are set to null to disable automatic
-Diffie-Hellman parameter generation at startup. IRONdb does not utilize TLS by
-default, though this capability is present in libmtev.
+Details about the included configuration can be found in the
+[libmtev eventer documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
+
+### irondb-modules
+
+IRONdb supports loading dynamically loadable modules that can provide optional features to an appliction.
+Currently lua extensions are implemented as a module.
+Others modules might be added in the future.
+The module system is configured using the following stanza:
+
+```
+<include file="irondb-modules.conf" />
+```
+
+IRONdb modules are included from two files:
+
+* `irondb-modules-stock.conf`, containing vendor controlled module configuration
+* `irondb-modules-site.conf`, for site specific module configuration.
+
+More details about the IRONdb module system can be found in
+the [libmtev module documentation](http://circonus-labs.github.io/libmtev/config/modules.html).
 
 ### cache
 
