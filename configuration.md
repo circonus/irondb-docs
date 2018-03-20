@@ -57,6 +57,11 @@ Details about the included configuration can be found in the
 
 ### irondb-modules
 
+IRONdb supports loading dynamically loadable modules that can provide optional features to an appliction.
+Currently lua extensions are implemented as a module.
+Others modules might be added in the future.
+The module system is configured using the following stanza:
+
 ```
 <include file="irondb-modules.conf" />
 ```
@@ -66,9 +71,8 @@ IRONdb modules are included from two files:
 * `irondb-modules-stock.conf`, containing vendor controlled module configuration
 * `irondb-modules-site.conf`, for site specific module configuration.
 
-Details about the IRONdb module system can be found in
+More details about the IRONdb module system can be found in
 the [libmtev module documentation](http://circonus-labs.github.io/libmtev/config/modules.html).
-
 
 ### cache
 
