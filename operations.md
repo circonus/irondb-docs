@@ -140,8 +140,9 @@ current time and the time of the last gossip message received is the "gossip
 age".
 
 Each node is listed in a heading derived from its IP and port, and a gossip age
-in parentheses (see below). The node's average latency from all its peers is
-displayed at the right end of the heading line.
+in parentheses (see below). The node's latency summary is displayed at the
+right end of the heading line. This is intended as a quick "health check" as to
+whether this node is significantly behind or not.
 
 Clicking on the heading exposes a list of peer nodes, also by IP:port, and a
 latency indicator. Each peer's latency may thus be read as "how far behind"
@@ -175,8 +176,16 @@ Gossip ages for remote nodes are colored in the heading as follows:
  * Black means no gossip packets have been received from the remote host since
    this host last booted.
 
-Replication latency indicators, including both the right portion of the heading
-as well as the individual remote nodes, will be colored as follows:
+Latency summaries in the heading are colored as follows:
+ * If the node is behind `W` or more nodes by more than 4.5 minutes, then the
+   summary is "latencies danger", and colored red.
+ * If the node is behind `W-1` or more nodes by more than 30 seconds, then the
+   summary is "latencies warning", and colored yellow.
+ * Otherwise, the average of all peer latencies is displayed, and colored
+   green.
+
+Replication latency indicators for individual remote nodes are colored as
+follows:
  * Green for less than 30 seconds behind
  * Yellow for more than 30 seconds but less than 270 seconds (4.5 minutes) behind
  * Red for more than 270 seconds (4.5 minutes) behind
