@@ -132,20 +132,20 @@ The Used, Total, and Compress Ratio figures represent how much disk space is occ
 
 ### Replication Latency Tab
 
-Displays the difference between the current time on each node and the time of
-the most recently received journal message from all other nodes. Each node is
-listed under a heading derived from its IP and port, and a gossip age in
-parentheses (see below). Beneath the heading is a list of peer nodes, also by
-IP:port, and a latency indicator. Each peer's latency may thus be read as "how
-far behind" this node is from its peers.
+Two types of latency are displayed here. "Replication latency" is the
+difference between the current time on each node and the time of the most
+recently received journal data from a remote node. Latency information is
+exchanged between nodes using "gossip" messages, and the difference between the
+current time and the time of the last gossip message received is the "gossip
+age".
 
-The heading of the node being viewed will be displayed with a blue bar, and the
-color of remote nodes will be green, yellow, or red, based on the "gossip age",
-the difference between the current node's time and the timestamp of the last
-gossip message received from that node, displayed in parentheses.
- * Green means a difference of less than 2 seconds
- * Yellow means a difference of more than 2 seconds and less than 8 seconds
- * Red means a difference of more than 8 seconds
+Each node is listed in a heading derived from its IP and port, and a gossip age
+in parentheses (see below). The node's average latency from all its peers is
+displayed at the right end of the heading line.
+
+Clicking on the heading exposes a list of peer nodes, also by IP:port, and a
+latency indicator. Each peer's latency may thus be read as "how far behind"
+this node is from that peer.
 
 All nodes should be running NTP or a similar time synchronization daemon. For
 example, if a remote node is shown as "(0.55 seconds old)", that means that a
@@ -162,6 +162,24 @@ since starting, that node will be displayed with a black bar, and the latency
 values will be reported as "unknown". This indicates that the remote node is
 either down or there is a network problem preventing communication with that
 node. Check that port 8112/udp is permitted between all cluster nodes.
+
+#### Display Colors
+Both gossip age and replication latency are also indicated using color.
+
+The heading of the node being viewed will always be displayed in blue.
+
+Gossip ages for remote nodes are colored in the heading as follows:
+ * Green means a difference of less than 2 seconds
+ * Yellow means a difference of more than 2 seconds and less than 8 seconds
+ * Red means a difference of more than 8 seconds
+ * Black means no gossip packets have been received from the remote host since
+   this host last booted.
+
+Replication latency indicators, including both the right portion of the heading
+as well as the individual remote nodes, will be colored as follows:
+ * Green for less than 30 seconds behind
+ * Yellow for more than 30 seconds but less than 270 seconds (4.5 minutes) behind
+ * Red for more than 270 seconds (4.5 minutes) behind
 
 ### Topology Tab
 
