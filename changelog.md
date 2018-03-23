@@ -1,5 +1,23 @@
 # Changelog
 
+## Changes in 0.11.15
+2018-03-23
+
+ * Fix potential use-after-free in raw numeric fetch path.
+ * Various fixes to NNTBS batch conversion.
+ * Crash fixes when dealing with NNTBS shards.
+ * UI changes for Replication Latency display:
+   * Initially all remote node latencies are hidden, with just the heading
+     displayed. Click on a heading to expand the remote node listing.
+   * A node's average replication latency is now displayed at the right end of
+     the heading, and color-coded.
+ * Disable Lua modules when in reconstitute mode.
+ * Don't hold on to NNT filehandles after converting them to NNTBS.
+
+Documentation changes:
+ * Include files and Lua modules.
+ * New UI replication tab display.
+
 ## Changes in 0.11.14
 2018-03-13
 
