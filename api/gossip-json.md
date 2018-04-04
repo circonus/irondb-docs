@@ -38,8 +38,8 @@ The URI "/gossip/json" could yield the following example output:
 ```
     [
     {"id":"1f846f26-0cfd-4df5-b4f1-e0930604e577",
-     "gossip_time":1409082055.744880,
-     "gossip_age":0.000000,
+     "gossip_time":"1409082055.744880",
+     "gossip_age":"0.000000",
      "topo_current":"0123456789abcdef0123456789abcdef0123456789abcdef01234
     56789abcdef",
      "topo_next":"-",
@@ -51,8 +51,8 @@ The URI "/gossip/json" could yield the following example output:
       }
     },
     {"id":"765ac4cc-1929-4642-9ef1-d194d08f9538",
-     "gossip_time":1409082055.744880,
-     "gossip_age":0.000000,
+     "gossip_time":"1409082055.744880",
+     "gossip_age":"0.000000",
      "topo_current":"0123456789abcdef0123456789abcdef0123456789abcdef01234
     56789abcdef",
      "topo_next":"-",
@@ -64,8 +64,8 @@ The URI "/gossip/json" could yield the following example output:
       }
     },
     {"id":"8c2fc7b8-c569-402d-a393-db433fb267aa",
-     "gossip_time":1409082055.744880,
-     "gossip_age":0.000000,
+     "gossip_time":"1409082055.744880",
+     "gossip_age":"0.000000",
      "topo_current":"0123456789abcdef0123456789abcdef0123456789abcdef01234
     56789abcdef",
      "topo_next":"-",
@@ -77,8 +77,8 @@ The URI "/gossip/json" could yield the following example output:
       }
     },
     {"id":"07fa2237-5744-4c28-a622-a99cfc1ac87e",
-     "gossip_time":1409082055.744880,
-     "gossip_age":0.000000,
+     "gossip_time":"1409082055.744880",
+     "gossip_age":"0.000000",
      "topo_current":"0123456789abcdef0123456789abcdef0123456789abcdef01234
     56789abcdef",
      "topo_next":"-",

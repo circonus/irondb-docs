@@ -44,7 +44,7 @@ This example retrieves a simplified topology for a 3-node cluster, assuming a we
 This example uses
 
 ```
-/toporing/json/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+/toporing/xml/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 ```
 
 In this example:
