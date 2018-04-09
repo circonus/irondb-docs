@@ -1,5 +1,19 @@
 # Changelog
 
+## Changes in 0.11.16
+2018-04-09
+
+ * Allow control over max ingest age for graphite data via config
+ * Optionally provide graphite find and series queries as flatbuffer data
+ * Fix epoch metadata fetch for NNTBS data
+ * Reconstitute state saving bug fixes
+ * Fix cleanup of journal data post replication
+
+Documentation changes:
+ * Add hardware selection advice and system profiles
+ * Correct color rules for latency summaries
+ * Various small doc fixes
+
 ## Changes in 0.11.15
 2018-03-23
 
