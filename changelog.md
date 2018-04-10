@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.11.17
+2018-04-10
+
+ * Fix for http header parsing edge case
+
 ## Changes in 0.11.16
 2018-04-09
 
