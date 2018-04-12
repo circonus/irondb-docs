@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.11.18
+2018-04-12
+
+ * Fix a bug causing unnecessary duplicated work during sweep deletes
+
 ## Changes in 0.11.17
 2018-04-10
 
