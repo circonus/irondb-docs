@@ -2,11 +2,28 @@ Deleting All Data Before A Date
 ==================================
 
 This API call is for deleting any type of data from the IRONdb cluster prior to
-a given date, irrespective of check or metric. This is typically used for
-cluster-wide retention policies.
+a given date, irrespective of check or metric. This is known as a "sweep
+delete", and is typically used to implement cluster-wide retention policies.
+
+**This is an asynchronous, out-of-band administrative operation that does not
+follow the normal consistency model of IRONdb.** The deletion only applies to
+the node that received the request (deletions are not journaled to the cluster,
+as normal data ingestion is.) If cluster-wide deletion of data is desired, this
+call must be made to each cluster node individually.
+
+If there is historical data being actively imported into the requested deletion
+range, it can leave the delete operation "incomplete". A sweep delete will
+never remove data that it should not, but it may appear that data that _should_
+have been deleted may not be. This can leave the cluster in an inconsistent,
+but not dangerous, state where another sweep delete may be required to clean up
+stragglers.
 
 The DELETE method will return an empty array upon success. If there is an
-error, this call will return a JSON object with the error.
+error, this call will return a JSON object with the error. Note that success
+does not indicate completion of the delete operation, only that it has been
+started. The order in which metric data is deleted is not deterministic. If a
+sweep delete is in progress and another DELETE call is received, the running
+sweep delete is cancelled, and the new operation begins.
 
 The GET method will return a JSON object showing the status of a delete
 operation. Each data type is listed with an attribute `running` set to the
