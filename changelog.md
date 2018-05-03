@@ -1,5 +1,22 @@
 # Changelog
 
+## TBD
+
+ * Installer: use default ZFS recordsize (128K) for NNT data. This has been
+   shown experimentally to yield significantly better compression ratios.
+   Existing installations will not see any change. To immediately effect these
+   changes on an existing install, issue the following two commands:
+   ```
+zfs inherit -r recordsize <pool>/irondb/data
+zfs inherit -r recordsize <pool>/irondb/nntbs
+   ```
+   where `<pool>` is the zpool name. Users of versions < 0.11.1 can omit the
+   second command (this dataset will not be present.) The recordsize change
+   only affects new writes; existing data remains at the previous recordsize.
+   If the full benefit of the change is desired, a [node rebuild](/rebuilding-nodes.md)
+   may be performed.
+
+
 ## Changes in 0.11.18
 2018-04-12
 
