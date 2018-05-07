@@ -121,4 +121,6 @@ A FlatBuffer metric payload is submitted as a `MetricList` as specified in the
 source](https://github.com/circonus-labs/reconnoiter/blob/master/src/flatbuffers/metric_list.fbs).
 
 When submitting FlatBuffer-encoded metrics, a client must set the HTTP
-Content-Type header to `application/x-circonus-metric-list-flatbuffer`.
+Content-Type header to `application/x-circonus-metric-list-flatbuffer` and 
+set the HTTP Header X-Circonus-Datapoints to the number of data points within
+the raw submission
