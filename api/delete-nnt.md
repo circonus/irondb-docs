@@ -5,8 +5,6 @@ This API call is for deleting numeric data from the IRONdb cluster for a specifi
 
 This call will return an empty array upon success. If there is an error, this call will return a JSON object with the error.
 
-If no metric is specified (the /&lt;metric&gt; for the URI is omitted), then the entire Check will be deleted.
-
 Description of API call
 -----------------------
 
@@ -16,21 +14,28 @@ Description of API call
 
 **Inputs:**   
 
-*end* :   The end time. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
-
 *uuid* :   The UUID of the check to which the metric belongs.
 
-*metric* :   The name of the metric from which to delete data. Omit this section from the URI to delete the entire check.
+*metric* :   The name of the metric from which to delete data.
+
+*end* :   The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
 
 **Headers:**
 
-The timestamp can be provided via a header:
+The end timestamp must be provided via a header:
 
 X-Snowth-Delete-Time: &lt;end&gt;
 
-A header can also be used to specify which rollups are to be removed:
+An optional header can also be used to specify which rollups are to be removed:
 
 X-Snowth-Delete-Rollups: &lt;rollup&gt;
+
+An optional header affects whether the delete operation is replicated to all
+other nodes or confined to the node receiving the DELETE. The default is to
+delete only locally on the receiving node. Set to `1` to cause the deletion to
+be replicated.
+
+X-Snowth-Full-Delete: 0
 
 Examples
 --------
@@ -43,7 +48,7 @@ This example uses
 
 In this example:
 
-*nnt* :   This is the command that tells the system that NNT data will be removed.
+*nnt* :   This tells the system that NNT data will be removed.
 
 *6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the UUID.
 
