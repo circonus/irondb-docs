@@ -18,13 +18,13 @@ Description for API call
 
 *metric* :   The name of the metric from which to delete data.
 
-*end* :   The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
-
 **Headers:**
 
 The end timestamp must be provided via a header:
 
 X-Snowth-Delete-Time: &lt;end&gt;
+
+*end* :   The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
 
 An optional header affects whether the delete operation is replicated to all
 other nodes or confined to the node receiving the DELETE. The default is to
