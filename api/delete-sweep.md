@@ -1,5 +1,4 @@
-Deleting All Data Before A Date
-==================================
+# Deleting All Data Before A Date
 
 This API call is for deleting any type of data from the IRONdb cluster prior to
 a given date, irrespective of check or metric. This is known as a "sweep
@@ -31,76 +30,83 @@ string "true", and additional type-specific attributes indicating the current
 data being operated on. If no operation is in progress, the `running` attribute
 for each data type will be set to the string "false".
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /sweep\_delete
+### URI
 
-**Method:**   DELETE | GET
+`/sweep_delete`
 
-**Inputs:**   
+### Method
+
+DELETE or GET
+
+### Inputs
 
 None. All options are provided by Headers (see below).
 
-**Headers:**
+### Headers
 
 > Headers are necessary when using the DELETE method, but not when obtaining
 > status via the GET method.
 
-The timestamp is provided via a header:
+ * `X-Snowth-Delete-Time: <new_epoch>` (required)
+   * `new_epoch` The end timestamp for the delete operation. All data from
+     before this specified time is deleted. Time is represented in seconds
+     since the epoch.
+ * `X-Snowth-Delete-Data-Types: <nnt,text,histogram>` (optional)
+   * `nnt,text,histogram` The type of data (numeric, text, histogram) to remove
+     may be specified, with multiple values comma-separated. If this header is
+     not specified, only numeric data (nnt) will be removed.
+ * `X-Snowth-NNT-Delete-Rollups: <span>[,<span>]` (optional)
+   * `span` Specific NNT rollup spans may be removed (all spans will be removed
+     if not specified), with multiple values comma-separated. The rollup
+     span(s) are in seconds and must match one or more configured period values
+     from the `<rollups>` stanza of `irondb.conf`.
+ * `X-Snowth-Histogram-Delete-Rollups: <span>[,<span>]` (optional)
+   * `span` Specific histogram rollup spans may be removed (all spans will be
+     removed if not specified), with multiple values comma-separated. The
+     rollup span(s) are in seconds and must match one or more configured period
+     values from the `<histogram>` stanza of `irondb.conf`.
 
-X-Snowth-Delete-Time: &lt;new\_epoch&gt;
+> Text metrics do not have the concept of rollups, so specifying the delete time
+> and data type are sufficient to remove all text data prior to the given time.
 
-The type of data (numeric, text, histogram) to remove may be specified, with
-multiple values comma-separated. If this header is not specified, only numeric
-data (nnt) will be removed.
+## Examples
 
-X-Snowth-Delete-Data-Types: nnt,text,histogram
-
-Specific NNT rollup spans may be removed (all spans will be removed if not
-specified), with multiple values comma-separated. The rollup span(s) must match
-one or more configured period values from the `<rollups>` stanza of
-`irondb.conf`.
-
-X-Snowth-NNT-Delete-Rollups: &lt;rollup\_span\_in\_seconds&gt;
-
-Specific histogram rollup spans may be removed (all spans will be removed if not
-specified), with multiple values comma-separated. The rollup span(s) must match
-one or more configured period values from the `<histogram>` stanza of
-`irondb.conf`.
-
-X-Snowth-Histogram-Delete-Rollups: &lt;rollup\_span\_in\_seconds&gt;
-
-Text metrics do not have the concept of rollups, so specifying the delete time
-and data type are sufficient to remove all text data prior to the given time.
-
-Examples
---------
-
-Delete all 1-minute numeric rollups older than 2017-06-01
-
-```
-curl -X DELETE \
-  -H 'X-Snowth-Delete-Time: 1496275200' \
-  -H 'X-Snowth-Delete-Data-Types: nnt' \
-  -H 'X-Snowth-NNT-Delete-Rollups: 60' \
-  http://127.0.0.1:8112/sweep_delete
-```
+### Example 1
 
 Delete data of all types and all rollup spans older than 2017-06-01
 
 ```
 curl -X DELETE \
-  -H 'X-Snowth-Delete-Time: 1496275200' \
-  -H 'X-Snowth-Delete-Data-Types: nnt,text,histogram' \
-  http://127.0.0.1:8112/sweep_delete
+     -H 'X-Snowth-Delete-Time: 1496275200' \
+     -H 'X-Snowth-Delete-Data-Types: nnt,text,histogram' \
+     http://127.0.0.1:8112/sweep_delete
 ```
+
+### Example 2
+
+Delete all 1-minute numeric rollups older than 2017-06-01
+
+```
+curl -X DELETE \
+     -H 'X-Snowth-Delete-Time: 1496275200' \
+     -H 'X-Snowth-Delete-Data-Types: nnt' \
+     -H 'X-Snowth-NNT-Delete-Rollups: 60' \
+     http://127.0.0.1:8112/sweep_delete
+```
+
+### Example 3
 
 Show the status of an active delete
 
 ```
 curl http://127.0.0.1:8112/sweep_delete
+```
 
+#### Example 3 Output
+
+```json
 {
   "nnt": {
     "running":"true",

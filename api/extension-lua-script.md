@@ -1,42 +1,43 @@
-Executing a Lua Extension
-=========================
+# Executing a Lua Extension
 
 This API call will execute a loaded Lua extension and return the results.
 
-The available extensions can be found by making an API call to "/extension/lua." Parameters to each extension are passed via a query string.
+Refer to [Getting The List of Lua Extensions](/api/extension-lua.md) for
+instructions on finding the list of available extensions.
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /extension/lua/&lt;extension&gt;
+### URI
 
-**Method:**   GET
+`/extension/lua/<extension>`
 
-**Inputs:**
+### Method
 
-*extension* :   The extension to call. A list of available extensions can be found by making a call to "/extension/lua". The parameters for each extension there are passed via a query string.
+GET
 
-**Output:** :   The output will vary based on the lua extension called.
+### Inputs
 
-Examples
---------
+ * `extension` : The extension to call. Any parameters for the extension may be
+   passed via a query string.
 
-This example uses
+### Output
+
+The output will vary based on the Lua extension called.
+
+## Examples
 
 ```
-/extension/lua/example_extension
+curl http://127.0.0.1:8112/extension/lua/example_extension
 ```
 
 In this example:
 
-*extension* :   This is the command to execute an extension.
+ * `extension` : This is the command to execute an extension.
+ * `lua` : Indicates a Lua extension.
+ * `example_extension` : Extension name.
 
-*lua* :   This is the command to execute a Lua extension.
-
-*example_extension* :   This is the Extension Name.
-
-**Output:**
+### Example 1 Output
 
 ```
-    {"got_result":"true"}
+{"got_result":"true"}
 ```
