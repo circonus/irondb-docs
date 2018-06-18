@@ -1,44 +1,69 @@
-Getting List of Lua Extensions
-==============================
+# Getting The List of Lua Extensions
 
-This API call returns a list of all currently available Lua extensions on the node.
+This API call returns a list of all currently available Lua extensions on the
+node.
 
-Data will be returned as a JSON object. The fields in this document are described below.
+Data will be returned as a JSON object. The fields in this document are
+described below.
 
-Description of JSON object
---------------------------
+## Description
 
-**URI:**   /extension/lua
+### URI
 
-**Method:**   GET
+`/extension/lua`
 
-**Output:**
+### Method
 
-*&lt;name&gt;* :   This key has a variable name. It will be the name of the upcoming extension. The value is another JSON object, defined as follows:
+GET
 
-* *params* :   A JSON object containing the parameters for the extension. The JSON object is defined as follows:
+### Inputs
 
- * *&lt;param\_name&gt;* :   This key has a variable name. It will be the name of the parameter. Each parameter will contain a JSON object defining it as follows:
+none
 
-   * *name* :   A description of the parameter.
+### Output
 
-   * *type* :   The type of the parameter.
+ * `<name>` : This key is the name of the upcoming extension. The value is another JSON object, defined as follows:
+   * `params` : A JSON object containing the parameters for the extension. The JSON object is defined as follows:
+     * `<param_name>` : This key is the name of the parameter. Each parameter will contain a JSON object defined as follows:
+       * `name` : A description of the parameter.
+       * `type` : The type of the parameter.
+   * `description` : A text description of the Lua extension.
 
-* *description* :   A text description of the Lua extension.
-
-Examples
---------
-
-This example uses
-
-```
-    /extension/lua
-```
-
-**Output:**
+## Examples
 
 ```
-    {"example_ext":{"params":{"sample_param":{"name":"sample_param","type":"integer"},"sample_param2:{"name":"sample_param2","type":"string"}},"description":"A sample extension"},
+curl http://127.0.0.1:8112/extension/lua
+```
 
-    "example_ext2":{"params":{"sample_param":{"name":"sample_param","type":"integer"},"sample_param2:{"name":"sample_param2","type":"string"}},"description":"Another sample extension"}}
+### Example 1 Output
+
+```
+{
+  "example_ext": {
+    "params": {
+      "sample_param": {
+        "name": "sample_param",
+        "type": "integer"
+      },
+      "sample_param2": {
+        "name": "sample_param2",
+        "type": "string"
+      }
+    },
+    "description": "A sample extension"
+  },
+  "example_ext2": {
+    "params": {
+      "sample_param": {
+        "name": "sample_param",
+        "type": "integer"
+      },
+      "sample_param2": {
+        "name": "sample_param2",
+        "type": "string"
+      }
+    },
+    "description": "Another sample extension"
+  }
+}
 ```

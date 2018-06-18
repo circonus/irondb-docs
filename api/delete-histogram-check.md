@@ -1,44 +1,46 @@
-Deleting Histogram Data for a Check
-===================================
+# Deleting Histogram Data for a Check
 
 This API call is for deleting histogram data from the IRONdb cluster for an entire check. It will remove data from the beginning of time up until the time provided by the user for every histogram metric that is part of the given check UUID.
 
 This call will always return an empty array.
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /histogram/check/&lt;end&gt;/&lt;uuid&gt;
+### URI
 
-**Method:**   DELETE
+`/histogram/check/<uuid>`
 
-**Inputs:**  
+### Method
 
-*end* :   The end time. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
+DELETE
 
-*uuid* :   The UUID of the check to delete.
+### Inputs
 
-Examples
---------
+ * `uuid` The UUID of the check.
 
-This example uses
+### Headers
+
+ * `X-Snowth-Delete-Time: <end>` (required)
+   * `end` The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
+ * `X-Snowth-Full-Delete: <value>` (optional)
+   * `value` Determines whether the delete operation is local to the receiving node (0) or journaled to all other nodes as well (1). The default, if not specified, is 0 (local-only delete).
+
+## Examples
 
 ```
-    /histogram/check/1380000000/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12
+curl -X DELETE \
+     -H 'X-Snowth-Delete-Time: 1527811200' \
+     http://127.0.0.1:8112/histogram/check/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12
 ```
 
 In this example:
 
-*histogram* :   This is the command that tells the system that histogram data will be removed.
+ * `histogram` : This tells the system that histogram data will be removed.
+ * `6f6bdc73-2352-4bdc-ab0e-72f66d0dee12` : Check UUID
+ * `1527811200` : Delete all data for this check before this time
 
-*check* :   This is the command that tells the system that histogram data will be removed for an entire check.
-
-*1380000000* :   This is the End Time (September 24, 2013, 05:20:00 GMT).
-
-*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the UUID.
-
-**Output:**
+### Output
 
 ```
-    []
+[]
 ```

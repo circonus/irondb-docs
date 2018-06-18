@@ -1,5 +1,4 @@
-Posting JLOG Data Internally
-============================
+# Posting JLOG Data Internally
 
 > **Warning**
 >
@@ -12,46 +11,36 @@ read the binary messages, decode them, and process the data as needed.
 
 The types of messages that can be attached are as follows:
 
--   NNT Data Messages
--   NNT Delete Messages
--   Text Data Messages
--   Text Delete Messages
--   Histogram Data Messages
--   Histogram Delete Messages
--   Log Messages
--   Load Lua Commands
+ *  NNT Data Messages
+ *  NNT Delete Messages
+ *  Text Data Messages
+ *  Text Delete Messages
+ *  Histogram Data Messages
+ *  Histogram Delete Messages
+ *  Log Messages
+ *  Load Lua Commands
 
-Description of API call
------------------------
+## Description
 
-`URI:`
+### URI
 
-:   /journal/&lt;count&gt;
+`/journal/<count>`
 
-`Method:`
+### Method
 
-:   POST
+POST
 
-`Inputs:`
+### Inputs
 
-:   
+ * `count` : The number of messages attached to be processed.
 
-    *count*
+### Examples
 
-    :   The number of messages attached to be processed.
-
-This example uses
-
-    /journal/10
+```
+curl -X POST http://127.0.0.1:8112/journal/10
+```
 
 In this example:
 
-*journal*
-
-:   This is the command to read journal data.
-
-*10*
-
-:   This is the Number of Messages included.
-
-
+ * `journal` : This is the command to read journal data.
+ * `10` : This is the Number of Messages included.

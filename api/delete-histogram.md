@@ -1,57 +1,48 @@
-Deleting Histogram Data for a Metric
-====================================
+# Deleting Histogram Data for a Metric
 
 This API call is for deleting histogram data from the IRONdb cluster for a specific metric. It will remove data from the beginning of time up until the time provided by the user for that metric.
 
 This call will return an empty array upon success. If there is an error, it will return a JSON object with the error.
 
-Description for API call
-------------------------
+## Description
 
-**URI:**   /histogram/&lt;uuid&gt;/&lt;metric&gt;
+### URI
 
-**Method:**   DELETE
+`/histogram/<uuid>/<metric>`
 
-**Inputs:**
+### Method
 
-*uuid* :   The UUID of the check to which the metric belongs.
+DELETE
 
-*metric* :   The name of the metric from which to delete data.
+### Inputs
 
-**Headers:**
+ * `uuid` The UUID of the check to which the metric belongs.
+ * `metric` The name of the metric from which to delete data.
 
-The end timestamp must be provided via a header:
+### Headers
 
-X-Snowth-Delete-Time: &lt;end&gt;
+ * `X-Snowth-Delete-Time: <end>` (required)
+   * `end` The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
+ * `X-Snowth-Full-Delete: <value>` (optional)
+   * `value` Determines whether the delete operation is local to the receiving node (0) or journaled to all other nodes as well (1). The default, if not specified, is 0 (local-only delete).
 
-*end* :   The end timestamp for the delete operation. All data from before this specified time is deleted. Time is represented in seconds since the epoch.
-
-An optional header affects whether the delete operation is replicated to all
-other nodes or confined to the node receiving the DELETE. The default is to
-delete only locally on the receiving node. Set to `1` to cause the deletion to
-be replicated.
-
-X-Snowth-Full-Delete: 0
-
-Examples
---------
-
-This example uses
+## Examples
 
 ```
-/histogram/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
+curl -X DELETE \
+     -H 'X-Snowth-Delete-Time: 1527811200' \
+     http://127.0.0.1:8112/histogram/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
 ```
 
 In this example:
 
-*histogram* :   This tells the system that histogram data will be removed.
+ * `histogram` : This tells the system that histogram data will be removed.
+ * `6f6bdc73-2352-4bdc-ab0e-72f66d0dee12` : Check UUID
+ * `example` : Metric name
+ * `1527811200` : Delete all data for this metric before this time
 
-*6f6bdc73-2352-4bdc-ab0e-72f66d0dee12* :   This is the UUID.
-
-*example* :   This is the Metric Name.
-
-**Output:**
+### Output
 
 ```
-    []
+[]
 ```

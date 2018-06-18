@@ -1,5 +1,4 @@
-Cancelling A Sweep Delete
-=========================
+# Cancelling A Sweep Delete
 
 Cancels a running [sweep delete](/api/delete-sweep.md) operation.
 
@@ -14,27 +13,33 @@ deleted. It merely stops wherever it was at the time the cancel request was
 received. If the sweep delete was performed by mistake and you wish to recover
 the data, you will need to [reconstitute the node](/rebuilding-nodes.md).
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /sweep\_delete/cancel
+### URI
 
-**Method:**   GET
+`/sweep_delete/cancel`
 
-**Inputs:**   
+### Method
 
-None.
+GET
 
-**Headers:**
+### Inputs
 
-None.
+None
 
-Examples
---------
+### Headers
+
+None
+
+## Examples
 
 ```
 curl http://127.0.0.1:8112/sweep_delete/cancel
+```
 
+### Output
+
+```json
 {
   "nnt": {
     "running":"true",
