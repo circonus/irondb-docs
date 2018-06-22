@@ -1,5 +1,4 @@
-List All Metrics Stored on a Node
-=================================
+# List All Metrics Stored on a Node
 
 > **Warning**
 >
@@ -11,51 +10,40 @@ particular node.
 Data will be returned as an array of JSON objects. The fields in each
 object are described below.
 
-Description of JSON objects
----------------------------
+## Description
 
-`URI:`
+### URI
 
-:   /list/metric
+`/list/metric`
 
-`Method:`
+### Method
 
-:   GET
+GET
 
-`Output:`
+### Output
 
-:   
+ * `id` : The UUID of the check that contains the metric.
+ * `metric` : The name of the metric being stored.
+ * `type` : The type of the metric (numeric, text, or histogram).
 
-    *id*
+## Examples
 
-    :   The UUID of the check that contains the metric.
+```
+curl http://127.0.0.1:8112/list/metric
+```
 
-    *metric*
+### Example 1 Output
 
-    :   The name of the metric being stored.
-
-    *type*
-
-    :   The type of the metric (numeric, text, or histogram).
-
-Examples
---------
-
-This example uses
-
-    /list/metric
-
-`Output:`
-
-    [
-       {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"numeric_example","type":"numeric"},
-       {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"text_example","type":"text"},
-       {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"histogram_example","type":"histogram"},
-       {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"numeric_example","type":"numeric"},
-       {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"text_example","type":"text"},
-       {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"histogram_example","type":"histogram"},
-       {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"numeric_example","type":"numeric"},
-       {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"text_example","type":"text"},
-       {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"histogram_example","type":"histogram"}
-    ]
-          
+```json
+[
+   {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"numeric_example","type":"numeric"},
+   {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"text_example","type":"text"},
+   {"id":"07658cc8-2b36-4819-ab76-50913ae02384","metric":"histogram_example","type":"histogram"},
+   {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"numeric_example","type":"numeric"},
+   {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"text_example","type":"text"},
+   {"id":"821b187a-07fa-45e1-b727-d5b2b0e85993","metric":"histogram_example","type":"histogram"},
+   {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"numeric_example","type":"numeric"},
+   {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"text_example","type":"text"},
+   {"id":"8a12a395-ad4c-4cc4-ae27-525f63e1fab5","metric":"histogram_example","type":"histogram"}
+]
+```

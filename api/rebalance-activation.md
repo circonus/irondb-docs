@@ -1,30 +1,29 @@
-Activating A New Topology Rebalance
-=========================
+# Activating A New Topology Rebalance
 
 This API call is for rebalancing to a new topology.
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /rebalance/activate/&lt;hash&gt;
+### URI
 
-**Method:**  POST 
+`/rebalance/activate/<hash>`
 
-**Inputs:**
+### Method
 
-*hash* :   The hash of the new topology after the rebalance.
+POST
 
-Examples
---------
+### Inputs
 
-This example will use
+ * `hash` : The hash of the new topology after the rebalance.
+
+## Examples
 
 ```
-/rebalance/activate/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+curl -X POST \
+  http://127.0.0.1:8112/rebalance/activate/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 ```
 
 In this example:
 
-*activate* :   This is the command to activate a new topology rebalance.
-
-*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef* :   This is the hash for the transition.
+ * `activate` : This is the command to activate a new topology rebalance.
+ * `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef` : This is the hash for the transition.

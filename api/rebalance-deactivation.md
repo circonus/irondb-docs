@@ -1,30 +1,29 @@
-Abort The Current In Progress Topology Rebalance
-=========================
+# Abort The Current In Progress Topology Rebalance
 
 This API call is for aborting the current rebalancing to a new topology.
 
-Description of API call
------------------------
+## Description
 
-**URI:**   /rebalance/deactivate/&lt;hash&gt;
+### URI
 
-**Method:**  POST 
+`/rebalance/deactivate/<hash>`
 
-**Inputs:**
+### Method
 
-*hash* :   The hash of the new topology after the rebalance.
+POST
 
-Examples
---------
+### Inputs
 
-This example will use
+ * `hash` : The hash of the new topology after the rebalance.
+
+## Examples
 
 ```
-/rebalance/deactivate/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+curl -X POST \
+  http://127.0.0.1:8112/rebalance/deactivate/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 ```
 
 In this example:
 
-*deactivate* :   This is the command to activate a new topology rebalance.
-
-*0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef* :   This is the hash for the transition.
+ * `deactivate` : This is the command to activate a new topology rebalance.
+ * `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef` : This is the hash for the transition.

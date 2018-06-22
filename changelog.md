@@ -17,6 +17,9 @@ zfs inherit -r recordsize <pool>/irondb/nntbs
    may be performed.
  * Documentation: Raw Submission API documentation for already required
    X-Snowth-Datapoints header
+ * Documentation: Text and Histogram deletion APIs were out of date.
+ * Documentation: Update formatting on API pages, which were auto-converted
+   from a previous format.
 
 
 ## Changes in 0.11.18

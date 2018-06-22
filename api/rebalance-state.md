@@ -4,17 +4,41 @@ This API call is for viewing the current topology rebalance state.
 
 Data will be returned as a JSON document. The fields in this document are described below.
 
-## Description of JSON document
+## Description
 
-**URI:** /rebalance/state
+### URI
 
-**Method:** GET
+`/rebalance/state`
 
-**Output:**
+### Method
 
-*current* :   The current topology in which this node resides.
+GET
 
-*next* :   The next topology for this node.
+### Output
 
-*state* :   Current rebalance state ({"TOPO_REBALANCE_IDLE", "TOPO_REBALANCE_VOTE",
-    "TOPO_REBALANCE_REHASH", "TOPO_REBALANCE_REHASH_VOTE", "TOPO_REBALANCE_CLEANUP", "TOPO_REBALANCE_COMPLETE"})
+ * `current` : The current topology in which this node resides.
+ * `next` : The next topology for this node.
+ * `state` : Current rebalance state for this node. Value is one of:
+   * `TOPO_REBALANCE_IDLE` (no rebalance activity)
+   * `TOPO_REBALANCE_VOTE` (establishing agreement on next hash across the cluster)
+   * `TOPO_REBALANCE_REHASH` (relocating data)
+   * `TOPO_REBALANCE_REHASH_VOTE` (waiting for data relocation completion on all nodes)
+   * `TOPO_REBALANCE_CLEANUP` (removing data from old topology)
+   * `TOPO_REBALANCE_COMPLETE` (local operations complete, waiting for other
+     nodes to finish before switching topology)
+
+## Examples
+
+```
+curl http://127.0.0.1:8112/rebalance/state
+```
+
+### Example 1 Output
+
+```json
+{
+  "current": "071b9fe756e07a8656273546d504dbc69c356c9ed525aacf898e3cceb3778755",
+  "next": "8bd44d5240847b8aa67435492d0b93e334ee6e3725afe02ee83821aee60b803f",
+  "state": "TOPO_REBALANCE_COMPLETE"
+}
+```
