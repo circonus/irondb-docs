@@ -625,3 +625,55 @@ Otherwise, it just reports the error and exits.
 This file holds any and all licenses that apply to this IRONdb node. Refer to
 the [installation steps](installation.md#add-license) for details on obtaining
 and installing licenses.
+
+The IRONdb license governs the following functionality:
+
+* License term (`<expiry>`)
+
+After this unix timestamp the license is invalid and will no longer
+work for any of the below.
+
+* Ingest cardinality (`<max_streams>`)
+
+How many unique time series (uniquely named streams of data) this installation
+can ingest in the most recent 5 minute period.
+
+This number applies to all nodes in the cluster although each node applies
+this restriction individually.  The math for unique streams is an estimate
+in the past 5 minutes and you are given a 15% overage before ingestion is affected.
+
+If this license is violated, ingestion will stop for the remainder of the 5 minute
+period that the violation was detected.  After the 5 minute period ends, the counter
+will reset to test the new 5 minute period.
+
+* NNT cache size (`<cache_size>`)
+
+This governs how large of a memory cache (max) is allowed for caching open NNT file 
+handles.  This has no impact on NNTBS configured systems.
+
+Deprecated if you have upgraded to NNTBS.
+
+* Enabledment of Lua extensions (`<lua_extension>`)
+
+Whether or not Lua extensions will operate.
+
+* Stream tags support (`<stream_tags>`)
+
+Whether or not stream tag related API calls and stream tag ingestion will work.
+If you do not have this license and stream tagged data arrives it will be silently
+discarded.
+
+* Histogram support (`<histograms>`)
+
+Whether or not histograms can be ingested.  If you do not have this license and 
+attempt to ingest histogram data it will be silently discarded.
+
+* Text metric support (`<text>`)
+
+Whether or not text metrics can be ingested.  If you do not have this license and 
+attempt to ingest text data it will be silently discarded.
+
+
+If you are interested in any of the above functionality and do not currently have a license
+please contact [sales@circonus.com](mailto:sales@circonus.com) to upgrade your license.
+

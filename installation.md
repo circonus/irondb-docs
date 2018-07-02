@@ -188,6 +188,8 @@ Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/cir
 Restart the IRONdb service:
 * (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 
+For more on licensing see: [Configuration/licenses](configuration.md#licensesconf)
+
 ## EC2 Installation
 
 Circonus makes available EC2 AMIs that come preinstalled with Ubuntu and
