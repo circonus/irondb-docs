@@ -441,7 +441,7 @@ returns to normal service.
               delete_after_quiescent_age="12hr"
               max_clock_skew="1d"
               conflict_resolver="abs_biggest"
-              rollup_strategy=""
+              rollup_strategy="raw_iterator"
 />
 ```
 
@@ -516,16 +516,19 @@ Default: "abs_biggest"
 
 #### raw_database rollup_strategy
 
-Control how rollups are performed.  By default the lowest level rollup 
-is computed and then IRONdb will read this lowest level data and compute 
-higher level rollups.  If you set this to "raw_iterator", the re-read
-is skipped and all levels of rollup are calculated from the raw data
-as it is iterated.
+Control how rollups are performed.  By default, all levels of rollup data are
+calculated from the raw database as it is iterated.
 
-Default: ""
+Prior to version `0.12` the default if not specified was that the lowest level
+of rollup was computed and then IRONdb would read this lowest level data and
+compute higher level rollups. This rollup strategy has been removed.
+
+Default: "raw\_iterator"
 
 
 ### metric_name_database
+
+> This database is no longer used as of version `0.12`.
 
 ```
 <metric_name_database location="/irondb/metric_name_db/{node}"
