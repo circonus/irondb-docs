@@ -1,7 +1,45 @@
 # Changelog
 
-## TBD
+## Changes in 0.12
+2018-07-05
 
+This release brings several major new features and represents months of hard
+work by our Engineering and Operations teams.
+
+ * New feature: [Stream Tags](/tags.md)
+   * These are tags that affect the name of a metric stream. They are
+     represented as `category:value` pairs, and are [searchable](/api/search-tags.md).
+   * Each unique combination of metric name and tag list counts as a new metric
+     stream for licensing purposes.
+ * New feature: [Activity Tracking](/activity_tracking.md)
+   * Quickly determine time ranges when a given metric or group of metrics was
+     being collected.
+ * New feature: Configurable [rollup retention](/configuration.md#nntbs) for numeric data.
+   * Retention is per rollup period defined in configuration.
+ * Operations: There is a one-time operation on the first startup when
+   upgrading to version `0.12`.
+   * As part of Stream Tags support, the
+     [metric\_name\_database](/configuration.md#metricnamedatabase) has been
+     combined with another internal index and is no longer stored separately on
+     disk.
+   * The metric name database was always read into memory at startup. After the
+     one-time conversion, its information will be extracted from the other index
+     on subsequent startups. The time to complete the conversion includes the
+     same amount of time to read the existing metric name database as well as
+     to write out an updated index entry for each record encountered.
+     Therefore, it is proportional to the number of unique metric streams
+     stored on this node.
+ * Operations: The `raw_database` option [rollup_strategy](/configuration.md#rawdatabase-rollupstrategy)
+   now defaults to `raw_iterator` if not specified.
+   * If upgrading with a config that does not specify a `rollup_strategy`, an
+     active rollup operation will start over on the timeshard it was
+     processing.
+ * Operations: Add the ability to [cancel a sweep delete](/api/sweep-delete-cancel.md)
+   operation.
+ * Operations: Remove the reconstitute-reset option (`-E`) and replace with a
+   more complete solution in the form of a script, `reset_reconstitute`, that
+   will enable the operator to remove all local data and start a fresh rebuild.
+ * CAQL: add methods `time:epoch()` and `time:tz()`
  * Installer: use default ZFS recordsize (128K) for NNT data. This has been
    shown experimentally to yield significantly better compression ratios.
    Existing installations will not see any change. To immediately effect these
@@ -10,17 +48,20 @@
 zfs inherit -r recordsize <pool>/irondb/data
 zfs inherit -r recordsize <pool>/irondb/nntbs
    ```
-   where `<pool>` is the zpool name. Users of versions < 0.11.1 can omit the
-   second command (this dataset will not be present.) The recordsize change
-   only affects new writes; existing data remains at the previous recordsize.
-   If the full benefit of the change is desired, a [node rebuild](/rebuilding-nodes.md)
-   may be performed.
+   where `<pool>` is the zpool name. Users of versions < [0.11.1](#changes-in-0111)
+   can omit the second command (this dataset will not be present.) The
+   recordsize change only affects new writes; existing data remains at the
+   previous recordsize. If the full benefit of the change is desired, a
+   [node rebuild](/rebuilding-nodes.md) may be performed.
  * Documentation: Raw Submission API documentation for already required
    X-Snowth-Datapoints header
  * Documentation: Text and Histogram deletion APIs were out of date.
  * Documentation: Update formatting on API pages, which were auto-converted
    from a previous format.
-
+ * Performance and stability fixes too numerous to list here, though there are
+   some highlights:
+   * Converted UUID handling from libuuid to libmtev's [faster implementation](http://circonus-labs.github.io/libmtev/apireference/c.html#u).
+   * Optimized replication speed.
 
 ## Changes in 0.11.18
 2018-04-12
