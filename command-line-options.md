@@ -52,8 +52,6 @@ reconstitute parameters:
         -A [<type>[,<type>]]    Reconstitute type
                                 Acceptable values: nnt,text,hist,raw,metrics
                                 All if omitted
-        -E                      Reset mode - remove existing state files, start
-from beginning
 
 this usage message:
         -h                      usage
@@ -208,7 +206,3 @@ metric data will be fetched from all source cluster nodes.
 
 Reconstitute one or more types of data (comma-separated), or all if no type is
 specified.  Acceptable values are `nnt,text,hist,raw,metrics`.
-
- * `-E`
-
-Reset reconstitute progress and start from the beginning.
