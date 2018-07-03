@@ -557,6 +557,8 @@ expired.
 <journal concurrency="4"
          max_bundled_messages="25000"
          pre_commit_size="131072"
+         send_compressed="true"
+         use_indexer="false"
 />
 ```
 
@@ -590,6 +592,29 @@ system should fail before commit. To disable the pre-commit buffer, set this
 attribute to 0.
 
 Default: 131072 (128 KB)
+
+#### journal send_compressed
+
+When sending journal messages to a peer, compress the messages before sending
+to save bandwidth, at the cost of sligtly more CPU usage. The bandwidth savings
+usually outweight the cost of compression.
+
+Default: true
+
+#### journal use_indexer
+
+Spawn a dedicated read-ahead thread to build
+[JLog](https://github.com/omniti-labs/jlog) indexes of upcoming segments in the
+write-ahead log for each remote node. This is only needed in the most extreme
+cases where the highest replication throughput is required. Almost all other
+installations will not notice any slowdown from indexing "on demand", as new
+segments are encountered.
+
+Note that this will spawn one extra thread per journal (there is one journal
+for every remote node in the cluster.) For example, activating this feature
+will spawn 15 additional threads on each node in a 16-node cluster.
+
+Default: false
 
 ### topology
 
