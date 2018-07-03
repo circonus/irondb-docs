@@ -20,6 +20,15 @@ This example means `123 milliseconds` into the timestamp `1480371964` or
 
 ** Note that, while it resembles a floating point number, this is not a float. **
 
+Starting with IRONdb release `0.12` you can also ingest *tagged* graphite data.  
+Tagged graphite data has the following format:
+
+`dot.separated.metric.name;category1=value1;category2=value2`
+
+Where tags are appended to the normal name and are separated by semicolons (`;`).
+
+For more info on the graphite tag format see: [Graphite Tag Support](http://graphite.readthedocs.io/en/latest/tags.html).  For info on querying the tagged graphite data see [Graphite Tag Queries](/graphite-rendering.md#searching-for-tags)
+
 For data safety reasons, we recommend that you use the RESTful POST interface to
 ingest graphite data. The network socket listener provides no feedback to the
 sender about whether or not data was actually ingested (or indeed even made it

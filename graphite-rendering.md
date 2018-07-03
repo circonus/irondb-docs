@@ -8,8 +8,7 @@ Follow the instructions in the README in that repo to install and utilize the IR
 
 That Storage Backend plugin simply utilizes the endpoints described below.
 
-Searching for Metric Names
-==========================
+### Searching for Metric Names
 
 Graphite metrics can be fetched (rendered) from IRONdb using the following endpoints. Glob style wildcards are supported.
 
@@ -49,6 +48,32 @@ If you do not want to utilize the `optional_query_prefix` you can leave it off t
 [
         {"leaf": false, "name":"graphite.dev"},
         {"leaf": false, "name":"graphite.prod"}
+]
+```
+
+### Searching for Tags
+
+Graphite metrics can be fetched (rendered) from IRONdb using multi-dimensional tag queries.
+
+`http://<host:port>/graphite/<account_id>/<optional_query_prefix>/tags/find?query=<tag query>`
+
+This will return a JSON document with metrics matching the `<tag query>`.  Tag query syntax
+is the same as supported by Graphite version >= 1.1.  See [Graphite Tag Querying](http://graphite.readthedocs.io/en/latest/tags.html#querying)
+
+The syntax is:
+
+    tag=spec    tag value exactly matches spec
+    tag!=spec   tag value does not exactly match spec
+    tag=~value  tag value matches the regular expression spec
+    tag!=~spec  tag value does not match the regular expression spec
+    
+`http://<host:port>/graphite/1/tags/find?query=category1=value1`
+
+
+```
+[
+        {"leaf": false, "name":"graphite.dev;category1=value1", "leaf_data": {...}},
+        {"leaf": false, "name":"graphite.prod;category1=value1", "leaf_data": {...}}
 ]
 ```   
 
