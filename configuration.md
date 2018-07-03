@@ -386,10 +386,10 @@ configuration.
 ### nntbs
 ```
 <nntbs path="/irondb/nntbs/{node}">
-  <shard period="60" size="1d" />
-  <shard period="300" size="5d" />
-  <shard period="1800" size="30d" />
-  <shard period="10800" size="180d" />
+  <shard period="60" size="1d" retention="1y" />
+  <shard period="300" size="5d" retention="2y" />
+  <shard period="1800" size="30d" retention="2y" />
+  <shard period="10800" size="180d" retention="10y" />
 </nntbs>
 ```
 
@@ -404,13 +404,17 @@ For each `period` we are defining how much time each chunk of data should cover 
 a new chunk. The minimum size for a shard is `127 * period`; for a 60 second period this would 
 be `7620` seconds.  Whatever period you provide here will be rounded up to that multiple.  If
 I provided `1d` as in the defaults above I would actually get `91440` seconds instead of `86400`.
+The `retention` setting for each shard determines how long to keep this data on disk
+before deleting it permanently.  `retention` is optional and if you don't provide it,
+IRONdb will keep the data forever.  When a timeshard is completely past the `retention` limit
+based on the current time, the entire shard is removed from disk.
 
 > NOTE: for installations with high a cardinality of metric names you will want to reduce
 > these `size` parameters to keep the shards small to ensure performance remains consistent.
 
 Whatever settings are chosen here cannot be changed after the database starts writing data
-into NNTBS.  If you change you mind about sizing you will have to wipe and reconstitute
-each node in order to apply new settings.
+into NNTBS (except for `retention`).  If you change your mind about sizing you will have to 
+wipe and reconstitute each node in order to apply new settings.
 
 If NNT files exist when NNTBS is activated, they will be converted to NNTBS
 format the first time they are read, and the NNTBS data will be used to satisfy
