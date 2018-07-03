@@ -13,3 +13,5 @@
  * [Retrieving Specific Rollups](api/read-rollup.md)
 
  * [Retrieving Graphite-style Data](api/read-graphite.md)
+
+ * [Searching Tags](api/search-tags.md)

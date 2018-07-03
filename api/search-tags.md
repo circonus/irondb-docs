@@ -46,7 +46,7 @@ Note that you can apply regular expressions independently to category or value o
     category:/value regex/
     /category regex/:value
     
-Glob syntax supports the wildcard '*' and can be used as a completer:
+Glob syntax supports the wildcard "`*`" and can be used as a completer:
 
     categ*:value
     category:val*
@@ -59,7 +59,9 @@ There are 2 special tags:
 * `__name`
 * `__check_uuid`
 
-Which do not explicitly appear in metric names but can be used to find metrics anyway.
+Which do not explicitly appear in metric names but can be used to find metrics
+anyway. For example, you could query activity periods for all metrics within a
+given `__check_uuid` even if none of those metrics were submitted with tags.
 
 If your query uses an unsupported tag character (see [Tag Support](/tags.md)) you must
 enclose the query in base64 notation:
@@ -80,7 +82,7 @@ You have ingested the following metrics:
     baz|ST[region:us-west-1,app:myapp]
     quux|ST[region:us-west-2,app:yourapp]
     
-To find all of the metrics under `app:myapp` you query would be:
+To find all of the metrics under `app:myapp` your query would be:
 
 `and(app:myapp)`
 
@@ -90,11 +92,11 @@ To find all of the metrics in `us-east` regardless of sub-region you would do:
 
 `and(region:/us-east-.*/)` in regex syntax.
 
-To find `bar` or `quux` we could do:
+To find `bar` or `quux` you could either do:
 
 `or(__name:bar,__name:quux)`
 
-Or:
+or:
 
 `or(and(region:us-east-2,app:,myapp),and(region:us-west-2,app:yourapp))`
 
