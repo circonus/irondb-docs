@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.12.1
+2018-07-09
+
+* Enable heap profiling
+
 ## Changes in 0.12
 2018-07-05
 
