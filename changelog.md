@@ -1,6 +1,11 @@
 # Changelog
 
-## Changes in 0.12.1
+## Changes in 0.12.2
+2018-07-09
+
+* Fix memory leak in name searches
+
+## Changes in 0.12.1 (unreleased)
 2018-07-09
 
 * Enable heap profiling
