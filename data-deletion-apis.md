@@ -12,6 +12,8 @@
 
  * [Deleting Histogram Data for a Check](api/delete-histogram-check.md)
 
- * [Deleting All Data Prior to a Date (Sweep Delete)](api/delete-sweep.md)
+ * [Deleting Raw Data for a Metric](api/delete-raw.md)
 
+ * [Deleting All Data Prior to a Date (Sweep Delete)](api/delete-sweep.md)
+ 
    * [Cancelling a Sweep Delete](api/delete-sweep-cancel.md)
