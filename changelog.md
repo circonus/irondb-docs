@@ -1,14 +1,25 @@
 # Changelog
 
+## Changes in 0.12.3
+2018-07-12
+
+ * More memory leak fixes in name searches
+ * Rebalance fixes
+ * Embed a default license if one isn't provided
+ * Support for [raw deletes](/api/delete-raw.md)
+
+Documentation changes:
+ * Add raw delete API
+
 ## Changes in 0.12.2
 2018-07-09
 
-* Fix memory leak in name searches
+ * Fix memory leak in name searches
 
 ## Changes in 0.12.1 (unreleased)
 2018-07-09
 
-* Enable heap profiling
+ * Enable heap profiling
 
 ## Changes in 0.12
 2018-07-05
