@@ -93,7 +93,9 @@ Default: 128
 
 #### cache size
 
-Size of the LRU cache.
+Size of the LRU cache of NNT open filehandles.
+
+> Deprecated when configured for [NNTBS](#nntbs)
 
 Default: 0
 
@@ -102,7 +104,7 @@ system's resource limit on open files for the IRONdb process.
 
 > This parameter is licensed as `cache_size` and may not be set higher than
 > this value. If your license does not specify `cache_size` then you may not
-> change this parameter.
+> change this parameter. If configured for NNTBS, this feature is ignored.
 
 ### logs
 
@@ -397,7 +399,8 @@ NNTBS is an optional more efficient rollup storage engine for data once it proce
 past the [raw database](#rawdatabase).  If you don't have an `<nntbs>` stanza in your
 config file, normal file based storage of NNT data will be used instead.
 
-> All new installations will come with NNTBS on by default.
+> All new installations since [0.11.6](/changelog.md#changes-in-0116) will come
+> with NNTBS on by default.
 
 The `<shard>` options should match the periods defined in the [rollups section](#rollups).
 For each `period` we are defining how much time each chunk of data should cover before creating
@@ -658,53 +661,74 @@ This file holds any and all licenses that apply to this IRONdb node. Refer to
 the [installation steps](installation.md#add-license) for details on obtaining
 and installing licenses.
 
+If no license is configured, an embedded license is used, which enables all
+features described below with a limit of 25,000 active streams (`max_streams`).
+
+### Licensed Features
+
 The IRONdb license governs the following functionality:
 
-* License term (`<expiry>`)
+#### License Term
+
+Name: `<expiry>`
 
 After this unix timestamp the license is invalid and will no longer
 work for any of the below.
 
-* Ingest cardinality (`<max_streams>`)
+#### Ingest Cardinality
+
+Name: `<max_streams>`
 
 How many unique time series (uniquely named streams of data) this installation
-can ingest in the most recent 5 minute period.
+can ingest in the most recent 5-minute period.
 
 This number applies to all nodes in the cluster although each node applies
 this restriction individually.  The math for unique streams is an estimate
 in the past 5 minutes and you are given a 15% overage before ingestion is affected.
 
-If this license is violated, ingestion will stop for the remainder of the 5 minute
-period that the violation was detected.  After the 5 minute period ends, the counter
-will reset to test the new 5 minute period.
+If this license is violated, ingestion will stop for the remainder of the 5-minute
+period that the violation was detected.  After the 5-minute period ends, the counter
+will reset to test the new 5-minute period.
 
-* NNT cache size (`<cache_size>`)
+#### NNT Cache Size
+
+Name: `<cache_size>`
 
 This governs how large of a memory cache (max) is allowed for caching open NNT file 
-handles.  This has no impact on NNTBS configured systems.
+handles.  This has no impact on NNTBS configured systems. All new installations
+since version 0.11.6 use NNTBS by default.
 
-Deprecated if you have upgraded to NNTBS.
+> Deprecated if you have upgraded to NNTBS.
 
-* Enabledment of Lua extensions (`<lua_extension>`)
+#### Enablement of Lua Extensions
+
+Name: `<lua_extension>`
 
 Whether or not Lua extensions will operate.
 
-* Stream tags support (`<stream_tags>`)
+#### Stream Tags Support
+
+Name: `<stream_tags>`
 
 Whether or not stream tag related API calls and stream tag ingestion will work.
 If you do not have this license and stream tagged data arrives it will be silently
 discarded.
 
-* Histogram support (`<histograms>`)
+#### Histogram Support
+
+Name: `<histograms>`
 
 Whether or not histograms can be ingested.  If you do not have this license and 
 attempt to ingest histogram data it will be silently discarded.
 
-* Text metric support (`<text>`)
+#### Text Metric Support
+
+Name: `<text>`
 
 Whether or not text metrics can be ingested.  If you do not have this license and 
 attempt to ingest text data it will be silently discarded.
 
+### Obtain A License
 
 If you are interested in any of the above functionality and do not currently have a license
 please contact [sales@circonus.com](mailto:sales@circonus.com) to upgrade your license.
