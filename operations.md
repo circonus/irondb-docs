@@ -101,7 +101,7 @@ Therefore, a write operation that PUTs data for 10 different streams in a single
 
 #### License
 
-Displays details of the node's license.
+Displays details of the node's [license](/configuration.md#licensesconf).
 
 #### Numeric Rollups
 

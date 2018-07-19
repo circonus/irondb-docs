@@ -171,19 +171,27 @@ The setup script will configure your IRONdb instance and start the service. Upon
 
 ### Add License
 
-Obtain your license information from your Circonus account profile: https://YOURACCOUNT.circonus.com/profile
-* If you do not have an IRONdb license, click the `+` to the right of the Licenses section of the account profile page to add a new license.
-* If you do not have a Circonus account, [sign up for free](https://login.circonus.com/signup).
+(Optional)
+
+As of version [0.12.3](/changelog.md#changes-in-0123) IRONdb comes with an
+embedded license that allows all features with a limit of 25K active, unique
+metric streams.  If you wish to obtain a more expansive license, please contact
+[Circonus Sales](mailto:sales@circonus.com).
+
+Once you have purchased your license, you may obtain it from your Circonus
+account profile: https://YOURACCOUNT.circonus.com/profile
 
 Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/circonus/etc/licenses.conf` on your IRONdb instance, within the enclosing `<licenses>` tags. It should look something like this:
 
-    <licenses>
-      <license id="(number)" sig="(cryptographic signature)">
-        <graphite>true</graphite>
-        <max_streams>25000</max_streams>
-        <company>MyCompany</company>
-      </license>
-    </licenses>
+```xml
+<licenses>
+  <license id="(number)" sig="(cryptographic signature)">
+    <graphite>true</graphite>
+    <max_streams>25000</max_streams>
+    <company>MyCompany</company>
+  </license>
+</licenses>
+```
 
 Restart the IRONdb service:
 * (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
