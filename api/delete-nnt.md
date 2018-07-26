@@ -1,8 +1,15 @@
-# Deleting Numeric Data for a Metric
+# Deleting Numeric Rollup Data for a Metric
 
-This API call is for deleting numeric data from the IRONdb cluster for a specific metric. It will remove data from the beginning of time up until the time provided by the user for that metric. If the time given is greater than the current most recent data point in the file, the file will be removed.
+This API call is for deleting numeric rollup data from the IRONdb cluster for a
+specific metric. It will remove data from the beginning of time up until the
+time provided by the user for that metric.
 
-This call will return an empty array upon success. If there is an error, this call will return a JSON object with the error.
+If using the deprecated NNT rollup storage format (as opposed to
+[NNTBS](/configuration.md#nntbs)) and the time given is greater than the most
+recent data point in the NNT file, the NNT file will be removed.
+
+This call will return an empty array upon success. If there is an error, this
+call will return a JSON object with the error.
 
 ## Description
 

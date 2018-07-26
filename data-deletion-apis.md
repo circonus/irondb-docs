@@ -4,7 +4,7 @@
 
  * [Deleting Raw Data for a Metric](api/delete-raw.md)
 
- * [Deleting Numeric Data for a Metric](api/delete-nnt.md)
+ * [Deleting Numeric Rollup Data for a Metric](api/delete-nnt.md)
 
  * [Deleting Text Data for a Metric](api/delete-text.md)
 
