@@ -124,6 +124,12 @@ At this point you may wish to reboot the system to ensure that the pool is
 present at startup.
 
 ## Proceed to IRONdb Setup
+
+> This step is only required if using the standalone IRONdb product. If you are
+> referring to this appendix as an on-premise Circonus Inside user, there is no
+> further manual setup required at this point. All IRONdb setup from this point
+> is handled by the Circonus Inside installer.
+
 Now that you have created a ZFS pool you may begin the IRONdb
 [installation](/installation.md). If you have multiple pools configured and you
 want to use a specific pool for IRONdb, you can use the `-z` option to the

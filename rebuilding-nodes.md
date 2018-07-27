@@ -26,6 +26,12 @@ user. Make sure the IRONdb package is [up to date](installation.md#updating).
 If the entire old node was replaced (e.g., due to a hardware failure), then you
 should repeat [initial installation](installation.md#installation-steps) and
 then [disable the service](operations.md#service-management).
+  1. If reconstituting within the full on-premise, Circonus Inside product,
+package updating has been handled automatically by the installer. No manual
+package installation is required. Please refer to the [Circonus Inside
+Operations
+Manual](https://login.circonus.com/resources/docs/operation/ReconstitutingaSnowthnode.html)
+for details on how this process differs for Circonus Inside.
 1. Make note of this node's topology UUID, found in the [imported
 topology](installation.md#import-topology). You may need to reference this
 configuration on another node if the node to be reconstituted is a fresh
@@ -61,13 +67,13 @@ zpool get freeing
 ``` 
  1. Recreate the dataset structure by running the following commands:
 ```
-zfs create -o recordsize=8K $BASE_DATASET/data
+zfs create $BASE_DATASET/data
 zfs create $BASE_DATASET/hist
 zfs create $BASE_DATASET/text
 zfs create -o logbias=throughput $BASE_DATASET/raw_db
 zfs create -o logbias=throughput $BASE_DATASET/surrogate_db
 zfs create $BASE_DATASET/metric_name_db
-zfs create -o recordsize=8K $BASE_DATASET/nntbs
+zfs create $BASE_DATASET/nntbs
 ```
  1. Run the following commands to make the node-id subdirectories:
 ```
@@ -86,7 +92,7 @@ chown -R nobody:nobody /irondb/
 ```
 1. Run IRONdb in reconstitute mode using the following command:
 ```
-/opt/circonus/bin/irondb-start -B -E
+/opt/circonus/bin/irondb-start -B
 ```
 1. Wait until the reconstitute operation has fetched 100% of its data from
 cluster peers. You can access the current percentage done at:
@@ -101,7 +107,7 @@ is normal. Do not stop the reconstitute.
 Current progress will be saved - if the process stops for any reason, everything
 should pick back up approximately where it was. 
 
-If the download stops partway for any reason, you may resume it with the following command:
+If the download stops partway for any reason, you may resume it with the same command:
 ```
 /opt/circonus/bin/irondb-start -B 
 ```
