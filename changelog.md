@@ -1,5 +1,18 @@
 # Changelog
 
+## Changes in 0.12.4
+2018-08-02
+
+ * More memory leak fixes
+ * Fixes for graphite tag support
+ * Fix for greedy name matching in graphite queries
+ * Support blank tag values
+ * CAQL if statements and negation operators
+ * CAQL optimizations
+ * Support for building/rebuilding higher level rollups from lower level rollups
+ * Rebalance adds a new completion state to fix races when finishing rebalance ops
+
+
 ## Changes in 0.12.3
 2018-07-12
 
