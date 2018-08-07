@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.12.5
+2018-08-07
+
+ * Crash fix on unparseable metric names
+ * Journal fix in pre\_commit mmap space
+
 ## Changes in 0.12.4
 2018-08-02
 
