@@ -1,5 +1,31 @@
 # Changelog
 
+## Changes in 0.13
+2018-08-15
+
+ * **Service config change for EL7**: We now ship a native systemd service
+   unit configuration, rather than a traditional init script. The unit name
+   remains the same, but any configuration management or other scripting that
+   used the `chkconfig` and `service` commands should be updated to use
+   `systemctl`.
+ * Installer: better validation of user input.
+ * Config option to disable [Activity Tracking](/activity_tracking.md) which
+   can cause write latency spikes at higher ingest volumes. A fix for this
+   behavior will be coming in a future release.
+   * Add an attribute, `activity_tracking="false"` to the
+     `<surrogate_database>` line in `irondb.conf` to disable tracking.
+   * Note that certain search parameters that depend on activity tracking will
+     not work while tracking is disabled, and may not be accurate if tracking
+     is reenabled after some time. Any search query that uses
+     `activity_start_secs` or `activity_end_secs` will not work when tracking is
+     disabled.
+ * Memory leak fixes in Graphite result handling.
+ * New CAQL functions:
+   * `each:*` package provides functions that operate on all input slots at
+     once. [CAQL Reference: package each](https://login.circonus.com/resources/docs/user/caql_reference.html#Packageeach)
+   * `TopK` global function returns the top `k` streams over the current
+     `VIEW_RANGE` using either a `mean` or `max` comparator. [CAQL Reference: global functions](https://login.circonus.com/resources/docs/user/caql_reference.html#GlobalFunctions)
+
 ## Changes in 0.12.5
 2018-08-07
 
