@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+ * Documentation: fix incorrect header name for raw data submission with
+   Flatbuffer.
+
 ## Changes in 0.13
 2018-08-15
 

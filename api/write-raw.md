@@ -126,5 +126,5 @@ source](https://github.com/circonus-labs/reconnoiter/blob/master/src/flatbuffers
 
 When submitting FlatBuffer-encoded metrics, a client must set the HTTP header
 `Content-Type` to `application/x-circonus-metric-list-flatbuffer` and set the
-HTTP header `X-Circonus-Datapoints` to the number of data points within the raw
+HTTP header `X-Snowth-Datapoints` to the number of data points within the raw
 submission.
