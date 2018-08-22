@@ -431,6 +431,8 @@ resolution, since IRONdb is very specific about the versions of dependent
 Circonus packages, and apt-get is unable to cope with them. The helper package
 must be upgraded first, i.e., it cannot be upgraded in the same transaction
 as the main package.
+
+1. `/usr/bin/apt-get update`
 1. `/usr/bin/apt-get install circonus-platform-irondb-apt-policy`
 1. `/usr/bin/apt-get install circonus-platform-irondb`
 1. `/bin/systemctl restart circonus-irondb`
