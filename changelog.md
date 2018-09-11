@@ -1,9 +1,19 @@
 # Changelog
 
-## TBD
+## Changes in 0.13.1
+2018-09-11
 
+ * Various performance improvements.
+ * Use progressive locks in surrogate DB.
  * Documentation: fix incorrect header name for raw data submission with
    Flatbuffer.
+ * Allow deleting metrics by tag.
+ * Allow deleting all metrics in a check.
+ * Allowing deleting metrics based on a wildcard for NNT, text, or histogram
+   data.
+ * Allow 4096 chars for metric name ingestion
+ * New CAQL function:
+   * `group_by:*` package provides functions to aggregate metrics by tags
 
 ## Changes in 0.13
 2018-08-15
