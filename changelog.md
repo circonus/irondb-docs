@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.13.2
+2018-09-13
+
+ * Fixes for journal surrogate puts and activity rebuilds.
+ * Fix bug where software would loop forever if journal writes
+   were in the future.
+
 ## Changes in 0.13.1
 2018-09-11
 
