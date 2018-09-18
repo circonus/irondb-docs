@@ -1,5 +1,19 @@
 # Changelog
 
+## Changes in 0.13.3
+2018-09-18
+
+ * Fix hashing function for the reverse surrogate cache.
+ * Fix loading of metrics db index when iterating surrogate entries
+   on startup.
+ * Improve logging for surrogate db when there are ID collisions.
+ * Accept check name and source in /surrogate/put - do not allow duplicate
+   surrogate ids in the cache.
+ * Performance improvements to inter-node gossip and NNTBS data writing.
+ * Allow purging metrics from in-memory cache.
+ * Fix some potential crashes on unexpected data.
+ * Allow using tag search to define retention period for metrics.
+
 ## Changes in 0.13.2
 2018-09-13
 
