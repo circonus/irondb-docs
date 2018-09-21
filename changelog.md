@@ -1,6 +1,7 @@
 # Changelog
 
-## TBD
+## Changes in 0.13.4
+2018-09-21
 
  * Installer bug since 0.13.1 set incorrect ZFS properties on some datasets.
    New installs of 0.13.1 or later may need to run the following commands to
@@ -17,6 +18,8 @@ zfs inherit -r quota <poolname>/irondb/metric_name_db
 zfs inherit -r logbias <poolname>/irondb/redo
 zfs inherit -r logbias <poolname>/irondb/text
    ```
+ * Fix memory leaks and invalid access errors that could potentially
+   lead to crashes.
 
 ## Changes in 0.13.3
 2018-09-18
