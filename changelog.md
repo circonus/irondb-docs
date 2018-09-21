@@ -1,5 +1,23 @@
 # Changelog
 
+## TBD
+
+ * Installer bug since 0.13.1 set incorrect ZFS properties on some datasets.
+   New installs of 0.13.1 or later may need to run the following commands to
+   restore the correct property values. Existing deployments that upgraded from
+   version 0.13 or earlier were not affected.
+   ```
+zfs inherit -r quota <poolname>/irondb/data
+zfs inherit -r quota <poolname>/irondb/nntbs
+zfs inherit -r quota <poolname>/irondb/hist
+zfs inherit -r quota <poolname>/irondb/localstate
+zfs inherit -r quota <poolname>/irondb/logs
+zfs inherit -r quota <poolname>/irondb/lua
+zfs inherit -r quota <poolname>/irondb/metric_name_db
+zfs inherit -r logbias <poolname>/irondb/redo
+zfs inherit -r logbias <poolname>/irondb/text
+   ```
+
 ## Changes in 0.13.3
 2018-09-18
 
