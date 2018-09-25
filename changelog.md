@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in 0.13.5
+2018-09-25
+
+ * Disable asynch core dumps by default.
+ * Use the metric source for incoming metrics instead of hardcoding
+   to RECONNOITER.
+ * Fix some potential use-after-free crashes.
+ * Fixed a crash where we would erroneously assume null termination.
+ * Performance and correctness fixes to internal locking mechanism.
+ * Fix some instances where we would potentially attempt to access a
+   null metric name.
+
 ## Changes in 0.13.4
 2018-09-21
 
