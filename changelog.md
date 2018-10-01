@@ -1,5 +1,14 @@
 # Changelog
 
+## Changes in 0.13.6
+2018-10-01
+
+ * Move Zipkin setup messages out of the error log and into the debug
+   log.
+ * Skip unparseable metric_locators during replication.
+ * Turn off sync writes in tagged surrogate writer.
+ * Fix potential crashes when check_name is NULL.
+
 ## Changes in 0.13.5
 2018-09-25
 
