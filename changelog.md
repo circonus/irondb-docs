@@ -1,5 +1,9 @@
 # Changelog
 
+## TBD
+
+ * Documentation: fix missing rebalance state.
+
 ## Changes in 0.13.6
 2018-10-01
 

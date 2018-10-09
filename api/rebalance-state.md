@@ -24,8 +24,15 @@ GET
    * `TOPO_REBALANCE_REHASH` (relocating data)
    * `TOPO_REBALANCE_REHASH_VOTE` (waiting for data relocation completion on all nodes)
    * `TOPO_REBALANCE_CLEANUP` (removing data from old topology)
-   * `TOPO_REBALANCE_COMPLETE` (local operations complete, waiting for other
-     nodes to finish before switching topology)
+   * `TOPO_REBALANCE_COMPLETE` (local operations complete, switching to next
+     topology)
+   * `TOPO_REBALANCE_COMPLETE_VOTE` (waiting for all other nodes to complete
+     and switch to the next topology)
+
+During a rebalance operation, each node will proceed through the above states
+in order, returning to `TOPO_REBALANCE_IDLE` when finished. The topology that
+was listed as "next" is now "current", and "next" is now "-", meaning no next
+topology.
 
 ## Examples
 
