@@ -68,7 +68,9 @@ enclose the query in base64 notation:
 
 `and(b"...":b"...")`
 
-To pass through the unsupported characters.
+To pass through the unsupported characters. If using regular expression
+patterns, the `/ /` do _not_ need to be encoded. To perform a regex match on
+`.*foo`, you would use the form `b:/Lipmb28K/`.
 
 See the examples below for more color.
 
