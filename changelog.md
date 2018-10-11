@@ -1,8 +1,18 @@
 # Changelog
 
-## TBD
+## Changes in 0.13.7
+2018-10-11
 
  * Documentation: fix missing rebalance state.
+ * Add log deduplication to avoid spamming errorlog with
+   identical messages.
+ * Fix potential deadlock that could be triggered when forking
+   off a process to be monitored by the watchdog.
+ * Fix some potential crashes/memory leaks.
+ * When loading a new topology, return 200 status instead of 500
+   if the topology is already loaded.
+ * Support tag removal.
+ * Performance/stability improvements for activity list operations.
 
 ## Changes in 0.13.6
 2018-10-01
