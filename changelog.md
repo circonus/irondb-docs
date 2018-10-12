@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.13.8
+2018-10-12
+
+ * Expose more jobq modification via console.
+ * Fix wildcard/regex queries inside tag categories.
+ * Fix issue where certian job queues could have concurrency
+   of zero, causing deadlock.
+ * Add activity ranges to tag_cats/vals.
+ * Add category param to tag_vals.
+
 ## Changes in 0.13.7
 2018-10-11
 
