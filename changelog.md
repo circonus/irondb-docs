@@ -1,5 +1,11 @@
 # Changelog
 
+## TBD
+
+ * Installer and startup wrapper will update ownership of `/opt/circonus/etc`
+   and `/opt/circonus/etc/irondb.conf` to allow for automatic updating of the
+   topology configuration during rebalance operations.
+
 ## Changes in 0.13.8
 2018-10-12
 
