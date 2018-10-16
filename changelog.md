@@ -1,10 +1,15 @@
 # Changelog
 
-## TBD
+## Changes in 0.13.9
+2018-10-16
 
  * Installer and startup wrapper will update ownership of `/opt/circonus/etc`
    and `/opt/circonus/etc/irondb.conf` to allow for automatic updating of the
    topology configuration during rebalance operations.
+ * Performance improvements to parsing surrogate database at startup.
+ * Fix some potential crashes.
+ * Disable saving ptrace stdout output files in the default
+   circonus-watchdog.conf file.
 
 ## Changes in 0.13.8
 2018-10-12
