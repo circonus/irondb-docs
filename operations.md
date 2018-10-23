@@ -85,11 +85,13 @@ If gossip state is unavailable, such as due to a network partition, the node han
 
 IRONdb comes with a built-in operational dashboard accessible via port 8112 in your browser, e.g., http://irondb-host:8112. This interface provides real-time information about the IRONdb cluster. There are a number of tabs in the UI, which display different aspects about the node's current status.
 
-The node's address and port are displayed at top right, along with a version hash.
-
 ### Overview Tab
 
-The "Overview" tab displays the current throughput, available rollup dimensions, and storage statistics.
+The "Overview" tab displays a number of tiles representing the current
+ingestion throughput, available rollup dimensions, license information, and
+storage statistics.
+
+![Image: 'ops_overview_tab.png'](/assets/ops_overview_tab.png?raw=true)
 
 #### Ingestion
 
@@ -99,7 +101,7 @@ Read (Get) and Write (Put) throughput, per second.
 
 Therefore, a write operation that PUTs data for 10 different streams in a single operation counts as 1 Batch and 10 Tuples.
 
-#### License
+#### License info
 
 Displays details of the node's [license](/configuration.md#licensesconf).
 
@@ -122,11 +124,25 @@ Displays throughput for both reads and writes per second for text data.
 
 Disk space used and performance data per data type and rollup dimension.
 
-Each icon under "Performance" displays a histogram of the associated operation (Get/Put/Proxy) latency since the server last started. Latencies are plotted on the x-axis as seconds, with counts of operations in each latency bucket on the y-axis. The average latency for the set is displayed as a vertical green line.
+Each icon under "Performance" displays a histogram of the associated operation
+(Get/Put/Proxy) latency since the server last started. "Get" operations are
+reads, "Put" are writes, and "Proxy" are operations that require fetching data
+from a different node than the one which received the request.
+
+![Image: 'ops_perf.png'](/assets/ops_perf.png?raw=true)
+
+Latencies are plotted on the x-axis as seconds, with suffixes "m" for
+milliseconds, "&mu;" for microseconds, and "n" for nanoseconds. Counts of
+operations in each latency bucket are on the y-axis. The mean latency for the
+set is displayed as a vertical green line.
+
+![Image: 'ops_perf_quantile.png'](/assets/ops_perf_quantile.png?raw=true)
 
 Hovering over the x-axis will display a shaded region representing quantile bands and the latency values that fall within them. The quantiles are divided into four bands: p(0)-p(25), p(25)-p(50), p(50)-p(75), and p(75)-p(100). To avoid losing detail, the maximum x-axis values are not displayed, but the highest latency value may be seen by hovering over the p(75)-p(100) quantile band.
 
 Hovering over an individual latency bar will display three lines at the top right corner of the histogram. These represent the number of operations that had less than, equal to, or greater than the current latency, and what percentage of the total each count represents.
+
+![Image: 'ops_perf_latency.png'](/assets/ops_perf_latency.png?raw=true)
 
 The Used, Total, and Compress Ratio figures represent how much disk space is occupied by each data type or rollup, the total filesystem space available on the node, and the ratio of the original size to the compressed size stored on disk. The compression ratio is determined from the underlying ZFS filesystem.
 
@@ -139,6 +155,8 @@ exchanged between nodes using "gossip" messages, and the difference between the
 current time and the time of the last gossip message received is the "gossip
 age".
 
+![Image: 'replication_tab.png'](/assets/replication_tab.png?raw=true)
+
 Each node is listed in a heading derived from its IP and port, and a gossip age
 in parentheses (see below). The node's latency summary is displayed at the
 right end of the heading line. This is intended as a quick "health check" as to
@@ -146,7 +164,8 @@ whether this node is significantly behind or not.
 
 Clicking on the heading exposes a list of peer nodes, also by IP:port, and a
 latency indicator. Each peer's latency may thus be read as "how far behind"
-this node is from that peer.
+the selected node is from that peer. In the example above, we can say that node
+"171" is 0 seconds behind from its peers "172" and "173".
 
 All nodes should be running NTP or a similar time synchronization daemon. For
 example, if a remote node is shown as "(0.55 seconds old)", that means that a
@@ -166,6 +185,8 @@ node. Check that port 8112/udp is permitted between all cluster nodes.
 
 #### Display Colors
 Both gossip age and replication latency are also indicated using color.
+
+![Image: 'replication_latency.png'](/assets/replication_latency.png?raw=true)
 
 The heading of the node being viewed will always be displayed in blue.
 
@@ -192,7 +213,17 @@ follows:
 
 ### Topology Tab
 
-Displays the layout of the topology ring, and how the key space is divided up among the participating nodes. A given stream may be located by entering its UUID and Metric Name in the fields provided, and then clicking the Locate button. Icons indicating the primary, secondary, and tertiary owners of the metric (or more if more write copies are configured) will appear next to the corresponding node.
+Displays the layout of the topology ring, and the percentage of key space for
+which each node is responsible.
+
+![Image: 'topology_tab.png'](/assets/topology_tab.png?raw=true)
+
+An individual stream may be located by entering its UUID and Metric Name in the
+Locate Metrics tile, and then clicking the Locate button. Numbers indicating
+the primary and secondary owners of the metric (or more if more write copies
+are configured) will appear next to the corresponding node.
+
+![Image: 'topology_locate_metrics.png'](/assets/topology_locate_metrics.png?raw=true)
 
 ### Extensions Tab
 
