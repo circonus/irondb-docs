@@ -178,10 +178,9 @@ embedded license that allows all features with a limit of 25K active, unique
 metric streams.  If you wish to obtain a more expansive license, please contact
 [Circonus Sales](mailto:sales@circonus.com).
 
-Once you have purchased your license, you may obtain it from your Circonus
-account profile: https://YOURACCOUNT.circonus.com/profile
-
-Add the `<license>` stanza from your chosen IRONdb license to the file `/opt/circonus/etc/licenses.conf` on your IRONdb instance, within the enclosing `<licenses>` tags. It should look something like this:
+Add the `<license>` stanza from your purchased IRONdb license to the file
+`/opt/circonus/etc/licenses.conf` on your IRONdb instance, within the enclosing
+`<licenses>` tags. It should look something like this:
 
 ```xml
 <licenses>
