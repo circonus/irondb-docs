@@ -12,6 +12,9 @@ relevant libmtev documentation where appropriate.
 Default values are those that are present in the default configuration produced
 during initial installation.
 
+Time periods are specified as second-resolution [libmtev
+durations](http://circonus-labs.github.io/libmtev/apireference/c.html#mtevgetdurationss).
+
 ## irondb.conf
 
 This is the primary configuration file that IRONdb reads at start. It includes
@@ -388,10 +391,10 @@ configuration.
 ### nntbs
 ```
 <nntbs path="/irondb/nntbs/{node}">
-  <shard period="60" size="1d" retention="1y" />
-  <shard period="300" size="5d" retention="2y" />
-  <shard period="1800" size="30d" retention="2y" />
-  <shard period="10800" size="180d" retention="10y" />
+  <shard period="60" size="1d" retention="52w" />
+  <shard period="300" size="5d" retention="104w" />
+  <shard period="1800" size="30d" retention="104w" />
+  <shard period="10800" size="180d" retention="520w" />
 </nntbs>
 ```
 
@@ -402,18 +405,25 @@ config file, normal file based storage of NNT data will be used instead.
 > All new installations since [0.11.6](/changelog.md#changes-in-0116) will come
 > with NNTBS on by default.
 
-The `<shard>` options should match the periods defined in the [rollups section](#rollups).
-For each `period` we are defining how much time each chunk of data should cover before creating
-a new chunk. The minimum size for a shard is `127 * period`; for a 60 second period this would 
-be `7620` seconds.  Whatever period you provide here will be rounded up to that multiple.  If
-I provided `1d` as in the defaults above I would actually get `91440` seconds instead of `86400`.
-The `retention` setting for each shard determines how long to keep this data on disk
-before deleting it permanently.  `retention` is optional and if you don't provide it,
-IRONdb will keep the data forever.  When a timeshard is completely past the `retention` limit
-based on the current time, the entire shard is removed from disk.
+The `<shard>` options should match the periods defined in the [rollups
+section](#rollups).  For each `period` we are defining how much time each chunk
+of data should cover before creating a new chunk. The minimum size for a shard
+is `127 * period`; for a 60 second period this would be `7620` seconds.
+Whatever period you provide here will be rounded up to that multiple.  If you
+provided `1d` as in the defaults above, you would actually get `91440` seconds
+instead of `86400`.
 
-> NOTE: for installations with high a cardinality of metric names you will want to reduce
-> these `size` parameters to keep the shards small to ensure performance remains consistent.
+> NOTE: for installations with high a cardinality of metric names you will want
+> to reduce the `size` parameters to keep the shards small to ensure
+> performance remains consistent.
+
+The `retention` setting for each shard determines how long to keep this data on
+disk before deleting it permanently.  `retention` is optional and if you don't
+provide it, IRONdb will keep the data forever.  When a timeshard is completely
+past the `retention` limit based on the current time, the entire shard is
+removed from disk. In the above example, 60-second rollups are retained for 52
+weeks (1 year), 5- and 30-minute rollups are retained for 104 weeks (2 years),
+and 3-hour rollups are retained for 520 weeks (10 years).
 
 Whatever settings are chosen here cannot be changed after the database starts writing data
 into NNTBS (except for `retention`).  If you change your mind about sizing you will have to 
@@ -451,9 +461,6 @@ returns to normal service.
 Raw metrics database. This stores all ingested metrics at full resolution for a
 configurable period of time, after which the values are rolled up and stored in
 one or more [period-specific files](#rollups).
-
-Time periods are specified as second-resolution [libmtev
-durations](http://circonus-labs.github.io/libmtev/apireference/c.html#mtevgetdurationss).
 
 The `location` and `data_db` attributes should not be modified.
 
