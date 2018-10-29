@@ -1,5 +1,19 @@
 # Changelog
 
+## Chaneges in TBD
+<TBD>
+
+ * Change some internal HTTP response codes to be more REST compliant/accurate.
+ * Improve error checking when opening NNTBS timeshards.
+ * Improve surrogate DB startup informational logging.
+ * Various memory usage optimizations to reduce the amount of memory needed
+   for snowthd to operate.
+ * Remove globals from backtrace support.
+ * Add ability to delete surrogates from the system that are no longer used.
+ * Remove temporary files used during reconstitute - there were a handful of
+   files staying on disk and taking up space unnecessarily.
+ * Increase timeout for pulling raw data during reconstitutes.
+
 ## Changes in 0.13.9
 2018-10-16
 
