@@ -13,6 +13,8 @@
  * Remove temporary files used during reconstitute - there were a handful of
    files staying on disk and taking up space unnecessarily.
  * Increase timeout for pulling raw data during reconstitutes.
+ * Move duplicate startup message to debug log - not actually an error, so
+   should not be reported as one.
 
 ## Changes in 0.13.9
 2018-10-16
