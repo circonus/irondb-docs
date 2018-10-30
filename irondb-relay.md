@@ -45,13 +45,23 @@ the [IRONdb installation](installation.md#system-tuning).
 
 ### Configure Software Sources
 
-Use the same software source as
-the [IRONdb installation](installation.md#configure-software-sources) for EL7 or
-Ubuntu.
+For EL7 or Ubuntu 16.04, use the same software source as the [IRONdb
+installation](installation.md#configure-software-sources).
 
-For EL6, use the same config as EL7 but replace `7` with `6` in the `baseurl`
-for `[circonus]` and replace `el7` with `el6` in the `baseurl` for
-`[circonus-crash-reporting]`
+For EL6, create the file `/etc/yum.repos.d/Circonus.repo` with the following
+contents:
+```
+[circonus]
+name=Circonus
+baseurl=http://pilot.circonus.net/centos/6/x86_64/
+enabled = 1
+metadata_expire = 5m
+
+[circonus-crash-reporting]
+name=Circonus - Crash Reporting
+baseurl=http://updates.circonus.net/backtrace/centos/el6/
+enabled = 1
+```
 
 ### Install Package
 

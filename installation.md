@@ -84,33 +84,63 @@ System commands must be run as a privileged user, such as `root`, or via `sudo`.
 Configure package repositories. During the IRONdb beta period, our development
 (aka "pilot") repo is required.
 
-(EL7) Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
+#### EL7 Repository
+
+If you wish to validate package signatures, the Circonus Packaging key is
+available from [Keybase](https://keybase.io/circonuspkg).
+
+Install the key:
+```
+rpm --import https://keybase.io/circonuspkg/pgp_keys.asc?fingerprint=14ff6826503494d85e62d2f22dd15eba6d4fa648
+```
+
+Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
 
     [circonus]
     name=Circonus
     baseurl=http://pilot.circonus.net/centos/7/x86_64/
     enabled = 1
-    gpgcheck = 0
+    gpgcheck = 1
     metadata_expire = 5m
 
     [circonus-crash-reporting]
     name=Circonus - Crash Reporting
     baseurl=http://updates.circonus.net/backtrace/centos/el7/
     enabled = 1
-    gpgcheck = 0
 
-(Ubuntu 16.04) Create the file `/etc/apt/sources.list.d/circonus.list` with the
-following contents:
+If you do not wish to validate signatures, set `gpgcheck = 0` in the
+`[circonus]` stanza.
 
-    deb http://pilot.circonus.net/ubuntu/ xenial main
+#### Ubuntu 16.04 Repository
 
-Then run `apt-get update`.
+If you wish to validate package signatures, the Circonus Packaging key is
+available from [Keybase](https://keybase.io/circonuspkg).
+
+Install the key:
+```
+curl 'https://keybase.io/circonuspkg/pgp_keys.asc?fingerprint=14ff6826503494d85e62d2f22dd15eba6d4fa648' | sudo apt-key add -
+```
+
+Create the file `/etc/apt/sources.list.d/circonus.list` with the following
+contents:
+
+    deb [arch=amd64] http://pilot.circonus.net/ubuntu/ xenial main
+
+If you do not wish to validate signatures, add the option `trusted=yes`:
+
+    deb [arch=amd64 trusted=yes] http://pilot.circonus.net/ubuntu/ xenial main
+
+Note that this will still generate a warning for some operations, such as
+`apt-get update` since the default is to validate the signature on the main
+repository metadata file(s).
+
+Finally, run `apt-get update`.
 
 ### Install Package
 
-* (EL7) `/usr/bin/yum install circonus-platform-irondb`
+EL7: `/usr/bin/yum install circonus-platform-irondb`
 
-We have a helper package on Ubuntu that works around issues with dependency
+Ubuntu 16.04: we have a helper package that works around issues with dependency
 resolution, since IRONdb is very specific about the versions of dependent
 Circonus packages, and apt-get is unable to cope with them. The helper package
 must be installed first, i.e., it cannot be installed in the same transaction
