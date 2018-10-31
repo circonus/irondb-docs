@@ -15,6 +15,8 @@
  * Increase timeout for pulling raw data during reconstitutes.
  * Move duplicate startup message to debug log - not actually an error, so
    should not be reported as one.
+ * Adopt multi-level hash strategy for graphite searches.
+ * Fix logging bug where long lines could end up running together.
 
 ## Changes in 0.13.9
 2018-10-16
