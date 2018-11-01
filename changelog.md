@@ -1,22 +1,24 @@
 # Changelog
 
-## Chaneges in TBD
-<TBD>
+## Changes in 0.14.0
+2018-11-01
 
  * Change some internal HTTP response codes to be more REST compliant/accurate.
  * Improve error checking when opening NNTBS timeshards.
  * Improve surrogate DB startup informational logging.
  * Various memory usage optimizations to reduce the amount of memory needed
    for snowthd to operate.
- * Remove globals from backtrace support.
+ * Remove global variables from Backtrace.io traces.
  * Add ability to delete surrogates from the system that are no longer used.
  * Remove temporary files used during reconstitute - there were a handful of
    files staying on disk and taking up space unnecessarily.
  * Increase timeout for pulling raw data during reconstitutes.
  * Move duplicate startup message to debug log - not actually an error, so
    should not be reported as one.
- * Adopt multi-level hash strategy for graphite searches.
+ * Adopt multi-level hash strategy for graphite searches. The goal here is to
+   be faster and more memory-efficient, with a focus on memory efficiency.
  * Fix logging bug where long lines could end up running together.
+ * Fix crash bug in histogram fetching API.
 
 ## Changes in 0.13.9
 2018-10-16
