@@ -44,7 +44,6 @@ Used only with wildcards or tag query:
 
 ```
 curl -X DELETE \
-     -H 'x-snowth-delete-time: 1527811200' \
      http://127.0.0.1:8112/full/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/example
 ```
 
@@ -65,7 +64,6 @@ In this example:
 
 ```
 curl -X DELETE \
-     -H 'x-snowth-delete-time: 1527811200' \
      -H 'x-snowth-account-id: 1234' \
      -H 'x-snowth-confirm-delete: 1' \
      http://127.0.0.1:8112/full/6f6bdc73-2352-4bdc-ab0e-72f66d0dee12/multiple_example*
