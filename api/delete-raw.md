@@ -1,10 +1,10 @@
-# Deleting Raw Data for a Metric
+# Deleting Raw Data for a Metric or a Set of Metrics
 
-This API call is for deleting raw data from an IRONdb node for a specific metric or for a set of metrics (when wildcards are specified). It will remove raw data which has not been rolled up from the beginning of time up until the end time provided by the user for that metric(s).
+This API call is for deleting raw data from an IRONdb node for a specific metric or for a set of metrics (when wildcards or a tag query are specified). It will remove raw data which has not been rolled up from the beginning of time up until the end time provided by the user for that metric(s).
 
 When used for deletion of a single metric, this call will return an empty array on success. If there is an error, it will return a JSON object with the error.
 
-When used with wildcards, this call always returns a JSON object which describes the matching metrics and the potential or actual results of deletion for each metric.  Explicit confirmation is required in order to actually trigger the deletion, allowing the user to first issue the API call without confirmation to review what would actually be deleted (and hopefully avoid accidentally deleting more than intended).
+When used with wildcards or a tag query, this call always returns a JSON object which describes the matching metrics and the actions taken or errors received on the deletion.  For safety, explicit confirmation is required in the headers to actually force the data deletion.  It is highly recommended to perform the deletion API call without confirmation as a first step, in order to review what would actually be deleted (and hopefully avoid accidentally deleting more data than intended).
 
 Deletion is currently only supported on a single node per API call.  To delete data from the entire cluster, issue the same API call to each node.
 
@@ -18,6 +18,10 @@ Deletion is currently only supported on a single node per API call.  To delete d
 
 `/raw/<uuid>/<metric_pattern_including_wildcards>`
 
+-OR-
+
+`/raw/tags?query=<query>`
+
 ### Method
 
 DELETE
@@ -27,16 +31,17 @@ DELETE
  * `uuid` : The UUID of the check to which the metric belongs.
  * `metric` : The name of the metric from which data is deleted.
  * `metric_pattern_including_wildcards` : A metric naming pattern string including wildcards.
+ * `query` : See [Tag Queries](/tag_queries.md) for more info on tag queries.
 
 ### Headers
 
  * `x-snowth-delete-time: <end>` (required)
-   * `end` The end timestamp for the delete operation. All data from before this specified time is deleted (if wildcards are specified, data will only get located and deletion will not occur unless confirmation is given). Time is represented in seconds since the epoch.
+   * `end` The end timestamp for the delete operation. All data before this specified time is deleted (if wildcards or a tag query are specified, data will only be located and deletion will not occur unless confirmation is given). Time is represented in seconds since the epoch.
 
-Used with wildcards only:
+Used only with wildcards or tag query:
  * `x-snowth-account-id: <account_id>` (required)
    * `account_id` The account to be searched using the wildcard pattern
- * `x-snowth-confirm-delete: <0 or 1>` (optional, must be present and set to 1 to actually confirm and process with deletion)
+ * `x-snowth-confirm-delete: <0 or 1>` (optional, must be present and set to 1 to actually confirm and process the deletion)
 
 ## Single Metric Example
 
@@ -76,7 +81,7 @@ In this example:
  * `multiple_example*` : Metric name pattern including wildcard
  * `1527811200` : Delete all data for matching metrics before this time
  * `1234` : Delete data only for the given account id
- * `1` : Confirm to actually commit to the deletion (recommend omitting this header at first, to examine what will be deleted first)
+ * `1` : Confirm to actually commit to the deletion (we highly recommend omitting this header at first, to examine what will be deleted first)
 
 ### Sample Output for Wildcard Metric Example
 
