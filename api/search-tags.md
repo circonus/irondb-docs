@@ -17,7 +17,7 @@ GET
 ### Inputs
 
  * `account_id`          : The account to search
- * `query`               : See [Tag Queries](/tag_queries.md) for more info on tag queries.
+ * `query`               : See [Tag Queries](/tag-queries.md) for more info on tag queries.
  * `activity_start_secs` : (optional) The start time from which to pull data, represented in seconds since the unix epoch.
  * `activity_end_secs`   : (optional) The end time up to which data is pulled, represented in seconds since the unix epoch.
 
