@@ -2,7 +2,10 @@
 
 This API call is for deleting text data from the IRONdb cluster for an entire check. It will remove data from the beginning of time up until the time provided by the user for every text metric that is part of the given check UUID.
 
-This call always returns a JSON object which describes the matching metrics and the actions taken or errors received on the deletion.  For safety, explicit confirmation is required in the headers to actually force the data deletion.  It is highly recommended to perform the deletion API call without confirmation as a first step, in order to review what would actually be deleted (and hopefully avoid accidentally deleting more data than intended).
+This call always returns a JSON object which describes the matching metrics and the actions taken or errors received on the deletion.  For safety, explicit confirmation is required in the headers to actually force the data deletion.
+A list of the possible result statuses for each metric and what they mean can be found [here](/data-deletion-statuses.md).
+
+**It is highly recommended to perform the deletion API call without confirmation as a first step, in order to review what would actually be deleted (and hopefully avoid accidentally deleting more data than intended).**
 
 Deletion is currently only supported on a single node per API call.  To delete data from the entire cluster, issue the same API call to each node.
 

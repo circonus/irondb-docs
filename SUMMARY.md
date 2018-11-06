@@ -108,6 +108,7 @@
           * [Starting a Sweep Delete](api/delete-sweep.md)
           * [Cancelling a Sweep Delete](api/delete-sweep-cancel.md)
         * [Fully Removing Metric(s)](api/delete-full.md)
+        * [Data Deletion Result Statuses](data-deletion-statuses.md)
     * [Lua Extensions APIs](lua-extensions-apis.md)
         * [Getting List of Lua Extensions](api/extension-lua.md)
         * [Executing a Lua Extension](api/extension-lua-script.md)
