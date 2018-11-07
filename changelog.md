@@ -7,6 +7,8 @@ TBD
  * Remove concept of info_db from NNTBS database. This should lead to increased
    raw-to-NNTBS rollup speed.
  * Fix error messages that were printing an uninitialized variable.
+ * Handle Graphite expansions that are leaves.
+ * Performance improvements via smarter use of locking.
  * Improvements to safe memory reclamation (SMR).
 
 ## Changes in 0.14.0
