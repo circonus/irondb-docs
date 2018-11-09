@@ -112,6 +112,7 @@
     * [Lua Extensions APIs](lua-extensions-apis.md)
         * [Getting List of Lua Extensions](api/extension-lua.md)
         * [Executing a Lua Extension](api/extension-lua-script.md)
+        * [Issuing CAQL Queries](api/extension-caql.md)
 * [Changelog](changelog.md)
 * Appendix
   * [ZFS Setup Guide](zfs-guide.md)
