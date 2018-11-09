@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in TBD
-TBD
+## Changes in 0.14.1
+2018-11-09
 
  * Improvements to raw-to-NNTBS rollup speeds.
  * Fix error messages that were printing an uninitialized variable.
