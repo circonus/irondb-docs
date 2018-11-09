@@ -16,7 +16,7 @@ GET
 
 ### Inputs
 
-Parameters can be submitted as query string parameters or as JSON payload.
+Parameters can be submitted as url-encoded query string parameters or as JSON payload.
 
 The following parameters are supported:
 
@@ -28,7 +28,7 @@ The following parameters are supported:
 
 * `period` : The period, in seconds, for which to get data rollups.
 
-* `_timeout` : Spefify a timeout for CAQL processing in seconds. Optional. Default = 4.5.
+* `_timeout` : Specify a timeout for CAQL processing in seconds. Optional. Default = 4.5.
 
 * `preview` : Boolean parameter ("true"/"false") that enables CAQL preview mode. In preview mode caql processing will be faster but results will only be approximated. Optional. Default = false.
 
@@ -41,6 +41,13 @@ echo '{
   "end":1474275240,
   "period":60
 }' | curl http://127.0.0.1:8112/extension/lua/caql_v1 --data @-
+```
+
+Equivalently we can pass the paraemeters via the query string:
+
+
+```
+curl  http://127.0.0.1:8112/extension/lua/caql_v1?start=1474275000&end_time=1474275600&period=60&q=12+3
 ```
 
 ### Output
