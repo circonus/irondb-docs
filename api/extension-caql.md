@@ -47,7 +47,7 @@ Equivalently we can pass the paraemeters via the query string:
 
 
 ```
-curl  http://127.0.0.1:8112/extension/lua/caql_v1?start=1474275000&end=1474275240&period=60&query=12+3
+curl  'http://127.0.0.1:8112/extension/lua/caql_v1?start=1474275000&end=1474275240&period=60&query=12+3'
 ```
 
 ### Output
