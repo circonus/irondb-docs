@@ -30,8 +30,6 @@ The following parameters are supported:
 
 * `_timeout` : Specify a timeout for CAQL processing in seconds. Optional. Default = 4.5.
 
-* `preview` : Boolean parameter ("true"/"false") that enables CAQL preview mode. In preview mode caql processing will be faster but results will only be approximated. Optional. Default = false.
-
 ## Examples
 
 ```
