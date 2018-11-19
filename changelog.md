@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.14.2
+2018-11-19
+
+ * Several memory leaks fixed.
+ * Improved memory utilization.
+ * Performance improvements.
+ * Increased speed of surrogate cache loading at startup.
+ * Add `snowthsurrogatecontrol` tool, which allows offline
+   review and modification of the surrogate database.
+
 ## Changes in 0.14.1
 2018-11-09
 
