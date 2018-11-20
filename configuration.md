@@ -522,7 +522,21 @@ millisecond.
 
 This setting should be the same on all nodes of the IRONdb cluster.
 
-> Do not change the value after starting to collect data.
+> This value should never be changed when data is "in flight", that is, while a
+> cluster is actively ingesting data, or there are nodes down, or nodes are
+> suffering replication latency.
+
+If you wish to change this setting after beginning to collect data, the
+following conditions must be met:
+* All nodes must be running and available.
+* All ingestion must be stopped.
+* All [journals](#journal) from all nodes must be completely drained and
+  applied on the destination node.
+
+Once these conditions are met:
+1. Bring down all nodes.
+1. Change the value of this option in the configuration file for each node.
+1. Restart all nodes.
 
 Default: "abs_biggest"
 
@@ -644,7 +658,8 @@ Default: false
 The topology node instructs IRONdb where to find its current cluster
 configuration. The `path` is the directory where the imported topology config
 lives, which was created during setup. `active` indicates the hash of the
-currently-active topology. `next` is currently unused.
+currently-active topology. `next` is currently unused. The `redo` path is where
+[journals](#journal) are located for this topology.
 
 No manual configuration of these settings is necessary.
 
