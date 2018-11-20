@@ -522,6 +522,8 @@ millisecond.
 
 This setting should be the same on all nodes of the IRONdb cluster.
 
+> Do not change the value after starting to collect data.
+
 Default: "abs_biggest"
 
 #### raw_database rollup_strategy
