@@ -84,10 +84,9 @@
         * [Aborting a Rebalance](api/rebalance-deactivation.md)
     * [Data Retrieval APIs](data-retrieval-apis.md)
         * [Retrieving Raw Data](api/read-raw.md)
-        * [Retrieving Numeric Data](api/read-nnt.md)
+        * [Retrieving Rollup Data](api/read-rollup.md)
         * [Retrieving Text Data](api/read-text.md)
         * [Retrieving Histogram Data](api/read-histogram.md)
-        * [Retrieving Specific Rollups](api/read-rollup.md)
         * [Retrieving Graphite-style Data](api/read-graphite.md)
         * [Searching Tags](api/search-tags.md)
     * [Data Submission APIs](data-submission-apis.md)
@@ -114,6 +113,8 @@
         * [Executing a Lua Extension](api/extension-lua-script.md)
         * [Issuing CAQL Queries](api/extension-caql.md)
 * [Changelog](changelog.md)
-* Appendix
+* Appendices
   * [ZFS Setup Guide](zfs-guide.md)
   * [Cluster Sizing](cluster-sizing.md)
+  * [Deprecated APIs](deprecated-apis.md) <!-- please keep this as the last appendix -->
+    * [Numeric /read](api-old/read-nnt.md)

@@ -1,5 +1,17 @@
 # Retrieving Numeric Data
 
+**Deprecated**
+
+This API only returns data from the legacy NNT file-based backend. Current
+versions use the [NNTBS](/configuration.md#nntbs) backend, which was introduced
+in version 0.11 and became the default for new installations with 0.11.6.
+
+The [Rollup API](/api/read-rollup.md) should be used instead. It supports
+reading from all past and present numeric data backends, including the raw
+database.
+
+---
+
 This API call is for retrieving numeric data from the IRONdb cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
 
 Data will be returned in an array of tuples. Each tuple will contain a timestamp and the value that was requested. If "all" data is requested, the value returned is a hash with the name of each value and the value itself.

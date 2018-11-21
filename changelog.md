@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+ * Documentation: Mark `/read` numeric API as deprecated. The [rollup
+   API](/api/read-rollup.md) should be used instead.
+
 ## Changes in 0.14.2
 2018-11-19
 
