@@ -551,10 +551,53 @@ compute higher level rollups. This rollup strategy has been removed.
 
 Default: "raw\_iterator"
 
+### surrogate_database
+
+The surrogate database contains bidirectional mappings between full metric
+names (including tags) and integer-based keys which are used internally to
+refer to metrics. It also records [collection activity
+periods](/activity_tracking.md) on each metric.
+
+The database is scanned and loaded into memory when IRONdb starts. The timing
+of this load is recorded in the [startup log](/operations.md#logs). Its size is
+determined by the cardinality (unique uuid-metricname-tag combinations) of
+metrics stored on the node.
+
+```
+<surrogate_database location="/irondb/surrogate_db/{node}"
+                    cache_init_size="1000000"
+                    load_concurrency="8"
+                    asynch_update_journal_path="/irondb/surrogate_db/{node}"
+/>
+```
+
+#### surrogate_database cache_init_size
+
+The size of the initial in-memory table for the surrogate database. For best
+performance, it should be sized to either 130% of the on-disk surrogate entry
+count (visible in the startup log), or 1,000,000, whichever is greater.
+
+Default: 1000000
+
+#### surrogate_database load_concurrency
+
+The number of parallel threads used for initially populating the cache when
+IRONdb starts.
+
+Default: The number of physical processor cores in the system.
+
+#### surrogate_database asynch_update_journal_path
+
+The directory path to a write-ahead log used to batch updates to the surrogate
+database for increased performance. The log will be created in a subdirectory
+of the given path, called `surrogate_updates`.
+
+Default: no write-ahead log is used.
 
 ### metric_name_database
 
-> This database is no longer used as of version `0.12`.
+> This database is no longer used as of version `0.12`. Its functions have been
+> merged into the [surrogate database](#surrogatedatabase)
 
 ```
 <metric_name_database location="/irondb/metric_name_db/{node}"

@@ -3,7 +3,8 @@
 Starting with release [0.12](/changelog.md), IRONdb supports tracking of metric activity without the expense
 of reading all known time series data to find active ranges.  The activity of a metric is tracked at a 5
 minute granularity.  Any ingestion of a metric will mark that 5 minute period that the timestamp falls
-into as active for that metric.  
+into as active for that metric. Activity periods are stored in the [surrogate
+database](/configuration.md#surrogatedatabase).
 
 This activity tracking also coalesces nearby active ranges.  Any activity on a metric within an 8 hour
 window marks that metric as active for that 8 hour span.  For example, if you have a metric that arrived

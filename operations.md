@@ -32,8 +32,15 @@ To enable the service to run at system boot: `/bin/systemctl enable circonus-iro
 Log files are located under `/irondb/logs` and include the following files:
  * accesslog
  * errorlog
+ * startuplog
 
-The access logs are useful to verify activity going to the server in question. Error logs record, among other things, crashes and other errant behavior, and may contain debugging information important for support personnel. The logs are automatically rotated and retained based on configuration attributes in `/opt/circonus/etc/irondb.conf`.
+The access logs are useful to verify activity going to the server in question.
+Error logs record, among other things, crashes and other errant behavior, and
+may contain debugging information important for support personnel. The startup
+log records various information about database initialization and other data
+that are typically of interest to developers and operators. Logs are
+automatically rotated and retained based on configuration attributes in
+`/opt/circonus/etc/irondb.conf`.
 
 If the child process becomes unstable, verify that the host is not starved for
 resources (CPU, IO, memory). Hardware disk errors can also impact IRONdb's

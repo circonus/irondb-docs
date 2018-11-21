@@ -23,6 +23,7 @@
       * [logs](configuration.md#logs)
       * [pools](configuration.md#pools)
       * [raw_database](configuration.md#rawdatabase)
+      * [surrogate_database](configuration.md#surrogatedatabase)
       * [rollups](configuration.md#rollups)
       * [nntbs](configuration.md#nntbs)
       * [topology](configuration.md#topology)
