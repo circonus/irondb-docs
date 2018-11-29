@@ -2,6 +2,12 @@
 
 ## TBD
 
+ * Several memory leaks fixed.
+ * Fix reconstitute bug edge case where certain metric names would cause the
+   reconstitute to spin/cease progress.
+ * Fix bug where certain HTTP requests could hang.
+ * Change default raw db conflict resolver to allow overriding old data with
+   flatbuffer data from a higher generation.
  * Documentation: Add configuration section describing the surrogate database
    and its options.
  * Documentation: Mark `/read` numeric API as deprecated. The [rollup API](/api/read-rollup.md)
