@@ -1,6 +1,7 @@
 # Changelog
 
-## TBD
+## Changes in 0.14.3
+2018-11-29
 
  * Several memory leaks fixed.
  * Fix reconstitute bug edge case where certain metric names would cause the
