@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.14.4
+2018-11-29
+
+ * Fix crash in metric serialization.
+
 ## Changes in 0.14.3
 2018-11-29
 
