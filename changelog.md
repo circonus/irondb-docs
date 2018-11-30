@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.14.5
+2018-11-30
+
+ * Reclassify an error message as a debug message - message occurs
+   in a situation that is not a malfunction and can fill the logs.
+
 ## Changes in 0.14.4
 2018-11-29
 
