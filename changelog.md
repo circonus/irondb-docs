@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.14.6
+2018-12-03
+
+ * Fix bug where text and histogram data transfer could get hung
+   during reconstitute.
+ * Fix memory ordering related crash in string intern implementation
+   (libmtev).
+
 ## Changes in 0.14.5
 2018-11-30
 
