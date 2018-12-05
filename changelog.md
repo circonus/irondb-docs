@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in <TBD>
-<TBD>
+## Changes in 0.14.7
+2018-12-05
 
  * Fix a bug where reconstitute process could get deadlocked and
    not make progress.
