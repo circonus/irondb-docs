@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in <TBD>
+<TBD>
+
+ * Fix a bug where reconstitute process could get deadlocked and
+   not make progress.
+ * Fix a potential crash that could occur when reconstituting
+   surrogate data.
+ * Fix a bug where deleting a metric on a system would not remove
+   the surrogate entry if the metric was not local to the node.
+
 ## Changes in 0.14.6
 2018-12-03
 
