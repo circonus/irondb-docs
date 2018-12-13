@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in TBD
+TBD
+
+ * Add optional metric delete debugging.
+ * Fix bug that causes hanging when trying to delete
+   certain metrics.
+ * Fix occasional crash related to reading NNTBS data.
+
 ## Changes in 0.14.7
 2018-12-05
 
