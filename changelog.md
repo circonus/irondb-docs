@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in TBD
-TBD
+## Changes in 0.14.8
+2018-12-13
 
  * Add optional metric delete debugging.
  * Fix bug that causes hanging when trying to delete
