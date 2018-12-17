@@ -1,5 +1,16 @@
 # Changelog
 
+## Changes in 0.14.9
+2018-12-17
+
+ * Two related bug fixes in the surrogate DB that manifest with metrics
+   whose total stream tag length is more than 127 characters. Metrics
+   with such tag sets could appear to be missing from search results.
+   Metrics that do not have any stream tags, or whose total tag set is
+   less than 127 characters, are not affected.
+ * Performance improvements to full delete.
+ * Fix a bug that could cause crashes during reconstitute.
+
 ## Changes in 0.14.8
 2018-12-13
 
