@@ -29,7 +29,8 @@ directly.
 ## Caveats
 
 Rebalance cannot be used to transform a cluster with no sides into a sided
-cluster, or vice versa.
+cluster, or vice versa. Such a change requires [migrating to a new
+cluster](/migrating-clusters.md).
 
 When removing nodes from a cluster, no more than `W-1` (one less than the
 number of write copies) nodes may be removed in a rebalance operation. For
