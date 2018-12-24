@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.14.10
+2018-12-24
+
+ * Eliminate raw delete timeout.
+ * Fix bugs in surrogate DB serialization and add additional key
+   validation on deserialization.
+
 ## Changes in 0.14.9
 2018-12-17
 
