@@ -52,9 +52,10 @@ together to create a three-node cluster, maintaining 2 write copies.
 We will use the cluster resizing tool, `/opt/circonus/bin/resize_cluster`. Run
 this with the `-h` option for details on the available options.
 
-* Choose one of the existing cluster nodes and note its IP address. This will
-  be the "bootstrap node" from which the resize tool will fetch the existing
-  cluster's topology.
+* Choose one of the existing cluster nodes and note its IP address and API
+  port. This will be the "bootstrap node" from which the resize tool will fetch
+  the existing cluster's topology. If you do not specify the API port, the
+  default (8112) will be assumed.
 
 * Note the new node's IP address and node UUID, and, if the cluster is sided,
   whether the node will be added to side "a" or "b".
@@ -63,7 +64,7 @@ this with the `-h` option for details on the available options.
   IP address, node ID, and optionally a side. If adding more than one node,
   specify the `-a` option multiple times.
 
-  ```/opt/circonus/bin/resize_cluster -b <bootstrap_node_ip> -a <new_ip,new_uuid>```
+  ```/opt/circonus/bin/resize_cluster -b <bootstrap_node_ip[:port]> -a <new_ip,new_uuid>```
 
 * A summary of the new topology will be displayed, along with a listing of the
   existing cluster and the proposed changes. Unless you specified the `-y`
@@ -103,16 +104,17 @@ the unused nodes.
 We will use the cluster resizing tool, `/opt/circonus/bin/resize_cluster`. Run
 this with the `-h` option for details on the available options.
 
-* Choose a node that will be staying in the cluster and note its IP address.
-  This will be the "bootstrap node" from which the resize tool will fetch the
-  existing cluster's topology.
+* Choose a node that will be staying in the cluster and note its IP address and
+  API port. This will be the "bootstrap node" from which the resize tool will
+  fetch the existing cluster's topology. If you do not specify the API port,
+  the default (8112) will be assumed.
 
 * Note the node UUID of the node(s) that will be removed.
 
 * Run the resize tool, specifying the removed nodes by their node UUID. If
   removing more than one node, specify the `-r` option multiple times.
 
-  ```/opt/circonus/bin/resize_cluster -b <bootstrap_node_ip> -r <removed_uuid>```
+  ```/opt/circonus/bin/resize_cluster -b <bootstrap_node_ip[:port]> -r <removed_uuid>```
 
 * A summary of the new topology will be displayed, along with a listing of the
   existing cluster and the proposed changes. Unless you specified the `-y`
