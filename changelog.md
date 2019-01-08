@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in 0.14.11
+2019-01-08
+
+ * Fix bug where tagged metrics were not being loaded into the
+   surrogate cache at startup correctly.
+ * Tune the surrogate asynch update journal settings to improve
+   performance.
+
 ## Changes in 0.14.10
 2018-12-24
 
