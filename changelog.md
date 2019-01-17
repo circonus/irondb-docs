@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.14.12
+2019-01-17
+
+ * Fix proxy bug in the `/find` API where certain proxy calls
+   were being truncated, leading to incomplete results.
+ * Added each:sub(x) and each:exp(x) operators to CAQL.
+ * Performance improvements to full metric delete.
+ * Deduplicate surrogate IDs from the database on
+   startup.
+
 ## Changes in 0.14.11
 2019-01-08
 
