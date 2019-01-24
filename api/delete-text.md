@@ -48,7 +48,7 @@ Used only with wildcards or tag query:
 
 Used only without wildcards or tag query:
  * `x-snowth-full-delete: <value>` (optional)
-   * `value` Determines whether the delete operation is local to the receiving node (0) or journaled to all other nodes as well (1). The default, if not specified, is 0 (local-only delete). This setting means perform the delete across all nodes, and is not to be confused with the [full delete API](api/delete-full.md).
+   * `value` Determines whether the delete operation is local to the receiving node (0) or journaled to all other nodes as well (1). The default, if not specified, is 0 (local-only delete). This setting means perform the delete across all nodes, and is not to be confused with the [full delete API](/api/delete-full.md).
 
 ## Single Metric Example
 
