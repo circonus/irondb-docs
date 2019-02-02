@@ -27,7 +27,7 @@ GET
  * `rollup_span` : The granularity of the rollup with a units suffix (`s` for seconds, `ms` for milliseconds.  See example below)
  * `get_engine`  :
    * `dispatch` means - read first from NNT and then fill in with recalculated raw data.
-   * `nnt` means - behave like the [read](read-nnt.md) endpoint, i.e. only read already rolled up data.
+   * `nnt` means - behave like the [read](/api-old/read-nnt.md) endpoint, i.e. only read already rolled up data.
    * `recalc` means - read raw data and generate rollups on the fly.
  * `type`        : The type of data for which to pull results. Possible values for this input are as follows:
    * `count`   : The number of data points received for the metric over the specified time period.

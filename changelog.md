@@ -339,7 +339,7 @@ work by our Engineering and Operations teams.
    * If upgrading with a config that does not specify a `rollup_strategy`, an
      active rollup operation will start over on the timeshard it was
      processing.
- * Operations: Add the ability to [cancel a sweep delete](/api/delete-sweep-cancel.md)
+ * Operations: Add the ability to [cancel a sweep delete](/api/sweep-delete-cancel.md)
    operation.
  * Operations: Remove the reconstitute-reset option (`-E`) and replace with a
    more complete solution in the form of a script, `reset_reconstitute`, that
