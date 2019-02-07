@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in xx.xx.xx
+2019-xx-xx
+
+ * Fix stats and dashboard for NNTBS data
+ * Enhance snowthsurrogatecontrol to dump all fields, as well as
+   reverse or deleted records.
+ * Fix various bugs that could result in crashes or deadlocks.
+ * Various performance improvements.
+ * Improve graphite tag search - make results more consistent with
+   what Graphite users would expect.
+ * Reduce memory usage in highly concurrency Linux environments.
+
 ## Changes in 0.14.12
 2019-01-17
 
