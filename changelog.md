@@ -10,8 +10,7 @@
  * Various performance improvements.
  * Improvements to Graphite tag search - respect Graphite name hierarchy in
    search results.
- * [libmtev 1.6.1]
-   (https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#161)
+ * [libmtev 1.6.1](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#161)
 
 ## Changes in 0.14.12
 2019-01-17
@@ -72,8 +71,7 @@
 
  * Fix bug where text and histogram data transfer could get hung
    during reconstitute.
- * Fix memory ordering related crash in string intern implementation
-   (libmtev).
+ * [libmtev 1.5.28](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1528)
 
 ## Changes in 0.14.5
 2018-11-30
@@ -99,6 +97,7 @@
    and its options.
  * Documentation: Mark `/read` numeric API as deprecated. The [rollup API](/api/read-rollup.md)
    should be used instead.
+ * [libmtev 1.5.26](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1526)
 
 ## Changes in 0.14.2
 2018-11-19
@@ -118,6 +117,7 @@
  * Handle escaped Graphite expansions that are leaves.
  * Performance improvements via smarter use of locking.
  * More aggressive memory reclamation.
+ * [libmtev 1.5.23](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1523)
 
 ## Changes in 0.14.0
 2018-11-01
@@ -138,6 +138,7 @@
    be faster and more memory-efficient, with a focus on memory efficiency.
  * Fix logging bug where long lines could end up running together.
  * Fix crash bug in histogram fetching API.
+ * [libmtev 1.5.19](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1519)
 
 ## Changes in 0.13.9
 2018-10-16
@@ -159,6 +160,7 @@
    of zero, causing deadlock.
  * Add activity ranges to tag_cats/vals.
  * Add category param to tag_vals.
+ * [libmtev 1.5.12](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1512)
 
 ## Changes in 0.13.7
 2018-10-11
@@ -173,6 +175,7 @@
    if the topology is already loaded.
  * Support tag removal.
  * Performance/stability improvements for activity list operations.
+ * [libmtev 1.5.11](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1511)
 
 ## Changes in 0.13.6
 2018-10-01
@@ -215,6 +218,7 @@ zfs inherit -r logbias <poolname>/irondb/text
    ```
  * Fix memory leaks and invalid access errors that could potentially
    lead to crashes.
+ * [libmtev 1.5.7](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#157)
 
 ## Changes in 0.13.3
 2018-09-18
@@ -251,6 +255,7 @@ zfs inherit -r logbias <poolname>/irondb/text
  * Allow 4096 chars for metric name ingestion
  * New CAQL function:
    * `group_by:*` package provides functions to aggregate metrics by tags
+ * [libmtev 1.5.5](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#155)
 
 ## Changes in 0.13
 2018-08-15
@@ -277,6 +282,7 @@ zfs inherit -r logbias <poolname>/irondb/text
      once. [CAQL Reference: package each](https://login.circonus.com/resources/docs/user/caql_reference.html#Packageeach)
    * `TopK` global function returns the top `k` streams over the current
      `VIEW_RANGE` using either a `mean` or `max` comparator. [CAQL Reference: global functions](https://login.circonus.com/resources/docs/user/caql_reference.html#GlobalFunctions)
+ * [libmtev 1.4.5](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#145)
 
 ## Changes in 0.12.5
 2018-08-07
