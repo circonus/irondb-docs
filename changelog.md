@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in XX.XX.XX
+YYYY-MM-DD
+
+ * TBD
+
 ## Changes in 0.14.13
 2019-02-07
 
