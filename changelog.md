@@ -1,16 +1,17 @@
 # Changelog
 
-## Changes in xx.xx.xx
-2019-xx-xx
+## Changes in 0.14.13
+2019-02-07
 
  * Fix stats and dashboard for NNTBS data
  * Enhance snowthsurrogatecontrol to dump all fields, as well as
    reverse or deleted records.
  * Fix various bugs that could result in crashes or deadlocks.
  * Various performance improvements.
- * Improve graphite tag search - make results more consistent with
-   what Graphite users would expect.
- * Reduce memory usage in highly concurrency Linux environments.
+ * Improvements to Graphite tag search - respect Graphite name hierarchy in
+   search results.
+ * [libmtev 1.6.1]
+   (https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#161)
 
 ## Changes in 0.14.12
 2019-01-17
