@@ -8,7 +8,8 @@ YYYY-MM-DD
    could lead to data loss.
  * Fix off-by-one area in internal metric data storage struct that
    could cause potential crashes.
- *
+ * Added support for FlatBuffer requests to the `/graphite/tags/find` endpoint,
+   which will greatly improve performance for users using Graphite 1.1.
 
 ## Changes in 0.14.13
 2019-02-07
