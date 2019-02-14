@@ -10,6 +10,7 @@ YYYY-MM-DD
    could cause potential crashes.
  * Added support for FlatBuffer requests to the `/graphite/tags/find` endpoint,
    which will greatly improve performance for users using Graphite 1.1.
+ * Fix license expiration date display bug on GUI.
 
 ## Changes in 0.14.13
 2019-02-07
