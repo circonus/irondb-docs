@@ -3,7 +3,12 @@
 ## Changes in XX.XX.XX
 YYYY-MM-DD
 
- * TBD
+ * Node will now log error and exit when writes to rocksdb fail -
+   previously, it would log the message and continue running, which
+   could lead to data loss.
+ * Fix off-by-one area in internal metric data storage struct that
+   could cause potential crashes.
+ *
 
 ## Changes in 0.14.13
 2019-02-07
