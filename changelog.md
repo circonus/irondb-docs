@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in XX.XX.XX
-YYYY-MM-DD
+## Changes in 0.14.14
+2019-02-15
 
  * Node will now log error and exit when writes to rocksdb fail -
    previously, it would log the message and continue running, which
@@ -11,6 +11,7 @@ YYYY-MM-DD
  * Added support for FlatBuffer requests to the `/graphite/tags/find` endpoint,
    which will greatly improve performance for users using Graphite 1.1.
  * Fix license expiration date display bug on GUI.
+ * [libmtev 1.6.2](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#162)
 
 ## Changes in 0.14.13
 2019-02-07
