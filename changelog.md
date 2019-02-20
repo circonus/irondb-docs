@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.14.15
+2019-02-20
+
+ * Add optional metric prefix parameter to /tag_cats and /tag_vals APIs.
+ * [libmtev 1.6.3](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#163)
+
 ## Changes in 0.14.14
 2019-02-15
 
