@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in X.XX.XX
+YYYY-MM-DD
+
+ * Fix bug in node proxy code that caused incorrect timeout values to be used.
+
 ## Changes in 0.14.15
 2019-02-20
 
