@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in X.XX.XX
-YYYY-MM-DD
+## Changes in 0.14.16
+2019-02-25
 
  * Fix bug in node proxy code that caused incorrect timeout values to be used.
  * Fix various issues regarding using timeouts incorrectly during graphite data
