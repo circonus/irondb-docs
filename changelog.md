@@ -4,6 +4,9 @@
 YYYY-MM-DD
 
  * Fix bug in node proxy code that caused incorrect timeout values to be used.
+ * Fix various issues regarding using timeouts incorrectly during graphite data
+   fetches.
+ * Fix memory leaks that could occur during graphite error cases.
 
 ## Changes in 0.14.15
 2019-02-20
