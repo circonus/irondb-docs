@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+ * Installer: Create "metadata" directory and configuration setting. This
+   directory is not currently used in standalone IRONdb installations.
+
 ## Changes in 0.14.16
 2019-02-25
 
