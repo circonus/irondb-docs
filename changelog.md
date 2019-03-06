@@ -4,6 +4,8 @@
 
  * Installer: Create "metadata" directory and configuration setting. This
    directory is not currently used in standalone IRONdb installations.
+ * Make efficiency changes to internal locking mechanisms to improve
+   CPU utilization.
 
 ## Changes in 0.14.16
 2019-02-25
