@@ -1,11 +1,15 @@
 # Changelog
 
-## TBD
+## Changes in 0.14.17
+2019-03-11
 
- * Installer: Create "metadata" directory and configuration setting. This
-   directory is not currently used in standalone IRONdb installations.
  * Make efficiency changes to internal locking mechanisms to improve
    CPU utilization.
+ * Fix bug where metadata deletions could break in-memory indexes.
+ * Add optional NNTBS data cache to improve performance and reduce database
+   iterations.
+ * Installer: Create "metadata" directory and configuration setting. This
+   directory is not currently used in standalone IRONdb installations.
  * [libmtev 1.6.4](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#164)
 
 ## Changes in 0.14.16
