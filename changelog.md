@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in x.xx.xx
+2019-xx-xx
+
+ * Support caching metric metadata in NNT cache.
+ * Fix potential crashes and deadlocks in NNTBS timeshard open/close
+   code.
+ * Move graphite fetching code into a loadable module.
+
 ## Changes in 0.14.17
 2019-03-11
 
