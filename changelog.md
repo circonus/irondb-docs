@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in x.xx.xx
-2019-xx-xx
+## Changes in 0.14.18
+2019-03-12
 
  * Support caching metric metadata in NNT cache.
  * Fix potential crashes and deadlocks in NNTBS timeshard open/close
