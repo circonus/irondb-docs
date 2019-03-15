@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in x.xx.xx
+2019-xx-xx
+
+ * Add eventer callback names for events. This will aid in
+   debugging if zipkin spans are enabled and collected.
+ * Remove support for untagged surrogates and surrogate migration.
+ * Fix typo in statistics: "hits_meta" is now "hit_meta".
+
 ## Changes in 0.14.18
 2019-03-12
 
