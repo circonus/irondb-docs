@@ -6,6 +6,8 @@
  * Add eventer callback names for events. This will aid in
    debugging if zipkin spans are enabled and collected.
  * Remove support for untagged surrogates and surrogate migration.
+ * Add support for pulling tagged stats by adding a "format=tagged"
+   querystring to the stats.json API endpoint.
  * Move error log "file already found" from snowthimport binary
    to the debug log.
  * Fix typo in statistics: "hits_meta" is now "hit_meta".
