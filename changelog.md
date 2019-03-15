@@ -6,6 +6,8 @@
  * Add eventer callback names for events. This will aid in
    debugging if zipkin spans are enabled and collected.
  * Remove support for untagged surrogates and surrogate migration.
+ * Move error log "file already found" from snowthimport binary
+   to the debug log.
  * Fix typo in statistics: "hits_meta" is now "hit_meta".
 
 ## Changes in 0.14.18
