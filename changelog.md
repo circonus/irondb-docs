@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in x.xx.xx
-2019-xx-xx
+## Changes in 0.15.0
+2019-03-18
 
  * Add support for OpenTSDB data ingestion.
  * Add eventer callback names for events. This will aid in
