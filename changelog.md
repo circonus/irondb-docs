@@ -3,6 +3,7 @@
 ## Changes in x.xx.xx
 2019-xx-xx
 
+ * Add support for OpenTSDB data ingestion.
  * Add eventer callback names for events. This will aid in
    debugging if zipkin spans are enabled and collected.
  * Remove support for untagged surrogates and surrogate migration.
