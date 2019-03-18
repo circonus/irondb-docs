@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in x.xx.xx
+2019-xx-xx
+
+ * Add module to monitor IRONdb statistics internally and feed
+   then back into the DB.
+
 ## Changes in 0.15.0
 2019-03-18
 
