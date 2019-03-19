@@ -5,6 +5,7 @@
 
  * Add module to monitor IRONdb statistics internally and feed
    then back into the DB.
+ * [libmtev 1.6.5](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#165)
 
 ## Changes in 0.15.0
 2019-03-18
