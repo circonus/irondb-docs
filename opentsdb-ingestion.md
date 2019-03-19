@@ -1,4 +1,4 @@
-## OpenTSDB Ingestion
+# OpenTSDB Ingestion
 
 There are 2 methods for ingesting OpenTSDB data into IRONdb:
 
@@ -19,13 +19,13 @@ Each datapoint should be encoded as follows:
     "tag_key2": "tag_value2",
     ...
     "tag_keyn": "tag_valuen"
-  }  
+  }
 }
 ```
 
 At least one tag key/value pair is required. Multiple datapoints can be sent
-as a JSON array of the datapoints, separated by commas and the entire POST
-enclosed in square brackets.
+as a JSON array, separated by commas, and the entire POST enclosed in square
+brackets.
 
 For example:
 
@@ -51,14 +51,14 @@ For example:
 In the case of the telnet method, telnet `put` commands in the normal OpenTSDB
 format are accepted:
 
-`put<space>metric_name<space>timestamp<space>value<space>tag_key=tag_value{<space>tag_key=tag_value...}`
+`put<space>metric_name<space>timestamp<space>value<space>tag_key=tag_value{<space>tag_key2=tag_value2...<space>tag_keyn=tag_valuen}`
 
 At least one tag key/value pair must be included.  For example:
 
 `put my.metric.name<space>1480371755<space>12345.56<space>datacenter=east`
 
 If you desire higher resolution data capture, you can suffix the timestamp with a
-period, followed by the number of milliseconds in the second, or simple just
+period, followed by the number of milliseconds in the second, or simply just
 use 13 numeric digits without the period (the last three digits will become the
 millseconds). For example:
 
@@ -74,17 +74,16 @@ These two examples mean `123 milliseconds` into the timestamp `1480371964` or
 ** Note that, while it resembles a floating point number, this is not a float. **
 
 For data safety reasons, we recommend that you use the RESTful POST interface to
-ingest OpenTSDB data. The network socket listener provides no feedback to the
-sender about whether or not data was actually ingested (or indeed even made it
-off the sender machine and was not stuck in an outbound socket buffer) because
-there is no acknowledgement mechanism on a raw socket.
+send OpenTSDB-formatted JSON data. The network socket listener provides no
+feedback to the sender about whether or not data was actually ingested (or indeed
+even made it off the sender machine and was not stuck in an outbound socket
+buffer) because there is no acknowledgement mechanism on a raw socket.
 
 The HTTP interface, on the other hand, will provide feedback about whether data
 was safely ingested and will not respond until data has actually been written by
 the underlying database.
 
-Namespacing
-===========
+## Namespacing
 
 Both of the interfaces require you to namespace your OpenTSDB data. This lets
 you associate a UUID/Name and numeric identifier with the incoming metrics. This
@@ -111,8 +110,7 @@ collection category ("reconnoiter" will be automatically assigned) and the
 Adding these additional fields allow us to disambiguate metric names from
 potential duplicate names collected from other sources.
 
-Writing OpenTSDB Data with HTTP
-===============================
+## Writing OpenTSDB Data with HTTP
 
 OpenTSDB data is sent by POSTing a JSON object or an array of JSON objects
 using the format described above to the OpenTSDB ingestion endpoint:
@@ -121,24 +119,23 @@ using the format described above to the OpenTSDB ingestion endpoint:
 
 For example:
 
-`http://192.168.1.100:2003/opentsdb/1/8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2/dev`
+`http://192.168.1.100:4242/opentsdb/1/8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2/dev`
 
 This will place all metrics under account_id `1` with that UUID and call them `dev`.
 
-`http://192.168.1.100:2003/opentsdb/1/45e77556-7a1b-46ef-f90a-cfa34e911bc3/prod`
+`http://192.168.1.100:4242/opentsdb/1/45e77556-7a1b-46ef-f90a-cfa34e911bc3/prod`
 
 This will place all metrics under account_id `1` with that UUID and call them `prod`.
 
-Writing OpenTSDB Data with Network Listener
-===========================================
- 
+## Writing OpenTSDB Data with Network Listener
+
 The network listener requires that we associate an account_id, uuid, and name
 with a network port. We do this via the IRONdb configuration file by adding a
 new listener stanza:
 
 ```
   <listeners>
-    <listener address="*" port="2003" type="opentsdn">
+    <listener address="*" port="4242" type="opentsdb">
       <config>
         <check_uuid>8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2</check_uuid>
         <check_name>dev</check_name>
@@ -152,7 +149,7 @@ This listener stanza is the same as the first example under the HTTP ingestion
 section. You can then use:
 
 ```
-echo "my.metric.name.one `date +%s` 1 cpu=1" | nc 2003
+echo "my.metric.name.one `date +%s` 1 cpu=1" | nc 4242
 ```
 
 to send metrics to IRONdb, and it will store the datapoint under the supplied
