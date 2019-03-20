@@ -1,4 +1,4 @@
-## Graphite Ingestion
+# Graphite Ingestion
 
 There are 2 methods for ingesting graphite data into IRONdb:
 
@@ -20,7 +20,7 @@ This example means `123 milliseconds` into the timestamp `1480371964` or
 
 ** Note that, while it resembles a floating point number, this is not a float. **
 
-Starting with IRONdb release `0.12` you can also ingest *tagged* graphite data.  
+Starting with IRONdb release `0.12` you can also ingest *tagged* graphite data.
 Tagged graphite data has the following format:
 
 `dot.separated.metric.name;category1=value1;category2=value2`
@@ -30,7 +30,7 @@ Where tags are appended to the normal name and are separated by semicolons (`;`)
 For more info on the graphite tag format see: [Graphite Tag Support](http://graphite.readthedocs.io/en/latest/tags.html).  For info on querying the tagged graphite data see [Graphite Tag Queries](/graphite-rendering.md#searching-for-tags)
 
 For data safety reasons, we recommend that you use the RESTful POST interface to
-ingest graphite data. The network socket listener provides no feedback to the
+send graphite data. The network socket listener provides no feedback to the
 sender about whether or not data was actually ingested (or indeed even made it
 off the sender machine and was not stuck in an outbound socket buffer) because
 there is no acknowlegement mechanism on a raw socket.
@@ -39,8 +39,7 @@ The HTTP interface, on the other hand, will provide feedback about whether data
 was safely ingested and will not respond until data has actually been written by
 the underlying database.
 
-Namespacing
-===========
+## Namespacing
 
 Both of the interfaces require you to namespace your graphite data. This lets
 you associate a UUID/Name and numeric identifier with the incoming metrics. This
@@ -74,8 +73,7 @@ using the "Network Listener" below, will result in a metric called:
 This allows us to disambiguate metric names from potential duplicate names
 collected using Reconnoiter.
 
-Writing Graphite Data with HTTP
-===============================
+## Writing Graphite Data with HTTP
 
 Graphite data is sent as buffers of N rows of graphite formatted data to the
 graphite ingestion endpoint:
@@ -104,9 +102,8 @@ Metrics ingested under the second example will render as:
 `graphite.prod.metric.name.here`
 
 
-Writing Graphite Data with Network Listener
-===========================================
- 
+## Writing Graphite Data with Network Listener
+
 The network listener requires that we associate an account_id, uuid, and name
 with a network port. We do this via the IRONdb configuration file by adding a
 new listener stanza:
