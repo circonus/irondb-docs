@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in x.xx.x
+2019-xx-xx
+
+ * Improve CAQL label interpolation.
+ * Improve surrogate DB performance by adding a queue to update the DB
+   asynchronously and only update if there are changes to be made.
+ * Improve NNTBS timeshard open/close performance by reducing unnecessary
+   locking.
+ * Add support for cumulative histograms.
+ * Improve performance of graphite by no longer calculating epoch - instead,
+   use timestamps to find first relevant data point.
+
 ## Changes in 0.15.1
 2019-03-19
 
