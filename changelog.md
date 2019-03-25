@@ -11,6 +11,7 @@
  * Add support for cumulative histograms.
  * Improve performance of graphite by no longer calculating epoch - instead,
    use timestamps to find first relevant data point.
+ * Fix out-of-memory error that can occur on license violation.
 
 ## Changes in 0.15.1
 2019-03-19
