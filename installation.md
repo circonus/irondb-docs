@@ -222,6 +222,9 @@ Add the `<license>` stanza from your purchased IRONdb license to the file
 </licenses>
 ```
 
+If you are running a cluster of IRONdb nodes, the license must be installed on
+all nodes.
+
 Restart the IRONdb service:
 * (EL7, Ubuntu) `/bin/systemctl restart circonus-irondb`
 

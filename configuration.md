@@ -728,6 +728,8 @@ This file holds any and all licenses that apply to this IRONdb node. Refer to
 the [installation steps](installation.md#add-license) for details on obtaining
 and installing licenses.
 
+In a cluster, the license configuration must be the same on all cluster nodes.
+
 If no license is configured, an embedded license is used, which enables all
 features described below with a limit of 25,000 active streams (`max_streams`).
 
