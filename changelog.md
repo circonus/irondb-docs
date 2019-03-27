@@ -1,5 +1,13 @@
 # Changelog
 
+## Changes in x.xx.x
+2019-xx-xx
+
+ * Limit read/search results to 10,000 items by default. This can be overridden
+   by setting an `x-snowth-advisory-limit` header ("none", or an integer value).
+   If a read/search result was truncated, IRONdb will return a
+   `x-snowth-results-limited` header with a value of 1.
+
 ## Changes in 0.15.2
 2019-03-27
 

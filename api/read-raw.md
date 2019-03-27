@@ -33,6 +33,16 @@ For example, 12345.6 does **not** mean 12345 seconds and 600 milliseconds; it
 is an illegal format.  The `<milliseconds>` portion of the timestamp must
 always be 3 digits to represent values from 000 to 999.
 
+### Headers
+ * `x-snowth-advisory-limit: <integer>` (optional)
+   * `integer` is the maximum number of results to be returned. If this header
+     is not supplied, a maximum of 10,000 results will be returned.
+
+### Outputs
+
+If the result limit is reached and results are truncated, a response header,
+`x-snowth-results-limited`, will be included and set to 1.
+
 ## Examples
 
 ```

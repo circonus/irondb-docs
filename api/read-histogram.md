@@ -22,6 +22,16 @@ GET
  * `uuid` : The UUID of the check to which the metric belongs.
  * `metric` : The name of the metric for which to pull data.
 
+### Headers
+ * `x-snowth-advisory-limit: <integer>` (optional)
+   * `integer` is the maximum number of results to be returned. If this header
+     is not supplied, a maximum of 10,000 results will be returned.
+
+### Outputs
+
+If the result limit is reached, results will be truncated and a response
+header, `x-snowth-results-limited`, will be returned, set to 1.
+
 ## Examples
 
 ```

@@ -8,6 +8,17 @@ Follow the instructions in the README in that repo to install and utilize the IR
 
 That Storage Backend plugin simply utilizes the endpoints described below.
 
+## Query Result Limits
+
+All query results are subject to limits to control the number of results
+returned. If not otherwise specified, queries will be limited to the first
+10,000 results returned. This limit may be changed by setting a request header,
+`x-snowth-advisory-limit` to either an integer value representing the desired
+limit, or "none" to remove the limit.
+
+If a query result was truncated, a response header, `x-snowth-results-limited`,
+will be set with a value of 1 to indicate that not all results were returned.
+
 ## Searching for Metric Names
 
 Graphite metrics can be fetched (rendered) from IRONdb using the following endpoints. Glob style wildcards are supported.

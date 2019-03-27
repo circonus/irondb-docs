@@ -44,6 +44,8 @@ DELETE
 Used only with wildcards or tag query:
  * `x-snowth-account-id: <account_id>` (required)
    * `account_id` The account to be searched using the wildcard pattern
+ * `x-snowth-advisory-limit: <integer>` (optional, defaults to no limit if not present)
+   * `integer` The number of matching results to delete
  * `x-snowth-confirm-delete: <0 or 1>` (optional, must be present and set to 1 to actually confirm and process the deletion)
 
 ## Single Metric Example
