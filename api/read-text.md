@@ -26,9 +26,10 @@ GET
  * `metric` : The name of the metric for which to pull data.
 
 ### Headers
- * `x-snowth-advisory-limit: <integer>` (optional)
+ * `x-snowth-advisory-limit: <integer>|none` (optional)
    * `integer` is the maximum number of results to be returned. If this header
      is not supplied, a maximum of 10,000 results will be returned.
+     If set to `none`, no limit is imposed.
 
 ### Outputs
 

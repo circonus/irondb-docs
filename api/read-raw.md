@@ -34,9 +34,10 @@ is an illegal format.  The `<milliseconds>` portion of the timestamp must
 always be 3 digits to represent values from 000 to 999.
 
 ### Headers
- * `x-snowth-advisory-limit: <integer>` (optional)
+ * `x-snowth-advisory-limit: <integer>|none` (optional)
    * `integer` is the maximum number of results to be returned. If this header
      is not supplied, a maximum of 10,000 results will be returned.
+     If set to `none`, no limit is imposed.
 
 ### Outputs
 
