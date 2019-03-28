@@ -413,7 +413,7 @@ Whatever period you provide here will be rounded up to that multiple.  If you
 provided `1d` as in the defaults above, you would actually get `91440` seconds
 instead of `86400`.
 
-> NOTE: for installations with high a cardinality of metric names you will want
+> NOTE: for installations with a high cardinality of metric names you will want
 > to reduce the `size` parameters to keep the shards small to ensure
 > performance remains consistent.
 
