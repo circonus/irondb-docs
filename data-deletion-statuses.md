@@ -16,6 +16,6 @@ When doing a delete which could affect multiple metrics, the returned JSON respo
  * `Undefined` :       The result code is unknown and not valid
 
 For operations that utilized a pattern match or tag query, and also set the
-`x-snowth-advisory-limit` header, if the result set reached the limit, a
-response header, `x-snowth-results-limited`, will be returned with a value of
+`x-snowth-advisory-limit` header, if the deleted result set reached the limit,
+a response header, `x-snowth-results-limited`, will be returned with a value of
 1.
