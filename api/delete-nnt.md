@@ -52,6 +52,10 @@ DELETE
 Used only with wildcards or tag query:
  * `x-snowth-account-id: <account_id>` (required)
    * `account_id` The account to be searched using the wildcard pattern
+ * `x-snowth-advisory-limit: <integer>` (optional, defaults to no limit if not present)
+   * `integer` A positive integer specifying the number of matching results to
+     delete. If the header is unset, or set to -1 or "none", the service will
+     not limit the result set.
  * `x-snowth-confirm-delete: <0 or 1>` (optional, must be present and set to 1 to actually confirm and process the deletion)
 
 Used only without wildcards or tag query:

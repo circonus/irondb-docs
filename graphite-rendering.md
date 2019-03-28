@@ -1,4 +1,4 @@
-## Graphite Rendering
+# Graphite Rendering
 
 IRONdb has a graphite-web Storage Backend which makes the following Graphite Rendering seamless with an existing graphite-web installation. The Storage Backend requires graphite 0.10 or newer and can be obtained here:
 
@@ -8,7 +8,24 @@ Follow the instructions in the README in that repo to install and utilize the IR
 
 That Storage Backend plugin simply utilizes the endpoints described below.
 
-### Searching for Metric Names
+## Query Result Limits
+
+All query results are subject to limits to control the number of results
+returned. If not otherwise specified, queries will be limited to the first
+10,000 results returned.
+
+This limit may be changed by setting a request header,
+`x-snowth-advisory-limit`, with one of the following values:
+ * A positive integer representing the desired limit
+ * -1 or "none" to remove the limit
+
+If the header contains any other value or is not present, the default of 10,000
+will be used.
+
+If a query result was truncated, a response header, `x-snowth-results-limited`,
+will be set with a value of 1 to indicate that not all results were returned.
+
+## Searching for Metric Names
 
 Graphite metrics can be fetched (rendered) from IRONdb using the following endpoints. Glob style wildcards are supported.
 
@@ -51,7 +68,7 @@ If you do not want to utilize the `optional_query_prefix` you can leave it off t
 ]
 ```
 
-### Searching for Tags
+## Searching for Tags
 
 Graphite metrics can be fetched (rendered) from IRONdb using multi-dimensional tag queries.
 
@@ -78,13 +95,11 @@ The syntax is:
 ```   
 
 
-Retrieving Datapoints
-=====================
+## Retrieving Datapoints
 
 There are 2 methods for retrieving datapoints from IRONdb. A GET and a POST.
 
-GET
----
+### GET
 
 For retrieving an individual metric name, use:
 
@@ -93,8 +108,7 @@ For retrieving an individual metric name, use:
 where `<start_timestamp>` and `<end_timestamp>` are expressed in unix epoch seconds, and `<metric_name>` is the originally ingested leaf node returned from the `/metrics/find` query above. `optional_query_prefix` 
 follows the same rules as described in the prior section.
 
-POST
-----
+### POST
 
 For fetching batches of time series data all at once, IRONdb provide a POST interface to send multiple names at the same time. To use this, POST a json document of `Content-type: application/json` to the following url:
 
