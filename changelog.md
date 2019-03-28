@@ -1,18 +1,18 @@
 # Changelog
 
-## Changes in x.xx.x
-2019-xx-xx
+## Changes in 0.15.2
+2019-03-27
 
- * Improve CAQL label interpolation.
- * Improve surrogate DB performance by adding a queue to update the DB
-   asynchronously and only update if there are changes to be made.
+ * Improved the CAQL label function to support name and tag extraction
+ * Faster surrogate writes (adding new metrics and updating activity
+   information)
  * Improve NNTBS timeshard open/close performance by reducing unnecessary
-   locking.
- * Add support for cumulative histograms.
- * Improve performance of graphite by no longer calculating epoch - instead,
-   use timestamps to find first relevant data point.
- * Fix out-of-memory error that can occur on license violation.
- * Documentation: License must be installed on all nodes in a cluster.
+   locking
+ * Support added for cumulative histograms at read time
+ * Make rebalance more robust
+ * Reduce graphite read workload on datasets with large timespans
+ * Add native prometheus read/write endpoints
+ * Fix crash under repetitive license violations
 
 ## Changes in 0.15.1
 2019-03-19
