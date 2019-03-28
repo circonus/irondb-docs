@@ -12,9 +12,15 @@ That Storage Backend plugin simply utilizes the endpoints described below.
 
 All query results are subject to limits to control the number of results
 returned. If not otherwise specified, queries will be limited to the first
-10,000 results returned. This limit may be changed by setting a request header,
-`x-snowth-advisory-limit` to either an integer value representing the desired
-limit, or "none" to remove the limit.
+10,000 results returned.
+
+This limit may be changed by setting a request header,
+`x-snowth-advisory-limit`, with one of the following values:
+ * A positive integer representing the desired limit
+ * -1 or "none" to remove the limit
+
+If the header contains any other value or is not present, the default of 10,000
+will be used.
 
 If a query result was truncated, a response header, `x-snowth-results-limited`,
 will be set with a value of 1 to indicate that not all results were returned.
