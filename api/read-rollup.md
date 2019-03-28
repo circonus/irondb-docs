@@ -60,7 +60,7 @@ always be 3 digits to represent values from 000 to 999.
 ### Headers
  * `x-snowth-advisory-limit: <integer>|none` (optional)
    * `integer` A positive integer specifying the number of matching results to
-     delete. If the header is set to -1 or "none", the service will not limit
+     return. If the header is set to -1 or "none", the service will not limit
      the result set. If the header contains any other value or is not present,
      the default of 10,000 will be used.
 
