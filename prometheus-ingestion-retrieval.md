@@ -51,7 +51,7 @@ remote_write:
 ## Reading Prometheus Data from IRONdb
 
 To configure a Prometheus instance to use IRONdb as a remote datasource, the Prometheus 
-YAML configuration file will need to be updated.  The remote_read section's `url' field
+YAML configuration file will need to be updated.  The remote_read section's `url` field
 should be set to `http://snowthnode:8112/module/prometheus/read/<accountid>/<uuid>`.
 
 This should look something like:
