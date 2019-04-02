@@ -657,13 +657,12 @@ up with ingestion at scale.
 
 Each thread reads a portion of the journal log and is responsible for sending
 that portion to the peer. When it finishes its portion, and there are fewer
-than `replicate_concurrency` other jobs in flight, it skips ahead to the next
-"unclaimed" portion of the log and resumes sending.
+than `replicate_concurrency` other jobs in flight for that peer, it skips ahead
+to the next "unclaimed" portion of the log and resumes sending.
 
 Default: 4
 
-TODO: fill in release where the default changed.
-> Prior to 0.X.X, the default was 1.
+> Prior to version 0.15.3, the default was 1.
 
 #### journal max_bundled_messages
 
