@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in x.xx.x
-2019-xx-xx
+## Changes in 0.15.3
+2019-04-02
 
  * Limit read/search results to 10,000 items by default. This can be overridden
    by setting an `x-snowth-advisory-limit` header ("none", or an integer value).
