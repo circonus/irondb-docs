@@ -14,8 +14,3 @@ When doing a delete which could affect multiple metrics, the returned JSON respo
  * `Server error` :    An error occurred while performing the deletion
  * `Unable busy` :     The deletion request cannot be performed currently, please try later
  * `Undefined` :       The result code is unknown and not valid
-
-For operations that utilized a pattern match or tag query, and also set the
-`x-snowth-advisory-limit` header, if the deleted result set reached the limit,
-a response header, `x-snowth-results-limited`, will be returned with a value of
-1.

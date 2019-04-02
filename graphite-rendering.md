@@ -22,9 +22,6 @@ This limit may be changed by setting a request header,
 If the header contains any other value or is not present, the default of 10,000
 will be used.
 
-If a query result was truncated, a response header, `x-snowth-results-limited`,
-will be set with a value of 1 to indicate that not all results were returned.
-
 ## Searching for Metric Names
 
 Graphite metrics can be fetched (rendered) from IRONdb using the following endpoints. Glob style wildcards are supported.

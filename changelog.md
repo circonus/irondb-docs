@@ -3,10 +3,9 @@
 ## Changes in 0.15.3
 2019-04-02
 
- * Limit read/search results to 10,000 items by default. This can be overridden
-   by setting an `x-snowth-advisory-limit` header ("none", or an integer value).
-   If a read/search result was truncated, IRONdb will return a
-   `x-snowth-results-limited` header with a value of 1.
+ * Limit search results to 10,000 items by default. This can be overridden by
+   setting a request header, `x-snowth-advisory-limit`, to a positive integer
+   value. Setting it to -1 or "none" removes the limit.
  * Change default [journal replication concurrency](/configuration.md#journal-replicateconcurrency)
    from 1 to 4.
  * Memory leak and crash fixes.
