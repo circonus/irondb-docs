@@ -627,6 +627,7 @@ expired.
 
 ```
 <journal concurrency="4"
+         replicate_concurrency="4"
          max_bundled_messages="25000"
          pre_commit_size="131072"
          send_compressed="true"
@@ -647,6 +648,22 @@ Default: 4
 > A concurrency of 4 is enough to provide up to 700K measurements/second
 > throughput, and is not likely to require adjustment except in the most
 > extreme cases.
+
+#### journal replicate_concurrency
+
+Attempt to maintain this number of in-flight HTTP transactions, per peer
+journal, for posting replication data to peers. Higher concurrency helps keep
+up with ingestion at scale.
+
+Each thread reads a portion of the journal log and is responsible for sending
+that portion to the peer. When it finishes its portion, and there are fewer
+than `replicate_concurrency` other jobs in flight, it skips ahead to the next
+"unclaimed" portion of the log and resumes sending.
+
+Default: 4
+
+TODO: fill in release where the default changed.
+> Prior to 0.X.X, the default was 1.
 
 #### journal max_bundled_messages
 
