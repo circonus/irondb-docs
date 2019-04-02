@@ -37,6 +37,7 @@
     * [Namespacing](opentsdb-ingestion.md#namespacing)
     * [Writing OpenTSDB Data with HTTP](opentsdb-ingestion.md#writing-opentsdb-data-with-http)
     * [Writing OpenTSDB Data with Network Listener](opentsdb-ingestion.md#writing-opentsdb-data-with-network-listener)
+* [Prometheus Ingestion and Retrieval](prometheus-ingestion-retrieval.md)
 * [Activity Tracking](activity_tracking.md)
 * [Tag Support](tags.md)
 * [Tag Queries](tag-queries.md)
