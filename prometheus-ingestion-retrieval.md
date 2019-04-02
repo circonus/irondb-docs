@@ -14,7 +14,7 @@ the IRONdb config, Prometheus support is activated by including the following st
 ```
 <generic image="prometheus" name="prometheus"/>
 ```
-Depending on installation this may be shipped enabled by default.
+It is suggested this be placed inside of `/opt/circonus/etc/irondb-modules-site.conf`
 
 ## Namespacing
 
