@@ -7,6 +7,11 @@
    by setting an `x-snowth-advisory-limit` header ("none", or an integer value).
    If a read/search result was truncated, IRONdb will return a
    `x-snowth-results-limited` header with a value of 1.
+ * Memory leak and crash fixes.
+ * Alter search to include check_tags if present.
+ * Add flag to allow nodes to rebalance in parallel rather than forcing nodes
+   to rebalance one at a time.
+ * Various performance improvements.
 
 ## Changes in 0.15.2
 2019-03-27
