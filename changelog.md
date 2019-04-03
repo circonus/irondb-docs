@@ -55,6 +55,15 @@
  * Fix potential crashes and deadlocks in NNTBS timeshard open/close
    code.
  * Move graphite fetching code into a loadable module.
+   * **If you are upgrading a node that was initially installed with a version
+     prior to 0.13, ensure that you have the necessary config files included
+     from `/opt/circonus/etc/irondb.conf`:**
+       * Remove the `<eventer>` stanza near the top of the file.
+       * Add the following two lines just below the include of `licenses.conf`:
+         ```
+  <include file="irondb-modules.conf" snippet="true"/>
+  <include file="irondb-eventer.conf" snippet="true"/>
+         ```
 
 ## Changes in 0.14.17
 2019-03-11
