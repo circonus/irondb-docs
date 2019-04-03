@@ -46,37 +46,6 @@ Default: 512
 > Text-type metrics are supported in IRONdb but Graphite currently has no way
 > to render these when using a Storage Finder plugin.
 
-### eventer
-
-```
-<include file="irondb-eventer.conf" />
-```
-
-Libmtev eventer system configuration is included from a separate file controlled
-by the vendor. Changes to this file will be overwritten by package updates.
-
-Details about the included configuration can be found in the
-[libmtev eventer documentation](http://circonus-labs.github.io/libmtev/config/eventer.html).
-
-### irondb-modules
-
-IRONdb supports loading dynamically loadable modules that can provide optional features to an appliction.
-Currently lua extensions are implemented as a module.
-Others modules might be added in the future.
-The module system is configured using the following stanza:
-
-```
-<include file="irondb-modules.conf" />
-```
-
-IRONdb modules are included from two files:
-
-* `irondb-modules-stock.conf`, containing vendor controlled module configuration
-* `irondb-modules-site.conf`, for site specific module configuration.
-
-More details about the IRONdb module system can be found in
-the [libmtev module documentation](http://circonus-labs.github.io/libmtev/config/modules.html).
-
 ### cache
 
 ```
@@ -722,9 +691,11 @@ currently-active topology. `next` is currently unused. The `redo` path is where
 
 No manual configuration of these settings is necessary.
 
-## circonus-watchdog.conf
+## Included Files
 
-### watchdog
+### circonus-watchdog.conf
+
+#### watchdog
 
 ```
 <watchdog glider="/opt/circonus/bin/backwash" tracedir="/opt/circonus/traces"/>
@@ -738,7 +709,28 @@ If [crash handling](operations.md#crash-handling) is turned on, the `glider` is
 what invokes the tracing, producing one or more files in the `tracedir`.
 Otherwise, it just reports the error and exits.
 
-## licenses.conf
+### irondb-eventer.conf
+
+The eventer configuration contains [libmtev eventer
+configuration](https://circonus-labs.github.io/libmtev/config/eventer.html).
+
+Settings in here should not be changed unless directed by Circonus Support.
+
+### irondb-modules.conf
+
+Contains options for vendor-supplied [libmtev dynamically-loadable
+modules](https://circonus-labs.github.io/libmtev/config/modules.html).
+
+Settings in this file should not be changed.
+
+### irondb-modules-site.conf
+
+See the comment at the top of the file for how to configure optional modules.
+This file is included from `irondb-modules.conf`.
+
+This file's contents will be preserved across package updates.
+
+### licenses.conf
 
 This file holds any and all licenses that apply to this IRONdb node. Refer to
 the [installation steps](installation.md#add-license) for details on obtaining
@@ -749,18 +741,18 @@ In a cluster, the license configuration must be the same on all cluster nodes.
 If no license is configured, an embedded license is used, which enables all
 features described below with a limit of 25,000 active streams (`max_streams`).
 
-### Licensed Features
+#### Licensed Features
 
 The IRONdb license governs the following functionality:
 
-#### License Term
+##### License Term
 
 Name: `<expiry>`
 
 After this unix timestamp the license is invalid and will no longer
 work for any of the below.
 
-#### Ingest Cardinality
+##### Ingest Cardinality
 
 Name: `<max_streams>`
 
@@ -775,7 +767,7 @@ If this license is violated, ingestion will stop for the remainder of the 5-minu
 period that the violation was detected.  After the 5-minute period ends, the counter
 will reset to test the new 5-minute period.
 
-#### NNT Cache Size
+##### NNT Cache Size
 
 Name: `<cache_size>`
 
@@ -785,13 +777,13 @@ since version 0.11.6 use NNTBS by default.
 
 > Deprecated if you have upgraded to NNTBS.
 
-#### Enablement of Lua Extensions
+##### Enablement of Lua Extensions
 
 Name: `<lua_extension>`
 
 Whether or not Lua extensions will operate.
 
-#### Stream Tags Support
+##### Stream Tags Support
 
 Name: `<stream_tags>`
 
@@ -799,21 +791,21 @@ Whether or not stream tag related API calls and stream tag ingestion will work.
 If you do not have this license and stream tagged data arrives it will be silently
 discarded.
 
-#### Histogram Support
+##### Histogram Support
 
 Name: `<histograms>`
 
 Whether or not histograms can be ingested.  If you do not have this license and 
 attempt to ingest histogram data it will be silently discarded.
 
-#### Text Metric Support
+##### Text Metric Support
 
 Name: `<text>`
 
 Whether or not text metrics can be ingested.  If you do not have this license and 
 attempt to ingest text data it will be silently discarded.
 
-### Obtain A License
+#### Obtain A License
 
 If you are interested in any of the above functionality and do not currently have a license
 please contact [sales@circonus.com](mailto:sales@circonus.com) to upgrade your license.
