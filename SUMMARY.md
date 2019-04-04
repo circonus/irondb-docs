@@ -14,7 +14,7 @@
     * [EC2 Installation](installation.md#ec2-installation)
       * [EC2 CLI Example](installation.md#ec2-cli-example)
     * [Cluster Configuration](installation.md#cluster-configuration)
-    * [Updating](installation.md#updating)
+    * [Updating/Upgrading](installation.md#updating)
 * [Configuration](configuration.md)
     * [irondb.conf](configuration.md#irondbconf)
       * [cache](configuration.md#cache)

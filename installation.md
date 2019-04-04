@@ -449,12 +449,15 @@ The node currently being viewed is always listed in blue, with the other nodes l
 
 ## Updating
 
-An installed node may be updated to the latest available version of IRONdb by following these steps:
+An installed node may be updated to the latest available version of
+IRONdb by following these steps:
 
 EL7:
 
-1. `/usr/bin/yum update circonus-platform-irondb`
-1. `/bin/systemctl restart circonus-irondb`
+```
+/usr/bin/yum update circonus-platform-irondb && \
+/bin/systemctl restart circonus-irondb
+```
 
 Ubuntu 16.04:
 
@@ -464,10 +467,12 @@ Circonus packages, and apt-get is unable to cope with them. The helper package
 must be upgraded first, i.e., it cannot be upgraded in the same transaction
 as the main package.
 
-1. `/usr/bin/apt-get update`
-1. `/usr/bin/apt-get install circonus-platform-irondb-apt-policy`
-1. `/usr/bin/apt-get install circonus-platform-irondb`
-1. `/bin/systemctl restart circonus-irondb`
+```
+/usr/bin/apt-get update && \
+/usr/bin/apt-get install circonus-platform-irondb-apt-policy && \
+/usr/bin/apt-get install circonus-platform-irondb && \
+/bin/systemctl restart circonus-irondb
+```
 
 In a cluster of IRONdb nodes, service restarts should be staggered so as not to jeopardize availability of metric data. An interval of 30 seconds between node restarts is considered safe.
 
