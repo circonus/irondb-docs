@@ -238,4 +238,62 @@ Displays a list of the loaded Lua extensions that provide many of the features o
 
 ### Internals Tab
 
-Shows internal application information, such as job queues, open sockets, and timers. This data is used by Circonus Support when troubleshooting issues.
+Shows internal application information, which is useful for troubleshooting
+performance problems. This information is divided into panels by the type of
+information contained within. These panels are described below.
+
+#### Logs {#internals-logs}
+
+The Logs panel of the Internals tab shows recent entries from the
+[errorlog](/configuration.md#logs). When the Internals tab is first displayed,
+the Logs panel is expanded by default.
+
+#### Job Queues
+
+The Job Queues panel lists libmtev [eventer job
+queues](https://circonus-labs.github.io/libmtev/development/eventer.html#asynchronous-events)
+(aka "jobqs"), which are groups of one or more threads dedicated to a
+particular task, such as writing to the database, or performing data
+replication. These tasks may potentially block for "long" periods of time and
+so must be handled asynchronously to avoid stalling the application's event
+loop.
+
+Job queues have names that indicate what they are used for, and concurrency
+attributes that control the number of threads to use in different scenarios.
+
+At the top right of the Joq Queues panel is a toggle that controls whether to
+display jobqs currently in use ("Used") or all existing jobqs ("All"). The
+default is to show only in-use jobqs.
+
+> The toggle first appeared in version 0.15.1
+
+![Image: 'jobq_panel.png'](/assets/jobq_panel.png?raw=true)
+
+Each row in the panel represents a job queue, with the following columns:
+* Queue: the jobq name, preceded by a number indicating the instantaneous
+  count of jobs that are either in-flight or backlogged (waiting to be
+  enqueued.)
+* Concurrency: the number of threads devoted to this jobq. This may be
+  expressed as a single number, which indicates the queue is of fixed size. It
+  may also be expressed as a pair of numbers separated by an arrow, indicating
+  the current thread count (left) out of a potential maximum thread count
+  (right).
+* Processed: a counter of jobs processed through this jobq since the
+  application last booted.
+* Waiting: information on jobs waiting in the queue. From left to right, three
+  pieces of information are visible:
+  * A button for displaying a histogram of wait latencies for the queue, since
+    application boot. This is the same type of histogram as used for [Storage latencies](#storage)
+    in the Overview tab.
+  * The average time that jobs spent waiting to be processed in the queue, in
+    milliseconds, since the last refresh (5 seconds).
+  * The instantaneous count of jobs currently waiting in the queue.
+* Running: information on jobs actively running in the queue. From left to
+  right, three pieces of information are visible:
+  * A button for displaying a histogram of run latencies for the queue, since
+    application boot. This is the same type of histogram as used for [Storage latencies](#storage)
+    in the Overview tab.
+  * The average time that jobs spent running in the queue, in milliseconds,
+    since the last refresh (5 seconds).
+  * The instantaneous count of jobs currently running in the queue.
+
