@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in x.xx.x
+2019-xx-xx
+
+ * [libmtev 1.6.6](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#166)
+ * [libmtev 1.6.7](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#167)
+
 ## Changes in 0.15.3
 2019-04-02
 
