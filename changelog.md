@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in x.x.x
-2019-xx-xx
+## Changes in 0.15.4
+2019-04-12
 
  * Fix startup crash bug in maintaining retention windows.
  * Fix reconstitute bug in cases of incomplete file reads.
