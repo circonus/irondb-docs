@@ -1,13 +1,10 @@
 # Changelog
 
-## Changes in x.xx.x
+## Changes in x.x.x
 2019-xx-xx
 
- * Fix bug where attempted to delete an old NNTBS shard that has fallen
-   below the data retention threshold would cause crashes.
- * Fix bug where we would occasionally flag incomplete file reads as errors
-   during reconstitute. Software now will continue to try to read the data
-   until success.
+ * Fix startup crash bug in maintaining retention windows.
+ * Fix reconstitute bug in cases of incomplete file reads.
  * Fix bug where multiple time retention maintenance jobs could run
    concurrently.
  * Performance improvements to inter-node gossip communications.
