@@ -3,7 +3,8 @@
 ## Changes in x.xx.x
 2019-xx-xx
 
- * TBD
+ * Documentation: put `gpgcheck=0` back into crash-reporting repo stanza for
+   EL7. These packages are not produced by Circonus, we simply mirror them.
 
 ## Changes in 0.15.3
 2019-04-02

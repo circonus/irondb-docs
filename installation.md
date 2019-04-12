@@ -107,6 +107,7 @@ Create the file `/etc/yum.repos.d/Circonus.repo` with the following contents:
     name=Circonus - Crash Reporting
     baseurl=http://updates.circonus.net/backtrace/centos/el7/
     enabled = 1
+    gpgcheck = 0
 
 If you do not wish to validate signatures, set `gpgcheck = 0` in the
 `[circonus]` stanza.
