@@ -11,10 +11,10 @@
  * Support FlatBuffers requests in /histogram read endpoint.
  * Support backlog display and stats filtering in UI.
  * OpenTSDB ingestion is now an optional module.
- * CAQL: Increase the default histogram fetch limit to 3M
- * CAQL: accelerate sum/sub/prod/div operations
- * CAQL: Broadcast histogram:percentile and histogram:count_* operations across input slots (edited) 
-   input slots
+ * CAQL: Increase the default histogram fetch limit to 3M.
+ * CAQL: Accelerate sum/sub/prod/div operations.
+ * CAQL: Broadcast histogram:percentile and histogram:count_* operations across
+   input slots.
  * Documentation: put `gpgcheck=0` back into crash-reporting repo stanza for
    EL7. These packages are not produced by Circonus, we simply mirror them.
  * [libmtev 1.6.8](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#168)
