@@ -9,12 +9,13 @@ by setting the Prometheus remote_write endpoint to:
 ## Enabling Prometheus Module
 
 IRONdb must be [configured](configuration.html) such that the Prometheus module is
-enabled for reading or writing Prometheus data natively.  In the <modules> section of 
-the IRONdb config, Prometheus support is activated by including the following stanza:
+enabled for reading or writing Prometheus data natively. Prometheus support is
+activated by adding the following line:
 ```
 <generic image="prometheus" name="prometheus"/>
 ```
-It is suggested this be placed inside of `/opt/circonus/etc/irondb-modules-site.conf`
+to `/opt/circonus/etc/irondb-modules-site.conf`. This file preserves local
+modifications across package updates.
 
 ## Namespacing
 

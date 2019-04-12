@@ -1,5 +1,20 @@
 # OpenTSDB Ingestion
 
+IRONdb has native endpoints for accepting OpenTSDB-style data.
+
+## Enabling The OpenTSDB Module
+
+IRONdb must be [configured](configuration.html) such that the OpenTSDB module is
+enabled for reading or writing OpenTSDB data natively. OpenTSDB support is
+activated by placing the following line:
+```
+<generic image="opentsdb" name="opentsdb"/>
+```
+into `/opt/circonus/etc/irondb-modules-site.conf`. This file preserves local
+modifications across package updates.
+
+## Ingestion Format
+
 There are 2 methods for ingesting OpenTSDB data into IRONdb:
 
 1. RESTful HTTP POST of OpenTSDB JSON formatted datapoint(s)
