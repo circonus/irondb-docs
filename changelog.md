@@ -3,8 +3,25 @@
 ## Changes in x.xx.x
 2019-xx-xx
 
+ * Fix bug where attempted to delete an old NNTBS shard that has fallen
+   below the data retention threshold would cause crashes.
+ * Fix bug where we would occasionally flag incomplete file reads as errors
+   during reconstitute. Software now will continue to try to read the data
+   until success.
+ * Fix bug where multiple time retention maintenance jobs could run
+   concurrently.
+ * Performance improvements to inter-node gossip communications.
+ * Support FlatBuffers requests in /histogram read endpoint.
+ * Support backlog display and stats filtering in UI.
+ * OpenTSDB ingestion is now an optional module.
+ * CAQL: Increase the default histogram fetch limit to 3M
+ * CAQL: accelerate sum/sub/prod/div operations
+ * CAQL: Broadcast histogram:percentile and histogram:count_* operations across input slots (edited) 
+   input slots
  * Documentation: put `gpgcheck=0` back into crash-reporting repo stanza for
    EL7. These packages are not produced by Circonus, we simply mirror them.
+ * [libmtev 1.6.8](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#168)
+ 
 
 ## Changes in 0.15.3
 2019-04-02
