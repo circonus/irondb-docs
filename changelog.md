@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in x.x.x
+2019-xx-xx
+
+ * Documentation: Add docs on the UI Internals tab, which contains a rich set
+   of statistics for troubleshooting performance problems.
+
 ## Changes in 0.15.4
 2019-04-12
 
