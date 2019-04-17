@@ -270,9 +270,8 @@ default is to show only in-use jobqs.
 ![Image: 'jobq_panel.png'](/assets/jobq_panel.png?raw=true)
 
 Each row in the panel represents a job queue, with the following columns:
-* Queue: the jobq name, preceded by a number indicating the instantaneous
-  count of jobs that are either in-flight or backlogged (waiting to be
-  enqueued.)
+* Queue: the jobq name, preceded by a gauge of jobs that are either in-flight
+  or backlogged (waiting to be enqueued.)
 * Concurrency: the number of threads devoted to this jobq. This may be
   expressed as a single number, which indicates the queue is of fixed size. It
   may also be expressed as a pair of numbers separated by an arrow, indicating
