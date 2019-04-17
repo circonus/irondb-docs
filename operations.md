@@ -297,3 +297,92 @@ Each row in the panel represents a job queue, with the following columns:
     since the last refresh (5 seconds).
   * The instantaneous count of jobs currently running in the queue.
 
+#### Sockets
+
+The Sockets panel displays information on active sockets. These include both
+internal file descriptors for the [libmtev eventer
+system](https://circonus-labs.github.io/libmtev/development/eventer.html), as
+well as network connections for REST API listeners and clients.
+
+![Image: 'sockets_panel.png'](/assets/sockets_panel.png?raw=true)
+
+Each row in the panel corresponds to one socket, with the following columns:
+* FD: the file descriptor number that corresponds to the socket, and the value
+  of the [eventer mask](https://circonus-labs.github.io/libmtev/apireference/c.html#eventergetmask).
+  The mask determines what type of activity will trigger the callback
+  associated with the socket. Typical values are (R)ead, (W)rite, and
+  (E)xception. If multiple values are set, they are separated by a vertical
+  bar.
+* Opset: the "style" of socket determines the set of operations that may be
+  performed on the socket. Typical values are "POSIX", which means the standard
+  set of POSIX-compliant calls like `accept()` and `close()` are available, and
+  "SSL", which adds SSL/TLS operations. The vast majority of sockets in IRONdb
+  will be of the POSIX type.
+* Callback: the libmtev function that will be called when the socket is
+  triggered by activity matching the socket's mask. For example, if a socket
+  has the Read mask, and there is data on the socket to read, the associated
+  callback function will be invoked to handle reading that data.
+* Local: if the socket is part of a network listener or established connection,
+  this will be the IP address and port of the local side of the connection.
+* Remote: if the socket is part of a network listener or established connection,
+  this will be the IP address and port of the remote side of the connection.
+
+Network sockets:
+
+![Image: 'sockets_net.png'](/assets/sockets_net.png?raw=true)
+
+#### Timers
+
+The Timers panel displays information on [timed
+events](https://circonus-labs.github.io/libmtev/development/eventer.html#timed-events).
+IRONdb does not make extensive use of timed events so this panel is often empty.
+
+Each row in the panel lists a timed event, with the following columns:
+* Callback: the libmtev function that will be called when the appointed time
+  arrives.
+* When: the time that the callback should fire.
+
+#### Stats
+
+The Stats panel displays all statistics application statistics that have been
+registered into the system. These are collected and maintained by the
+[libcircmetrics](https://github.com/circonus-labs/libcircmetrics) library.
+Statistics accumulate over the lifetime of the process, and are reset when the
+process restarts.
+
+At the top of the panel is a Filter field where you can enter a substring or
+regex pattern to match statistics. Only those statistics matching the pattern
+will be displayed. This is a useful way to narrow down the list of statistics,
+which can be quite long.
+
+> The filter field first appeared in version 0.15.4.
+
+![Image: 'stats_panel.png'](/assets/stats_panel.png?raw=true)
+
+Stats are namespaced to indicate what they represent:
+* mtev: internal libmtev statistics
+  * eventer: stats related to the operation of the event system
+    * callbacks: each named callback registered in the system gets a "latency"
+      statistic that is a cumulative histogram of all latency values for this
+      callback since boot.
+    * jobq: each jobq registered in the system gets a set of stats that convey
+      various information about that jobq. The same information appears in the
+      Job Queues panel, without the `mtev.eventer` prefix.
+    * pool: per-loop statistics for [named event loops](https://circonus-labs.github.io/libmtev/config/eventer.html#loopname).
+      Cycletime is a histogram of elapsed time (in seconds) between iterations
+      of the loop. Callbacks is a histogram of all callback latencies witnessed
+      by the loop, also in seconds.
+    * threads: per-thread cycle times, in seconds.
+  * memory: memory allocation statistics.
+  * modules: statistics exposed by [libmtev modules](https://circonus-labs.github.io/libmtev/config/modules.html).
+  * pool_N: resource statistics for
+    [mtev_intern](https://github.com/circonus-labs/libmtev/blob/master/src/utils/mtev_intern.c),
+    a facility that reduces application memory usage by allowing multiple
+    consumers to utilize a single copy of a given string or binary blob. IRONdb
+    uses `mtev_intern` in the [surrogate_db](/configuration.md#surrogatedatabase)
+    implementation.
+  * rest: latencies for calls to REST endpoints.
+* snowth: IRONdb application information. Some stats are used to drive other
+  parts of the UI, such as GET/PUT counters and histograms in the Overview. All
+  of these stats are also available at `/stats.json`, without the `snowth.`
+  prefix.
