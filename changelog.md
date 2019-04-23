@@ -12,6 +12,7 @@
  * CAQL: Performance Improvements.
  * Documentation: Add docs on the [UI Internals tab](/operations.md#internals-tab),
    which contains a rich set of statistics for troubleshooting performance problems.
+ * [libmtev 1.6.9](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#169)
 
 ## Changes in 0.15.4
 2019-04-12
