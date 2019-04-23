@@ -1,10 +1,17 @@
 # Changelog
 
-## Changes in x.x.x
-2019-xx-xx
+## Changes in 0.15.5
+2019-04-23
 
- * Documentation: Add docs on the UI Internals tab, which contains a rich set
-   of statistics for troubleshooting performance problems.
+ * Fix max_ingest_age and max_clock_skew parameters in graphite handling.
+   max_clock_skew will default to the raw db max_clock_skew or else one
+   day. Records will be elided if they are earlier than now - max_ingest_age
+   or later than now + max_clock_skew.
+ * Fix thread safety issues that could lead to occasional crashes.
+ * CAQL: Fix `find:histogram_cum()` functionality.
+ * CAQL: Performance Improvements.
+ * Documentation: Add docs on the [UI Internals tab](/operations.md#internals-tab),
+   which contains a rich set of statistics for troubleshooting performance problems.
 
 ## Changes in 0.15.4
 2019-04-12
