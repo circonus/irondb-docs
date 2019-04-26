@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.15.6
+2019-04-26
+
+ * Fix a performance regression introduced by 0.15.5 where CPU usage
+   could spike.
+ * CAQL: Add type checking facilities to CAQL function arguments.
+
 ## Changes in 0.15.5
 2019-04-23
 
