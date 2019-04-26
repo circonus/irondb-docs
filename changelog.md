@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in 0.15.6
-2019-04-26
+## Changes in x.x.x
+2019-xx-xx
 
  * Fix a performance regression introduced by 0.15.5 where CPU usage
    could spike.
