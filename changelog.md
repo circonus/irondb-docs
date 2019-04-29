@@ -7,7 +7,11 @@
    could spike.
  * Performance improvements when looking up locations on the topology
    ring.
+ * Fix bug where jlog/redo data could get backed up due to starving
+   threads if the amount of data being transmitted around the cluster
+   was too low.
  * CAQL: Add type checking facilities to CAQL function arguments.
+ * CAQL: Fix histogram:count aggregation logic.
 
 ## Changes in 0.15.5
 2019-04-23
