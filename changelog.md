@@ -5,6 +5,8 @@
 
  * Fix a performance regression introduced by 0.15.5 where CPU usage
    could spike.
+ * Performance improvements when looking up locations on the topology
+   ring.
  * CAQL: Add type checking facilities to CAQL function arguments.
 
 ## Changes in 0.15.5
