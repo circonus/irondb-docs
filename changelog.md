@@ -1,17 +1,21 @@
 # Changelog
 
-## Changes in x.x.x
-2019-xx-xx
+## Changes in 0.15.6
+2019-04-30
 
  * Fix a performance regression introduced by 0.15.5 where CPU usage
    could spike.
  * Performance improvements when looking up locations on the topology
    ring.
- * Fix bug where jlog/redo data could get backed up due to starving
-   threads if the amount of data being transmitted around the cluster
-   was too low.
+ * Ensure all journal replication threads are supplied with work. Previously,
+   if more than one replication thread existed and there was not sufficient
+   load to utilize all of them, some journal segments were not removed after
+   their data was replicated. This led to increased disk usage over time, and
+   was exacerbated by a change to the default journal replication concurrency
+   in 0.15.3.
  * CAQL: Add type checking facilities to CAQL function arguments.
- * CAQL: Fix histogram:count aggregation logic.
+ * CAQL: histogram:count_*() processing on higher periods, was off by a factor
+   of VIEW_PERIOD/60. This is corrected now.
  * CAQL: Expand label() functionality.
  * CAQL: Add tag() function.
 
