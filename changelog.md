@@ -12,6 +12,8 @@
    was too low.
  * CAQL: Add type checking facilities to CAQL function arguments.
  * CAQL: Fix histogram:count aggregation logic.
+ * CAQL: Expand label() functionality.
+ * CAQL: Add tag() function.
 
 ## Changes in 0.15.5
 2019-04-23
