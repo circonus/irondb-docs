@@ -1,5 +1,11 @@
 # Changelog
 
+## Changes in 0.15.7
+2019-05-01
+
+ * CAQL: Fix regression introduced in version 0.15.6 that would cause some
+   CAQL fetches to fail.
+
 ## Changes in 0.15.6
 2019-04-30
 
