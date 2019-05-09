@@ -1,5 +1,20 @@
 # Changelog
 
+## Changes in 0.15.8
+2019-05-09
+
+ * /rollup/ and CAQL fetching functions now correctly defer reads on
+   replication delay.
+ * Incoming rest calls are now assigned task IDs based on either the
+   X-Snowth-TaskId header or an an active zipkin trace id.
+ * Performance improvements when debugging is disabled.
+ * Allow graphite and opentsdb raw socket to accept tags with special
+   characters.
+ * Add surrogate checkpoint latency stats.
+ * Added an optional header, "x-snowth-metadata-flush", to delete
+   requests. If set to `0`, this will disable metadata flushing.
+ * [libmtev 1.6.10](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1610)
+
 ## Changes in 0.15.7
 2019-05-01
 
