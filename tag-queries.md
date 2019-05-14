@@ -56,7 +56,7 @@ values themselves.
 
 If using regular expression patterns, the `/ /` should not be encoded. To
 perform a regex match on `(foo|bar)`, you would use the form
-`b:/KGZvb3xiYXIp/`.
+`b/KGZvb3xiYXIp/`.
 
 See the examples below for more color.
 
