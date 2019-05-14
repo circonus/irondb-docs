@@ -30,7 +30,7 @@ To store a metric like:
 Where tilde `~`, parens `()`, and greater/less `<>` are outside of the character set you would encode
 the category and value separately as base64 and enclose them in `b""`.  For example:
 
-    foo|ST[b"fihjYXRlZ29yeSkK":b"PHZhbHVlPgo="]
+    foo|ST[b"fihjYXRlZ29yeSk=":b"PHZhbHVlPg=="]
     
 It is always safe to encode *all* incoming tags in this way, the server will decide if the name
 is safely representable without encoding and store the metric name decoded if it can.
