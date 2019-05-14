@@ -50,9 +50,13 @@ enclose the query in base64 notation:
 
 `and(b"...":b"...")`
 
-To pass through the unsupported characters. If using regular expression
-patterns, the `/ /` do _not_ need to be encoded. To perform a regex match on
-`.*foo`, you would use the form `b:/Lipmb28K/`.
+To pass through the unsupported characters. Note that the asterisk (`*`) for
+glob syntax is allowed unencoded for searches, but not for tag categories or
+values themselves.
+
+If using regular expression patterns, the `/ /` should not be encoded. To
+perform a regex match on `(foo|bar)`, you would use the form
+`b/KGZvb3xiYXIp/`.
 
 See the examples below for more color.
 
