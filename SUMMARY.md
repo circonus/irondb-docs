@@ -68,6 +68,7 @@
       * [Topology](operations.md#topology-tab)
       * [Extensions](operations.md#extensions-tab)
       * [Internals](operations.md#internals-tab)
+    * [Monitoring](monitoring.md)
     * [Rebuilding Failed Nodes](rebuilding-nodes.md)
     * [Growing or Shrinking the Cluster](resizing-clusters.md)
       * [Adding Nodes](resizing-clusters.md#adding-nodes)
