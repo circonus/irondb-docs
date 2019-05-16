@@ -1,5 +1,11 @@
 # Changelog
 
+## TBD
+2019-xx-xx
+
+ * Documentation: add [Monitoring](/monitoring.md) page describing how to
+   obtain and optionally auto-store internal node statistics.
+
 ## Changes in 0.15.8
 2019-05-09
 
