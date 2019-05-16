@@ -72,6 +72,9 @@ There are no tags in the default format.
 
 ### JSON Tagged Format
 
+**The tag format is still in development. Names of metrics and tags may change
+without warning.**
+
 If provided the query string `format=tagged`, both endpoints will produce
 metrics with [stream tags](/tags.md) instead of the hierarchy used in the
 default format. The same metric from above is represented in tagged format as:
@@ -92,6 +95,9 @@ in the default format. There are additional tags for the node's UUID and a
 seconds.
 
 ## Monitor Module
+
+**This module is still in development. Names of metrics and tags may change
+without warning.**
 
 The internal monitor module exports all of the same statistics (both
 application and libmtev framework) as the JSON endpoints above. It records them
