@@ -1,10 +1,30 @@
 # Changelog
 
-## TBD
-2019-xx-xx
+## Changes in 0.16.0
+2019-05-28
 
+ **WARNING: Downgrades will not be possible once this version is
+    installed**
+
+ * Introduce a dedicated column family in the surrogate database to track
+   activity. This results in reduced I/O workload.
+ * Change histogram quantile/sum/mean operations to return approximations
+   that minimize the relative error.
+ * Non-histogram monitor metrics should be tracked as numeric or text,
+   not histogram.
+ * Ensure `/find` endpoints emit valid JSON.
+ * Faster setmeta serialization for merge.
+ * Increase default `surrogate_writer` job queue concurrency to `6` (from `1`).
+ * Fix race in metrics db (search indexes) where some metrics might be
+   omitted during index construction.
+ * Fix crash when `/rollup` rollup_span == `0` (and require rollup_span > `0`).
  * Documentation: add [Monitoring](/monitoring.md) page describing how to
    obtain and optionally auto-store internal node statistics.
+ * Bug/CAQL: Fix histogam:count_below() to also count samples in the current bucket,
+   as the documentation states.
+ * Bug/CAQL: histogram:stddev() will now return nan ("not a number") for histograms
+   with a single value instead of `0`.
+ * [libmtev 1.6.12](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1612)
 
 ## Changes in 0.15.8
 2019-05-09
