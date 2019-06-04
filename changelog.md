@@ -1,5 +1,12 @@
 # Changelog
 
+## Changes in 0.16.1
+
+ * Bug: Prevent null pointer exception in the data replication path when the
+   check name is undefined.
+ * CAQL: Assert that start times are before or equal to end times in
+   queries.
+
 ## Changes in 0.16.0
 2019-05-28
 
