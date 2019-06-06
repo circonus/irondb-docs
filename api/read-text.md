@@ -1,8 +1,6 @@
 # Retrieving Text Data
 
-This API call is for retrieving text data from the Snowth cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
-
-Data will be returned in an array of tuples. Each tuple will contain a timestamp that indicates when the text value was received (given in milliseconds since the epoch), as well as the text value itself.
+This API call is for retrieving text data from the Snowth cluster.
 
 ## Description
 
@@ -25,6 +23,14 @@ GET
  * `uuid` : The UUID of the check to which the metric belongs.
  * `metric` : The name of the metric for which to pull data.
 
+### Output
+
+The response payload will contain a JSON array of tuples consisting of the timestamps (in millisecions since epoch) from the time the value was received, and the text value itself as a string.
+
+The first value of the response array is an exception to this rule.
+It will contain the timestamp of the start parameter, along with the text value at the start time.
+This is done, so that the user has information about the initial state of the text metric for the request interval.
+
 ## Examples
 
 ```
@@ -42,5 +48,5 @@ In this example:
 ### Example 1 Output
 
 ```json
-[[1380000000555,"test_value"],[1380000300123,"test_value_2"]]
+[[1380000000000,"test_value_at_the_beginning_of_the_requested_range"],[1380000000123,"test_value_2"]]
 ```
