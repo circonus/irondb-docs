@@ -2,7 +2,7 @@
 
 This API call is for retrieving text data from the Snowth cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
 
-Data will be returned in an array of tuples. Each tuple will contain a timestamp that indicates when the text value was received (given in milliseconds since the epoch), as well as the text value itself.  The database contains all text sample submitted, but the stream is returned, by default, as a front-edge-triggered list.  In otherwords, if the same value is submitted multiple times sequentially, the result set fetched will have only the first occurrence or the "front-edge" of the signal.
+Data will be returned in an array of tuples. Each tuple will contain a timestamp that indicates when the text value was received (given in milliseconds since the epoch), as well as the text value itself.  The database contains all text samples submitted, but the stream is returned, by default, as a front-edge-triggered list.  In otherwords, if the same value is submitted multiple times sequentially, the result set fetched will have only the first occurrence or the "front-edge" of the signal.
 
 ## Description
 
