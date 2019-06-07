@@ -2,7 +2,7 @@
 
 This API call is for retrieving text data from the Snowth cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
 
-Data will be returned in an array of tuples. Each tuple will contain a timestamp that indicates when the text value was received (given in milliseconds since the epoch), as well as the text value itself.
+Data will be returned in an array of tuples. Each tuple will contain a timestamp that indicates when the text value was received (given in milliseconds since the epoch), as well as the text value itself.  The database contains all text samples submitted, but the stream is returned, by default, as a front-edge-triggered list.  In otherwords, if the same value is submitted multiple times sequentially, the result set fetched will have only the first occurrence or the "front-edge" of the signal.
 
 ## Description
 
@@ -24,6 +24,14 @@ GET
    end time will be pulled).
  * `uuid` : The UUID of the check to which the metric belongs.
  * `metric` : The name of the metric for which to pull data.
+
+### Querystring Paramters
+
+ * `get_specific_range=<true|false>` will ensure all timestamps are within the
+   start/end boundary and return every sample (not compressing duplicates to their
+   starting edge. The default is `false`.
+ * `lead=<true|false>` will include the point before `start` if there is no point exactly at `start`
+   and such a point exists.  The default is `true`.
 
 ## Examples
 
