@@ -1,5 +1,20 @@
 # Changelog
 
+## Changes in 0.16.2
+
+ * Change default text fetching to provide the prior value if the requested
+   start offset is between recorded samples. Expose `lead=<true|false>`
+   query string parameter, defaulting to true, to turn this feature on
+   or off.
+ * Bug: Fix crash on error in full delete with long metric names and tags.
+ * Bug: Remove erroneous "missing activity cf" message in log on startup.
+ * Bug: Remove temporary files accidentally left in /var/tmp during
+   reconstitute.
+ * Bug: Fix opentsdb parsing bug where we handled timestamps without
+   decimal points incorrectly.
+ * CAQL: Update docs.
+ * [libmtev 1.6.14](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1614)
+
 ## Changes in 0.16.1
 
  * Bug: Prevent null pointer exception in the data replication path when the
