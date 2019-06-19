@@ -1,6 +1,7 @@
 # Changelog
 
 ## Changes in 0.16.2
+2019-06-19
 
  * Change default text fetching to provide the prior value if the requested
    start offset is between recorded samples. Expose `lead=<true|false>`
@@ -16,6 +17,7 @@
  * [libmtev 1.6.14](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1614)
 
 ## Changes in 0.16.1
+2019-06-04
 
  * Bug: Prevent null pointer exception in the data replication path when the
    check name is undefined.
