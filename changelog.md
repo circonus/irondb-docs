@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in 0.16.3
+2019-06-26
+
+ * Add activity data to `tags/<id>/find` JSON responses.
+ * Bug: Address inconsistent activity windows on single stream batch loading.
+ * Bug: Fix consistency issue with in-memory indices of check/tag set-crdt data.
+ * Bug: Fix potential crashes related to not acquiring the read lock before
+   cloning an oil (ordered interval list) object for activity tracking.
+ * Bug: Fix memory leaks that occur in the metrics database when using `find`
+   to search for metrics.
+ * [libmtev 1.6.16](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1616)
+
 ## Changes in 0.16.2
 2019-06-19
 
