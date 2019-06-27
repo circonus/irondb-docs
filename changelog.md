@@ -1,5 +1,14 @@
 # Changelog
 
+## Changes in 0.17.0
+2019-xx-xx
+
+ * Prometheus and OpenTSDB integrations are now active by default for new
+   installations. If you previously activated one or both of these modules in
+   `/opt/circonus/etc/irondb-modules-site.conf`, you may remove those
+   configurations at your convenience after upgrading, though it will not be an
+   error for the module to be configured more than once.
+
 ## Changes in 0.16.3
 2019-06-26
 

@@ -2,6 +2,12 @@
 
 ## Enable the Prometheus Module
 
+> As of version 0.17.0, the Prometheus module is active by default for new
+> installations. If you previously activated the module using the instructions
+> below, you may remove the line from `irondb-modules-site.conf` after
+> upgrading to 0.17.0 or later, but it is not an error if the line appears more
+> than once.
+
 IRONdb must be [configured](configuration.html) such that the Prometheus module is
 enabled for reading or writing Prometheus data natively. Prometheus support is
 activated by adding the following line:
