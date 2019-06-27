@@ -4,7 +4,7 @@ IRONdb has native endpoints for accepting OpenTSDB-style data.
 
 ## Enable the OpenTSDB Module
 
-> As of version 0.17.0, the Prometheus module is active by default for new
+> As of version 0.17.0, the OpenTSDB module is active by default for new
 > installations. If you previously activated the module using the instructions
 > below, you may remove the line from `irondb-modules-site.conf` after
 > upgrading to 0.17.0 or later, but it is not an error if the line appears more
