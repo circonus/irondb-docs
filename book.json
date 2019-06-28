@@ -1,7 +1,7 @@
 {
     "gitbook": ">=3.2.3",
     "title" : "IRONdb Documentation",
-    "plugins": [ "anchorjs", "ga" ],
+    "plugins": [ "anchorjs", "ga", "toggle-chapters" ],
     "pluginsConfig": {
         "ga": {
             "token": "UA-53665515-1"

@@ -2,16 +2,24 @@
 
 IRONdb has native endpoints for accepting OpenTSDB-style data.
 
-## Enabling The OpenTSDB Module
+## Enable the OpenTSDB Module
+
+> As of version 0.17.0, the OpenTSDB module is active by default for new
+> installations. If you previously activated the module using the instructions
+> below, you may remove the line from `irondb-modules-site.conf` after
+> upgrading to 0.17.0 or later, but it is not an error if the line appears more
+> than once.
 
 IRONdb must be [configured](configuration.html) such that the OpenTSDB module is
 enabled for reading or writing OpenTSDB data natively. OpenTSDB support is
-activated by placing the following line:
+activated by adding the following line:
 ```
 <generic image="opentsdb" name="opentsdb"/>
 ```
-into `/opt/circonus/etc/irondb-modules-site.conf`. This file preserves local
-modifications across package updates.
+to `/opt/circonus/etc/irondb-modules-site.conf` on each IRONdb node. This file
+preserves local modifications across package updates. A [service
+restart](operations.md#service-management) is required after changing
+configuration.
 
 ## Ingestion Format
 
