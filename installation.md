@@ -29,8 +29,10 @@ The following network protocols and ports are utilized. These are defaults and
 may be changed via configuration files.
 
 * 2003/tcp (Carbon plaintext submission)
-* 8112/tcp (admin UI, HTTP REST API, [cluster replication](./operations.md#replication), [request proxying](./operations.md#proxying))
+* 4242/tcp (OpenTSDB plaintext submission)
+* 8112/tcp (admin UI, HTTP REST API, [cluster replication](./operations.md#replication), [request proxying](./operations.md#proxying), [Prometheus read/write](/prometheus.md))
 * 8112/udp ([cluster gossip](./operations.md#replication))
+* 32322/tcp (admin console, localhost only)
 
 ### System Tuning
 

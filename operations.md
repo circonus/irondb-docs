@@ -1,11 +1,11 @@
 # Operations
 
-By default, IRONdb listens externally on TCP port 2003, TCP and UDP port 8112,
-and locally on TCP port 32322. These ports can be changed via configuration
-files. There are normally two processes, a parent and child. The parent process
-monitors the child, restarting it if it crashes. The child process provides the
-actual services, and is responsible for periodically "heartbeating" to the
-parent to show that it is making progress.
+By default, IRONdb listens externally on TCP ports 2003 and 4242, TCP and UDP
+port 8112, and locally on TCP port 32322. These ports can be changed via
+configuration files. There are normally two processes, a parent and child. The
+parent process monitors the child, restarting it if it crashes. The child
+process provides the actual services, and is responsible for periodically
+"heartbeating" to the parent to show that it is making progress.
 
 IRONdb is sensitive to CPU and IO limits. If either resource is limited, you
 may see a process being killed off when it does not heartbeat on time. These
