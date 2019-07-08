@@ -109,7 +109,8 @@ Metrics stored by the monitor module are replicated to additional nodes (if
 any) in the same way as metrics ingested from outside.
 
 The monitor module is not enabled by default. To enable it, add the following
-configuration to `/opt/circonus/etc/irondb-modules-site.conf` then restart the
+configuration to `/opt/circonus/etc/irondb-modules-site.conf`, generate a new UUID
+and use it to replace the null uuid in the example, and then restart the
 IRONdb service:
 
 ```xml
@@ -126,7 +127,7 @@ IRONdb service:
 
 Available configuration parameters:
  * `uuid` (required): The check UUID under which the module's metrics should be
-   stored.
+   stored.  This cannot be the null UUID (all 0s).
  * `account_id` (optional): The account ID with which to associate the module's
    metrics. Default: 1
  * `period` (optional): The collection period for metrics. Specified as an
