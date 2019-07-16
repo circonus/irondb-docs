@@ -1,13 +1,29 @@
 # Changelog
 
 ## Changes in 0.17.0
-2019-xx-xx
+2019-07-16
 
  * Prometheus and OpenTSDB integrations are now active by default for new
    installations. If you previously activated one or both of these modules in
    `/opt/circonus/etc/irondb-modules-site.conf`, you may remove those
    configurations at your convenience after upgrading, though it will not be an
    error for the module to be configured more than once.
+ * Dump out query text to error log on a parse error with tag query finds.
+ * Fix clustered reads in the prometheus module.
+ * Increase default concurrency in process_journal and data_read jobqs.
+ * Implement activity tracking for graphite queries.
+ * Improve surrogate database loading speed.
+ * Bug: Fix occassionaly crashes in pipelined replication journal receptions.
+ * Bug: Optimize surrogate replay and prevent/repair corruption via auto-repair.
+ * Bug: Fix condition where surrogate checkpoint would not complete if no
+   surrogate activity has transpired since boot. This fixes many issues that were
+   caused by this, such as deletes and raw data rollups getting stuck and not
+   completing.
+ * Bug: Fix issue where we'd occasionally return null data when doing a proxy
+   using the rollup endpoint.
+ * Bug: Fix memory leaks related to activity tracking.
+ * CAQL: Return an error on find calls if no account information is found.
+ * [libmtev 1.6.20](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1620)
 
 ## Changes in 0.16.3
 2019-06-26
