@@ -1,5 +1,15 @@
 # Changelog
 
+## Changes in 0.17.1
+2019-07-18
+
+ * Bug: Various memory leaks fixed in the /fetch endpoint.
+ * Allow snowth topologies to use names instead of just IPv4 addresses in
+   the address attribute, they are resolved once at runtime complication.
+ * Bug: Fix external metadata replication getting stuck in a loop due to
+   improper checkpoint parsing.
+ * [libmtev 1.6.21](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1621)
+
 ## Changes in 0.17.0
 2019-07-16
 
