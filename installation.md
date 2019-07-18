@@ -305,7 +305,11 @@ COMPLETE` message.
 
 ### Cluster Configuration
 
-Additional configuration is required for clusters of more than one IRONdb node. This involves describing the topology of the cluster, including the addresses and UUIDs of the participating nodes, as well as the desired number of write copies for stored data. 
+Additional configuration is required for clusters of more than one IRONdb node.
+The **topology** of a cluster describes the addresses and UUIDs of the
+participating nodes, as well as the desired number of write copies for stored
+data. Ownership of metric streams (deciding which node that stream's data
+should be written to) is determined by the topology.
 
 ** The above setup script configures a single, standalone instance. If you have already been using such an instance, configuring it to be part of a cluster will cause your existing stored data to become unavailable. It is therefore preferable to complete cluster setup prior to ingesting any metric data into IRONdb. **
 
@@ -324,6 +328,26 @@ unavailable before metric data become inaccessible. A cluster with `W` write
 copies can survive `W-1` node failures before data become inaccessible.
 
 See the [appendix on cluster sizing](/cluster-sizing.md) for details.
+
+#### Topology Requirements
+
+** There are a few important considerations for IRONdb cluster topologies: **
+ * A specific topology is identified by a hash. IRONdb clusters always have an
+   "active" topology, referenced by the hash.
+ * The topology hash is determined using the values of `id`, `port`, and
+   `weight`, as well as the ordering of the `<node>` stanzas. Changing any of
+   these on a previously configured node will invalidate the topology and cause
+   the node to refuse to start. This is a safety measure to guard against data
+   loss.
+ * UUIDs must be lowercase.
+ * The node address may be changed at any time without affecting the topology
+   hash, but care should be taken not to change the ordering of any node
+   stanzas.
+ * As of version 0.17.1, hostnames are permitted in the `address` attribute,
+   instead of IPv4 addresses. Hostnames will be resolved to IP addresses once
+   at startup.
+ * If a node fails, its replacement should keep the same UUID, but it can have
+   a different IP address or hostname.
 
 #### Create Topology Layout
 
@@ -367,12 +391,6 @@ The resulting temporary config looks like this:
             port="8112"
             weight="170"/>
     </nodes>
-
-** There are a few important considerations for IRONdb cluster topologies: **
- * UUIDs must be lowercase.
- * The values of `id`, `port`, and `weight`, as well as the ordering of the `<node>` stanzas are used in calculating a unique hash that identifies the topology to the system. Changing any of these on a previously configured node will invalidate the topology and cause the node to refuse to start.
- * The node address may be changed at any time without affecting the validity of the topology.
- * If a node fails, its replacement should keep the same UUID, but it can have a different IP address.
 
 The temporary config is written out to `/tmp/topology.tmp`. You may edit this file if needed, such as to configure a split cluster (see below.)
 
