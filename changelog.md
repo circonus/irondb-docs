@@ -1,5 +1,19 @@
 # Changelog
 
+## Changes in 0.17.2
+2019-07-29
+
+ * Add ability to use hostnames in cluster topology files - previously, only IP
+   addresses were allowed.
+ * Improve performace by not updating indexes on non-metadata surrogate DB writes.
+ * Bug: Fix Graphite sum egress function - the fetch was erroneously summing data 
+   that was already summed, resulting in reporting values that were larger than
+   expected.
+ * CAQL: Fix a bug in find() where fully completed queries would be reported as
+   truncated
+ * CAQL: Don't truncate find() queries that have been running for less than 4 seconds.
+ * [libmtev 1.6.24](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1624)
+
 ## Changes in 0.17.1
 2019-07-18
 
