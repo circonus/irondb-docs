@@ -1,5 +1,16 @@
 # Changelog
 
+## Changes in 0.17.3
+2019-08-15
+
+ * Performance improvements to inter-node data journaling.
+ * Bug: Fix prometheus module label equality searches for values beginning
+   with `/` or containing wildcard expansions `*` and `?`.
+ * Bug: Fix bug in reconstitute where the reconstituting node was not
+   writing correct check name and account id data to the surrogate db
+ * Bug: Fix crash when fetching raw numeric data using metric names that
+   cannot be canonicalized.
+
 ## Changes in 0.17.2
 2019-07-29
 
