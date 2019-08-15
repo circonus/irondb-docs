@@ -10,6 +10,7 @@
    writing correct check name and account id data to the surrogate db
  * Bug: Fix crash when fetching raw numeric data using metric names that
    cannot be canonicalized.
+ * [libmtev 1.6.26](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#1626)
 
 ## Changes in 0.17.2
 2019-07-29
