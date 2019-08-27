@@ -1,5 +1,21 @@
 # Changelog
 
+## Changes in 0.18.0
+2019-08-27
+
+ * Remove outdated/broken `/activate` endpoint
+ * Add additional safety to the topology compilation progress - fail to compile a topology
+   if the write_copies value is higher than the number of nodes.
+ * During data fetch, if no raw data is present, Graphite rollup span now aligns to the best
+   NNT rollup available.
+ * Improve performance, scale, and versatility of rebalance operations.
+ * Bug: Fix broken topology change rejournal code - was writing data to ourselves
+   pointlessly and was occasionally writing data with a bad topology.
+ * Bug: Reject incoming data puts when node is ephemeral or not participating
+   in current topology. Previously, this would cause crashes.
+ * CAQL: Make use of activity period tracking to avoid fetching empty metrics.
+ * [libmtev 1.7.0](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#170)
+
 ## Changes in 0.17.3
 2019-08-15
 
