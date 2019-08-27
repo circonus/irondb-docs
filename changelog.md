@@ -8,10 +8,9 @@
    if the write_copies value is higher than the number of nodes.
  * During data fetch, if no raw data is present, Graphite rollup span now aligns to the best
    NNT rollup available.
+ * Improve performance, scale, and versatility of rebalance operations.
  * Bug: Fix broken topology change rejournal code - was writing data to ourselves
    pointlessly and was occasionally writing data with a bad topology.
- * Bug: Rebalance did not work properly. Code has been rewritten to make it faster and
-   to allow resuming a rebalance automatically if a node restarts.
  * Bug: Reject incoming data puts when node is ephemeral or not participating
    in current topology. Previously, this would cause crashes.
  * CAQL: Make use of activity period tracking to avoid fetching empty metrics.
