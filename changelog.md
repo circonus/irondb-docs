@@ -1,5 +1,28 @@
 # Changelog
 
+## Changes in TBD
+xxxx-xx-xx
+
+ * Change raw data reconstitute to use flatbuffers instead of M records. This will
+   require all nodes in the cluster to be updated before reconstitute will work
+   properly.
+ * Add `surrogate_database/@{latest_future_bound,implicit_latest}` and track the
+   latest arriving value for metrics accordingly.  Expose them via find according
+   to a `latest` query string parameter.
+ * Add ability to enable/disable the NNT Cache module via an API endpoint
+   (/module/nnt_cache?active={0,1})
+ * Add ability to manually flush the NNT Cache via a POST command
+   (/module/nnt_cache/flush)
+ * Performance improvements in database iteration - should improve
+   both insert and fetch operations.
+ * Support the `**` expansion in graphite.
+ * Bug: Ensure that surrogate db reconstitute is finished before inserting text
+   and histogram records during reconstitute to avoid potential race conndition
+   when updating the surrogate db.
+ * CAQL: Support multiple format strings for the label() function.
+ * [libmtev 1.8.0](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#180)
+
+
 ## Changes in 0.18.0
 2019-08-27
 
