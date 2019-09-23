@@ -9,7 +9,7 @@ xxxx-xx-xx
  * Add `surrogate_database/@{latest_future_bound,implicit_latest}` and track the
    latest arriving value for metrics accordingly.  Expose them via find according
    to a `latest` query string parameter.
- * Add ability to enable/disable the NNT Cache module via an API endpoint
+ * Add ability to enable/disable the NNT Cache module via a POST command
    (/module/nnt_cache?active={0,1})
  * Add ability to manually flush the NNT Cache via a POST command
    (/module/nnt_cache/flush)
