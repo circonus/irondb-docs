@@ -15,11 +15,11 @@
    (/module/nnt_cache/flush)
  * Performance improvements in database iteration - should improve
    both insert and fetch operations.
- * Support the `**` expansion in graphite.
+ * Support `**` wildcard expansion in Graphite find queries.
  * Bug: Ensure that surrogate db reconstitute is finished before inserting text
    and histogram records during reconstitute to avoid potential race conndition
    when updating the surrogate db.
- * CAQL: Support multiple format strings for the label() function.
+ * CAQL: Support for labeling multiple output streams with label() function.
  * [libmtev 1.8.0](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#180)
 
 
