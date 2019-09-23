@@ -25,7 +25,7 @@ GET
 
 ### `/find/174/tags?query=and(__name:foo)`
 
-Return all data about the incoming query.
+Return all metrics matching a tag query along with information about those metrics.  If [activity tracking](../activity_tracking.html) is turned on this will include activity windows for the metric.  If latest value tracking is turned on, this will include the 2 most recent value tuples for the metric, if available.
 
 ```json
 [
@@ -35,7 +35,17 @@ Return all data about the incoming query.
     "metric_name": "foo|ST[app:myapp,region:us-east-1]",
     "category": "reconnoiter",
     "type": "numeric",
-    "account_id": 174
+    "account_id": 174,
+    "activity": [
+      [ 1558029600, 1558032300 ],
+      [ 1559746800, 1569273300 ]
+    ],
+    "latest": {
+      "numeric": [
+        [ 1569271882337, 2991012437 ],
+        [ 1569271942930, 2991020000 ]
+      ]
+    }
   }
 ]
 
