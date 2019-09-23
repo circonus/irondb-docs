@@ -1,7 +1,7 @@
 # Changelog
 
-## Changes in TBD
-xxxx-xx-xx
+## Changes in 0.18.1
+2019-09-23
 
  * Change raw data reconstitute to use flatbuffers instead of M records. This will
    require all nodes in the cluster to be updated before reconstitute will work
