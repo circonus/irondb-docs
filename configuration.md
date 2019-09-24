@@ -536,6 +536,9 @@ metrics stored on the node.
 <surrogate_database location="/irondb/surrogate_db/{node}"
                     cache_init_size="1000000"
                     load_concurrency="8"
+                    activity_tracking="true"
+                    implicit_latest="false"
+                    latest_future_bound="4h"
                     asynch_update_journal_path="/irondb/surrogate_db/{node}"
 />
 ```
@@ -554,6 +557,31 @@ The number of parallel threads used for initially populating the cache when
 IRONdb starts.
 
 Default: The number of physical processor cores in the system.
+
+#### surrogate_database activity_tracking
+
+Toggle for maintaining activity window metadata for metrics.
+
+Default: true
+
+#### surrogate_database implicit_latest
+
+Toggle for maintaining an in-memory copy of the latest values for all newly seen metrics values
+during ingestion.  If set to false, it will only maintain latest values for metrics that 
+have been specifically "asked for." (see (Searching)[/api/search-tags.html])
+
+Default: false
+
+#### surrogate_database latest_future_bound
+
+This is the upper bound on whether a metric will be considered as a "latest value" candidate.  By
+default if a metric timestamp is more than 4 hours in the future, it will be ignored
+for consideration as a replacement for the lastest value.  These values are only
+updated at ingestion time.
+
+This value can be from 0s (ignore any future timestamps) to 4h (maximum).
+
+Default: 4h
 
 #### surrogate_database asynch_update_journal_path
 
