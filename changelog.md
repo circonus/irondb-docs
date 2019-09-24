@@ -1,7 +1,7 @@
 # Changelog
 
 ## Changes in 0.18.1
-2019-09-23
+2019-09-24
 
  * Change raw data reconstitute to use flatbuffers instead of M records. This will
    require all nodes in the cluster to be updated before reconstitute will work
@@ -16,6 +16,10 @@
  * Performance improvements in database iteration - should improve
    both insert and fetch operations.
  * Support `**` wildcard expansion in Graphite find queries.
+ * Bug: Ensure that all NNTBS data is transferred correctly during certain edge
+   cases, such as when the NNTBS metric was the final metric in a shard or if there
+   are long gaps where there is no data for a metric resulting in the data not being
+   stored in contiguous shards.
  * Bug: Ensure that surrogate db reconstitute is finished before inserting text
    and histogram records during reconstitute to avoid potential race conndition
    when updating the surrogate db.
