@@ -16,8 +16,8 @@
  * Performance improvements in database iteration - should improve
    both insert and fetch operations.
  * Support `**` wildcard expansion in Graphite find queries.
- * Bug: Ensure that all NNTBS data is transferred correctly during certain edge
-   cases, such as when the NNTBS metric was the final metric in a shard or if there
+ * Bug: Ensure that all NNTBS data is transferred correctly during certain reconstitute
+   edge cases, such as when the NNTBS metric was the final metric in a shard or if there
    are long gaps where there is no data for a metric resulting in the data not being
    stored in contiguous shards.
  * Bug: Ensure that surrogate db reconstitute is finished before inserting text
