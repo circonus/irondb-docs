@@ -579,6 +579,8 @@ default if a metric timestamp is more than 4 hours in the future, it will be ign
 for consideration as a replacement for the lastest value.  These values are only
 updated at ingestion time.
 
+This value can be from 0 (ignore any future timestamps) to 4h (maximum).
+
 Default: 4h
 
 #### surrogate_database asynch_update_journal_path
