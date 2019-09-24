@@ -29,7 +29,11 @@ GET
 
 ### `/find/174/tags?query=and(__name:foo)`
 
-Return all metrics matching a tag query along with information about those metrics.  If [activity tracking](../activity_tracking.html) is turned on this will include activity windows for the metric.  If latest value tracking is turned on and requested, this will include the 2 most recent value tuples for the metric, if available.
+Return all metrics matching a tag query along with information about those metrics.  
+
+If [activity tracking](../activity_tracking.html) is [turned on](/configuration.html#surrogatedatabase-activitytracking) this will include activity windows for the metric.  
+
+If latest value tracking is [turned on](/configuration.html#surrogatedatabase-implicitlatest) and/or requested for this metric, this will include the 2 most recent value tuples for the metric, if available.  The two most recent values are provided so that a caller can calculate a derivative if desired.  If called in "no-work" mode (1) and no value is freely available, an empty object will be returned.
 
 ```json
 [

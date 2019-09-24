@@ -560,21 +560,21 @@ Default: The number of physical processor cores in the system.
 
 #### surrogate_database activity_tracking
 
-Directs IRONdb as to if it should maintain activity windows for metrics.
+Toggle for maintaining activity window metadata for metrics.
 
 Default: true
 
 #### surrogate_database implicit_latest
 
-Directs IRONdb as to if it should maintain latest values for all newly seen metrics values
-during ingestion.  If set to false, it will only maintain lastest values for metrics that 
+Toggle for maintaining an in-memory copy of the latest values for all newly seen metrics values
+during ingestion.  If set to false, it will only maintain latest values for metrics that 
 have been specifically "asked for." (see (Searching)[/api/search-tags.html])
 
 Default: false
 
 #### surrogate_database latest_future_bound
 
-Forward looking "cap" on if a metric will be considered for the latest value.  By
+This is the upper bound on whether a metric will be considered as a "latest value" candidate.  By
 default if a metric timestamp is more than 4 hours in the future, it will be ignored
 for consideration as a replacement for the lastest value.  These values are only
 updated at ingestion time.
