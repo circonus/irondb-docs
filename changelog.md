@@ -13,16 +13,15 @@
    * The /rollup engine=dispatch endpoint now does a simple merge of nntbs and raw.
    * Legacy /rollup behaviour of a complex nntbs/raw/nntbs sandwich is available
      via engine=dispatch_coarsen.
- * Greatly improe performance when fetching rollup data for a stream that
+ * Greatly improve performance when fetching rollup data for a stream that
    has no historic data before the starting time and for which there are many prior
    raw timeshards. This improves the fetch time from tens of seconds to tens
    of milliseconds.
  * The graphite series fetch functions no longer move the `from` parameter forward
    to limit leading nulls in output.
- * Allow licensing on BIOS version.
  * Bug: Fix memory leaks in raw data iterator and surrogate db loading
  * Bug: Change the /fetch API endpoint to perform work in the snowth_fetch_remote
-   and snowth_fetch_local jobqs. It was using incorrect jobq before.
+   and snowth_fetch_local jobqs. It was using an incorrect jobq before.
  * Bug: Fix use-after-free that could cause crashes when using the /fetch API
    endpoint.
  * Bug: Fix crash in graphite fetching when there are greater-than or equal-to
