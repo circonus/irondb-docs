@@ -1,5 +1,39 @@
 # Changelog
 
+## Changes in 0.18.2
+2019-10-01
+
+ * Performance improvements releated to opening raw timeshards.
+ * Disable filesystem read-ahead on NNTBS shards to improve performance.
+ * Various Performance improvements related to data fetching:
+   * Less piecemeal work is performed, which means that long runs of fetches
+     are performed in the same jobq and not fanned out as extensively.
+   * epoch/apocalypse times for numeric fetches are accelerated using activity
+     tracking.
+   * The /rollup engine=dispatch endpoint now does a simple merge of nntbs and raw.
+   * Legacy /rollup behaviour of a complex nntbs/raw/nntbs sandwich is available
+     via engine=dispatch_coarsen.
+ * Greatly improve performance when fetching rollup data for a stream that
+   has no historic data before the starting time and for which there are many prior
+   raw timeshards. This improves the fetch time from tens of seconds to tens
+   of milliseconds.
+ * The graphite series fetch functions no longer move the `from` parameter forward
+   to limit leading nulls in output.
+ * Bug: Fix memory leaks in raw data iterator and surrogate db loading
+ * Bug: Change the /fetch API endpoint to perform work in the snowth_fetch_remote
+   and snowth_fetch_local jobqs. It was using an incorrect jobq before.
+ * Bug: Fix use-after-free that could cause crashes when using the /fetch API
+   endpoint.
+ * Bug: Fix crash in graphite fetching when there are greater-than or equal-to
+   the data replication value (W) nodes down.
+ * Bug: Fix ck_fifo usage to prevent memory misuse that could lead to crashes
+   when loading the surrogate DB or processing journal replication data.
+ * Bug: Fix various potential crashes in reconstitute/rebalance.
+ * Bug: Fix console web UI to prevent abusive loading of json data after a suspended
+   connection is reestablished.
+ * Bug: Replace confusing graphite fetch error messages with more coherent ones.
+ * [libmtev 1.8.2](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#182)
+
 ## Changes in 0.18.1
 2019-09-24
 
