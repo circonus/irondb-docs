@@ -36,14 +36,23 @@ Glob syntax supports the wildcard "`*`" and can be used as a completer:
 
 The last will match every tag and pull everything for the account.
 
-There are 2 special tags:
+There are several special tags:
 
 * `__name`
 * `__check_uuid`
+* `__activity`
 
 Which do not explicitly appear in metric names but can be used to find metrics
 anyway. For example, you could query activity periods for all metrics within a
 given `__check_uuid` even if none of those metrics were submitted with tags.
+
+The `__activity` tag uses a special syntax to select only metrics that have data
+(also know as activity) in a specific time range.  The value of the `__activity`
+tag in the search expression should take the format of `<start_seconds>-<end_seconds>`
+where each is represented in seconds since UNIX epoch. An example to find metrics
+named `query_count` with data between 1569869100 to 1569870000 would be:
+
+`and(__name:query_count,__activity:1569869100-1569870000)`
 
 If your query uses an unsupported tag character (see [Tag Support](/tags.md)) you must
 enclose the query in base64 notation:
