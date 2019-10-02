@@ -1,6 +1,6 @@
 # Writing Histogram Data
 
-*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.html) submission endpoint to submit histogram data.*
+*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.md) submission endpoint to submit histogram data.*
 
 This API call is for writing histogram data into the IRONdb cluster. The data will be sent as a JSON object containing the data to be added to the cluster.  
 

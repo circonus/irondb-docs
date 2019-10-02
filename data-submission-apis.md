@@ -2,10 +2,8 @@
 
 ---
 
- * [Writing Numeric Data](api/write-nnt.md)
+ * [Writing Raw Data](api/write-raw.md)
 
- * [Writing Text Data](api/write-text.md)
-
- * [Writing Histogram Data](api/write-histogram.md)
+ * [Legacy APIs](api/legacy-data-submission-apis.md)
 
 

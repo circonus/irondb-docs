@@ -1,6 +1,6 @@
 # Writing Text Data
 
-*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.html) submission endpoint to submit text data.*
+*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.md) submission endpoint to submit text data.*
 
 This API call is for writing text data into the IRONdb cluster. It sends a JSON object containing the data to be added to the cluster.
 

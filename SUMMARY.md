@@ -107,7 +107,7 @@
         * [Searching Tags](api/search-tags.md)
     * [Data Submission APIs](data-submission-apis.md)
         * [Writing Raw Data](api/write-raw.md)
-        * Legacy Write APIs
+        * [Legacy APIs](api/legacy-data-submission-apis.md)
             * [Writing Numeric Data](api/write-nnt.md)
             * [Writing Text Data](api/write-text.md)
             * [Writing Histogram Data](api/write-histogram.md)

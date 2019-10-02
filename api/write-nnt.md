@@ -1,6 +1,6 @@
 # Writing Numeric Data
 
-*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.html) submission endpoint to submit numeric data.*
+*This is legacy endpoint.  It is recommended to use the [Raw Data](./write-raw.md) submission endpoint to submit numeric data.*
 
 This API call is for writing NNT (numeric) data into the IRONdb cluster. It will send a JSON object containing the data to be added to the cluster.
 
