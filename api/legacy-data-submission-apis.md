@@ -1,4 +1,4 @@
-# Data Submission APIs
+# Legacy Data Submission APIs
 
 ---
 
