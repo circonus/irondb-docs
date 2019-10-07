@@ -158,7 +158,7 @@ Default: http_rest_api
 ```
 <listener address="*" port="2003" type="graphite">
   <config>
-    <check_uuid>00000000-0000-0000-0000-000000000000</check_uuid>
+    <check_uuid>3c253dac-7238-41a1-87d7-2e546f3b4318</check_uuid>
     <check_name>mycheckname</check_name>
     <account_id>1</account_id>
   </config>
@@ -198,7 +198,9 @@ Default: graphite
 These configuration items control which check UUID, name, and account ID are
 associated with this listener. The first Graphite listener is configured during
 [initial installation](installation.md).
-* `check_uuid` is the identifier for all metrics ingested via this listener.
+* `check_uuid` is a [well-formed,
+  non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+  UUID the will be associated with all metrics ingested via this listener.
 * `check_name` is a meaningful name that is used in
   [namespacing](graphite-ingestion.md#namespacing).
 * `account_id` is also part of namespacing, for disambiguation.

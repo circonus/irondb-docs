@@ -105,30 +105,29 @@ Metrics ingested under the second example will render as:
 ## Writing Graphite Data with Network Listener
 
 The network listener requires that we associate an account_id, uuid, and name
-with a network port. We do this via the IRONdb configuration file by adding a
-new listener stanza:
+with a network port. This is added to the [IRONdb configuration
+file](/configuration.md#graphite-listener) during initial installation, for the
+default Graphite text protocol port (2003). Additional stanzas may be added,
+associating different IDs with different ports to segregate incoming traffic.
 
 ```
-  <listeners>
-    <listener address="*" port="2003" type="graphite">
+    <listener address="*" port="2004" type="graphite">
       <config>
         <check_uuid>8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2</check_uuid>
-        <check_name>dev</check_name>
+        <check_name>myothercheckname</check_name>
         <account_id>1</account_id>
       </config>
     </listener>
-  </listeners>
 ```
 
-This listener stanza is the same as the first example under the HTTP ingestion
-section. You can then use:
+You can then use:
 
 ```
-echo "my.metric.name.one 1 `date +%s`" | nc 2003
+echo "my.metric.name.one 1 `date +%s`" | nc 2004
 ```
 
 to send metrics to IRONdb. This will result in a metric called:
 
-`graphite.dev.my.metric.name.one`
+`graphite.myothercheckname.my.metric.name.one`
 
 See also the [IRONDB-relay](irondb-relay.md)

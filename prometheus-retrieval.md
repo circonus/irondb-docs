@@ -31,3 +31,6 @@ This should look something like:
 remote_read:
   - url: "https://irondbnode:8112/module/prometheus/read/1/321b704b-a8ff-44b7-8171-777dc49bc788"
 ```
+
+But with a UUID value matching what was configured in the [remote
+write](prometheus-ingestion.md#namespacing) URL.
