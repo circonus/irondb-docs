@@ -80,7 +80,7 @@ variables are listed below.
      *\(required\)* Check ID for Graphite metric ingestion, which must be the
      same on all cluster nodes. You may use the `uuidgen` command that comes
      with your OS, or generate a [well-formed,
-     non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+     non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
      UUID with an external tool or website.
    * ##### IRONDB\_CHECK\_NAME
 

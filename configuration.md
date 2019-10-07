@@ -199,7 +199,7 @@ These configuration items control which check UUID, name, and account ID are
 associated with this listener. The first Graphite listener is configured during
 [initial installation](installation.md).
 * `check_uuid` is a [well-formed,
-  non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+  non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
   UUID the will be associated with all metrics ingested via this listener.
 * `check_name` is a meaningful name that is used in
   [namespacing](graphite-ingestion.md#namespacing).

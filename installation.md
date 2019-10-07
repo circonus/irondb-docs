@@ -162,7 +162,7 @@ Prepare site-specific information for setup. These values may be set via shell e
 given cluster. You may use the `uuidgen` command that comes with your OS, or
 generate a
 [well-formed,
-non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
 UUID with an external tool or website. Note that this must be a _lowercase_
 UUID. The `uuidgen` tool on some systems, notably MacOS, produces uppercase.
 Setup will warn and convert the UUID to lowercase.
@@ -176,7 +176,7 @@ Setup will warn and convert the UUID to lowercase.
      *\(required\)* Check ID for Graphite metric ingestion, which must be the
 same on all cluster nodes. You may use the `uuidgen` command that comes with
 your OS, or generate a [well-formed,
-non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
 UUID with an external tool or website.  Note that this must be a _lowercase_
 UUID. The `uuidgen` tool on some systems, notably MacOS, produces uppercase.
 Setup will warn and convert the UUID to lowercase.
@@ -345,7 +345,7 @@ See the [appendix on cluster sizing](/cluster-sizing.md) for details.
    the node to refuse to start. This is a safety measure to guard against data
    loss.
  * UUIDs must be [well-formed,
-   non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)), and lowercase.
+   non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier), and lowercase.
  * The node address may be changed at any time without affecting the topology
    hash, but care should be taken not to change the ordering of any node
    stanzas.

@@ -127,7 +127,7 @@ on the Circonus platform. We hide the complexity of this on the rendering side,
 so you only have to worry about this mapping on the ingestion side. This UUID
 can be created using `uuidgen` on a typical UNIX(like) system or via any
 external tool or website that generates [well-formed,
-non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
 UUIDs.
 
 When we store these metric names inside IRONdb, we prefix them with our standard

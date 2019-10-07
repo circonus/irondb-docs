@@ -32,7 +32,7 @@ different copies of Prometheus have identically named metrics.  Inside of
 IRONdb, we require that all data be namespaced under a UUID.  This UUID can be
 created using `uuidgen` on a typical UNIX(like) system or via any external tool
 or website that generates [well-formed,
-non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
 UUIDs.  Each distinct set of Prometheus data should have its own UUID.   For
 high-availability in Prometheus it is the recommended pratice to have two
 copies collecting the same data.  While these two instances do not contain the
