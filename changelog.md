@@ -1,5 +1,16 @@
 # Changelog
 
+## Changes in 0.18.3
+2019-10-07
+
+ * Support `__activity:start-end` inside search query nodes.
+ * Prefix accelerate ART-based tag searches with escaped special characters
+   (`/^foo\.bar\.baz\.[^a]*cpu_*/` would previously prefix only `foo`, but will
+   now prefix `foo.bar.baz.`)
+ * Performance improvements for raw data reconstitute.
+ * Bug: Fix potential stack smash when writing items to the surrogate cache.
+ * [libmtev 1.8.5](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#185)
+
 ## Changes in 0.18.2
 2019-10-01
 
