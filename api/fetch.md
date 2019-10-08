@@ -115,4 +115,4 @@ A reduce definition form:
  * `method_params` : `[ K, <mech>, <mech_param> ]`
  * Inputs must be either numeric or histogram.
 
-    Allowable `mech` values are `mean` (default), `max`, or `quantile`.  The `quantile` `mech value requires a `mech_param` in the range [0,1].  All measurements in the input stream are accumulated and a mean or quantile is calculated.  This calculated value is used as a rank for the stream and the K largest ranks are selected and passed to the output set.
+    Allowable `mech` values are `mean` (default), `max`, or `quantile`.  The `quantile` `mech` value requires a `mech_param` in the range [0,1].  All measurements in the input stream are accumulated and a mean or quantile is calculated.  This calculated value is used as a rank for the stream and the K largest ranks are selected and passed to the output set.
