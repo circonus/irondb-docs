@@ -95,10 +95,20 @@ A reduce defition form:
  * `method_params` a list of tag categories on which to perform grouping
  * Inputs must be either numeric or histogram.
 
+#### `mean` - calculate the mean across input streams.
+
+ * `method_params` none
+ * Inputs must be numeric.
+ 
 #### `merge` - group inputs and merge into a histogram stream.
 
  * `method_params` none
  * Inputs must be either numeric or histogram.
+ 
+#### `sum` - calculate the sum across input streams.
+
+ * `method_params` none
+ * Inputs must be numeric.
  
 #### `topk` - filter a set of inputs to the top K
 
