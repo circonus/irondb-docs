@@ -1,7 +1,7 @@
 # Retrieving and Tranforming Data
 
 The /fetch API provides fast, one-request access to common complex data extraction requirements.
-It allows for fetrch submissions in both flatbuffers and JSON format and returns DF4 output format available in both flatbuffers and JSON encoding.
+It allows for fetch submissions in both FlatBuffers and JSON formats, and returns DF4 output format available in both FlatBuffers and JSON encoding.
 
 ## Description of API
 
@@ -45,7 +45,7 @@ A stream definition form:
 }
 ```
 
-A reduce defition form:
+A reduce definition form:
 ```
 { "label": <string label>,
   "method": <reduce method>,
@@ -62,8 +62,8 @@ A reduce defition form:
  * `stddev` - the standard deviation of measurements in the period.
  * `derivative` - the rate of change of the measurements in the period.
  * `derivative_stddev` - the standard deviation of the rate of change of the measurements in the period.
- * `counter` - the positive rate of change of the meaurements in the period.
- * `counter_stddev` - the standard deviation of the positive rate of change of the meaurements in the period.
+ * `counter` - the positive rate of change of the measurements in the period.
+ * `counter_stddev` - the standard deviation of the positive rate of change of the measurements in the period.
  
 #### Histogram (`kind` = `histogram`)
 
