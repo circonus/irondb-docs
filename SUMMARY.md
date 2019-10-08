@@ -102,7 +102,7 @@
         * [Finding Streams by Name or Tags](api/search-tags.md)
         * [Retrieving Data](api/fetch.md)
         * [Retrieving Graphite-style Data](api/read-graphite.md)
-        * Legacy Single-Stream Retrieval
+        * [Legacy Single-Stream Retrieval](legacy-single-stream-retrieval-apis.md)
             * [Retrieving Raw Data](api/read-raw.md)
             * [Retrieving Rollup Data](api/read-rollup.md)
             * [Retrieving Text Data](api/read-text.md)
