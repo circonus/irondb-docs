@@ -160,9 +160,12 @@ Prepare site-specific information for setup. These values may be set via shell e
 
      *\(required\)* The ID of the current node, which must be unique within a
 given cluster. You may use the `uuidgen` command that comes with your OS, or
-generate a UUID with an external tool or website. Note that this must be a
-_lowercase_ UUID. The `uuidgen` tool on some systems, notably MacOS, produces
-uppercase. Setup will warn and convert the UUID to lowercase.
+generate a
+[well-formed,
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+UUID with an external tool or website. Note that this must be a _lowercase_
+UUID. The `uuidgen` tool on some systems, notably MacOS, produces uppercase.
+Setup will warn and convert the UUID to lowercase.
 
    * ##### IRONDB\_NODE\_ADDR
 
@@ -172,9 +175,11 @@ uppercase. Setup will warn and convert the UUID to lowercase.
 
      *\(required\)* Check ID for Graphite metric ingestion, which must be the
 same on all cluster nodes. You may use the `uuidgen` command that comes with
-your OS, or generate a UUID with an external tool or website. Note that this
-must be a _lowercase_ UUID. The `uuidgen` tool on some systems, notably MacOS,
-produces uppercase. Setup will warn and convert the UUID to lowercase.
+your OS, or generate a [well-formed,
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+UUID with an external tool or website.  Note that this must be a _lowercase_
+UUID. The `uuidgen` tool on some systems, notably MacOS, produces uppercase.
+Setup will warn and convert the UUID to lowercase.
 
    * ##### IRONDB\_CHECK\_NAME
 
@@ -267,9 +272,9 @@ Circonus currently publishes AMIs to the following regions:
 
 Setup expects the required options to be provided as [instance user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data). When launching your instance, add the necessary options in environment-variable format, substituting your own UUIDs and check name for the sample ones:
 
-    IRONDB_NODE_UUID="12345678-9abc-def0-1234-456789000000"
+    IRONDB_NODE_UUID="57183ff2-37c7-4fb1-9ce4-bf3cdaef341d"
     IRONDB_CHECK_NAME="test"
-    IRONDB_CHECK_UUID="98765432-1abc-def9-8765-432100000000"
+    IRONDB_CHECK_UUID="734e5981-c8a8-46bf-a948-1b0c0cbe1e38"
     IRONDB_CRASH_REPORTING="on"
 
 The setup process will detect the local IP address of the instance at boot, so it is not necessary to specify `IRONDB_NODE_ADDR` in the user-data \(it will be ignored even if present.\)
@@ -339,7 +344,8 @@ See the [appendix on cluster sizing](/cluster-sizing.md) for details.
    these on a previously configured node will invalidate the topology and cause
    the node to refuse to start. This is a safety measure to guard against data
    loss.
- * UUIDs must be lowercase.
+ * UUIDs must be [well-formed,
+   non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier), and lowercase.
  * The node address may be changed at any time without affecting the topology
    hash, but care should be taken not to change the ordering of any node
    stanzas.

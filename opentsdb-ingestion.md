@@ -121,10 +121,14 @@ names, or combine them all together under a single "account_id", or even
 separate your internal groups but recombine them under the client for
 visualization purposes. It's really up to you.
 
-Furthermore, IRONdb requires associating incoming OpemTSDB data with a UUID and
+Furthermore, IRONdb requires associating incoming OpenTSDB data with a UUID and
 Name to make OpenTSDB data match data ingested from native sources more closely
 on the Circonus platform. We hide the complexity of this on the rendering side,
-so you only have to worry about this mapping on the ingestion side.
+so you only have to worry about this mapping on the ingestion side. This UUID
+can be created using `uuidgen` on a typical UNIX(like) system or via any
+external tool or website that generates [well-formed,
+non-nil](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+UUIDs.
 
 When we store these metric names inside IRONdb, we prefix them with our standard
 collection category ("reconnoiter" will be automatically assigned) and the
@@ -153,26 +157,25 @@ This will place all metrics under account_id `1` with that UUID and call them `p
 ## Writing OpenTSDB Data with Network Listener
 
 The network listener requires that we associate an account_id, uuid, and name
-with a network port. We do this via the IRONdb configuration file by adding a
-new listener stanza:
+with a network port. This is added to the [IRONdb configuration
+file](/configuration.md) during initial installation, for the default OpenTSDB
+text protocol port (4242). Additional stanzas may be added, associating
+different IDs with different ports to segregate incoming traffic.
 
 ```
-  <listeners>
-    <listener address="*" port="4242" type="opentsdb">
+    <listener address="*" port="4243" type="opentsdb">
       <config>
-        <check_uuid>8c01e252-e0ed-40bd-d4a3-dc9c7ed3a9b2</check_uuid>
-        <check_name>dev</check_name>
+        <check_uuid>549a90ee-c5bb-4b0f-bcb4-e942b0503f85</check_uuid>
+        <check_name>myothercheckname</check_name>
         <account_id>1</account_id>
       </config>
     </listener>
-  </listeners>
 ```
 
-This listener stanza is the same as the first example under the HTTP ingestion
-section. You can then use:
+You can then use:
 
 ```
-echo "my.metric.name.one `date +%s` 1 cpu=1" | nc 4242
+echo "my.metric.name.one `date +%s` 1 cpu=1" | nc 4243
 ```
 
 to send metrics to IRONdb, and it will store the datapoint under the supplied
