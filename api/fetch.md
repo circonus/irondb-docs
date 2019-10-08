@@ -41,7 +41,7 @@ A stream definition form:
   name: <canonical name of metric>,
   kind: <numeric|histogram|text>,
   transform: <transform>,
-  tranform_params: [ string parameter list ]
+  transform_params: [ string parameter list ]
 }
 ```
 
