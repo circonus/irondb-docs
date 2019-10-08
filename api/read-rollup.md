@@ -1,5 +1,7 @@
 # Retrieving Rollup Data
 
+*This is legacy endpoint.  It is recommended to use the [Fetch](./fetch.md) endpoint for all data reads.*
+
 This API call is for retrieving numeric data from the IRONdb cluster with fine
 grained control over the `rollup_span`. It will return an array with all the
 timestamps from the time given, along with the attendant data.

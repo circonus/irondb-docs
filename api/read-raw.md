@@ -1,5 +1,7 @@
 # Retrieving Raw Data
 
+*This is legacy endpoint.  It is recommended to use the [Fetch](./fetch.md) endpoint for all data reads.*
+
 Fetches raw (full resolution) numeric data from the [raw
 database](/configuration.md#rawdatabase).  Data is returned as an array of
 tuples of `[timestamp in milliseconds, value]`

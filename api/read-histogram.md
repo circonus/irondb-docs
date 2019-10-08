@@ -1,5 +1,7 @@
 # Retrieving Histogram Data
 
+*This is legacy endpoint.  It is recommended to use the [Fetch](./fetch.md) endpoint for all data reads.*
+
 This API call is for retrieving histogram data from the IRONdb cluster. It will return an array with all the timestamps from the time given, along with the attendant data.
 
 Data will be returned in an array of arrays. Each sub-array will contain three elements: a timestamp, the period requested, and a JSON object representing the number of times that different values appeared in that time period.
