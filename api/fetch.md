@@ -70,14 +70,14 @@ A reduce definition form:
 
  * `none` - pass the input through unmodified.
 
- * `count` - the number of samples in the each histogram.
- * `count_above` - calculate the number of samples that the are greater than
+ * `count` - the number of samples in each histogram.
+ * `count_above` - calculate the number of samples that are greater than
    the supplied parameter.
    * `transform_params` the threshold value for measurements.
- * `count_below` - calculate the number of samples that the are less than the
+ * `count_below` - calculate the number of samples that are less than the
    supplied parameter.
    * `transform_params` the threshold value for measurements.
- * `inverse_percentile` - calculate what percentage of the popultion is smaller
+ * `inverse_percentile` - calculate what percentage of the population is smaller
    than the supplied parameter (output in [0,100] or NaN)
    * `transform_params` the threshold value for measurements.
  * `inverse_quantile` - calculate what ratio of the popultion is smaller than the
