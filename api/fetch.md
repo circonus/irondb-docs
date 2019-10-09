@@ -57,45 +57,36 @@ A reduce definition form:
 
 #### Numeric (`kind` = `numeric`)
 
- * `count` - the number of measurements in the period.
  * `average` - the average of measurements in the period.
- * `stddev` - the standard deviation of measurements in the period.
- * `derivative` - the rate of change of the measurements in the period.
- * `derivative_stddev` - the standard deviation of the rate of change of the measurements in the period.
+
+ * `count` - the number of measurements in the period.
  * `counter` - the positive rate of change of the measurements in the period.
  * `counter_stddev` - the standard deviation of the positive rate of change of the measurements in the period.
+ * `derivative` - the rate of change of the measurements in the period.
+ * `derivative_stddev` - the standard deviation of the rate of change of the measurements in the period.
+ * `stddev` - the standard deviation of measurements in the period.
  
 #### Histogram (`kind` = `histogram`)
 
  * `none` - pass the input through unmodified.
+
  * `count` - the number of samples in the each histogram.
- * `quantile` - produce a numeric quantile
-
-   * `transform_params` a value in the range [0,1]
-
- * `percentile` - produce a numeric quantile after dividing the parameter by 100.
-
-   * `transform_params` a value in the range [0,100]
-
- * `inverse_quantile` - calculate what ratio of the popultion is smaller than the
-   supplied parameter (output in [0,1] or NaN)
-
-   * `transform_params` the threshold value for measurements.
-
- * `inverse_percentile` - calculate what percentage of the popultion is smaller
-   than the supplied parameter (output in [0,100] or NaN)
-
-   * `transform_params` the threshold value for measurements.
-
  * `count_above` - calculate the number of samples that the are greater than
    the supplied parameter.
-
    * `transform_params` the threshold value for measurements.
-
  * `count_below` - calculate the number of samples that the are less than the
    supplied parameter.
-
    * `transform_params` the threshold value for measurements.
+ * `inverse_percentile` - calculate what percentage of the popultion is smaller
+   than the supplied parameter (output in [0,100] or NaN)
+   * `transform_params` the threshold value for measurements.
+ * `inverse_quantile` - calculate what ratio of the popultion is smaller than the
+   supplied parameter (output in [0,1] or NaN)
+   * `transform_params` the threshold value for measurements.
+ * `percentile` - produce a numeric quantile after dividing the parameter by 100.
+   * `transform_params` a value in the range [0,100]
+ * `quantile` - produce a numeric quantile
+   * `transform_params` a value in the range [0,1]
 
 #### Text (`kind` = `text`)
 
