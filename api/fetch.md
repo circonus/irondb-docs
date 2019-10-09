@@ -116,3 +116,55 @@ A reduce definition form:
  * Inputs must be either numeric or histogram.
 
     Allowable `mech` values are `mean` (default), `max`, or `quantile`.  The `quantile` `mech` value requires a `mech_param` in the range [0,1].  All measurements in the input stream are accumulated and a mean or quantile is calculated.  This calculated value is used as a rank for the stream and the K largest ranks are selected and passed to the output set.
+
+## Example Usage
+
+The /fetch endpoint requires metrics to be specified in the `streams` key
+of the posted payload.  This information is similar to the output of the
+find command.  For the purposes of example, we will perform find commands
+and use `jq` to convert the `/find` output into the appropriate `/fetch`
+input.
+
+### Example 1
+
+Find histograms for all metrics called "latency" tagged with `service:api`
+and any `endpoint` tag, then find the top 5 as judged by their 99.5th
+percentile level.  Retrieve 10 minutes of 1-minute histogram data for each.
+
+```sh
+curl -s 'http://irondb:8112/find/1/tags?query=and(__name:latency,service:api,endpoint:*)' | \
+\
+  jq 'map({ uuid: .uuid, name: .metric_name, kind: "histogram", transform: "none" }) |
+      {streams: .,
+       reduce: [{ label: "topk", method:"topk",
+                  method_params: ["5","quantile","0.995"] } ],
+       start:1570650960, period:60, count:10}' | \
+\
+  curl -s -XPOST -d @- -H 'Accept: application/json' \
+       -H 'Content-Type: application/json' \
+       -H 'X-Circonus-Account: 1' http://irondb:8112/fetch | \
+\
+  jq .
+```
+
+### Example 2
+
+Find all `request_total` metrics tagged `env:prod` and sum the positive rate
+of change grouped by their `region` tag.  Return one day data in in periods of
+5 minutes.
+
+```sh
+curl -s 'http://irondb:8112/find/1/tags?query=and(__name:request_total,env:prod)' | \
+\
+  jq 'map({ uuid: .uuid, name: .metric_name, kind: "numeric", transform: "counter" }) |
+      {streams: .,
+       reduce: [{ label: "sums", method:"groupby_sum",
+                  method_params: ["region"] } ],
+       start:1570579200, period:300, count:228}' | \
+\
+  curl -s -XPOST -d @- -H 'Accept: application/json' \
+       -H 'Content-Type: application/json' \
+       -H 'X-Circonus-Account: 1' http://irondb:8112/fetch | \
+\
+  jq .
+```
