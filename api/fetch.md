@@ -68,6 +68,7 @@ A reduce definition form:
 #### Histogram (`kind` = `histogram`)
 
  * `none` - pass the input through unmodified.
+ * `count` - the number of samples in the each histogram.
  * `quantile` - produce a numeric quantile
 
    * `transform_params` a value in the range [0,1]
