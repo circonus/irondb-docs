@@ -25,14 +25,12 @@ GET
 
 ### Output
 
-The output will be a JSON array, with the following values:
-
-The first value will be a JSON array containing two values:
-The timestamp of the start parameter of the request in milliseconds since the epoch, and the value of the text metric at that point in time as a string.
-
-Subsequent values will indicate the change points of the text metric.
-Those will also be JSON arrays containing two values:
+The output will be a JSON array, the entries of which are JSON arrays with two values:
 The timestamps of the change-point in milliseconds since the epoch, and the new value as a string.
+
+The first entry will be the latest change point **before** the requested start time.
+
+Subsequent entries will be change points within the requested period.
 
 ## Examples
 
@@ -51,5 +49,5 @@ In this example:
 ### Example 1 Output
 
 ```json
-[[1380000000000,"value_at_the_beginning_of_the_requested_range"],[1380000000123,"value_2"],[1380000000125,"value_3"]]
+[[1379232000000,"value_1"],[1380000000123,"value_2"],[1380000000125,"value_3"]]
 ```
