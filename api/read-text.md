@@ -25,11 +25,14 @@ GET
 
 ### Output
 
-The response payload will contain a JSON array of tuples consisting of the timestamps (in millisecions since epoch) from the time the value was received, and the text value itself as a string.
+The output will be a JSON array, with the following values:
 
-The first value of the response array is an exception to this rule.
-It will contain the timestamp of the start parameter, along with the text value at the start time.
-This is done, so that the user has information about the initial state of the text metric for the request interval.
+The first value will be a JSON array containing two values:
+The timestamp of the start parameter of the request in milliseconds since the epoch, and the value of the text metric at that point in time as a string.
+
+Subsequent values will indicate the change points of the text metric.
+Those will also be JSON arrays containing two values:
+The timestamps of the change-point in milliseconds since the epoch, and the new value as a string.
 
 ## Examples
 
@@ -48,5 +51,5 @@ In this example:
 ### Example 1 Output
 
 ```json
-[[1380000000000,"test_value_at_the_beginning_of_the_requested_range"],[1380000000123,"test_value_2"]]
+[[1380000000000,"value_at_the_beginning_of_the_requested_range"],[1380000000123,"value_2"],[1380000000125,"value_3"]]
 ```
