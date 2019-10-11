@@ -25,7 +25,7 @@ GET
 
 ### Output
 
-The output will be a JSON array, the entries of which are JSON arrays which indicate change points of the text metrics, containing two values:
+The output will be a JSON array, the entries of which are JSON arrays which indicate change-points of the text metric, containing two values:
 The timestamps of the change-point in milliseconds since the epoch, and the new value as a string.
 
 The first entry will be the last change point **before** the requested start time.
