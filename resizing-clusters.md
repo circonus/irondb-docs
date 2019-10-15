@@ -13,8 +13,7 @@ data remain available during a rebalance, under the old topology. New,
 incoming metric data is replicated to _both_ old and new topologies.
 
 After all nodes complete the rebalance, they will switch their active topology
-from old to new. Each node will then kick off a delete operation of any
-metrics that no longer belong on that node.
+from old to new.
 
 A helper tool exists to simplify the procedure, and its use is illustrated
 below. Both additions and removals may be performed in the same operation,
@@ -35,12 +34,32 @@ cluster](/migrating-clusters.md).
 When removing nodes from a cluster, no more than `W-1` (one less than the
 number of write copies) nodes may be removed in a rebalance operation. For
 example, a cluster with `W=3` may have a maximum of 2 nodes removed at a time.
+Removing more than this number of nodes could jeopardize data availability.
 
 If resizing a sided cluster, the new cluster topology must still have at least
 `W/2` (half the number of write copies) nodes on each side, to ensure that the
 promise of metric distribution across sides can be maintained. For example, a
 sided cluster with `W=3` must still have at least 2 nodes on each side in the
 new topology (fractional values are rounded up to the nearest integer.)
+
+During a rebalance operation, the existing cluster nodes all send their
+portions of the relocating metrics to the new node(s) simultaneously. Depending
+on the topology and the amount of existing metric data, this may be too much
+for the incoming node(s) to handle. If this is the case, the transfers maybe
+done sequentially by adding the following line to `irondb.conf`, just before
+the closing `</snowth>` line:
+
+```
+<rebalance concurrency="1"/>
+```
+
+This will make the overall operation take longer to complete, but should avoid
+overwhelming the incoming node(s).
+
+This value will only take effect at the start of a rebalance operation, and
+will be ignored if changed while a rebalance is ongoing. To abandon a rebalance
+operation, see the last item of either [Adding Nodes](#adding-nodes) or
+[Removing Nodes](#removing-nodes) below.
 
 ## Adding Nodes
 
@@ -83,23 +102,20 @@ this with the `-h` option for details on the available options.
 
   ```curl http://<node>:<api-port>/rebalance/state```
 
-* To abort the rebalance, POST to `/rebalance/deactivate/[new topology hash]`
+* To abort the rebalance, [stop the IRONdb service](/operations.md#service-management) and remove the rebalance state file:
 
-  ```curl -X POST http://<node>:<api-port>/rebalance/deactivate/c790e663badf603ac555e02a07bf195f06932f271ee1f2d7fae104b3a1b232f3```
+  ```/irondb/localstate/.rebalance_state.json```
 
-  on every node, including any new nodes that were added.
+  on every node, including on any new nodes that were added. Then start the
+  service again.
 
 ## Removing Nodes
 
 Shrinking a cluster is basically the same as adding, above:
 * Create a new topology with the nodes that should remain.
-* Load the new topology to the nodes that should remain.
-* Start rebalance to new topology on the nodes that should remain.
-
-One difference is that nodes that are not in the new topology do not
-automatically clean up their data, which avoids delaying the cleanup phase
-unnecessarily. It is up to the operator to do this as part of decommissioning
-the unused nodes.
+* Load the new topology to all nodes, including the ones that are leaving.
+* Start rebalance to new topology on all nodes, including the ones that are
+  leaving.
 
 We will use the cluster resizing tool, `/opt/circonus/bin/resize_cluster`. Run
 this with the `-h` option for details on the available options.
@@ -129,8 +145,8 @@ this with the `-h` option for details on the available options.
 
   ```curl http://<node>:<api-port>/rebalance/state```
 
-* To abort the rebalance, POST to `/rebalance/deactivate/[new topology hash]`
+* To abort the rebalance, [stop the IRONdb service](/operations.md#service-management) and remove the rebalance state file:
 
-  ```curl -X POST http://<node>:<api-port>/rebalance/deactivate/c790e663badf603ac555e02a07bf195f06932f271ee1f2d7fae104b3a1b232f3```
+  ```/irondb/localstate/.rebalance_state.json```
 
-  on every node that is part of the new topology.
+  on every node, including on any leaving nodes. Then start the service again.
