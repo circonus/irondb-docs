@@ -56,6 +56,11 @@ the closing `</snowth>` line:
 This will make the overall operation take longer to complete, but should avoid
 overwhelming the incoming node(s).
 
+This value will only take effect at the start of a rebalance operation, and
+will be ignored if changed while a rebalance is ongoing. To abandon a rebalance
+operation, see the last item of either [Adding Nodes](#adding-nodes) or
+[Removing Nodes](#removing-nodes) below.
+
 ## Adding Nodes
 
 An existing IRONdb cluster has two nodes with write factor of 2. A new node is
