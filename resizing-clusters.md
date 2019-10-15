@@ -12,6 +12,11 @@ metric stream, and then sending that stream to the new owning node. All metric
 data remain available during a rebalance, under the old topology. New,
 incoming metric data is replicated to _both_ old and new topologies.
 
+Because of the consistent-hashing design of IRONdb, metric ownership changes
+are limited to transitions from existing cluster nodes to new ones. Changes
+between existing nodes are not possible in non-sided topologies. There is a low
+probability of existing nodes exchanging metrics in sided topologies.
+
 After all nodes complete the rebalance, they will switch their active topology
 from old to new. Each node will then kick off a delete operation of any
 metrics that no longer belong on that node.
@@ -35,12 +40,27 @@ cluster](/migrating-clusters.md).
 When removing nodes from a cluster, no more than `W-1` (one less than the
 number of write copies) nodes may be removed in a rebalance operation. For
 example, a cluster with `W=3` may have a maximum of 2 nodes removed at a time.
+Removing more than this number of nodes could jeopardize data availability.
 
 If resizing a sided cluster, the new cluster topology must still have at least
 `W/2` (half the number of write copies) nodes on each side, to ensure that the
 promise of metric distribution across sides can be maintained. For example, a
 sided cluster with `W=3` must still have at least 2 nodes on each side in the
 new topology (fractional values are rounded up to the nearest integer.)
+
+During a rebalance operation, the existing cluster nodes all send their
+portions of the relocating metrics to the new node(s) simultaneously. Depending
+on the topology and the amount of existing metric data, this may be too much
+for the incoming node(s) to handle. If this is the case, the transfers maybe
+done sequentially by adding the following line to `irondb.conf`, just before
+the closing `</snowth>` line:
+
+```
+<rebalance concurrency="1"/>
+```
+
+This will make the overall operation take longer to complete, but should avoid
+overwhelming the incoming node(s).
 
 ## Adding Nodes
 
