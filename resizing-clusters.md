@@ -12,11 +12,6 @@ metric stream, and then sending that stream to the new owning node. All metric
 data remain available during a rebalance, under the old topology. New,
 incoming metric data is replicated to _both_ old and new topologies.
 
-Because of the consistent-hashing design of IRONdb, metric ownership changes
-are limited to transitions from existing cluster nodes to new ones. Changes
-between existing nodes are not possible in non-sided topologies. There is a low
-probability of existing nodes exchanging metrics in sided topologies.
-
 After all nodes complete the rebalance, they will switch their active topology
 from old to new. Each node will then kick off a delete operation of any
 metrics that no longer belong on that node.
