@@ -13,8 +13,7 @@ data remain available during a rebalance, under the old topology. New,
 incoming metric data is replicated to _both_ old and new topologies.
 
 After all nodes complete the rebalance, they will switch their active topology
-from old to new. Each node will then kick off a delete operation of any
-metrics that no longer belong on that node.
+from old to new.
 
 A helper tool exists to simplify the procedure, and its use is illustrated
 below. Both additions and removals may be performed in the same operation,
