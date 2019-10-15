@@ -97,23 +97,20 @@ this with the `-h` option for details on the available options.
 
   ```curl http://<node>:<api-port>/rebalance/state```
 
-* To abort the rebalance, POST to `/rebalance/deactivate/[new topology hash]`
+* To abort the rebalance, [stop the IRONdb service](/operations.md#service-management) and remove the rebalance state file:
 
-  ```curl -X POST http://<node>:<api-port>/rebalance/deactivate/c790e663badf603ac555e02a07bf195f06932f271ee1f2d7fae104b3a1b232f3```
+  ```/irondb/localstate/.rebalance_state.json```
 
-  on every node, including any new nodes that were added.
+  on every node, including on any new nodes that were added. Then start the
+  service again.
 
 ## Removing Nodes
 
 Shrinking a cluster is basically the same as adding, above:
 * Create a new topology with the nodes that should remain.
-* Load the new topology to the nodes that should remain.
-* Start rebalance to new topology on the nodes that should remain.
-
-One difference is that nodes that are not in the new topology do not
-automatically clean up their data, which avoids delaying the cleanup phase
-unnecessarily. It is up to the operator to do this as part of decommissioning
-the unused nodes.
+* Load the new topology to all nodes, including the ones that are leaving.
+* Start rebalance to new topology on all nodes, including the ones that are
+  leaving.
 
 We will use the cluster resizing tool, `/opt/circonus/bin/resize_cluster`. Run
 this with the `-h` option for details on the available options.
@@ -143,8 +140,8 @@ this with the `-h` option for details on the available options.
 
   ```curl http://<node>:<api-port>/rebalance/state```
 
-* To abort the rebalance, POST to `/rebalance/deactivate/[new topology hash]`
+* To abort the rebalance, [stop the IRONdb service](/operations.md#service-management) and remove the rebalance state file:
 
-  ```curl -X POST http://<node>:<api-port>/rebalance/deactivate/c790e663badf603ac555e02a07bf195f06932f271ee1f2d7fae104b3a1b232f3```
+  ```/irondb/localstate/.rebalance_state.json```
 
-  on every node that is part of the new topology.
+  on every node, including on any leaving nodes. Then start the service again.
