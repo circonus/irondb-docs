@@ -5,7 +5,7 @@
 
  * Support trailing \*\* in graphite queries in a way that is leaf-only.
  * Support a filter config option for the monitor module.
- * Implement topk as a /fetch reducer.
+ * Implement top(k) as a /fetch reducer.
  * Support histogram input for /fetch `groupby_stats`.
  * Implement histogram /fetch transforms: `{inverse_,}{quantile,percentile}`
    and `count_{above,below}`.
