@@ -1,5 +1,23 @@
 # Changelog
 
+## Changes in 0.18.4
+2019-10-16
+
+ * Support tailing \*\* in graphite queries in a way that is leaf-only.
+ * Support a filter config option for the monitor module.
+ * Implement topk as a /fetch reducer.
+ * Support histogram input for /fetch `groupby_stats`
+ * Implement histogram /fetch transforms: `{inverse_,}{quantile,percentile}`
+   and `count_{above,below}`.
+ * Bug: Fix crashes related to bad locking when adding/removing a metric locator
+   from the surrogate cache.
+ * Bug: Fix potential integer overflow glitch when using the `/fetch` endpoint
+   that could cause occasional incorrect results.
+ * CAQL: Fix account_id handling for histogram summary views
+ * CAQL: Add sensible default labels to histogram:percentile() output
+ * CAQL: Performance improvements to integrate() function
+ * CAQL: Leverage /fetch endpoint for find() operations
+
 ## Changes in 0.18.3
 2019-10-07
 
