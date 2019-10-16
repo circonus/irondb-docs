@@ -5,7 +5,6 @@
 
  * Support trailing \*\* in graphite queries in a way that is leaf-only.
  * Support a filter config option for the monitor module.
- * Implement top(k) as a /fetch reducer.
  * Support histogram input for /fetch `groupby_stats`.
  * Implement histogram /fetch transforms: `{inverse_,}{quantile,percentile}`
    and `count_{above,below}`.
@@ -16,7 +15,9 @@
  * CAQL: Fix account_id handling for histogram summary views.
  * CAQL: Add sensible default labels to histogram:percentile() output.
  * CAQL: Performance improvements to integrate() function.
- * CAQL: Leverage /fetch endpoint for find() operations.
+ * CAQL: Leverage /fetch endpoint for find() operations. This is a significant
+   performance improvement that should make CAQL find() operations much
+   faster.
 
 ## Changes in 0.18.3
 2019-10-07
