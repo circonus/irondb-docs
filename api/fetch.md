@@ -87,6 +87,8 @@ A reduce definition form:
    * `transform_params` a value in the range [0,100]
  * `quantile` - produce a numeric quantile
    * `transform_params` a value in the range [0,1]
+ * `sum` - approximate sum of the samples in each histogram
+ * `mean` - approximate mean value of the samples in each histogram
 
 #### Text (`kind` = `text`)
 
