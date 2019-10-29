@@ -1,5 +1,37 @@
 # Changelog
 
+## Changes in 0.18.5
+2019-10-29
+
+ * Fix surrogate/put `type` setting.
+ * Prefer `uuid` and `caetgory` as fields instead of `check_uuid` and `source` to match the /find output.
+ * Disable `nnt_cache` module in the default configuration for simplicity.
+ * Make use /fetch deadline handlers in lua/CAQL
+ * Support X-Snowth-Timeout and X-Snowth-Deadline headers to /fetch
+ * Allow activity=0 to /find//tags to suppress activity information.
+ * Support telnet-like console access via the administrative web UI.
+ * CAQL: Add deprecation warning to search:metric() and metriccluster() function.
+   Search v2 and Metric-clusters have been deprecated for a while now.
+   We plan to remove these deprecated function in 2020-01-31.
+   This will affect caql checks as well as CAQL Datapoints on graphs.
+   With this change, the UI will show users a warning, when one of those deprecated functions is used.
+   Circonus offers the more-powerful tag-search feature, exposed as find() in CAQL.
+ * CAQL: Add default labels to `histogram:*` output
+ * CAQL: Restrict sorting of results to the find() function, so that, e.g. top-k output is not sorted by label
+ * CAQL: Add tag:remove() function
+ * CAQL: Set default/max limits for CAQL find() queries to 1000/3000 (configurable)
+ * CAQL: Speed-up data fetching with the metric(), and the deprecated search:metric() and metriccluster()
+   functions, by leveraging the /fetch endpoint.
+ * CAQL: Fix bugs with limiting and sorting outputs. Introduced: 2019-10-22
+ * CAQL: Optimize a number of query patterns to leverage federated data processing:
+   - find() | stats:{sum,mean}
+   - find() | count()
+   - find() | top()
+   - find:histogram() | histogram:merge()
+   - find:histogram() | histogram:sum() | stats:sum()
+ * CAQL: Fix count() function to not count NaN values
+
+
 ## Changes in 0.18.4
 2019-10-16
 
