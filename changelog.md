@@ -30,6 +30,7 @@
    - find:histogram() | histogram:merge()
    - find:histogram() | histogram:sum() | stats:sum()
  * CAQL: Fix count() function to not count NaN values
+ * [libmtev 1.9.2](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#192)
 
 
 ## Changes in 0.18.4
