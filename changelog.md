@@ -1,5 +1,30 @@
 # Changelog
 
+## Changes in 0.18.6
+2019-11-08
+
+ * Fix potential null dereferernce/crash when iterating raw database during reconstitute
+ * Fix crash in reconstitute where attempting to defer rollups until after the reconstitute was
+   finished was causing a race leading to a crash.
+ * CAQL: Add multiple input slots to the `delay()` function and improve its performance
+ * CAQL: Add deprecation warnings to `histogram:window` and `histogram:rolling`;
+   `window:merge` and `rolling:merge` should be used instead.
+ * CAQL: Revise the time aggregation functions `window:*` and `rolling:*`
+   - Improve performance by leveraging pre-aggregated data
+   - By default the results of `window:*` functions no longer lag behind the incoming data
+     when displayed on graphs. The old behavior can be restored by passing `align="end"` as
+     a parameter.
+   - Add support for multiple input streams
+   - Align window boundaries consistently
+   - Add `window:first()` function that selects the first sample in each window
+   - Add `window:merge()` function to aggregate histograms over time
+   - Add `skip` parameter to control the advancement of time windows
+   - Add `period` parameter to control the granularity of input data
+   - Add `align=start/end` parameter to control alignment of the output data
+   - Add `offset` parameter to control window offset against UTC
+ * CAQL: Add #strict directive that forces serial data processing with period=1M
+ * CAQL: Improve speed and accuracy of the `integrate()` function.
+
 ## Changes in 0.18.5
 2019-10-29
 
