@@ -3,7 +3,7 @@
 ## Changes in 0.18.6
 2019-11-08
 
- * Fix potential null dereferernce/crash when iterating raw database during reconstitute
+ * Fix potential null dereference/crash when iterating raw database during reconstitute
  * Fix crash in reconstitute where attempting to defer rollups until after the reconstitute was
    finished was causing a race leading to a crash.
  * CAQL: Add multiple input slots to the `delay()` function and improve its performance
