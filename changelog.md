@@ -11,6 +11,7 @@
  * CAQL: Add `aggregate:*` package for controlling data aggregation on graphs
  * CAQL: Support grouping by multiple tags
  * CAQL: Performance improvements to `diff()`/`integrate()`/`delay()`/`is_missing()`
+ * [libmtev 1.9.5](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#195)
 
 ## Changes in 0.18.6
 2019-11-08
