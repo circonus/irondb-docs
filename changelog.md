@@ -1,5 +1,17 @@
 # Changelog
 
+## Changes in 0.18.7
+2019-11-18
+
+ * Fix crash when fetching histograms with a period less than 1 second
+ * Always adjust Graphite step to best NNT rollup if no raw data found
+ * Add new log stream for Graphite step adjustments (`debug/graphite/step_adjust`)
+ * CAQL: Fix a bug with handling missing data in diff()
+ * CAQL: Improve performance of window:/rolling:/aggregate: functions in #strict mode
+ * CAQL: Add `aggregate:*` package for controlling data aggregation on graphs
+ * CAQL: Support grouping by multiple tags
+ * CAQL: Performance improvements to `diff()`/`integrate()`/`delay()`/`is_missing()`
+
 ## Changes in 0.18.6
 2019-11-08
 
