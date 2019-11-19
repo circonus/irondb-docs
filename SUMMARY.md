@@ -133,6 +133,7 @@
         * [Issuing CAQL Queries](api/extension-caql.md)
 * [Changelog](changelog.md)
 * [Appendices](appendices.md)
+  * [Getting Started with Google Cloud Marketplace](gcp-get-started.md)
   * [ZFS Setup Guide](zfs-guide.md)
   * [Cluster Sizing](cluster-sizing.md)
   * [Deprecated APIs](deprecated-apis.md) <!-- please keep this as the last appendix -->
