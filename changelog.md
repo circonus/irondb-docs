@@ -3,13 +3,13 @@
 ## Changes in 0.18.8
 2019-11-21
 
- * Fix infinite loop when `/fetch` exhausted deadline and nodes are down.
+ * Fix infinite loop when `/fetch` exhausted its deadline and nodes are down.
  * Make the `resize_cluster` script load the new topology on removed nodes.
  * Fix bug in flatbuffer byte alignment where the code was inaccurately determining
-   if we needed additional byte alignment
+   if we needed additional byte alignment.
  * Support `count_only=1` for `find//tags`.
  * Align and validate all surrogate flatbuffer data before attempting to use it.
-   This will prevent using incorrect value and/or crashing on bad data.
+   This will prevent using incorrect values and/or crashing on bad data.
  * Fix bug with metric type changes using surrogate put REST API.
 
 ## Changes in 0.18.7
