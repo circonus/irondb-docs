@@ -1,5 +1,18 @@
 # Changelog
 
+## Changes in 0.19.0
+2019-12-10
+
+ * Change NNTBS reconstitute to iterate through entire shards rather than pulling individual
+   metrics.
+   THIS IS A BREAKING CHANGE - any reconstitute that is in progress when this deploys
+   will need to be restarted from the beginning. All nodes will need to be brought up to
+   the latest version as well.
+ * Change framing of raw reconstitute data to improve efficiency.
+ * CAQL: Add base parameter to the integrate() function.
+ * CAQL: Add histogram:subtract() function
+ * [libmtev 1.9.8](https://github.com/circonus-labs/libmtev/blob/master/ChangeLog.md#198)
+
 ## Changes in 0.18.8
 2019-11-21
 
