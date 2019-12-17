@@ -1,5 +1,10 @@
 # Changelog
 
+## Changes in 0.19.1
+2019-12-17
+
+ * Fix memory leaks in NNTBS and raw reconstitute paths.
+
 ## Changes in 0.19.0
 2019-12-10
 
