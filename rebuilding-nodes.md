@@ -23,12 +23,16 @@ or `screen` is recommended to avoid interruption.
 
 1. Log into the IRONdb node you wish to reconstitute as `root` or a privileged
 user. Make sure the IRONdb package is [up to date](installation.md#updating).
-If the entire old node was replaced (e.g., due to a hardware failure), then you
-should repeat [initial installation](installation.md#installation-steps) and
-then [disable the service](operations.md#service-management).
-  1. If reconstituting within the full on-premise, Circonus Inside product,
-package updating has been handled automatically by the installer. No manual
-package installation is required. Please refer to the [Circonus Inside
+  1. **Note:** If the entire old node was replaced (e.g., due to a hardware failure), or
+the ZFS pool has been recreated (due to hardware failure or administrative
+action), then you should repeat [initial
+installation](installation.md#installation-steps) and then [disable the
+service](operations.md#service-management). The installer will not interfere
+with an existing `irondb.conf` file but will ensure that all necessary ZFS
+datasets and node-id subdirectories have been created.
+  1. **Note:** If reconstituting within the full, on-premise, Circonus Inside
+product, package updating has been handled automatically by the installer. No
+manual package installation is required. Please refer to the [Circonus Inside
 Operations
 Manual](https://login.circonus.com/resources/docs/operation/ReconstitutingaSnowthnode.html)
 for details on how this process differs for Circonus Inside.
@@ -48,7 +52,7 @@ data.
  1. Run the following command to find the base ZFS dataset. This will create a
 shell variable, `BASE_DATASET`, that will be used in subsequent commands.
 ```
-BASE_DATASET=`zfs list -H -o name /irondb`
+BASE_DATASET=$(zfs list -H -o name /irondb)
 ```
  1. Destroy the existing data using the following commands:
 ```
@@ -101,13 +105,14 @@ cluster peers. You can access the current percentage done at:
 ```
 ...and looking at the "reconstitute" stats.
 
-NOTE: There may not be messages appearing on the console while this runs. This
+**Note**: There may not be messages appearing on the console while this runs. This
 is normal. Do not stop the reconstitute.
 
-Current progress will be saved - if the process stops for any reason, everything
-should pick back up approximately where it was. 
+Current progress will be saved - if the process stops for any reason,
+everything should resume approximately where it was.
 
-If the download stops partway for any reason, you may resume it with the same command:
+If the reconstitute is interrupted for any reason, you may resume it with the
+same command:
 ```
 /opt/circonus/bin/irondb-start -B 
 ```
